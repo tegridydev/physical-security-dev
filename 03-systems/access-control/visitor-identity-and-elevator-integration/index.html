@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Visitor, identity, and elevator integration · Security Technician Wiki</title>
+<meta name="description" content="Visitor, HR, access control and lift systems own different records and decisions. Define the approved exchange and permissions between them.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/access-control/visitor-identity-and-elevator-integration/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Visitor, identity, and elevator integration · Security Technician Wiki">
+<meta property="og:description" content="Visitor, HR, access control and lift systems own different records and decisions. Define the approved exchange and permissions between them.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/access-control/visitor-identity-and-elevator-integration/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group" open><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../biometrics/">Biometric access control systems</a></li><li><a href="../credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../mobile-access/">Mobile access systems</a></li><li><a href="../offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../pacs-architecture/">PACS architecture</a></li><li><a href="../panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="./" aria-current="page">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Physical access control systems</a><span aria-hidden="true">/</span><span aria-current="page">Visitor, identity, and elevator integration</span></nav><div class="page-kicker">Systems <span>About 2 min read</span></div><div class="prose"><h1 id="s-visitor-identity-and-elevator-integration">Visitor, identity, and elevator integration</h1>
+<p>Visitor, HR, access control and lift systems own different records and decisions. Define the approved exchange and permissions between them.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Integration model only; no lift safety/control sequence, destination dispatch command, access policy, identity proofing level, or local visitor/legal requirement.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-provisioning-pipeline">Provisioning pipeline</a></li><li class="toc-level-2"><a href="#s-visitor-lifecycle">Visitor lifecycle</a></li><li class="toc-level-2"><a href="#s-liftelevator-boundary">Lift/elevator boundary</a></li><li class="toc-level-2"><a href="#s-failure-and-privacy">Failure and privacy</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>HR, identity governance, visitor management, PACS, and lift systems each own different facts. Integration should propagate the minimum approved intent, not make any one source omnipotent.</p>
+<h2 id="s-authority-map">Authority map<a class="heading-link" href="#s-authority-map" aria-label="Link to Authority map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>System</th>
+  <th>Authoritative for</th>
+  <th>Must not imply automatically</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>HR/workforce</td>
+  <td>Employment/contract relationship attributes</td>
+  <td>Door/floor authorisation</td>
+</tr>
+<tr>
+  <td>Identity governance</td>
+  <td>Account lifecycle, group/approval workflow</td>
+  <td>Physical presence or passage</td>
+</tr>
+<tr>
+  <td>Visitor management</td>
+  <td>Visit, sponsor, expected time, check in status</td>
+  <td>Unsupervised access rights</td>
+</tr>
+<tr>
+  <td>PACS</td>
+  <td>Physical credentials, access rules, decisions, door audit</td>
+  <td>Employee/visitor master identity</td>
+</tr>
+<tr>
+  <td>Lift destination/control</td>
+  <td>Approved car/floor operation and safety logic</td>
+  <td>Identity lifecycle or building occupancy truth</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-provisioning-pipeline">Provisioning pipeline<a class="heading-link" href="#s-provisioning-pipeline" aria-label="Link to Provisioning pipeline">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">source change -&gt; validate/map -&gt; approval/policy -&gt; PACS identity/credential/rules
+ -&gt; controller download/ack -&gt; effective state reconciliation -&gt; expiry/revocation
+</code></pre></div>
+<p>Use immutable source IDs and mapping versions; don't join people by display name/email alone. Effective start/end times, timezone, sponsor, site, role, credential status, and policy reason need explicit semantics. A successful API response isn't proof all controllers are current.</p>
+<p><a href="https://www.rfc-editor.org/info/rfc7643" rel="noopener noreferrer">RFC 7643</a> and <a href="https://www.rfc-editor.org/info/rfc7644" rel="noopener noreferrer">RFC 7644</a> define SCIM user/group schema and HTTP provisioning protocol for cross domain identity management. SCIM does not define PACS doors/access rules or complete authentication policy. PSIA's <a href="https://psialliance.org/all-about-plai/" rel="noopener noreferrer">PLAI overview</a> specifically addresses dynamic physical/logical identity and privilege transfer to disparate PACS, based on its own specification scope.</p>
+<h2 id="s-visitor-lifecycle">Visitor lifecycle<a class="heading-link" href="#s-visitor-lifecycle" aria-label="Link to Visitor lifecycle">#</a></h2>
+<p>Require sponsor and purpose; verify the visitor under local policy; scope site/areas/schedule/escort; issue a visibly temporary, unique credential; activate at check in rather than invitation where appropriate; expire/revoke automatically; record return/loss; and handle no show/cancel/overstay. Don't expose host calendars, attendee lists, ID documents, photos, health/vehicle details, or movement beyond need.</p>
+<p>Pre registration links and QR credentials must be signed/scoped/fresh, protected against forwarding/reuse, and revocable. Reception overrides require reason and audit.</p>
+<h2 id="s-liftelevator-boundary">Lift/elevator boundary<a class="heading-link" href="#s-liftelevator-boundary" aria-label="Link to Lift/elevator boundary">#</a></h2>
+<p>PACS may provide an approved floor set or destination request; the certified lift system retains motion, door, load, emergency, fire service, and safety authority. Use the exact manufacturer approved interface and local lift/fire standards. Never write controller registers or simulate safety inputs from a generic integration.</p>
+<p>Distinguish credential permitted floors, submitted destination, accepted destination, assigned car, passenger entry, car movement, and arrival. A destination acknowledgement isn't passage or safe transport.</p>
+<h2 id="s-failure-and-privacy">Failure and privacy<a class="heading-link" href="#s-failure-and-privacy" aria-label="Link to Failure and privacy">#</a></h2>
+<p>Define IdP/HR/visitor/PACS/lift/network/time outage, duplicate identity, delayed termination, expired visit, controller offline, visitor credential loss, destination rejection, emergency mode, and recovery. Emergency/accessible egress/operation must not depend on enterprise provisioning availability.</p>
+<p>Reconcile active people/credentials/visits regularly; alert orphaned accounts, overlong validity, failed revocation, duplicate source links, and controller divergence. Keep movement/access histories purpose limited and restricted.</p>
+<p>Return to <a href="../">Access control systems</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../pedestrian-portals-turnstiles-and-interlocked-doors/"><span>Previous in this section</span>Pedestrian portals, turnstiles, and interlocked doors</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/access-control/visitor-identity-and-elevator-integration.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/access-control/visitor-identity-and-elevator-integration.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-provisioning-pipeline">Provisioning pipeline</a></li><li class="toc-level-2"><a href="#s-visitor-lifecycle">Visitor lifecycle</a></li><li class="toc-level-2"><a href="#s-liftelevator-boundary">Lift/elevator boundary</a></li><li class="toc-level-2"><a href="#s-failure-and-privacy">Failure and privacy</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>PSIM and command platforms · Security Technician Wiki</title>
+<meta name="description" content="PSIM and command platforms bring events and operator workflows together. Keep source information, operator decisions and control permissions visible in the shared interface.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/integration-platforms/psim-and-command-platforms/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PSIM and command platforms · Security Technician Wiki">
+<meta property="og:description" content="PSIM and command platforms bring events and operator workflows together. Keep source information, operator decisions and control permissions visible in the shared interface.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/integration-platforms/psim-and-command-platforms/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group" open><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="./" aria-current="page">PSIM and command platforms</a></li><li><a href="../siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Integration platforms</a><span aria-hidden="true">/</span><span aria-current="page">PSIM and command platforms</span></nav><div class="page-kicker">Systems <span>About 3 min read</span></div><div class="prose"><h1 id="s-psim-and-command-platforms">PSIM and command platforms</h1>
+<p>PSIM and command platforms bring events and operator workflows together. Keep source information, operator decisions and control permissions visible in the shared interface.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Platform neutral architecture only; no vendor feature assertion, live command, playbook, response authority, or product interoperability claim.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-reference-architecture">Reference architecture</a></li><li class="toc-level-2"><a href="#s-source-authority-and-canonical-model">Source authority and canonical model</a></li><li class="toc-level-2"><a href="#s-correlation-and-workflow">Correlation and workflow</a></li><li class="toc-level-2"><a href="#s-command-boundary">Command boundary</a></li><li class="toc-level-2"><a href="#s-security-architecture">Security architecture</a></li><li class="toc-level-2"><a href="#s-resilience-and-exit">Resilience and exit</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security information management and command platforms combine events, state, maps, procedures, video, identity, cases, and sometimes control. Their useful role is correlation and governed workflow. Their principal risk is becoming a broad, opaque control plane with stale or over normalised data.</p>
+<h2 id="s-reference-architecture">Reference architecture<a class="heading-link" href="#s-reference-architecture" aria-label="Link to Reference architecture">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">source system
+ -&gt; source-specific adapter and constrained identity
+ -&gt; immutable raw event/state observation
+ -&gt; canonical mapping with provenance and quality
+ -&gt; correlation/rules and workflow
+ -&gt; operator decision or explicitly approved automation
+ -&gt; target-specific adapter and constrained command
+ -&gt; native acknowledgement/telemetry
+ -&gt; case and audit record
+</code></pre></div>
+<p>Keep ingestion and control identities separate. Split by tenant, site, security domain, and capability so compromise of a display or one adapter doesn't create universal actuation.</p>
+<h2 id="s-source-authority-and-canonical-model">Source authority and canonical model<a class="heading-link" href="#s-source-authority-and-canonical-model" aria-label="Link to Source authority and canonical model">#</a></h2>
+<p>For every object and field, document the authoritative source, mapping owner, refresh mode, maximum age, conflict rule, and behaviour when the source is unavailable. Preserve native identifiers, event codes, timestamps, sequence, quality, raw payload or reference, adapter/parser version, and received time.</p>
+<p>Canonical categories help operators, but never erase source meaning. <code>alarm</code>, <code>acknowledged</code>, <code>restore</code>, <code>door open</code>, <code>device offline</code>, and <code>case closed</code> mean different things across systems. Maintain a mapping table and expose uncertainty or unsupported state.</p>
+<p>Use separate objects for:</p>
+<ul>
+<li>current reported state and the time/quality of that report;</li>
+<li>immutable source event;</li>
+<li>derived correlation/incident;</li>
+<li>operator task and acknowledgement;</li>
+<li>case disposition/closure;</li>
+<li>command request, target acceptance, physical telemetry, and outcome.</li>
+</ul>
+<h2 id="s-correlation-and-workflow">Correlation and workflow<a class="heading-link" href="#s-correlation-and-workflow" aria-label="Link to Correlation and workflow">#</a></h2>
+<p>Rules should be versioned, attributable, testable against representative historical/synthetic records, explainable to an operator, and reversible. Store contributing and contradicting events. Missing telemetry must be <code>unknown</code>, not a negative condition.</p>
+<p>Workflows can guide verification, escalation, evidence capture, communications, and handover, but must show policy version, required/optional steps, authority, deadline, exception reason, and incomplete dependencies. Avoid forcing operators to enter a false answer merely to advance a case.</p>
+<p>Maps and dashboards need source time, state age, live/recorded status, and failure overlays. A green aggregate must not hide an unavailable adapter, stale site, bypassed zone, lost recording, or disabled rule.</p>
+<h2 id="s-command-boundary">Command boundary<a class="heading-link" href="#s-command-boundary" aria-label="Link to Command boundary">#</a></h2>
+<p>Use semantic operations such as a constrained access request, camera preset request, or alarm acknowledgement, not raw relay, register, shell, or unrestricted vendor calls. For every command define:</p>
+<ul>
+<li>authorised roles, target scope, prerequisites, reason, confirmation, and expiry;</li>
+<li>idempotency/replay/duplicate behaviour, timeout, cancellation, and queueing;</li>
+<li>native system policy and safety checks that remain authoritative;</li>
+<li>returned protocol result versus observed physical state;</li>
+<li>dual authorisation or break glass where consequence warrants;</li>
+<li>complete audit and reconciliation after partial failure.</li>
+</ul>
+<p>Don't create generic cross domain automation such as “alarm implies unlock/gate cycle/lift action.” Physical effects require an approved cause and effect and safety boundary.</p>
+<h2 id="s-security-architecture">Security architecture<a class="heading-link" href="#s-security-architecture" aria-label="Link to Security architecture">#</a></h2>
+<ul>
+<li>Strong workforce/workload identity and least privilege adapters; no shared global service account.</li>
+<li>Explicit authorisation at each request, independent of network location.</li>
+<li>Segmented management, ingestion, media, command, and third party connections.</li>
+<li>Protected secrets/keys, certificate rotation, supported patching, dependency inventory, and recovery.</li>
+<li>Tenant/site isolation for data, search, caches, exports, rules, notifications, and support access.</li>
+<li>Audit of identity, configuration, mapping, rule, workflow, view/search, export, and command activity.</li>
+<li>Egress controls and allowlisted integration destinations; integrations are supply chain boundaries.</li>
+</ul>
+<p>NIST <a href="https://csrc.nist.gov/pubs/sp/800/207/final" rel="noopener noreferrer">SP 800-207</a> rejects implicit trust based solely on network location and frames authentication and authorisation as per resource decisions. Apply that principle to adapters and command requests; it isn't a product certification.</p>
+<h2 id="s-resilience-and-exit">Resilience and exit<a class="heading-link" href="#s-resilience-and-exit" aria-label="Link to Resilience and exit">#</a></h2>
+<p>Document adapter, broker, database, search, identity provider, mapping service, rules engine, client, WAN/cloud, time, licence, and source system failures. State what continues natively, what becomes stale, what queues, what is lost, and how recovery avoids duplicates or silent gaps.</p>
+<p>The native security systems should retain their approved essential operation if the integration layer fails. Maintain tested configuration, mapping, workflow, audit, case, and evidence export; document migration and vendor/service termination so the platform doesn't become the sole undocumented memory of operations.</p>
+<h2 id="s-acceptance-evidence">Acceptance evidence<a class="heading-link" href="#s-acceptance-evidence" aria-label="Link to Acceptance evidence">#</a></h2>
+<ul>
+<li>complete source/target inventory, authorities, service identities, scopes, and dependency graph;</li>
+<li>field by field mapping with unknown/stale/conflict behaviour;</li>
+<li>representative ordering, duplicate, loss, reconnect, failover, and clock cases;</li>
+<li>role/tenant isolation and privileged action evidence;</li>
+<li>command request through physical telemetry without inferred success;</li>
+<li>native operation during platform failure and reconciled recovery;</li>
+<li>privacy, retention, audit integrity, evidence export, backup, restore, and exit.</li>
+</ul>
+<p>See <a href="../">Integration platforms</a>, <a href="../siem-soar-and-case-management/">SIEM, SOAR, and case management</a>, and <a href="../bms-and-scada-integration/">BMS and SCADA integration</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../hr-identity-and-visitor-integration/"><span>Previous in this section</span>HR, identity, and visitor integration</a><a href="../siem-soar-and-case-management/"><span>Next in this section</span>SIEM, SOAR, and case management</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/integration-platforms/psim-and-command-platforms.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/integration-platforms/psim-and-command-platforms.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-reference-architecture">Reference architecture</a></li><li class="toc-level-2"><a href="#s-source-authority-and-canonical-model">Source authority and canonical model</a></li><li class="toc-level-2"><a href="#s-correlation-and-workflow">Correlation and workflow</a></li><li class="toc-level-2"><a href="#s-command-boundary">Command boundary</a></li><li class="toc-level-2"><a href="#s-security-architecture">Security architecture</a></li><li class="toc-level-2"><a href="#s-resilience-and-exit">Resilience and exit</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

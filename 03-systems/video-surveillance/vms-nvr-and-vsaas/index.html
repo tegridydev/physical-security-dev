@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>VMS, NVR, and VSaaS platforms · Security Technician Wiki</title>
+<meta name="description" content="VMS, NVR and cloud video platforms manage different combinations of devices, recording, users and events. Identify the supported interface for the workflow you&#x27;re building.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/video-surveillance/vms-nvr-and-vsaas/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VMS, NVR, and VSaaS platforms · Security Technician Wiki">
+<meta property="og:description" content="VMS, NVR and cloud video platforms manage different combinations of devices, recording, users and events. Identify the supported interface for the workflow you&#x27;re building.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/video-surveillance/vms-nvr-and-vsaas/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group" open><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="./" aria-current="page">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Video surveillance systems</a><span aria-hidden="true">/</span><span aria-current="page">VMS, NVR, and VSaaS platforms</span></nav><div class="page-kicker">Systems <span>About 2 min read</span></div><div class="prose"><h1 id="s-vms-nvr-and-vsaas-platforms">VMS, NVR, and VSaaS platforms</h1>
+<p>VMS, NVR and cloud video platforms manage different combinations of devices, recording, users and events. Identify the supported interface for the workflow you're building.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Platform neutral architecture; licensed features, API behaviour, residency, and service commitments require exact vendor/contract verification.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-role-decomposition">Role decomposition</a></li><li class="toc-level-2"><a href="#s-deployment-patterns">Deployment patterns</a></li><li class="toc-level-2"><a href="#s-data-and-control-boundaries">Data and control boundaries</a></li><li class="toc-level-2"><a href="#s-availability">Availability</a></li><li class="toc-level-2"><a href="#s-cloud-and-tenancy">Cloud and tenancy</a></li><li class="toc-level-2"><a href="#s-migrationacceptance">Migration/acceptance</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A video management system (VMS) coordinates devices, live viewing, recording, search, events, users, audit, and integrations. A network video recorder (NVR) packages some or all roles in an appliance. Video Surveillance as a Service (VSaaS) moves management and often storage/processing to cloud services, but doesn't remove edge or network dependencies.</p>
+<h2 id="s-role-decomposition">Role decomposition<a class="heading-link" href="#s-role-decomposition" aria-label="Link to Role decomposition">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Role</th>
+  <th>Authority/data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Device registry</td>
+  <td>Logical camera/source IDs, capabilities, credentials, configuration intent</td>
+</tr>
+<tr>
+  <td>Media ingress</td>
+  <td>Sessions, stream selection, receive health, transcoding/relay</td>
+</tr>
+<tr>
+  <td>Recording service</td>
+  <td>Recording policy, segment/index creation, retention/deletion</td>
+</tr>
+<tr>
+  <td>Event service</td>
+  <td>Subscriptions, normalisation, rules, bookmarks/incidents</td>
+</tr>
+<tr>
+  <td>Client/access service</td>
+  <td>User/workload auth, site/tenant/resource permissions</td>
+</tr>
+<tr>
+  <td>Federation/cloud control</td>
+  <td>Site registry, remote access, tenancy, regional services</td>
+</tr>
+<tr>
+  <td>Export/evidence</td>
+  <td>Search selection, native/open export, provenance, audit</td>
+</tr>
+</tbody>
+</table></div>
+<p>Products combine these roles; design redundancy and privilege around the roles, not one product name.</p>
+<h2 id="s-deployment-patterns">Deployment patterns<a class="heading-link" href="#s-deployment-patterns" aria-label="Link to Deployment patterns">#</a></h2>
+<ul>
+<li><strong>Central VMS:</strong> cameras stream to site/datacentre recorders and management servers.</li>
+<li><strong>Distributed/federated:</strong> sites retain local recording/control; a central service searches/views via federation.</li>
+<li><strong>Edge recording:</strong> camera/local device records and VMS retrieves/reconciles gaps, often using ONVIF Profile G or native APIs.</li>
+<li><strong>Hybrid cloud:</strong> on site gateway/recording plus cloud management/remote access/analytics.</li>
+<li><strong>Cloud first VSaaS:</strong> device or gateway initiates authenticated uplink; recording may use local buffer and cloud object storage.</li>
+</ul>
+<p><a href="https://webstore.iec.ch/en/publication/66755" rel="noopener noreferrer">IEC 62676-2-11:2024</a> defines public scope interoperability profiles for VMS/cloud VSaaS interfaces, including levels from export to exclusive video control. It is not a blanket authorisation to share video.</p>
+<p>ONVIF Profile V is still a <strong>Release Candidate</strong> on 25 August 2026. The <a href="https://www.onvif.org/profiles/profile-v/faq/" rel="noopener noreferrer">official FAQ</a> says products can't claim conformance until finalization and testing. Treat current Profile V designs as changeable.</p>
+<h2 id="s-data-and-control-boundaries">Data and control boundaries<a class="heading-link" href="#s-data-and-control-boundaries" aria-label="Link to Data and control boundaries">#</a></h2>
+<p>Separate live view, playback/export, event/metadata, device management, PTZ/I/O, platform administration, and support access. A cloud viewer shouldn't inherit camera firmware or relay rights. Federation must preserve site/tenant identity and distinguish local authority from cached central state.</p>
+<h2 id="s-availability">Availability<a class="heading-link" href="#s-availability" aria-label="Link to Availability">#</a></h2>
+<p>Define behaviour under camera, recorder, storage, database, message bus, identity provider, DNS/time, WAN, cloud region, license, and certificate outage. Record recovery point/objective, buffer capacity, gap reconciliation, split brain/fencing, client failover, and whether local operators retain required functions.</p>
+<p>Don't assume high availability because multiple nodes exist. Validate shared dependencies, storage quorum, licenses, virtual infrastructure, switches/PoE, and recovery procedures.</p>
+<h2 id="s-cloud-and-tenancy">Cloud and tenancy<a class="heading-link" href="#s-cloud-and-tenancy" aria-label="Link to Cloud and tenancy">#</a></h2>
+<ul>
+<li>Establish customer/vendor controller/processor roles, region, subprocessors, support access, retention/deletion, legal hold, export, and tenant exit.</li>
+<li>Use distinct device/workload/user identities and resource/site/tenant authorisation; test cross tenant denials.</li>
+<li>Limit device egress to named services and verify certificate/token bootstrap and rotation.</li>
+<li>Understand who can decrypt live, recorded, analytic, and exported data and where keys reside.</li>
+<li>Plan service termination: credential revocation, local ownership, bulk evidence/config export, deletion confirmation, and replacement path.</li>
+</ul>
+<h2 id="s-migrationacceptance">Migration/acceptance<a class="heading-link" href="#s-migrationacceptance" aria-label="Link to Migration/acceptance">#</a></h2>
+<p>Build a capability intersection for exact device/client profiles, codecs, events, analytics, PTZ, recording, audio, I/O, certificates, and APIs. Test migration with representative retention, bookmarks, users/roles, audit, time, edge gaps, exports, and rollback. Never equate an imported camera list with a complete evidential migration.</p>
+<p>Return to <a href="../">Video surveillance systems</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../health-and-service-monitoring/"><span>Previous in this section</span>Video system health and service monitoring</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/video-surveillance/vms-nvr-and-vsaas.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/video-surveillance/vms-nvr-and-vsaas.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-role-decomposition">Role decomposition</a></li><li class="toc-level-2"><a href="#s-deployment-patterns">Deployment patterns</a></li><li class="toc-level-2"><a href="#s-data-and-control-boundaries">Data and control boundaries</a></li><li class="toc-level-2"><a href="#s-availability">Availability</a></li><li class="toc-level-2"><a href="#s-cloud-and-tenancy">Cloud and tenancy</a></li><li class="toc-level-2"><a href="#s-migrationacceptance">Migration/acceptance</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

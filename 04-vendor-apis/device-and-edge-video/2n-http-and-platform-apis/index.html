@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>2N HTTP and platform APIs · Security Technician Wiki</title>
+<meta name="description" content="Check whether the integration uses a 2N device API or a platform service. Apply separate permissions to calls, events, status and relay control.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/2n-http-and-platform-apis/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2N HTTP and platform APIs · Security Technician Wiki">
+<meta property="og:description" content="Check whether the integration uses a 2N device API or a platform service. Apply separate permissions to calls, events, status and relay control.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/2n-http-and-platform-apis/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">2N HTTP and platform APIs</a></li><li><a href="../axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">2N HTTP and platform APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-2n-http-and-platform-apis">2N HTTP and platform APIs</h1>
+<p>Check whether the integration uses a 2N device API or a platform service. Apply separate permissions to calls, events, status and relay control.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public 2N manuals and API references reviewed on 25 August 2026; exact device services, firmware, account count, licences, Access Commander edition, authentication availability, and command behaviour require target product confirmation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-device-service-model">Device service model</a></li><li class="toc-level-2"><a href="#s-capability-and-authorisation-design">Capability and authorisation design</a></li><li class="toc-level-2"><a href="#s-events-and-state">Events and state</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle">Version and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / 2N</p>
+<p>2N publishes a device facing <strong>2N IP HTTP API</strong> and distinct APIs for management/application platforms such as <strong>2N Access Commander</strong> and selected indoor device applications. Keep those authority planes separate: a device HTTP account isn't an Access Commander API identity, and a platform integration doesn't prove direct device support.</p>
+<h2 id="s-documented-scope-and-access">Documented scope and access<a class="heading-link" href="#s-documented-scope-and-access" aria-label="Link to Documented scope and access">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Product plane</th>
+  <th>Public documentation</th>
+  <th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>2N IP HTTP API</td>
+  <td>Supported IP intercoms, access units and related devices</td>
+  <td>Public latest manual plus versioned PDF</td>
+  <td>Service availability and licence vary by product/firmware</td>
+</tr>
+<tr>
+  <td>Access Commander HTTP API</td>
+  <td>2N Access Commander management platform</td>
+  <td>Public versioned manual with v2/v3 sections</td>
+  <td>Server edition/version, tenant/site and permission model apply</td>
+</tr>
+<tr>
+  <td>Indoor Touch application HTTP API</td>
+  <td>Supported 2N Indoor Touch application/device</td>
+  <td>Public reference</td>
+  <td>Not interchangeable with the IP device API</td>
+</tr>
+</tbody>
+</table></div>
+<p>The public IP HTTP API manual enumerates supported product families. Use that list and the target device’s <strong>Services → HTTP API</strong> configuration page; don't infer support from a similar chassis or product name.</p>
+<h2 id="s-device-service-model">Device service model<a class="heading-link" href="#s-device-service-model" aria-label="Link to Device service model">#</a></h2>
+<p>The device configuration manual groups HTTP API control by service, including system, access, switch, I/O, display, e mail, logging and automation related functions where supported. Each service can have its own enablement, transport and authentication choice. That granularity is a security boundary: enable only the services the integration requires.</p>
+<p>The public manual describes HTTP/HTTPS and None/Basic/Digest choices on supported products. “None” isn't appropriate for a production integration. Prefer HTTPS with a unique account and the strongest documented authentication that is compatible with the exact firmware. Validate the certificate under the deployment PKI policy and block plaintext fallback.</p>
+<p>An Access Unit 2.50 configuration page describes up to five HTTP API accounts for that product/version. Don't generalize the count to every intercom, access unit or firmware.</p>
+<h2 id="s-capability-and-authorisation-design">Capability and authorisation design<a class="heading-link" href="#s-capability-and-authorisation-design" aria-label="Link to Capability and authorisation design">#</a></h2>
+<p>Separate identities and privileges for:</p>
+<ul>
+<li>health and inventory reads;</li>
+<li>event/log retrieval;</li>
+<li>access/cardholder information;</li>
+<li>camera snapshot or media related operations;</li>
+<li>switch, relay, I/O, display or automation control;</li>
+<li>system configuration and restart;</li>
+<li>Access Commander administration.</li>
+</ul>
+<p>Switch and access operations can release a door or activate connected equipment. Require explicit user authorisation, a bounded target, an auditable reason and post command state reconciliation. The API result doesn't prove the lock, contact, person passage or downstream automation state.</p>
+<h2 id="s-events-and-state">Events and state<a class="heading-link" href="#s-events-and-state" aria-label="Link to Events and state">#</a></h2>
+<p>Use the event/log mechanism documented for the exact API version. Preserve device event time, collector time, device identity, event identifier/type and any sequence information. On reconnect, assume duplicates and gaps are possible until the manual says otherwise; re read relevant status and reconcile.</p>
+<p>Don't use event text as a stable machine contract when the API supplies structured type or identifiers. Treat names, display strings, e mail fields and uploaded content as untrusted input and minimize personal data in logs.</p>
+<h2 id="s-version-and-lifecycle">Version and lifecycle<a class="heading-link" href="#s-version-and-lifecycle" aria-label="Link to Version and lifecycle">#</a></h2>
+<p>The public site exposed a versioned 2N IP HTTP API PDF numbered 2.49 and product configuration documentation numbered 2.50 during review. These are observations for those documents, not a universal “latest API version.” Record device firmware, manual revision and individual service support together.</p>
+<p>For Access Commander, pin server release, API generation, authentication method and permission set. Don't silently migrate between v2/v3 sections or depend on an unversioned example.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://wiki.2n.com/hip/hapi/latest/en" rel="noopener noreferrer">2N IP HTTP API manual</a>, public device API reference and product scope.</li>
+<li><a href="https://wiki.2n.com/download/attachments/123498082/2N_IP_HTTP_API_manual_EN_2.49.pdf" rel="noopener noreferrer">2N IP HTTP API manual 2.49 PDF</a>, fixed versioned evidence.</li>
+<li><a href="https://wiki.2n.com/acuc/latest/en/5-konfigurace-pomoci-weboveho-rozhrani/5-4-sluzby/5-4-5-http-api" rel="noopener noreferrer">2N Access Unit 2.50 HTTP API configuration</a>, service/auth/account model for that documented product line.</li>
+<li><a href="https://wiki.2n.com/acc/2.7/en/6-http-api" rel="noopener noreferrer">2N Access Commander 2.7 HTTP API</a>, platform API reference route.</li>
+<li><a href="https://wiki.2n.com/hseita33/api/latest/en/2-http-api" rel="noopener noreferrer">2N Indoor Touch application HTTP API</a>, separate platform specific surface.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/video-and-media/sip-and-srtp/">SIP and SRTP</a></li>
+<li><a href="../../../03-systems/access-control/locks-egress-and-life-safety/">Locks, egress, and life safety</a></li>
+<li><a href="../../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Device and edge video APIs</a><a href="../axis-vapix-and-acap/"><span>Next in this section</span>Axis VAPIX and ACAP</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/2n-http-and-platform-apis.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/2n-http-and-platform-apis.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-device-service-model">Device service model</a></li><li class="toc-level-2"><a href="#s-capability-and-authorisation-design">Capability and authorisation design</a></li><li class="toc-level-2"><a href="#s-events-and-state">Events and state</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle">Version and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

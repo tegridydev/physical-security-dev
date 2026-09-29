@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Device and edge video APIs · Security Technician Wiki</title>
+<meta name="description" content="Choose between communicating with device services and deploying an application on the device. Check permissions, deployment requirements and product support for that approach.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Device and edge video APIs · Security Technician Wiki">
+<meta property="og:description" content="Choose between communicating with device services and deploying an application on the device. Check permissions, deployment requirements and product support for that approach.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../access-and-identity/">Section overview</a></li><li><a href="../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="./" aria-current="page">Section overview</a></li><li><a href="2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../vms-and-cloud-video/">Section overview</a></li><li><a href="../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Vendor APIs</a><span aria-hidden="true">/</span><span aria-current="page">Device and edge video APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 1 min read</span></div><div class="prose"><h1 id="s-device-and-edge-video-apis">Device and edge video APIs</h1>
+<p>Choose between communicating with device services and deploying an application on the device. Check permissions, deployment requirements and product support for that approach.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-architecture-choice">Architecture choice</a></li><li class="toc-level-2"><a href="#s-minimum-device-record">Minimum device record</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../">Vendor APIs</a> / Device and edge video</p>
+<p>Device APIs sit close to sensors, relays, microphones, credentials, firmware, and evidence. Treat discovery or video read access separately from configuration, account administration, PTZ, audio, door release, output control, application installation, and firmware operations.</p>
+<h2 id="s-pages">Pages<a class="heading-link" href="#s-pages" aria-label="Link to Pages">#</a></h2>
+<ul>
+<li><a href="axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li>
+<li><a href="hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li>
+<li><a href="dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li>
+<li><a href="hanwha-sunapi-and-open-platform/">Hanwha SUNAPI and Open Platform</a></li>
+<li><a href="bosch-video-and-device-integration/">Bosch video and device integration</a></li>
+<li><a href="2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li>
+<li><a href="zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li>
+</ul>
+<h2 id="s-architecture-choice">Architecture choice<a class="heading-link" href="#s-architecture-choice" aria-label="Link to Architecture choice">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Need</th>
+  <th>Prefer when supported</th>
+  <th>Main review question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Fleet neutral discovery/media</td>
+  <td>Declared ONVIF or other standard profile</td>
+  <td>Does the exact model have a valid conformance declaration and required conditional features?</td>
+</tr>
+<tr>
+  <td>Vendor specific configuration or events</td>
+  <td>Native HTTPS API</td>
+  <td>Can the integration discover API/version capabilities rather than infer them from model name?</td>
+</tr>
+<tr>
+  <td>High throughput native media/client integration</td>
+  <td>Vendor SDK</td>
+  <td>Which package version, runtime, architecture, codec licence, and product builds are supported?</td>
+</tr>
+<tr>
+  <td>Analytics or business logic on device</td>
+  <td>Supported edge application framework</td>
+  <td>What are signing, sandboxing, resources, upgrade, permission, and rollback contracts?</td>
+</tr>
+<tr>
+  <td>Intercom/access actuation</td>
+  <td>Narrow native service with least privilege</td>
+  <td>What independent authorisation and physical safety controls protect the command?</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-minimum-device-record">Minimum device record<a class="heading-link" href="#s-minimum-device-record" aria-label="Link to Minimum device record">#</a></h2>
+<p>Record vendor, model, hardware revision, firmware/OS, enabled API family and version, advertised capabilities, TLS and identity state, time source, roles, licences, installed edge apps, app signatures, resource limits, and rollback path. Don't enable legacy HTTP or broad administrator access merely because an old integration sample uses it.</p>
+<p>Related foundations: <a href="../../01-foundations/media-streaming-fundamentals/">media streaming</a>, <a href="../../01-foundations/tls-pki-and-certificates/">TLS and PKI</a>, <a href="../../01-foundations/multicast-discovery-and-nat/">multicast and discovery</a>, and <a href="../../06-security-and-assurance/secure-commissioning-and-onboarding/">secure commissioning</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="2n-http-and-platform-apis/"><span>Next in this section</span>2N HTTP and platform APIs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-architecture-choice">Architecture choice</a></li><li class="toc-level-2"><a href="#s-minimum-device-record">Minimum device record</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>AMQP 1.0 messaging · Security Technician Wiki</title>
+<meta name="description" content="AMQP 1.0 defines messaging, delivery state and flow control. Map its settlement behaviour to how your application stores, processes and acknowledges security events.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/web-and-messaging/amqp-1-0/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AMQP 1.0 messaging · Security Technician Wiki">
+<meta property="og:description" content="AMQP 1.0 defines messaging, delivery state and flow control. Map its settlement behaviour to how your application stores, processes and acknowledges security events.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/web-and-messaging/amqp-1-0/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group" open><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">AMQP 1.0 messaging</a></li><li><a href="../cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Web and messaging protocols</a><span aria-hidden="true">/</span><span aria-current="page">AMQP 1.0 messaging</span></nav><div class="page-kicker">Protocols <span>About 7 min read</span></div><div class="prose"><h1 id="s-amqp-10-messaging">AMQP 1.0 messaging</h1>
+<p>AMQP 1.0 defines messaging, delivery state and flow control. Map its settlement behaviour to how your application stores, processes and acknowledges security events.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>AMQP 1.0 protocol and integration guidance; broker extensions, address syntax, topology, failover, authorisation, and delivery guarantees remain product and deployment specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-version-boundary">Version boundary</a></li><li class="toc-level-2"><a href="#s-protocol-model">Protocol model</a></li><li class="toc-level-2"><a href="#s-messages-and-domain-contracts">Messages and domain contracts</a></li><li class="toc-level-2"><a href="#s-delivery-state-and-settlement">Delivery state and settlement</a></li><li class="toc-level-2"><a href="#s-flow-control-and-resource-bounds">Flow control and resource bounds</a></li><li class="toc-level-2"><a href="#s-addressing-filters-and-topology">Addressing, filters, and topology</a></li><li class="toc-level-2"><a href="#s-authentication-transport-security-and-authorisation">Authentication, transport security, and authorisation</a></li><li class="toc-level-2"><a href="#s-reconnect-failover-and-replay">Reconnect, failover, and replay</a></li><li class="toc-level-2"><a href="#s-transactions-and-physical-actions">Transactions and physical actions</a></li><li class="toc-level-2"><a href="#s-observability-and-evidence">Observability and evidence</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>AMQP 1.0 is a standardised binary messaging protocol. It defines interoperable peers, connections, sessions, links, message sections, flow control, delivery state, settlement, transactions, and security layers. It doesn't prescribe a universal broker topology, address language, management API, event schema, or physical security outcome model. <a href="https://www.oasis-open.org/standard/amqp/" rel="noopener noreferrer">AMQP</a> <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html" rel="noopener noreferrer">AMQP OVERVIEW</a></p>
+<h2 id="s-version-boundary">Version boundary<a class="heading-link" href="#s-version-boundary" aria-label="Link to Version boundary">#</a></h2>
+<p>Treat the version number as part of the wire contract.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Name</th>
+  <th>Relationship to AMQP 1.0</th>
+  <th>Integration consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>AMQP 1.0</td>
+  <td>OASIS Standard and ISO/IEC 19464:2014, confirmed current in 2025</td>
+  <td>Use the AMQP 1.0 type system, performatives, link model, and settlement rules. <a href="https://www.iso.org/standard/64955.html" rel="noopener noreferrer">AMQP ISO</a></td>
+</tr>
+<tr>
+  <td>AMQP 0-9-1 and earlier</td>
+  <td>Earlier protocol family with different framing and broker concepts</td>
+  <td>Not wire compatible with AMQP 1.0; a product supporting one does not necessarily support the other</td>
+</tr>
+<tr>
+  <td>Vendor messaging API</td>
+  <td>Client library or service abstraction</td>
+  <td>May hide or constrain link credit, settlement, transactions, address syntax, or failover behaviour</td>
+</tr>
+<tr>
+  <td>AsyncAPI <code>amqp</code> / <code>amqp1</code> binding</td>
+  <td>Interface description binding selected by the contract</td>
+  <td>Confirm that the binding and broker actually refer to the same AMQP protocol family and product profile</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't infer AMQP 1.0 support from the presence of an “AMQP” checkbox, port, URI, or client library name. Record the negotiated protocol version and the exact product profile.</p>
+<h2 id="s-protocol-model">Protocol model<a class="heading-link" href="#s-protocol-model" aria-label="Link to Protocol model">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">container
+  -&gt; connection
+      -&gt; session
+          -&gt; sender link -&gt; node
+          &lt;- receiver link &lt;- node
+</code></pre></div>
+<ul>
+<li>A <strong>container</strong> is an AMQP node hosting or messaging process with a stable identity in its deployment context.</li>
+<li>A <strong>connection</strong> is the long lived AMQP relationship carried by a transport.</li>
+<li>A <strong>session</strong> multiplexes ordered transfer work over a connection and has its own flow windows.</li>
+<li>A <strong>link</strong> is a unidirectional sender to receiver path. Bidirectional application exchange uses multiple links.</li>
+<li>A <strong>node</strong> is an addressable source or target, such as a queue, topic like endpoint, or service defined terminus.</li>
+<li>A <strong>delivery</strong> is one message transfer tracked for outcome and settlement; a large message can span multiple transfer frames.</li>
+</ul>
+<p>Broker products add queues, exchanges, subscriptions, filters, dead lettering, retention, and administration models. Those names and semantics aren't automatically portable merely because the wire protocol is AMQP 1.0.</p>
+<h2 id="s-messages-and-domain-contracts">Messages and domain contracts<a class="heading-link" href="#s-messages-and-domain-contracts" aria-label="Link to Messages and domain contracts">#</a></h2>
+<p>An AMQP message can carry header, delivery annotations, message annotations, properties, application properties, body, and footer sections. Define which sections an application may set and which only trusted infrastructure may add.</p>
+<p>For a physical security event profile, define at least:</p>
+<ul>
+<li>media type and schema identifier/version;</li>
+<li>event identity, native source identity, tenant/site, occurrence time, receive time, and clock quality;</li>
+<li>correlation and causation identifiers;</li>
+<li>canonical and native event types without erasing source meaning;</li>
+<li>sensitivity, retention, ordering key, expiry, and replay treatment;</li>
+<li>maximum encoded and decoded size, collection counts, and nesting depth;</li>
+<li>behaviour for unknown fields, unknown event types, invalid timestamps, and duplicate identifiers.</li>
+</ul>
+<p>AMQP application properties aren't a trusted identity channel by default. A publisher can often set them. Establish authenticated publisher identity at the connection/link layer and apply authorisation independently of asserted tenant, site, device, role, or user fields.</p>
+<h2 id="s-delivery-state-and-settlement">Delivery state and settlement<a class="heading-link" href="#s-delivery-state-and-settlement" aria-label="Link to Delivery state and settlement">#</a></h2>
+<p>AMQP distinguishes transfer from delivery outcome and settlement. Common terminal outcomes include <code>accepted</code>, <code>rejected</code>, <code>released</code>, and <code>modified</code>; unsettled deliveries may require state reconciliation after interruption. <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html" rel="noopener noreferrer">AMQP TRANSPORT</a></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Observation</th>
+  <th>What it establishes</th>
+  <th>What it does not establish</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Transfer frame sent</td>
+  <td>Bytes were offered on a link</td>
+  <td>Peer received or retained them</td>
+</tr>
+<tr>
+  <td>Delivery accepted</td>
+  <td>Receiving AMQP endpoint accepted responsibility under its link contract</td>
+  <td>Consumer processed the event, case was created, or physical state changed</td>
+</tr>
+<tr>
+  <td>Delivery rejected</td>
+  <td>Receiver supplied a negative AMQP outcome</td>
+  <td>Whether a separate prior attempt had an effect</td>
+</tr>
+<tr>
+  <td>Delivery released/modified</td>
+  <td>Delivery is available for redelivery under defined conditions</td>
+  <td>Exactly once application processing</td>
+</tr>
+<tr>
+  <td>Consumer acknowledgement through a broker API</td>
+  <td>Consumer reached an API defined point</td>
+  <td>Downstream transaction or physical outcome unless the application contract says so</td>
+</tr>
+</tbody>
+</table></div>
+<p>Settlement mode changes who tracks an unsettled delivery and when. “At most once,” “at least once,” or stronger application claims require an end to end profile covering producer persistence, broker durability, consumer transaction boundaries, deduplication, recovery and expiry.</p>
+<p>Use a scoped immutable event or operation ID for deduplication. Bind it to authenticated producer, tenant, target, operation type, and request fingerprint; retain deduplication state for the full retry/replay window.</p>
+<h2 id="s-flow-control-and-resource-bounds">Flow control and resource bounds<a class="heading-link" href="#s-flow-control-and-resource-bounds" aria-label="Link to Flow control and resource bounds">#</a></h2>
+<p>AMQP link credit tells a sender how many deliveries a receiver is prepared to accept. Sessions also use incoming and outgoing windows. Credit is protocol backpressure, not a complete capacity policy.</p>
+<ul>
+<li>Grant credit according to bounded queue count, bytes, processing latency, and downstream health.</li>
+<li>Bound frame size, message bytes before and after decompression, section counts, map/list entries, symbol/string/binary lengths, link/session count, unsettled deliveries, and idle lifetime.</li>
+<li>Reduce or stop credit before memory or durable storage is exhausted.</li>
+<li>Monitor queue age and oldest event, not only message count.</li>
+<li>Define expiry and dead letter/quarantine handling; never silently discard a safety relevant alarm because a generic time to live elapsed.</li>
+<li>Keep priority bounded and governed so one noisy publisher can't starve restoration, health, or audit traffic.</li>
+</ul>
+<p>Transport flow control can't prevent a fast consumer from overwhelming a database, rules engine, case platform, or physical security adapter after it accepts a delivery.</p>
+<h2 id="s-addressing-filters-and-topology">Addressing, filters, and topology<a class="heading-link" href="#s-addressing-filters-and-topology" aria-label="Link to Addressing, filters, and topology">#</a></h2>
+<p>The AMQP base specification doesn't provide one universal address syntax. Broker URLs, virtual hosts, dynamic nodes, durable subscriptions, shared subscriptions, selectors, wildcard rules, and dead letter targets are commonly product defined or supplied by extension specifications.</p>
+<p>Document:</p>
+<ol>
+<li>source and target address syntax, normalisation, and tenant boundary;</li>
+<li>who may create, delete, bind, browse, or consume from a node;</li>
+<li>durable versus temporary lifetime and expiry behaviour;</li>
+<li>competing consumer and ordering behaviour;</li>
+<li>filter language, validation, complexity limits, and unsupported field behaviour;</li>
+<li>disaster recovery topology and duplicate/loss window;</li>
+<li>whether replay uses the production address or an isolated replay path.</li>
+</ol>
+<p>Never place credentials, bearer tokens, personal identifiers, or sensitive site details in a URI that may enter logs or diagnostics.</p>
+<h2 id="s-authentication-transport-security-and-authorisation">Authentication, transport security, and authorisation<a class="heading-link" href="#s-authentication-transport-security-and-authorisation" aria-label="Link to Authentication, transport security, and authorisation">#</a></h2>
+<p>AMQP 1.0 defines SASL and TLS related protocol layers, but a deployment still has to choose and enforce a security profile. <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-security-v1.0-os.html" rel="noopener noreferrer">AMQP SECURITY</a></p>
+<ul>
+<li>Require a protected transport across untrusted networks; validate server identity and trust path.</li>
+<li>Where mutual TLS is used, map the authenticated certificate identity to a narrowly scoped messaging principal; possession of a certificate doesn't authorise every address.</li>
+<li>Allowlist SASL mechanisms appropriate to the protected transport and credential type. Reject silent downgrade to anonymous or cleartext password mechanisms.</li>
+<li>Separate publish, consume, browse, manage, and dynamic node permissions by tenant/site and address.</li>
+<li>Reauthorize link attachment and dynamic node creation; connection authentication alone is insufficient.</li>
+<li>Rotate credentials and trust anchors without requiring a fail open window.</li>
+<li>Protect broker management, metrics, tracing, schema registries, and dead letter stores as separate surfaces.</li>
+</ul>
+<p>The registered ports commonly associated with AMQP are <code>5672/TCP</code> and <code>5671/TCP</code>, but a port number neither proves protocol identity nor guarantees TLS. Use an explicit URI/profile and confirm negotiation. <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml" rel="noopener noreferrer">IANA PORTS</a></p>
+<h2 id="s-reconnect-failover-and-replay">Reconnect, failover, and replay<a class="heading-link" href="#s-reconnect-failover-and-replay" aria-label="Link to Reconnect, failover, and replay">#</a></h2>
+<p>AMQP describes protocol state; product specific clients often add reconnect and failover behaviour. Make that behaviour visible in the integration contract.</p>
+<ul>
+<li>Use backoff, jitter, a retry budget, and a total recovery deadline.</li>
+<li>Distinguish DNS/connect/TLS/SASL/open/session/link/attach failures in telemetry.</li>
+<li>Treat an interrupted unsettled delivery as uncertain until state is reconciled or safely deduplicated.</li>
+<li>Don't reset sequence or deduplication state merely because the TCP connection changed.</li>
+<li>Define whether alternate endpoints share durable state or are independent brokers.</li>
+<li>Bound offline spooling by count, bytes, age, sensitivity, and encryption at rest requirements.</li>
+<li>Quarantine incompatible schema versions instead of repeatedly redelivering them into a hot loop.</li>
+</ul>
+<h2 id="s-transactions-and-physical-actions">Transactions and physical actions<a class="heading-link" href="#s-transactions-and-physical-actions" aria-label="Link to Transactions and physical actions">#</a></h2>
+<p>AMQP transactions can coordinate AMQP resource operations within the supported transaction model. They don't create an atomic transaction with a PACS controller, door contact, video recorder, dispatch process, or emergency communication system.</p>
+<p>For high impact requests, keep separate states such as:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">created -&gt; authorized -&gt; published -&gt; AMQP accepted
+        -&gt; adapter accepted -&gt; downstream dispatched
+        -&gt; target acknowledged -&gt; observed outcome | failed | uncertain
+</code></pre></div>
+<p>Require fresh authorisation and an operation specific policy at the adapter. Don't let a generic event consumer translate arbitrary message fields into unlock, lockdown, relay, alarm reset, camera control, or notification actions.</p>
+<h2 id="s-observability-and-evidence">Observability and evidence<a class="heading-link" href="#s-observability-and-evidence" aria-label="Link to Observability and evidence">#</a></h2>
+<p>Record the AMQP endpoint identity, authenticated principal, connection/session/link identifiers where useful, source/target address, delivery tag in bounded form, settlement outcome, redelivery indicator, schema/mapping version, retry count, queue age, correlation ID, and downstream outcome. Avoid logging bodies or application properties wholesale.</p>
+<p>Useful measures include connection and authentication failures, link attach denials, credit exhaustion, unsettled count, accepted/rejected/released deliveries, redelivery, expired/quarantined messages, queue bytes/age, parser failures, tenant policy denials, and end to end freshness.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="AMQP 1.0 distinguished from AMQP 0-9-1 and vendor APIs">AMQP 1.0 distinguished from AMQP 0-9-1 and vendor APIs</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact broker/client versions, URI profile, SASL mechanisms, TLS policy, and endpoint identity documented">Exact broker/client versions, URI profile, SASL mechanisms, TLS policy, and endpoint identity documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Address syntax, node lifetime, topology, ordering, filtering, and failover behaviour pinned">Address syntax, node lifetime, topology, ordering, filtering, and failover behaviour pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Publish/consume/manage authorisation isolated by tenant, site, and address">Publish/consume/manage authorisation isolated by tenant, site, and address</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Frame, message, decompression, collection, link, session, queue, and spool limits enforced">Frame, message, decompression, collection, link, session, queue, and spool limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Link credit connected to bounded downstream capacity">Link credit connected to bounded downstream capacity</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Settlement and recovery semantics mapped to application deduplication and transactions">Settlement and recovery semantics mapped to application deduplication and transactions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Schema evolution, provenance, invalid event quarantine, expiry, and replay defined">Schema evolution, provenance, invalid event quarantine, expiry, and replay defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="AMQP acceptance kept distinct from consumer, workflow, and physical outcomes">AMQP acceptance kept distinct from consumer, workflow, and physical outcomes</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="High impact subscribers use a separate authorisation and safety boundary">High impact subscribers use a separate authorisation and safety boundary</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>AMQP</strong>, <a href="https://www.oasis-open.org/standard/amqp/" rel="noopener noreferrer">AMQP Version 1.0 OASIS Standard</a>, OASIS, October 2012.</li>
+<li><strong>AMQP ISO</strong>, <a href="https://www.iso.org/standard/64955.html" rel="noopener noreferrer">ISO/IEC 19464:2014: Advanced Message Queuing Protocol (AMQP) v1.0 specification</a>, ISO/IEC; last reviewed and confirmed in 2025.</li>
+<li><strong>AMQP OVERVIEW</strong>, <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-overview-v1.0-os.html" rel="noopener noreferrer">AMQP Version 1.0, Part 0: Overview</a>, OASIS.</li>
+<li><strong>AMQP TRANSPORT</strong>, <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-transport-v1.0-os.html" rel="noopener noreferrer">AMQP Version 1.0, Part 2: Transport</a>, OASIS.</li>
+<li><strong>AMQP MESSAGING</strong>, <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-messaging-v1.0-os.html" rel="noopener noreferrer">AMQP Version 1.0, Part 3: Messaging</a>, OASIS.</li>
+<li><strong>AMQP SECURITY</strong>, <a href="https://docs.oasis-open.org/amqp/core/v1.0/os/amqp-core-security-v1.0-os.html" rel="noopener noreferrer">AMQP Version 1.0, Part 5: Security</a>, OASIS.</li>
+<li><strong>IANA PORTS</strong>, <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml" rel="noopener noreferrer">Service Name and Transport Protocol Port Number Registry</a>, IANA, <code>amqp</code> and <code>amqps</code> entries, accessed 25 August 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Web and messaging protocols</a><a href="../cap-and-edxl-emergency-messaging/"><span>Next in this section</span>CAP and EDXL emergency messaging</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/web-and-messaging/amqp-1-0.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/web-and-messaging/amqp-1-0.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-version-boundary">Version boundary</a></li><li class="toc-level-2"><a href="#s-protocol-model">Protocol model</a></li><li class="toc-level-2"><a href="#s-messages-and-domain-contracts">Messages and domain contracts</a></li><li class="toc-level-2"><a href="#s-delivery-state-and-settlement">Delivery state and settlement</a></li><li class="toc-level-2"><a href="#s-flow-control-and-resource-bounds">Flow control and resource bounds</a></li><li class="toc-level-2"><a href="#s-addressing-filters-and-topology">Addressing, filters, and topology</a></li><li class="toc-level-2"><a href="#s-authentication-transport-security-and-authorisation">Authentication, transport security, and authorisation</a></li><li class="toc-level-2"><a href="#s-reconnect-failover-and-replay">Reconnect, failover, and replay</a></li><li class="toc-level-2"><a href="#s-transactions-and-physical-actions">Transactions and physical actions</a></li><li class="toc-level-2"><a href="#s-observability-and-evidence">Observability and evidence</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

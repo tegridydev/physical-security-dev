@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Discovery and multicast · Security Technician Wiki</title>
+<meta name="description" content="Check the scope of discovery and multicast traffic. Verify the identity and advertised services of a device before using the returned addresses.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/discovery-and-multicast/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Discovery and multicast · Security Technician Wiki">
+<meta property="og:description" content="Check the scope of discovery and multicast traffic. Verify the identity and advertised services of a device before using the returned addresses.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/discovery-and-multicast/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="./" aria-current="page">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Discovery and multicast</span></nav><div class="page-kicker">Reference <span>About 6 min read</span></div><div class="prose"><h1 id="s-discovery-and-multicast">Discovery and multicast</h1>
+<p>Check the scope of discovery and multicast traffic. Verify the identity and advertised services of a device before using the returned addresses.</p><details class="evidence"><summary>Sources and scope<span>Checked 29 September 2026</span></summary><p>OPC UA discovery reference section only</p><p><a href="../../10-sources-and-maintenance/source-review-2026-09-29/">Source check record</a></p><p>Architecture and standards defined assignments only; routed multicast, product discovery behaviour, response limits, and inventory identity require deployment specific environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-discovery-families">Discovery families</a></li><li class="toc-level-2"><a href="#s-ws-discovery-and-onvif-handling">WS Discovery and ONVIF handling</a></li><li class="toc-level-2"><a href="#s-multicast-is-delivery-scope-not-access-control">Multicast is delivery scope, not access control</a></li><li class="toc-level-2"><a href="#s-broadcast-and-proxy-boundaries">Broadcast and proxy boundaries</a></li><li class="toc-level-3"><a href="#s-bacnetip">BACnet/IP</a></li><li class="toc-level-3"><a href="#s-reflectors-and-relays">Reflectors and relays</a></li><li class="toc-level-2"><a href="#s-inventory-promotion-model">Inventory promotion model</a></li><li class="toc-level-2"><a href="#s-defensive-failure-cases">Defensive failure cases</a></li><li class="toc-level-2"><a href="#s-safe-acceptance-checklist">Safe acceptance checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Discovery answers <strong>what claims to be present</strong>. It doesn't answer whether the claimant is approved, authentic, correctly located, safe to query, or authorised for control. Bind discovery to commissioned identity and inventory before using any returned endpoint.</p>
+<h2 id="s-discovery-families">Discovery families<a class="heading-link" href="#s-discovery-families" aria-label="Link to Discovery families">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Mechanism</th>
+  <th>Scope and role</th>
+  <th>Standards defined orientation</th>
+  <th>Trust and operations boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>DHCP / DHCPv6</td>
+  <td>Supplies address and configuration through client/server and relay paths</td>
+  <td>RFC 2131 / RFC 8415</td>
+  <td>An offered address, gateway, DNS server, or option is configuration input; protect the server/relay path</td>
+</tr>
+<tr>
+  <td>DNS</td>
+  <td>Resolves controlled names and service data</td>
+  <td>RFC 1034 / RFC 1035</td>
+  <td>A record is not device authorisation; govern dynamic updates, split views, TTL, and DNSSEC policy where used</td>
+</tr>
+<tr>
+  <td>mDNS</td>
+  <td>Link local multicast name resolution</td>
+  <td>UDP 5353; IPv4 <code>224.0.0.251</code>; IPv6 <code>FF02::FB</code> <a href="https://datatracker.ietf.org/doc/rfc6762/" rel="noopener noreferrer">MDNS</a></td>
+  <td>Local advertisements are untrusted and can reveal device/service metadata</td>
+</tr>
+<tr>
+  <td>DNS SD</td>
+  <td>Discovers service instances using DNS records</td>
+  <td>RFC 6763; can use unicast DNS or mDNS</td>
+  <td>TXT and instance data are display/capability hints, not a trusted schema or identity</td>
+</tr>
+<tr>
+  <td>WS Discovery</td>
+  <td>Probe, resolve, hello, and bye for web services</td>
+  <td>Ad hoc UDP 3702 to IPv4 <code>239.255.255.250</code> or IPv6 <code>FF02::C</code>; managed mode can use a discovery proxy <a href="https://docs.oasis-open.org/ws-dd/discovery/1.1/os/wsdd-discovery-1.1-spec-os.html" rel="noopener noreferrer">WSD</a></td>
+  <td>SOAP/XML and endpoint references are untrusted; response storms and stale announcements require bounds</td>
+</tr>
+<tr>
+  <td>ONVIF discovery</td>
+  <td>Uses WS Discovery to locate candidate ONVIF devices/services</td>
+  <td>ONVIF Core plus WS Discovery</td>
+  <td>Validate scopes, types, and <code>XAddrs</code>; then establish authenticated product/service identity</td>
+</tr>
+<tr>
+  <td>SSDP / UPnP discovery</td>
+  <td>Search and advertisement for UPnP devices/services</td>
+  <td>UDP 1900 and scoped multicast assignments in the UPnP Device Architecture</td>
+  <td><code>LOCATION</code> is an untrusted URL; UPnP presence does not establish physical security product trust</td>
+</tr>
+<tr>
+  <td>LLDP</td>
+  <td>Adjacent link chassis, port, and capability information</td>
+  <td>IEEE 802.1AB</td>
+  <td>Switch neighbour evidence is valuable but is not cryptographic device identity by default</td>
+</tr>
+<tr>
+  <td>BACnet Who Is / I Am</td>
+  <td>Discovers BACnet device instances and routes</td>
+  <td>BACnet service over the configured data link; BACnet/IP often uses broadcasts</td>
+  <td>Device instance/address advertisements are untrusted until bound to PICS, project inventory, and identity</td>
+</tr>
+<tr>
+  <td>KNXnet/IP search</td>
+  <td>Locates KNXnet/IP endpoints</td>
+  <td>KNXnet/IP project/profile assignments</td>
+  <td>Device/project identity, supported service families, secure mode, and ETS record remain authoritative</td>
+</tr>
+<tr>
+  <td>OPC UA discovery</td>
+  <td>Finds server applications and endpoint descriptions</td>
+  <td>Local discovery/server mechanisms defined by OPC UA</td>
+  <td>Discovery is deliberately separate from application certificate trust and user authorisation</td>
+</tr>
+<tr>
+  <td>Static inventory</td>
+  <td>No active discovery; provisioned endpoint set</td>
+  <td>Site configuration and asset records</td>
+  <td>Prefer for stable high consequence paths, but continuously reconcile drift and replacement</td>
+</tr>
+</tbody>
+</table></div>
+<p>See <a href="../../02-protocols/infrastructure/discovery-and-addressing/">infrastructure discovery and addressing</a>, <a href="../../01-foundations/multicast-discovery-and-nat/">multicast, discovery, and NAT</a>, and <a href="../ports-transports-and-protection/">ports, transports, and protection</a>.</p>
+<h2 id="s-ws-discovery-and-onvif-handling">WS Discovery and ONVIF handling<a class="heading-link" href="#s-ws-discovery-and-onvif-handling" aria-label="Link to WS Discovery and ONVIF handling">#</a></h2>
+<p>In WS Discovery ad hoc mode, probes go to a multicast group and matching targets reply directly. The standard also defines managed mode through a discovery proxy and multicast suppression behaviour. <a href="https://docs.oasis-open.org/ws-dd/discovery/1.1/os/wsdd-discovery-1.1-spec-os.html" rel="noopener noreferrer">WSD</a></p>
+<p>A safe consumer should:</p>
+<ol>
+<li>send only an owner approved, narrowly scoped probe on an intended interface/VLAN;</li>
+<li>randomize and rate limit according to the selected specification/profile;</li>
+<li>cap datagram, SOAP envelope, XML depth, response count, types, scopes, endpoint reference count, and address count;</li>
+<li>correlate message identifiers and ignore unrelated, replayed, or late responses under an explicit window;</li>
+<li>parse <code>XAddrs</code> as untrusted URIs and reject unexpected schemes, user info, fragments, link local zone confusion, and disallowed destinations;</li>
+<li>prevent redirect or address substitution from crossing the approved network/tenant boundary;</li>
+<li>fetch only the minimal read only service metadata required after a separate authorisation decision;</li>
+<li>bind the candidate to an approved serial/product/firmware record and authenticated certificate or commissioned secret;</li>
+<li>preserve the raw bounded advertisement or hash as evidence without treating it as authoritative state.</li>
+</ol>
+<p>An ONVIF scope or device type is self asserted. Conformance requires the exact registered product and firmware/profile evidence described in <a href="../../02-protocols/video-and-media/onvif/">ONVIF</a>.</p>
+<h2 id="s-multicast-is-delivery-scope-not-access-control">Multicast is delivery scope, not access control<a class="heading-link" href="#s-multicast-is-delivery-scope-not-access-control" aria-label="Link to Multicast is delivery scope, not access control">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Design question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Scope</td>
+  <td>Is the group link local, administratively scoped, site scoped, or routed? Are IPv4 and IPv6 equivalent?</td>
+</tr>
+<tr>
+  <td>Membership</td>
+  <td>Which switch ports and receivers may join? Is IGMP/MLD snooping and querier behaviour understood?</td>
+</tr>
+<tr>
+  <td>Routing</td>
+  <td>Which multicast routing boundary, reflector, proxy, BBMD, or relay intentionally crosses subnets?</td>
+</tr>
+<tr>
+  <td>Source</td>
+  <td>Is source specific multicast used or can any reachable sender inject?</td>
+</tr>
+<tr>
+  <td>Capacity</td>
+  <td>What is the peak bitrate/packet rate, group count, receiver count, replication point, and storm limit?</td>
+</tr>
+<tr>
+  <td>Availability</td>
+  <td>What happens on querier loss, switch reboot, topology change, duplicate sender, or stale membership?</td>
+</tr>
+<tr>
+  <td>Confidentiality</td>
+  <td>Can an unauthorized device on an allowed segment join and observe? Is application layer media protection required?</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td>Which group/source/interface actually carried the traffic, and how was loss/reordering measured by the owner?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Joining a video multicast doesn't authorise viewing. Network ACLs and multicast controls constrain reachability; authenticated keying/application authorisation protects the stream where the selected protocol supports it. See <a href="../../01-foundations/media-streaming-fundamentals/">media streaming fundamentals</a> and <a href="../../02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a>.</p>
+<h2 id="s-broadcast-and-proxy-boundaries">Broadcast and proxy boundaries<a class="heading-link" href="#s-broadcast-and-proxy-boundaries" aria-label="Link to Broadcast and proxy boundaries">#</a></h2>
+<h3 id="s-bacnetip">BACnet/IP<a class="heading-link" href="#s-bacnetip" aria-label="Link to BACnet/IP">#</a></h3>
+<p>BACnet/IP discovery and services can depend on broadcasts. BBMDs and Foreign Device registration intentionally extend broadcast reach. Treat Broadcast Distribution Tables, Foreign Device Tables, network numbers, and routed scopes as security sensitive configuration; avoid circular replication and public exposure. <a href="https://bacnet.org/developer-aids/" rel="noopener noreferrer">BACNET IP</a></p>
+<p>BACnet/SC changes the secure data link topology but doesn't authenticate an attached classic MS/TP segment or make every object write safe. See <a href="../../02-protocols/building-and-industrial/bacnet-family/">BACnet family</a>.</p>
+<h3 id="s-reflectors-and-relays">Reflectors and relays<a class="heading-link" href="#s-reflectors-and-relays" aria-label="Link to Reflectors and relays">#</a></h3>
+<p>mDNS reflectors, SSDP relays, WS Discovery proxies, DHCP relays, NAT traversal, and generic UDP forwarding enlarge the trust boundary. For each, record:</p>
+<ul>
+<li>exact messages and scopes forwarded;</li>
+<li>source address and hop/TTL behaviour;</li>
+<li>loop and amplification prevention;</li>
+<li>rate, response, and payload limits;</li>
+<li>tenant/site separation;</li>
+<li>identity binding after discovery;</li>
+<li>audit, health, restart, and configuration change behaviour.</li>
+</ul>
+<p>Don't deploy a generic reflector merely to make discovery “work everywhere.” Prefer controlled DNS/service registries, explicit inventory, or a protocol defined managed proxy when the operational model permits.</p>
+<h2 id="s-inventory-promotion-model">Inventory promotion model<a class="heading-link" href="#s-inventory-promotion-model" aria-label="Link to Inventory promotion model">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>State</th>
+  <th>Minimum evidence</th>
+  <th>Permitted use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Observed candidate</td>
+  <td>Interface, source address, discovery family, claimed type/name, first/last seen</td>
+  <td>Display in a quarantined candidate queue only</td>
+</tr>
+<tr>
+  <td>Correlated candidate</td>
+  <td>Expected switch port/site plus plausible product/serial/firmware data</td>
+  <td>Owner review and constrained metadata retrieval</td>
+</tr>
+<tr>
+  <td>Authenticated candidate</td>
+  <td>Validated certificate/application identity or commissioned cryptographic identity</td>
+  <td>Capability interrogation within a read only policy</td>
+</tr>
+<tr>
+  <td>Approved asset</td>
+  <td>Asset owner, location, product/firmware, profiles, trust material, management path, lifecycle state</td>
+  <td>Explicitly authorised operational flows</td>
+</tr>
+<tr>
+  <td>Drifted/quarantined asset</td>
+  <td>Identity/address/topology/firmware conflict or expired evidence</td>
+  <td>No automatic overwrite or actuation; investigate</td>
+</tr>
+</tbody>
+</table></div>
+<p>Keep asset ID, protocol identifier, hardware address, IP address, DNS name, certificate identity, product serial, and physical location as separate fields. Replacements legitimately change some fields; cloning/spoofing can duplicate others.</p>
+<h2 id="s-defensive-failure-cases">Defensive failure cases<a class="heading-link" href="#s-defensive-failure-cases" aria-label="Link to Defensive failure cases">#</a></h2>
+<ul>
+<li>A single query elicits thousands of replies or fragments.</li>
+<li>A response advertises a loopback, link local, multicast, private cross tenant, metadata service, or public URL.</li>
+<li>The same logical identity appears from two ports/addresses.</li>
+<li>A known address changes certificate or product identity.</li>
+<li>Announcements flap during boot or network loss.</li>
+<li>IPv6 discovery bypasses an IPv4 only policy.</li>
+<li>Reflectors form a loop or amplify a service across sites.</li>
+<li>Multicast succeeds while unicast return paths, MTU, or firewall state fail.</li>
+<li>A discovery parser consumes unbounded XML, TXT data, URLs, or endpoint lists.</li>
+<li>An integration automatically enrolls or commands every discovered device.</li>
+</ul>
+<h2 id="s-safe-acceptance-checklist">Safe acceptance checklist<a class="heading-link" href="#s-safe-acceptance-checklist" aria-label="Link to Safe acceptance checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Discovery family, revision, scope, interface, address family, and owner recorded">Discovery family, revision, scope, interface, address family, and owner recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Query and response size/rate/count bounded before parsing or allocation">Query and response size/rate/count bounded before parsing or allocation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Discovered text, XML, URLs, addresses, and capabilities treated as untrusted input">Discovered text, XML, URLs, addresses, and capabilities treated as untrusted input</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Candidate can&#x27;t trigger credential use, configuration, subscription, or actuation automatically">Candidate can't trigger credential use, configuration, subscription, or actuation automatically</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Authenticated identity plus inventory/location evidence required for promotion">Authenticated identity plus inventory/location evidence required for promotion</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Routed multicast, proxy, reflector, BBMD, and NAT boundaries documented">Routed multicast, proxy, reflector, BBMD, and NAT boundaries documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="IGMP/MLD/switch and IPv4/IPv6 behaviour included in the environment validation plan">IGMP/MLD/switch and IPv4/IPv6 behaviour included in the environment validation plan</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Absence from discovery not treated as proof of decommissioning">Absence from discovery not treated as proof of decommissioning</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Any environment validation has a written target allowlist, bounded query plan, and separate evidence record">Any environment validation has a written target allowlist, bounded query plan, and separate evidence record</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>WSD</strong>, <a href="https://docs.oasis-open.org/ws-dd/discovery/1.1/os/wsdd-discovery-1.1-spec-os.html" rel="noopener noreferrer">Web Services Dynamic Discovery 1.1</a>, OASIS Standard, 1 July 2009; assignments and managed/ad hoc modes reviewed 25 August 2026.</li>
+<li><strong>MDNS</strong>, <a href="https://datatracker.ietf.org/doc/rfc6762/" rel="noopener noreferrer">RFC 6762: Multicast DNS</a>, IETF, February 2013.</li>
+<li><strong>DNSSD</strong>, <a href="https://datatracker.ietf.org/doc/rfc6763/" rel="noopener noreferrer">RFC 6763: DNS Based Service Discovery</a>, IETF, February 2013.</li>
+<li><strong>UPNP</strong>, <a href="https://openconnectivity.org/developer/specifications/upnp-resources/upnp/" rel="noopener noreferrer">UPnP Device Architecture resources</a>, Open Connectivity Foundation, accessed 25 August 2026.</li>
+<li><strong>LLDP</strong>, <a href="https://standards.ieee.org/standard/802_1AB-2016.html" rel="noopener noreferrer">IEEE 802.1AB 2016: Station and Media Access Control Connectivity Discovery</a>, IEEE Standards Association.</li>
+<li><strong>ONVIF CORE</strong>, <a href="https://www.onvif.org/profiles-specifications-new/" rel="noopener noreferrer">ONVIF Network Interface Specifications</a>, ONVIF, accessed 25 August 2026.</li>
+<li><strong>BACNET IP</strong>, <a href="https://bacnet.org/developer-aids/" rel="noopener noreferrer">BACnet/IP reference and developer aids</a>, ASHRAE BACnet Committee, accessed 25 August 2026.</li>
+<li><strong>OPCUA DISCOVERY</strong>, <a href="https://reference.opcfoundation.org/specs/OPC-10000-4/5.5" rel="noopener noreferrer">OPC UA Part 4: Services, discovery service set</a>, OPC Foundation, accessed 25 August 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../diagram-index/"><span>Previous in this section</span>Diagram index</a><a href="../event-normalization-field-guide/"><span>Next in this section</span>Event normalisation field guide</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/discovery-and-multicast.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/discovery-and-multicast.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-discovery-families">Discovery families</a></li><li class="toc-level-2"><a href="#s-ws-discovery-and-onvif-handling">WS Discovery and ONVIF handling</a></li><li class="toc-level-2"><a href="#s-multicast-is-delivery-scope-not-access-control">Multicast is delivery scope, not access control</a></li><li class="toc-level-2"><a href="#s-broadcast-and-proxy-boundaries">Broadcast and proxy boundaries</a></li><li class="toc-level-3"><a href="#s-bacnetip">BACnet/IP</a></li><li class="toc-level-3"><a href="#s-reflectors-and-relays">Reflectors and relays</a></li><li class="toc-level-2"><a href="#s-inventory-promotion-model">Inventory promotion model</a></li><li class="toc-level-2"><a href="#s-defensive-failure-cases">Defensive failure cases</a></li><li class="toc-level-2"><a href="#s-safe-acceptance-checklist">Safe acceptance checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

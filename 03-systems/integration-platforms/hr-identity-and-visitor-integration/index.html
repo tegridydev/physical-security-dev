@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>HR, identity, and visitor integration · Security Technician Wiki</title>
+<meta name="description" content="HR records, visits and access entitlements have separate owners and lifecycles. Define how changes move between the systems and how conflicts are resolved.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/integration-platforms/hr-identity-and-visitor-integration/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HR, identity, and visitor integration · Security Technician Wiki">
+<meta property="og:description" content="HR records, visits and access entitlements have separate owners and lifecycles. Define how changes move between the systems and how conflicts are resolved.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/integration-platforms/hr-identity-and-visitor-integration/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group" open><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="./" aria-current="page">HR, identity, and visitor integration</a></li><li><a href="../psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Integration platforms</a><span aria-hidden="true">/</span><span aria-current="page">HR, identity, and visitor integration</span></nav><div class="page-kicker">Systems <span>About 3 min read</span></div><div class="prose"><h1 id="s-hr-identity-and-visitor-integration">HR, identity, and visitor integration</h1>
+<p>HR records, visits and access entitlements have separate owners and lifecycles. Define how changes move between the systems and how conflicts are resolved.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Architecture and lifecycle semantics only; no employment decision, entitlement policy, identity proofing procedure, personal dataset, credential secret, or live provisioning operation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-durable-identity-and-matching">Durable identity and matching</a></li><li class="toc-level-2"><a href="#s-lifecycle">Lifecycle</a></li><li class="toc-level-2"><a href="#s-provisioning-interfaces">Provisioning interfaces</a></li><li class="toc-level-2"><a href="#s-visitor-and-temporary-identity">Visitor and temporary identity</a></li><li class="toc-level-2"><a href="#s-security-privacy-and-reconciliation">Security, privacy, and reconciliation</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Employment, digital identity, physical identity, access entitlement, credential, visit, and presence are related but distinct. Integration should propagate approved lifecycle facts while each system retains authority for its own decisions and evidence.</p>
+<h2 id="s-authority-map">Authority map<a class="heading-link" href="#s-authority-map" aria-label="Link to Authority map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Typical authority</th>
+  <th>Important boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>employment/engagement status and organizational attributes</td>
+  <td>HR/workforce source</td>
+  <td>status alone does not grant physical access</td>
+</tr>
+<tr>
+  <td>digital account/authentication</td>
+  <td>identity provider/directory</td>
+  <td>account disable and PACS revoke have different completion evidence</td>
+</tr>
+<tr>
+  <td>physical person/holder record</td>
+  <td>PACS/identity governance</td>
+  <td>mapped to a durable source identity, not email alone</td>
+</tr>
+<tr>
+  <td>access role/entitlement approval</td>
+  <td>approved access governance process</td>
+  <td>policy owner and approver must be attributable</td>
+</tr>
+<tr>
+  <td>credential keys/status</td>
+  <td>credential/PACS ecosystem</td>
+  <td>HR must not receive secrets or cloning capability</td>
+</tr>
+<tr>
+  <td>visit, host, sponsor, validity</td>
+  <td>visitor system and approved policy</td>
+  <td>visit approval is not unrestricted site entitlement</td>
+</tr>
+<tr>
+  <td>door decision and telemetry</td>
+  <td>PACS controller/door</td>
+  <td>upstream provisioning success is not a door grant</td>
+</tr>
+</tbody>
+</table></div>
+<p>Create a field level matrix for source, owner, purpose, validation, target, transform, conflict, maximum age, retention, and deletion. A “master system” label is too coarse.</p>
+<h2 id="s-durable-identity-and-matching">Durable identity and matching<a class="heading-link" href="#s-durable-identity-and-matching" aria-label="Link to Durable identity and matching">#</a></h2>
+<p>Use a non reassigned, durable source identifier plus authoritative provenance. Email, name, phone, employee number, credential number, and department can change or collide. Automatic matching on weak attributes can merge two people and create unauthorised access.</p>
+<p>Represent person, employment/engagement, digital account, physical holder, role, entitlement, credential, visit, sponsor/host, and vehicle as separate entities with explicit relationships and validity intervals. Record confidence and review for any non authoritative match.</p>
+<h2 id="s-lifecycle">Lifecycle<a class="heading-link" href="#s-lifecycle" aria-label="Link to Lifecycle">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">source change -&gt; validated identity event -&gt; policy/approval evaluation
+ -&gt; target provisioning request -&gt; target result
+ -&gt; entitlement/credential state verification -&gt; exception/reconciliation
+</code></pre></div>
+<p>Handle pre hire/scheduled activation, join, internal move, additional role, temporary assignment, leave/suspension, return, termination, extension, rehire, contractor end, and corrected records. Define effective time and timezone, approval, dependency ordering, retry, duplicate, out of order, and rollback semantics.</p>
+<p>For high risk cessation, distinguish request generated, target accepted, holder disabled, controller updates distributed, offline controller exposure, mobile credential revoked, and physical credential recovered. Report unresolved targets; never close the workflow because one API call returned success.</p>
+<h2 id="s-provisioning-interfaces">Provisioning interfaces<a class="heading-link" href="#s-provisioning-interfaces" aria-label="Link to Provisioning interfaces">#</a></h2>
+<p><a href="https://www.rfc-editor.org/info/rfc7643" rel="noopener noreferrer">RFC 7643</a> defines the SCIM core schema and <a href="https://www.rfc-editor.org/info/rfc7644" rel="noopener noreferrer">RFC 7644</a> defines its HTTP based protocol. SCIM does not define an organization's entitlement policy, physical credential security, controller distribution, or door semantics. Verify schema extensions, PATCH/replace/delete behaviour, filtering, pagination, ETags/versioning, bulk operations, errors, and product specific limits.</p>
+<p>PSIA describes <a href="https://psialliance.org/all-about-plai/" rel="noopener noreferrer">PLAI</a> as an interoperability approach for normalising and sharing identities and access privileges across physical access control systems. Use its <a href="https://psialliance.org/specifications-overview/" rel="noopener noreferrer">published specifications</a> and product evidence for exact interoperability; don't infer conformance from generic API support.</p>
+<h2 id="s-visitor-and-temporary-identity">Visitor and temporary identity<a class="heading-link" href="#s-visitor-and-temporary-identity" aria-label="Link to Visitor and temporary identity">#</a></h2>
+<p>Capture only necessary visitor, host, approval, purpose, validity, location, escort, training/terms, credential, vehicle, and visit outcome data. Enforce expiry in the authoritative access system, including controller/offline behaviour. Separate preregistration, identity verification, arrival, credential issue, access activation, check in/out, credential return, cancellation, no show, and deletion.</p>
+<p>Self service kiosks, document capture, watchlist checks, biometrics, host notification, and cross site reuse need separate necessity, security, privacy, accessibility, and error review. Avoid making a visitor's access or safety depend solely on personal email/SMS or a mobile application.</p>
+<p>See <a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a>.</p>
+<h2 id="s-security-privacy-and-reconciliation">Security, privacy, and reconciliation<a class="heading-link" href="#s-security-privacy-and-reconciliation" aria-label="Link to Security, privacy, and reconciliation">#</a></h2>
+<ul>
+<li>Use separate, least privilege read and write workloads; scope by tenant/site/object/attribute.</li>
+<li>Protect API tokens/keys and personal data; restrict bulk read/export and support access.</li>
+<li>Validate allowed attribute changes and prevent source data from assigning privileged roles directly.</li>
+<li>Retain raw source event/reference, transform/version, request/result, approver, and exception.</li>
+<li>Reconcile authoritative source, target database, controller distribution, and credential state on a controlled schedule.</li>
+<li>Detect orphan accounts, duplicate holders, expired visits, stale roles, future dated anomalies, and failed revocations.</li>
+<li>Define lawful purpose, transparency, correction, minimisation, retention, deletion, and cross border/provider boundaries.</li>
+</ul>
+<h2 id="s-acceptance-evidence">Acceptance evidence<a class="heading-link" href="#s-acceptance-evidence" aria-label="Link to Acceptance evidence">#</a></h2>
+<p>Use synthetic or expressly authorised test identities in an approved isolated process to cover the lifecycle matrix, duplicates, delayed/out of order changes, retry, partial target failure, source correction, termination, rehire, offline controller, privacy deletion, and recovery. Record source, integration, and downstream reconciliation evidence separately.</p>
+<p>Return to <a href="../">Integration platforms</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../cloud-mobile-and-multi-tenant-platforms/"><span>Previous in this section</span>Cloud, mobile, and multi tenant security platforms</a><a href="../psim-and-command-platforms/"><span>Next in this section</span>PSIM and command platforms</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/integration-platforms/hr-identity-and-visitor-integration.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/integration-platforms/hr-identity-and-visitor-integration.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-durable-identity-and-matching">Durable identity and matching</a></li><li class="toc-level-2"><a href="#s-lifecycle">Lifecycle</a></li><li class="toc-level-2"><a href="#s-provisioning-interfaces">Provisioning interfaces</a></li><li class="toc-level-2"><a href="#s-visitor-and-temporary-identity">Visitor and temporary identity</a></li><li class="toc-level-2"><a href="#s-security-privacy-and-reconciliation">Security, privacy, and reconciliation</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

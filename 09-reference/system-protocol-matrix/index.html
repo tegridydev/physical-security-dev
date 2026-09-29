@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>System to protocol matrix · Security Technician Wiki</title>
+<meta name="description" content="Find the interfaces commonly involved in each system workflow. Follow the linked references to check what information or control each one carries.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/system-protocol-matrix/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="System to protocol matrix · Security Technician Wiki">
+<meta property="og:description" content="Find the interfaces commonly involved in each system workflow. Follow the linked references to check what information or control each one carries.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/system-protocol-matrix/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="./" aria-current="page">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">System to protocol matrix</span></nav><div class="page-kicker">Reference <span>About 4 min read</span></div><div class="prose"><h1 id="s-system-to-protocol-matrix">System to protocol matrix</h1>
+<p>Find the interfaces commonly involved in each system workflow. Follow the linked references to check what information or control each one carries.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Typical boundary map only; no row claims that every product supports every listed technology.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-boundary-questions">Boundary questions</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Read cells as investigation candidates, not product claims. Verify the exact device, firmware, role, license, profile, configuration, and secure mode.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Component or boundary</th>
+  <th>Common standards/families</th>
+  <th>Common proprietary/API boundary</th>
+  <th>Primary data or function</th>
+  <th>Key risk to resolve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>IP camera ↔ VMS</td>
+  <td>ONVIF T/S/M, RTSP/RTP/RTCP, HTTP(S), NTP</td>
+  <td>Device API/SDK, proprietary media/analytics</td>
+  <td>Live media, capabilities, events, imaging, health</td>
+  <td>Profile/role mismatch, credential sprawl, unprotected media, time drift</td>
+</tr>
+<tr>
+  <td>Camera/platform in applicable Chinese domain</td>
+  <td>GB/T 28181-2022, SIP/SDP/RTP, GB 35114, GB/T 43026</td>
+  <td>Product platform extensions</td>
+  <td>Registration, catalogue, live/playback sessions, events</td>
+  <td>National profile mismatch, domain identity, media security, abolished edition use</td>
+</tr>
+<tr>
+  <td>Contribution encoder ↔ receiver/cloud ingress</td>
+  <td>SRT or a declared VSF RIST profile</td>
+  <td>Vendor contribution service</td>
+  <td>Low latency encoded media contribution</td>
+  <td>Shared secret, listener exposure, unbounded recovery, contribution mistaken for evidence export</td>
+</tr>
+<tr>
+  <td>Edge recorder ↔ VMS/client</td>
+  <td>ONVIF G, RTSP/RTP, HTTPS</td>
+  <td>Vendor recording/search/export SDK</td>
+  <td>Recording control, search, playback, export</td>
+  <td>Retention gaps, export integrity, time/provenance</td>
+</tr>
+<tr>
+  <td>Video analytics ↔ VMS/PSIM</td>
+  <td>ONVIF M, MQTT, webhook, WebSocket, API</td>
+  <td>Vendor metadata/event schema</td>
+  <td>Detections, tracks, objects, confidence</td>
+  <td>Model drift, privacy, duplicates, coordinate/time mapping</td>
+</tr>
+<tr>
+  <td>Intercom ↔ call platform</td>
+  <td>SIP, SDP, RTP/SRTP, HTTPS</td>
+  <td>Vendor provisioning/call control API</td>
+  <td>Registration, call setup, audio/video, door request</td>
+  <td>Emergency priority, media security, relay authorisation</td>
+</tr>
+<tr>
+  <td>Reader/peripheral ↔ access controller</td>
+  <td>OSDP over RS485; legacy Wiegand/Clock and Data</td>
+  <td>Vendor bus</td>
+  <td>Credential presentation, keypad/biometric data, LEDs/buzzer, supervision</td>
+  <td>Weak legacy signaling, key management, bus availability, tamper</td>
+</tr>
+<tr>
+  <td>Access controller ↔ PACS server</td>
+  <td>HTTPS/API, TLS, time, sometimes ONVIF C/A</td>
+  <td>Vendor protocol/SDK/database contract</td>
+  <td>Configuration, decisions, events, health</td>
+  <td>Offline authority, state conflicts, actuation privilege</td>
+</tr>
+<tr>
+  <td>PACS/controller ↔ turnstile or security vestibule</td>
+  <td>OSDP, supervised I/O, product bus, IEC 60839-11 context</td>
+  <td>Portal controller API/SDK</td>
+  <td>Grant, direction, passage sensing, occupancy/interlock, alarms</td>
+  <td>Entrapment/egress, accessibility, tailgating inference, grant/state/passage conflation</td>
+</tr>
+<tr>
+  <td>PACS ↔ identity source</td>
+  <td>LDAP/SCIM/API, SAML/OIDC for operators</td>
+  <td>HR/vendor connector</td>
+  <td>People, identities, roles, lifecycle</td>
+  <td>Joiner/mover/leaver lag, authoritative fields, tenant/privacy scope</td>
+</tr>
+<tr>
+  <td>Operator ↔ PACS application identity</td>
+  <td>SAML 2.0 or OIDC; WebAuthn/FIDO at the identity layer</td>
+  <td>Vendor SSO/role adapter</td>
+  <td>Authentication, session, mapped administrative/operator role</td>
+  <td>Broad claims to role mapping, recovery downgrade, login mistaken for physical authorisation</td>
+</tr>
+<tr>
+  <td>Mobile credential wallet ↔ cloud ↔ reader</td>
+  <td>BLE/NFC/UWB plus HTTPS/OAuth/vendor trust protocol</td>
+  <td>Issuer/vendor SDK and provisioning service</td>
+  <td>Issuance, presentation, revocation, ranging</td>
+  <td>Radio relay/downgrade, device binding, cloud outage, privacy</td>
+</tr>
+<tr>
+  <td>Intrusion panel ↔ receiver</td>
+  <td>SIA DC09 and SIA/Contact ID formats</td>
+  <td>Vendor receiver protocol</td>
+  <td>Alarm, restore, test, supervision, acknowledgement</td>
+  <td>Delivery assurance, duplicate correlation, key management, failover</td>
+</tr>
+<tr>
+  <td>Alarm transmission system boundary</td>
+  <td>IEC 60839-5 family and applicable national profiles</td>
+  <td>Transmitter/receiver product protocol</td>
+  <td>Path performance, equipment/network supervision, alarm delivery</td>
+  <td>Wrong part/adoption, TS treated as final standard, receiver/dispatch boundary confusion</td>
+</tr>
+<tr>
+  <td>Warning authority ↔ public alert distributor</td>
+  <td>CAP 1.2, CAP AU where applicable, EDXL DE 2.0</td>
+  <td>Jurisdiction/feed specific API</td>
+  <td>Alert, update, cancel, area/audience, routed emergency information</td>
+  <td>Issuer/profile trust, stale lifecycle, geography, delivery mistaken for activation</td>
+</tr>
+<tr>
+  <td>Receiver ↔ monitoring automation</td>
+  <td>SIA DC07 or product API</td>
+  <td>Vendor integration</td>
+  <td>Normalized event handoff and disposition</td>
+  <td>Ordering, account mapping, acknowledgement ownership</td>
+</tr>
+<tr>
+  <td>Detection sensor ↔ panel/controller</td>
+  <td>Dry contact/supervised circuit, serial/vendor bus</td>
+  <td>Product bus</td>
+  <td>Alarm/tamper/fault states</td>
+  <td>Electrical supervision, ambiguous semantics, sabotage, nuisance alarms</td>
+</tr>
+<tr>
+  <td>PSIM/integration platform ↔ domain systems</td>
+  <td>HTTPS, MQTT, WebSocket, webhook, OPC UA</td>
+  <td>Vendor SDKs and message buses</td>
+  <td>Correlation, workflow, operator context, commands</td>
+  <td>Excess privilege, semantic loss, cascading automation</td>
+</tr>
+<tr>
+  <td>Enterprise broker ↔ integration services</td>
+  <td>AMQP 1.0, MQTT, HTTPS</td>
+  <td>Managed broker/router contract</td>
+  <td>Commands, events, queues, settlement, dead letter handling</td>
+  <td>Cross tenant links, schema drift, settlement mistaken for workflow/physical completion</td>
+</tr>
+<tr>
+  <td>BMS ↔ field controllers</td>
+  <td>BACnet/IP/MS TP/SC, KNX, Modbus</td>
+  <td>Vendor building protocol</td>
+  <td>Environmental state and control</td>
+  <td>Broadcast scope, weak legacy security, safety coordination</td>
+</tr>
+<tr>
+  <td>OT gateway ↔ PLC/device</td>
+  <td>Modbus, OPC UA, EtherNet/IP/CIP, PROFINET, DNP3</td>
+  <td>Vendor engineering protocol</td>
+  <td>Telemetry, setpoints, control</td>
+  <td>Production/safety impact, direct write exposure, recovery</td>
+</tr>
+<tr>
+  <td>Utility/power automation ↔ security integration gateway</td>
+  <td>IEC 60870-5-101/-104, IEC 61850, DNP3, OPC UA</td>
+  <td>Utility/IED/gateway profile</td>
+  <td>Power/site status, alarms, quality, time, selected telemetry</td>
+  <td>Protection/control coupling, command exposure, SCL/point map drift, legacy security</td>
+</tr>
+<tr>
+  <td>Matter fabric ↔ approved building gateway</td>
+  <td>Matter 1.6 over supported IP fabrics</td>
+  <td>Ecosystem/cloud bridge</td>
+  <td>Selected sensor/device attributes and events</td>
+  <td>Fabric/ACL lifecycle, attestation overclaim, bridge trust, inappropriate PACS/fire substitution</td>
+</tr>
+<tr>
+  <td>Constrained device ↔ management service</td>
+  <td>CoAP/OSCORE, OMA LwM2M</td>
+  <td>Product object model/cloud</td>
+  <td>Telemetry, observation, configuration, lifecycle management</td>
+  <td>Bootstrap authority, proxy termination, ACK mistaken for outcome, resource exhaustion</td>
+</tr>
+<tr>
+  <td>Management plane ↔ devices</td>
+  <td>HTTPS, SSH, SNMPv3, syslog/TLS, NTP/NTS</td>
+  <td>Vendor discovery/update API</td>
+  <td>Configuration, monitoring, firmware, logs</td>
+  <td>Default/shared credentials, certificate lifecycle, supply chain</td>
+</tr>
+<tr>
+  <td>Cloud service ↔ on prem connector</td>
+  <td>HTTPS/mTLS, WebSocket, MQTT</td>
+  <td>Vendor tunnel/agent</td>
+  <td>Brokered API/events/media/control</td>
+  <td>Tenant isolation, outbound trust, remote command authority, outage mode</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-boundary-questions">Boundary questions<a class="heading-link" href="#s-boundary-questions" aria-label="Link to Boundary questions">#</a></h2>
+<p>For every row used in a design, record:</p>
+<ol>
+<li>source and destination roles, owners, trust zones, and authoritative system;</li>
+<li>exact protocol/profile/edition, transport, port policy, discovery path, and secure mode;</li>
+<li>identity, authentication, authorisation, credential/key/certificate lifecycle;</li>
+<li>data classification, schema, time, provenance, retention, and privacy;</li>
+<li>timeouts, gaps, duplicate/retry behaviour, offline mode, reconciliation, and recovery;</li>
+<li>observation versus actuation and the physical consequence of error;</li>
+<li>product/version/licensing evidence and owner approved acceptance evidence.</li>
+</ol>
+<p>Continue with <a href="../../01-foundations/physical-security-system-architecture/">physical security system architecture</a>, <a href="../../03-systems/">systems</a>, and the <a href="../integration-readiness-checklist/">integration readiness checklist</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../standards-and-profile-status/"><span>Previous in this section</span>Standards and profile status</a><a href="../vendor-api-capability-matrix/"><span>Next in this section</span>Vendor API capability matrix</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/system-protocol-matrix.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/system-protocol-matrix.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-boundary-questions">Boundary questions</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

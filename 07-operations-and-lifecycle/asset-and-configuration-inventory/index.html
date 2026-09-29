@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Asset and configuration inventory · Security Technician Wiki</title>
+<meta name="description" content="Record device versions, identities, owners and dependencies in the inventory. Include the recovery information needed to assess changes and investigate incidents.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/asset-and-configuration-inventory/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Asset and configuration inventory · Security Technician Wiki">
+<meta property="og:description" content="Record device versions, identities, owners and dependencies in the inventory. Include the recovery information needed to assess changes and investigate incidents.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/asset-and-configuration-inventory/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="./" aria-current="page">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Asset and configuration inventory</span></nav><div class="page-kicker">Operations <span>About 2 min read</span></div><div class="prose"><h1 id="s-asset-and-configuration-inventory">Asset and configuration inventory</h1>
+<p>Record device versions, identities, owners and dependencies in the inventory. Include the recovery information needed to assess changes and investigate incidents.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-minimum-asset-record">Minimum asset record</a></li><li class="toc-level-2"><a href="#s-configuration-baseline">Configuration baseline</a></li><li class="toc-level-2"><a href="#s-reconciliation">Reconciliation</a></li><li class="toc-level-2"><a href="#s-change-triggers">Change triggers</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An inventory must support vulnerability triage, flow control, certificate renewal, interoperability, recovery, privacy review and decommissioning. IP address and product name alone don't identify a physical security asset adequately.</p>
+<h2 id="s-minimum-asset-record">Minimum asset record<a class="heading-link" href="#s-minimum-asset-record" aria-label="Link to Minimum asset record">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>Fields</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Identity</td>
+  <td>Stable asset ID, site/zone, role, manufacturer, model, serial, hardware revision</td>
+</tr>
+<tr>
+  <td>Software</td>
+  <td>Firmware, OS, application, driver/SDK/plugin and dependency versions</td>
+</tr>
+<tr>
+  <td>Interfaces</td>
+  <td>Physical ports, MAC/IP, serial address, radio identities, cloud tenant/device ID</td>
+</tr>
+<tr>
+  <td>Protocols</td>
+  <td>Exact versions/profiles, secure mode, role, ports, discovery and enabled options</td>
+</tr>
+<tr>
+  <td>Trust</td>
+  <td>Certificate fingerprints/serials, issuer, expiry, key purpose, shared key identifier, enrollment owner</td>
+</tr>
+<tr>
+  <td>Access</td>
+  <td>Admin/operator/service/vendor identities and role/policy mapping</td>
+</tr>
+<tr>
+  <td>Data</td>
+  <td>Media/events/credentials/biometrics stored or transmitted, retention and destinations</td>
+</tr>
+<tr>
+  <td>Lifecycle</td>
+  <td>Install, warranty/support end, update source, backup, replacement and disposal status</td>
+</tr>
+<tr>
+  <td>Safety</td>
+  <td>Actuators/interlocks/egress/fire/elevator dependencies and responsible authority</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td>Last configuration review, environment validation, deviations, approvals, and source documents</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't store passwords, private keys, bearer tokens, biometric templates or full credentials in the inventory. Store references to an approved secret or evidence system.</p>
+<h2 id="s-configuration-baseline">Configuration baseline<a class="heading-link" href="#s-configuration-baseline" aria-label="Link to Configuration baseline">#</a></h2>
+<p>Capture enabled services, users/roles, network and discovery settings, TLS/certificate policy, protocol/profile options, time, logging, storage/retention, event subscriptions, broker topics/ACLs, integration mappings, update channel, failover/offline behaviour and disabled legacy interfaces. Prefer structured exports where supported, but protect them as sensitive configuration.</p>
+<h2 id="s-reconciliation">Reconciliation<a class="heading-link" href="#s-reconciliation" aria-label="Link to Reconciliation">#</a></h2>
+<p>Reconcile authoritative management inventory with network observation, vendor cloud, controller/server databases, certificate register and physical survey. Discovery can find unexpected assets but must not be treated as the sole inventory because offline, segmented and serial devices may be absent.</p>
+<h2 id="s-change-triggers">Change triggers<a class="heading-link" href="#s-change-triggers" aria-label="Link to Change triggers">#</a></h2>
+<p>Update inventory after installation, replacement, firmware/software change, role or certificate change, topology/flow change, protocol/profile enablement, cloud ownership transfer, incident, backup restoration and decommissioning. Preserve history sufficient to interpret old events and evidence.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, asset management and OT architecture guidance, accessed 25 August 2026.</li>
+<li><strong>CISA ASSET</strong>, <a href="https://www.cisa.gov/resources-tools/resources/foundations-ot-cybersecurity-asset-inventory-guidance-owners-and-operators" rel="noopener noreferrer">CISA Foundations for OT Cybersecurity: Asset Inventory Guidance</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li>
+<li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li>
+<li><a href="../../06-security-and-assurance/vulnerability-management-and-disclosure/">Vulnerability management</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Operations and lifecycle</a><a href="../certificate-and-account-lifecycle/"><span>Next in this section</span>Certificate and account lifecycle</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/asset-and-configuration-inventory.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/asset-and-configuration-inventory.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-minimum-asset-record">Minimum asset record</a></li><li class="toc-level-2"><a href="#s-configuration-baseline">Configuration baseline</a></li><li class="toc-level-2"><a href="#s-reconciliation">Reconciliation</a></li><li class="toc-level-2"><a href="#s-change-triggers">Change triggers</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

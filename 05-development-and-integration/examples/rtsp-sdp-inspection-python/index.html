@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>RTSP and SDP inspection · Security Technician Wiki</title>
+<meta name="description" content="Inspect the media descriptions in a saved RTSP DESCRIBE response.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/rtsp-sdp-inspection-python/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RTSP and SDP inspection · Security Technician Wiki">
+<meta property="og:description" content="Inspect the media descriptions in a saved RTSP DESCRIBE response.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/rtsp-sdp-inspection-python/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="./" aria-current="page">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">RTSP and SDP inspection</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-rtsp-and-sdp-inspection">RTSP and SDP inspection</h1>
+<p>Inspect the media descriptions in a saved RTSP DESCRIBE response.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">python examples/python/rtsp_sdp.py --demo
+</code></pre></div>
+<p>The demo identifies an H.264 video stream and its RTP clock rate from synthetic SDP.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Use <code>--file response.bin</code> for one raw response with the original CRLF line endings. The parser checks status, CSeq, content type, content length and simple media descriptions. Input is limited to 64 KiB.</p>
+<p>This is an offline inspection tool. It does not send DESCRIBE, SETUP or PLAY, process RTP packets or validate all SDP grammar. It deliberately rejects repeated RTSP headers. SDP alone does not prove that media can be received or decoded.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/python/rtsp_sdp.py">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy python example">Copy</button></div><pre tabindex="0" aria-label="python example"><code id="code-2">#!/usr/bin/env python3
+&quot;&quot;&quot;Inspect a saved RTSP DESCRIBE response containing SDP. No network requests.&quot;&quot;&quot;
+from __future__ import annotations
+import argparse
+import json
+from pathlib import Path
+import re
+import sys
+
+MAX_BYTES = 65_536
+SDP = b&#x27;v=0\r\no=- 1 1 IN IP4 192.0.2.10\r\ns=Demo\r\nt=0 0\r\nm=video 0 RTP/AVP 96\r\na=rtpmap:96 H264/90000\r\na=control:track1\r\n&#x27;
+DEMO = b&#x27;RTSP/1.0 200 OK\r\nCSeq: 1\r\nContent-Type: application/sdp\r\nContent-Length: &#x27; + str(len(SDP)).encode() + b&#x27;\r\n\r\n&#x27; + SDP
+
+def inspect(data: bytes) -&gt; dict[str, object]:
+    if len(data) &gt; MAX_BYTES:
+        raise ValueError(&#x27;Saved response exceeds 64 KiB&#x27;)
+    header, separator, body = data.partition(b&#x27;\r\n\r\n&#x27;)
+    if not separator or len(header) &gt; 16_384:
+        raise ValueError(&#x27;Missing or oversized RTSP header&#x27;)
+    lines = header.decode(&#x27;ascii&#x27;).split(&#x27;\r\n&#x27;)
+    if not re.fullmatch(r&#x27;RTSP/(?:1\.0|2\.0) 200 [\x20-\x7e]*&#x27;, lines[0]):
+        raise ValueError(&#x27;Expected a successful RTSP response&#x27;)
+    fields = {}
+    for line in lines[1:]:
+        name, colon, value = line.partition(&#x27;:&#x27;)
+        name = name.lower()
+        if not colon or not re.fullmatch(r&#x27;[a-z0-9-]+&#x27;, name) or name in fields:
+            raise ValueError(&#x27;Malformed or duplicate RTSP header&#x27;)
+        fields[name] = value.strip()
+    if fields.get(&#x27;content-type&#x27;, &#x27;&#x27;).split(&#x27;;&#x27;)[0].lower() != &#x27;application/sdp&#x27;:
+        raise ValueError(&#x27;Expected SDP content&#x27;)
+    length = fields.get(&#x27;content-length&#x27;, &#x27;&#x27;)
+    if not length.isascii() or not length.isdecimal() or int(length) != len(body):
+        raise ValueError(&#x27;Content length does not match the saved body&#x27;)
+    if not re.fullmatch(r&#x27;\d{1,10}&#x27;, fields.get(&#x27;cseq&#x27;, &#x27;&#x27;)):
+        raise ValueError(&#x27;Missing or invalid CSeq&#x27;)
+    text = body.decode(&#x27;utf-8&#x27;)
+    media: list[dict[str, object]] = []
+    if not text.startswith(&#x27;v=0\r\n&#x27;):
+        raise ValueError(&#x27;Expected SDP version 0 with CRLF line endings&#x27;)
+    for line in text.split(&#x27;\r\n&#x27;):
+        if len(line) &gt; 4096 or any(ord(c) &lt; 32 for c in line):
+            raise ValueError(&#x27;Invalid SDP line&#x27;)
+        if line.startswith(&#x27;m=&#x27;):
+            values = line[2:].split()
+            if len(values) &lt; 4 or len(media) &gt;= 32:
+                raise ValueError(&#x27;Invalid media description&#x27;)
+            media.append({&#x27;type&#x27;: values[0], &#x27;port&#x27;: values[1], &#x27;transport&#x27;: values[2], &#x27;formats&#x27;: values[3:], &#x27;rtpmap&#x27;: []})
+        elif line.startswith(&#x27;a=rtpmap:&#x27;) and media:
+            media[-1][&#x27;rtpmap&#x27;].append(line.removeprefix(&#x27;a=rtpmap:&#x27;))
+    if not media:
+        raise ValueError(&#x27;No media descriptions found&#x27;)
+    return {&#x27;cseq&#x27;: int(fields[&#x27;cseq&#x27;]), &#x27;media&#x27;: media}
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(&#x27;--demo&#x27;, action=&#x27;store_true&#x27;)
+    mode.add_argument(&#x27;--file&#x27;, type=Path, help=&#x27;One raw RTSP response with CRLF bytes preserved&#x27;)
+    args = parser.parse_args()
+    try:
+        data = DEMO
+        if args.file:
+            with args.file.open(&#x27;rb&#x27;) as source:
+                data = source.read(MAX_BYTES + 1)
+        print(json.dumps(inspect(data), indent=2))
+        return 0
+    except (OSError, ValueError) as exc:
+        print(f&#x27;Error: {exc}&#x27;, file=sys.stderr)
+        return 1
+
+if __name__ == &#x27;__main__&#x27;:
+    raise SystemExit(main())
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc7826" rel="noopener noreferrer">RTSP 2.0</a></p>
+<p><a href="https://www.rfc-editor.org/rfc/rfc8866" rel="noopener noreferrer">SDP</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../onvif-soap-request/"><span>Previous in this section</span>ONVIF device information</a><a href="../event-store-python/"><span>Next in this section</span>SQLite event deduplication</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/rtsp-sdp-inspection-python.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/rtsp-sdp-inspection-python.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

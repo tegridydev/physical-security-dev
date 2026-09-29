@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>LenelS2 OnGuard, OpenAccess, and Elements · Security Technician Wiki</title>
+<meta name="description" content="Identify the exact OnGuard or Elements platform and supported interface. Check where OpenAccess applies before planning identity, event or control integration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/lenels2-onguard-openaccess-and-elements/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="LenelS2 OnGuard, OpenAccess, and Elements · Security Technician Wiki">
+<meta property="og:description" content="Identify the exact OnGuard or Elements platform and supported interface. Check where OpenAccess applies before planning identity, event or control integration.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/lenels2-onguard-openaccess-and-elements/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="./" aria-current="page">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">LenelS2 OnGuard, OpenAccess, and Elements</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-lenels2-onguard-openaccess-and-elements">LenelS2 OnGuard, OpenAccess, and Elements</h1>
+<p>Identify the exact OnGuard or Elements platform and supported interface. Check where OpenAccess applies before planning identity, event or control integration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public LenelS2 product, data sheet, partner certification, cloud, and portal material; current OpenAccess contract, API packages, auth, endpoint schemas, licences, DataConduIT status, and any Elements developer API are not publicly verified here.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-onguard-contract">OnGuard contract</a></li><li class="toc-level-2"><a href="#s-elements-boundary">Elements boundary</a></li><li class="toc-level-2"><a href="#s-authentication-events-and-commands">Authentication, events, and commands</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / LenelS2</p>
+<p>LenelS2’s integration story spans the on premises <strong>OnGuard</strong> platform, <strong>OnGuard Cloud</strong>, the <strong>OpenAccess Web Services</strong> API family, legacy/other data interfaces, and the distinct <strong>Elements</strong> SaaS platform. Don't infer that an OnGuard OpenAccess integration can call Elements or that the Elements OnGuard Connector is a general public API.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Public evidence</th>
+  <th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>OnGuard OpenAccess Web Services</td>
+  <td>OnGuard product and data sheets identify RESTful/web service integration; OnGuard 7.5 material described parity work with DataConduIT</td>
+  <td>Full current contract and samples are delivered through LenelS2 Connect/installed product and licences</td>
+</tr>
+<tr>
+  <td>OpenAccess event bridge</td>
+  <td>Official partner pages show REST plus SignalR event bridge use for named certified integrations</td>
+  <td>Delivery behaviour on one partner page is not universal; use the target OpenAccess guide</td>
+</tr>
+<tr>
+  <td>OAAP/technology partner interfaces</td>
+  <td>Certified integrations list exact OnGuard releases, partner versions and API licence part numbers</td>
+  <td>Certification applies only to the listed combination and does not certify partner cybersecurity</td>
+</tr>
+<tr>
+  <td>OnGuard Cloud</td>
+  <td>Single tenant cloud deployment with web/OpenAccess integration options in official brochure</td>
+  <td>Cloud network, region, edition, licence and support contract apply</td>
+</tr>
+<tr>
+  <td>Elements</td>
+  <td>Cloud access/video platform with continuous delivery and an Elements to OnGuard Connector</td>
+  <td>No general current public Elements developer API contract was established in this review</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-onguard-contract">OnGuard contract<a class="heading-link" href="#s-onguard-contract" aria-label="Link to OnGuard contract">#</a></h2>
+<p>The OnGuard 8.3 data sheet observed during review lists continuing OpenAccess Web Services API updates. This is an inherited release record. The previously cited PDF returned 404 on 29 September 2026, so obtain the release document from LenelS2 before relying on that detail. Record OnGuard server/enterprise version, OpenAccess component build, database/topology, API licence, service identity, event bridge version and every target entity class.</p>
+<p>Public OAAP partner pages demonstrate that LenelS2 issues integration specific API licence part numbers and certifies named product/version combinations. Use that matrix for the selected partner interface. Don't treat “factory certified” as a blanket security, functionality or future compatibility warranty; LenelS2 explicitly limits the certification statement on those pages.</p>
+<p>DataConduIT appears in older OnGuard material as a comparison/legacy integration interface. Obtain the current lifecycle and migration guidance before maintaining or replacing it. Don't start new database or COM based integration based on historical familiarity when OpenAccess is the supported route.</p>
+<h2 id="s-elements-boundary">Elements boundary<a class="heading-link" href="#s-elements-boundary" aria-label="Link to Elements boundary">#</a></h2>
+<p>Official Elements material establishes a cloud access/video product, continuous delivery and the Elements OnGuard Connector for hybrid deployments. Public material doesn't establish a customer general Elements API reference with authentication, schemas, limits and lifecycle. Therefore this catalogue makes no endpoint, SDK or access claim for Elements. Obtain written LenelS2 evidence for any proposed Elements integration.</p>
+<p>Continuous delivery means capability and behaviour can change without an on premises upgrade event. Record tenant, release/change notice channel, region, subscription and connector version, and maintain contract tests within the integration owner's release process.</p>
+<h2 id="s-authentication-events-and-commands">Authentication, events, and commands<a class="heading-link" href="#s-authentication-events-and-commands" aria-label="Link to Authentication, events, and commands">#</a></h2>
+<p>Use the exact versioned OpenAccess guide for identity/authentication, TLS, operator permissions, token/session lifetime and event subscription. Don't copy ports, file paths or auth from old knowledge base articles into a new design.</p>
+<p>Separate cardholder/credential management, configuration reads, event monitoring, alarm acknowledgement and command/control. OnGuard APIs can expose doors, readers, panels, alarms, photos and credentials through authorised integrations. Apply least privilege, data minimisation and immutable audit.</p>
+<p>For event bridges, establish whether subscriptions are transient or durable, initial state behaviour, filters, gap recovery and backpressure. One official partner page says its integration supports transient hardware event subscriptions only; that statement belongs to that integration, not every OpenAccess consumer.</p>
+<p>For door/output commands, never blind retry. Query authoritative state/journal and preserve local egress and life safety authority.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://www.lenels2.com/en/security-products/onguard/" rel="noopener noreferrer">OnGuard product page</a>, current public platform/open integration positioning.</li>
+<li>Historical OnGuard 8.3 data sheet: the former public download is unavailable. Obtain the exact release document through the LenelS2 portal.</li>
+<li>Historical OnGuard Cloud brochure: the former public download is unavailable. Confirm deployment architecture with the current product documentation.</li>
+<li><a href="https://www.lenels2.com/en/log-in/" rel="noopener noreferrer">LenelS2 login and portal routes</a>, gated technical documentation/support boundary.</li>
+<li><a href="https://www.lenels2.com/en/security-solutions/third-party-integration/oaap-partners/resolver-command-center/" rel="noopener noreferrer">OAAP partner example with version/licence matrix</a>, certification and integration specific licence evidence.</li>
+<li><a href="https://www.lenels2.com/en/security-solutions/third-party-integration/oaap-partners/qognify-qvms-sei-plugin/" rel="noopener noreferrer">OpenAccess REST/event bridge partner example</a>, transient subscription evidence limited to that product.</li>
+<li><a href="https://www.lenels2.com/en/security-solutions/cloud-based-solutions/" rel="noopener noreferrer">Cloud solutions page</a>, current product entry point. The former Elements data sheet download returned 404; this page is not a substitute for its versioned technical contract.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/credential-lifecycle/">Credential lifecycle</a></li>
+<li><a href="../../../05-development-and-integration/patterns/event-normalization-and-schema-evolution/">Event normalisation and schema evolution</a></li>
+<li><a href="../../../07-operations-and-lifecycle/change-firmware-and-patching/">Change, firmware, and patching</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../kisi-api/"><span>Previous in this section</span>Kisi API and mobile SDKs</a><a href="../salto-apis/"><span>Next in this section</span>SALTO APIs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/lenels2-onguard-openaccess-and-elements.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/lenels2-onguard-openaccess-and-elements.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-onguard-contract">OnGuard contract</a></li><li class="toc-level-2"><a href="#s-elements-boundary">Elements boundary</a></li><li class="toc-level-2"><a href="#s-authentication-events-and-commands">Authentication, events, and commands</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Ethernet, PoE, and power budgets · Security Technician Wiki</title>
+<meta name="description" content="Check the whole power path when planning PoE. Include device startup, cable losses, switch capacity, backup power and shared points of failure.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/ethernet-poe-and-power-budgets/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ethernet, PoE, and power budgets · Security Technician Wiki">
+<meta property="og:description" content="Check the whole power path when planning PoE. Include device startup, cable losses, switch capacity, backup power and shared points of failure.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/ethernet-poe-and-power-budgets/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="./" aria-current="page">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Ethernet, PoE, and power budgets</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-ethernet-poe-and-power-budgets">Ethernet, PoE, and power budgets</h1>
+<p>Check the whole power path when planning PoE. Include device startup, cable losses, switch capacity, backup power and shared points of failure.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Conceptual planning only; cable, electrical, fire rating, UPS, and installation requirements are jurisdiction and site specific.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-roles-and-standards">Roles and standards</a></li><li class="toc-level-2"><a href="#s-end-to-end-power-budget">End to end power budget</a></li><li class="toc-level-2"><a href="#s-availability-traps">Availability traps</a></li><li class="toc-level-2"><a href="#s-network-and-physical-security">Network and physical security</a></li><li class="toc-level-2"><a href="#s-monitoring">Monitoring</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Power over Ethernet (PoE) can simplify cameras, readers, intercoms, and edge devices, but “the switch has enough watts” isn't a complete availability design.</p>
+<h2 id="s-roles-and-standards">Roles and standards<a class="heading-link" href="#s-roles-and-standards" aria-label="Link to Roles and standards">#</a></h2>
+<ul>
+<li><strong>Power sourcing equipment (PSE):</strong> switch or midspan that supplies power.</li>
+<li><strong>Powered device (PD):</strong> device that requests/uses power.</li>
+<li><strong>Endpoint versus midspan:</strong> where power is injected.</li>
+<li><strong>Class/signature:</strong> negotiation/classification information used to allocate power.</li>
+</ul>
+<p>IEEE <a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener noreferrer">802.3-2022</a> is the active Ethernet base standard at this review date and incorporates power over selected twisted pair PHYs, including earlier 802.3af/at/bt work. The Ethernet Alliance <a href="https://ethernetalliance.org/poecert/" rel="noopener noreferrer">PoE Certification Program</a> distinguishes products tested against IEEE based Gen 1 and Gen 2 plans. Marketing names such as “PoE+” or “PoE++” aren't enough; verify the exact IEEE type/class, PSE mode, PD signature, and supported cabling.</p>
+<h2 id="s-end-to-end-power-budget">End to end power budget<a class="heading-link" href="#s-end-to-end-power-budget" aria-label="Link to End to end power budget">#</a></h2>
+<p>For each PD record:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">minimum and maximum input power
+negotiated class and fallback behaviour
+heater, IR, PTZ, audio, relay, USB, or accessory peaks
+cable length/gauge/category and bundle/ambient limits
+switch per-port and total budget
+power-supply and UPS capacity at normal and degraded temperature
+redundancy/failover behaviour
+boot surge and simultaneous restart policy
+</code></pre></div>
+<p>Distinguish PSE output from power available at the PD after cable loss. Don't mix proprietary passive power with standards based PoE unless both endpoints and the approved design explicitly support it; incorrect powering can damage equipment.</p>
+<h2 id="s-availability-traps">Availability traps<a class="heading-link" href="#s-availability-traps" aria-label="Link to Availability traps">#</a></h2>
+<ul>
+<li>All high draw functions activate together at night or cold temperature.</li>
+<li>A redundant switch has ports but not equal PoE capacity.</li>
+<li>UPS runtime calculations omit switch/PSE losses and battery aging.</li>
+<li>Power restoration boots all devices simultaneously, causing surge and network/control plane load.</li>
+<li>A camera link remains up while the heater, illuminator, or motor is power limited.</li>
+<li>Link Layer Discovery Protocol (LLDP) power negotiation differs after firmware/configuration changes.</li>
+<li>Midspan or media converter behaviour is absent from monitoring.</li>
+</ul>
+<h2 id="s-network-and-physical-security">Network and physical security<a class="heading-link" href="#s-network-and-physical-security" aria-label="Link to Network and physical security">#</a></h2>
+<p>PoE restart is a remote actuation: it can interrupt recording, intercom, access readers, or sensors. Restrict switch power cycle permissions and audit them. Don't use power cycling as a generic recovery loop without bounds and state awareness.</p>
+<p>Switch port security, IEEE 802.1X, VLAN assignment, and certificate identity solve different problems. A powered and linked device isn't authenticated. Protect accessible cable endpoints and cabinets from substitution or unauthorised bridging.</p>
+<h2 id="s-monitoring">Monitoring<a class="heading-link" href="#s-monitoring" aria-label="Link to Monitoring">#</a></h2>
+<p>Collect negotiated class, actual draw, budget remaining, overload/deny events, link flaps, temperature, PSU/UPS state, and restart cause. Correlate power loss with device gaps but retain uncertainty: a switch report isn't proof of downstream function.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../encoding-and-serialization/"><span>Previous in this section</span>Encoding and serialisation</a><a href="../events-state-commands-and-time/"><span>Next in this section</span>Events, state, commands, and time</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/ethernet-poe-and-power-budgets.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/ethernet-poe-and-power-budgets.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-roles-and-standards">Roles and standards</a></li><li class="toc-level-2"><a href="#s-end-to-end-power-budget">End to end power budget</a></li><li class="toc-level-2"><a href="#s-availability-traps">Availability traps</a></li><li class="toc-level-2"><a href="#s-network-and-physical-security">Network and physical security</a></li><li class="toc-level-2"><a href="#s-monitoring">Monitoring</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Kisi API and mobile SDKs · Security Technician Wiki</title>
+<meta name="description" content="Identify the Kisi resources and permissions needed by the application. Handle account changes, event delivery and physical controls as separate operations.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/kisi-api/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kisi API and mobile SDKs · Security Technician Wiki">
+<meta property="og:description" content="Identify the Kisi resources and permissions needed by the application. Handle account changes, event delivery and physical controls as separate operations.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/kisi-api/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="./" aria-current="page">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">Kisi API and mobile SDKs</span></nav><div class="page-kicker">Vendor APIs <span>About 4 min read</span></div><div class="prose"><h1 id="s-kisi-api-and-mobile-sdks">Kisi API and mobile SDKs</h1>
+<p>Identify the Kisi resources and permissions needed by the application. Handle account changes, event delivery and physical controls as separate operations.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The API overview, canonical reference address, request limits and overall versioning policy were checked. Key expiry details, SDK behaviour and tenant entitlements require the linked product documentation.</p><p>Public Kisi product and OpenAPI documentation reviewed on 25 August 2026; organization plans, sandbox/production approval, mobile SDK partner ID, exact hardware/firmware, endpoint schemas, custom quotas, and marketplace terms require Kisi confirmation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-authentication-and-key-lifecycle">Authentication and key lifecycle</a></li><li class="toc-level-2"><a href="#s-user-attribution-and-identity">User attribution and identity</a></li><li class="toc-level-2"><a href="#s-limits-versioning-and-deprecation">Limits, versioning, and deprecation</a></li><li class="toc-level-2"><a href="#s-webhooks-and-events">Webhooks and events</a></li><li class="toc-level-2"><a href="#s-mobile-sdk-boundary">Mobile SDK boundary</a></li><li class="toc-level-2"><a href="#s-high-impact-safety-boundary">High impact safety boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / Kisi</p>
+<p>Kisi publishes a JSON/HTTPS API for organizations, users, locks, access rights, events and unlock workflows, plus webhooks and mobile SDKs for embedded access. The REST API can support user provisioning and cloud unlocks; the iOS/Android SDKs add supported proximity/tap behaviour and require separate partner access and hardware.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Publicly documented purpose</th>
+  <th>Access boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Kisi API</td>
+  <td>Organization, user, place, lock, access, event and command resources</td>
+  <td>Public OpenAPI reference; organization account/API key and permissions required</td>
+</tr>
+<tr>
+  <td>Webhooks</td>
+  <td>Real time event delivery to an integration</td>
+  <td>Receiver authenticity, retry and reconciliation must follow current guide</td>
+</tr>
+<tr>
+  <td>Mobile SDK for iOS/Android</td>
+  <td>Embeds Tap to Unlock, in app unlock and MotionSense workflows</td>
+  <td>Partner ID/SDK access, provisioned users and compatible controller/reader required</td>
+</tr>
+<tr>
+  <td>Marketplace application</td>
+  <td>Admin configured integration inside Kisi dashboard</td>
+  <td>Partner approval and marketplace quality/security requirements</td>
+</tr>
+<tr>
+  <td>Sandbox and hardware dev kit</td>
+  <td>Authorised development environment</td>
+  <td>Requested through integration partner onboarding; not production entitlement</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-authentication-and-key-lifecycle">Authentication and key lifecycle<a class="heading-link" href="#s-authentication-and-key-lifecycle" aria-label="Link to Authentication and key lifecycle">#</a></h2>
+<p>Most API calls use a Kisi API key/login secret in the documented authorisation scheme over HTTPS. Organization owners or administrators can create keys. The current guide recommends a separate API key for each integration instance and says:</p>
+<ul>
+<li>a user can hold up to 40 API keys, after which older keys expire;</li>
+<li>keys expire after six months of inactivity by default unless created under the documented non expiring option;</li>
+<li>organization owner creation can avoid an administrator departure invalidating the integration.</li>
+</ul>
+<p>A non expiring secret increases risk; prefer bounded lifecycle and rotation unless an approved operational requirement says otherwise. Keep keys in a backend secret store, never in browser/mobile source, and include the integration identification/contact headers required of partners. Revoke on decommission or compromise.</p>
+<h2 id="s-user-attribution-and-identity">User attribution and identity<a class="heading-link" href="#s-user-attribution-and-identity" aria-label="Link to User attribution and identity">#</a></h2>
+<p>An administrator key used directly for every unlock can attribute events to the administrator rather than the actual person. Kisi documents user provisioning and user specific login/secret patterns for applications that require individual audit. Apply them only through the current guide and protect every user secret like a credential.</p>
+<p>Use stable user identifiers and explicit organization/place scope. Define joiner/mover/leaver behaviour, group/access changes, schedule timezone and credential revocation. Don't create “managed” users or non expiring device logins without retention and deletion policy.</p>
+<h2 id="s-limits-versioning-and-deprecation">Limits, versioning, and deprecation<a class="heading-link" href="#s-limits-versioning-and-deprecation" aria-label="Link to Limits, versioning, and deprecation">#</a></h2>
+<p>Kisi's API overview, updated <strong>1 September 2026</strong>, documents <strong>5 requests per second per user</strong> for authenticated calls and <strong>5 per second per IP address</strong> for unauthenticated calls. Some endpoints have custom limits. Limits are mutable. Serialize/bound work per user, add exponential backoff for HTTP 429 and read each endpoint’s custom rule.</p>
+<p>Kisi says the API has no overall versioning scheme and aims to preserve compatibility. The OpenAPI document’s <code>1.0.0</code> label is a specification document version, not evidence of a <code>/v1</code> lifecycle. When incompatibility is necessary, Kisi documents <code>Deprecation</code> and <code>Sunset</code> response headers. Capture and alert on both headers and subscribe to the developer newsletter.</p>
+<p>Use endpoint specific pagination/filter fields from the OpenAPI schema. Don't assume all collections fit a response or share one cursor/offset model.</p>
+<h2 id="s-webhooks-and-events">Webhooks and events<a class="heading-link" href="#s-webhooks-and-events" aria-label="Link to Webhooks and events">#</a></h2>
+<p>Authenticate webhook delivery using the current Kisi mechanism, validate freshness, deduplicate, enqueue durably before acknowledgement and reconcile after gaps. Preserve event ID, source time, ingest time, organization/place/lock and attributed user while minimizing names and credential material.</p>
+<p>An unlock event, lock output state, door contact state and confirmed passage are different facts. The API can't replace supervised door hardware or local life safety logic.</p>
+<h2 id="s-mobile-sdk-boundary">Mobile SDK boundary<a class="heading-link" href="#s-mobile-sdk-boundary" aria-label="Link to Mobile SDK boundary">#</a></h2>
+<p>Kisi documents Tap to Unlock using BLE on iOS or NFC on Android, in app cloud unlock, and MotionSense for supported hardware. The SDK handles proximity proof/reader interaction; the host app remains responsible for user lifecycle, UI, secure credential storage, authorisation and privacy.</p>
+<p>Request a partner ID and follow the supplied testing protocol. Pin SDK, mobile OS, controller/reader, firmware and network/offline behaviour. Never reverse engineer proximity advertisements or extract user secrets from the SDK.</p>
+<h2 id="s-high-impact-safety-boundary">High impact safety boundary<a class="heading-link" href="#s-high-impact-safety-boundary" aria-label="Link to High impact safety boundary">#</a></h2>
+<p>Door/elevator lockdown and unlock are high impact. Allowlist targets, require explicit application authorisation, record requester/reason, and handle timeout as uncertain. Don't expose a generic “call any Kisi endpoint” proxy.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://docs.kisi.io/platform/apis/" rel="noopener noreferrer">Kisi API overview</a>, capability, rate limit and versioning policy.</li>
+<li><a href="https://api.getkisi.com/docs" rel="noopener noreferrer">Kisi OpenAPI reference</a>, public operation, error, custom limit and deprecation contract.</li>
+<li><a href="https://docs.kisi.io/platform/integrate_kisi/" rel="noopener noreferrer">How to integrate Kisi</a> and <a href="https://docs.kisi.io/platform/integrate_kisi/getting_started/" rel="noopener noreferrer">getting started</a>, sandbox, keys, hardware and SDK access.</li>
+<li><a href="https://docs.kisi.io/dashboard/account/generate_api_key/" rel="noopener noreferrer">Generate an API key</a>, administrator, key count and inactivity lifecycle.</li>
+<li><a href="https://docs.kisi.io/platform/integrate_kisi/integration_methods/" rel="noopener noreferrer">Integration methods</a>, user provisioning, user attributed unlock, SDK and marketplace boundaries.</li>
+<li><a href="https://docs.kisi.io/platform/sdks/integration_process/" rel="noopener noreferrer">Mobile SDK integration process</a>, platform/hardware and partner ID requirements.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/locks-egress-and-life-safety/">Locks, egress, and life safety</a></li>
+<li><a href="../../../03-systems/access-control/mobile-access/">Mobile access</a></li>
+<li><a href="../../../07-operations-and-lifecycle/certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../johnson-controls-ccure-integrations/"><span>Previous in this section</span>Johnson Controls C•CURE integrations</a><a href="../lenels2-onguard-openaccess-and-elements/"><span>Next in this section</span>LenelS2 OnGuard, OpenAccess, and Elements</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/kisi-api.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/kisi-api.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-authentication-and-key-lifecycle">Authentication and key lifecycle</a></li><li class="toc-level-2"><a href="#s-user-attribution-and-identity">User attribution and identity</a></li><li class="toc-level-2"><a href="#s-limits-versioning-and-deprecation">Limits, versioning, and deprecation</a></li><li class="toc-level-2"><a href="#s-webhooks-and-events">Webhooks and events</a></li><li class="toc-level-2"><a href="#s-mobile-sdk-boundary">Mobile SDK boundary</a></li><li class="toc-level-2"><a href="#s-high-impact-safety-boundary">High impact safety boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Secrets, certificates, and configuration · Security Technician Wiki</title>
+<meta name="description" content="Keep credentials and trust settings out of source control, examples and logs. Give deployed configuration an owner, validation rules and a recovery process.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/secrets-certificates-and-configuration/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secrets, certificates, and configuration · Security Technician Wiki">
+<meta property="og:description" content="Keep credentials and trust settings out of source control, examples and logs. Give deployed configuration an owner, validation rules and a recovery process.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/secrets-certificates-and-configuration/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../../examples/">Section overview</a></li><li><a href="../../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="./" aria-current="page">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Integration patterns</a><span aria-hidden="true">/</span><span aria-current="page">Secrets, certificates, and configuration</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-secrets-certificates-and-configuration">Secrets, certificates, and configuration</h1>
+<p>Keep credentials and trust settings out of source control, examples and logs. Give deployed configuration an owner, validation rules and a recovery process.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Configuration and trust material lifecycle pattern; storage technology, cryptographic policy, deployment platform, product behaviour, and recovery controls are environment specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-configuration-classes">Configuration classes</a></li><li class="toc-level-2"><a href="#s-loading-pipeline">Loading pipeline</a></li><li class="toc-level-2"><a href="#s-secret-handling">Secret handling</a></li><li class="toc-level-2"><a href="#s-certificate-configuration">Certificate configuration</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Configuration is untrusted input with operational side effects. Parse it into a typed validated model, fail clearly on invalid or ambiguous values, and make the effective configuration observable without revealing secrets.</p>
+<h2 id="s-configuration-classes">Configuration classes<a class="heading-link" href="#s-configuration-classes" aria-label="Link to Configuration classes">#</a></h2>
+<ul>
+<li>static application behaviour and feature policy;</li>
+<li>deployment topology, addresses and protocol roles;</li>
+<li>tenant/site/resource mappings;</li>
+<li>credentials, private keys, tokens and trust anchors;</li>
+<li>runtime tuning such as timeouts, queue limits and retry budgets;</li>
+<li>high impact authorisation and actuation policy.</li>
+</ul>
+<p>Don't treat all classes as interchangeable environment strings. Secret values require protected retrieval and redaction; trust anchors require controlled distribution; high impact policy requires authorisation and audit; tunables require bounds.</p>
+<h2 id="s-loading-pipeline">Loading pipeline<a class="heading-link" href="#s-loading-pipeline" aria-label="Link to Loading pipeline">#</a></h2>
+<ol>
+<li>Load from named sources with documented precedence.</li>
+<li>Reject unknown critical keys and duplicate/conflicting definitions.</li>
+<li>Parse exact types, units and durations; avoid implicit coercion.</li>
+<li>Validate ranges, cross field invariants, URL schemes, paths, identities and secure modes.</li>
+<li>Resolve secret references without copying values into the configuration model or logs.</li>
+<li>Produce a redacted effective configuration fingerprint/version.</li>
+<li>Apply changes atomically or retain the last known good state.</li>
+</ol>
+<h2 id="s-secret-handling">Secret handling<a class="heading-link" href="#s-secret-handling" aria-label="Link to Secret handling">#</a></h2>
+<ul>
+<li>Use references to an approved secret service/store, not values in Markdown or source.</li>
+<li>Grant access per workload and purpose, with short lifetime where possible.</li>
+<li>Avoid secrets in URLs, command arguments, process listings and error messages.</li>
+<li>Rotate with overlap/reconciliation and revoke the old material.</li>
+<li>Prevent crash reports, tracing and support bundles from capturing values.</li>
+</ul>
+<h2 id="s-certificate-configuration">Certificate configuration<a class="heading-link" href="#s-certificate-configuration" aria-label="Link to Certificate configuration">#</a></h2>
+<p>Configure the expected peer identity, trust anchors and TLS settings. Make certificate/hostname validation mandatory, expose expiry and issuer/serial for operations, and keep client key material separate from server trust.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 57</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final" rel="noopener noreferrer">NIST SP 800-57 Part 1 Rev. 5</a>, key management guidance, accessed 25 August 2026.</li>
+<li><strong>NIST SSDF</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener noreferrer">NIST SP 800-218 Version 1.1</a>, secure development practices, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../06-security-and-assurance/pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li>
+<li><a href="../../../07-operations-and-lifecycle/certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../retries-timeouts-and-idempotency/"><span>Previous in this section</span>Retries, timeouts, and idempotency</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/secrets-certificates-and-configuration.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/secrets-certificates-and-configuration.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-configuration-classes">Configuration classes</a></li><li class="toc-level-2"><a href="#s-loading-pipeline">Loading pipeline</a></li><li class="toc-level-2"><a href="#s-secret-handling">Secret handling</a></li><li class="toc-level-2"><a href="#s-certificate-configuration">Certificate configuration</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

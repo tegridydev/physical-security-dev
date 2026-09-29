@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>SALTO APIs · Security Technician Wiki</title>
+<meta name="description" content="Identify the SALTO product family, then check its API, credential model and access requirements. Record the supported operations for the specific platform.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/salto-apis/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SALTO APIs · Security Technician Wiki">
+<meta property="og:description" content="Identify the SALTO product family, then check its API, credential model and access requirements. Record the supported operations for the specific platform.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/salto-apis/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="./" aria-current="page">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">SALTO APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 4 min read</span></div><div class="prose"><h1 id="s-salto-apis">SALTO APIs</h1>
+<p>Identify the SALTO product family, then check its API, credential model and access requirements. Record the supported operations for the specific platform.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The SALTO KS integration types page was checked for public and confidential clients, PKCE and the documented backend flow. Other SALTO products and their entitlements remain separate.</p><p>Public SALTO developer and support documentation reviewed on 25 August 2026; client credentials, production tenant, exact locks/firmware, platform editions, mobile/wallet eligibility, SHIP specification, and partner/licence entitlements require SALTO confirmation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-ks-authentication-and-integration-types">KS authentication and integration types</a></li><li class="toc-level-2"><a href="#s-events-pagination-and-schema">Events, pagination, and schema</a></li><li class="toc-level-2"><a href="#s-space-hospitality-boundary">Space Hospitality boundary</a></li><li class="toc-level-2"><a href="#s-ship-boundary">SHIP boundary</a></li><li class="toc-level-2"><a href="#s-safety-and-lifecycle">Safety and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / SALTO</p>
+<p>SALTO operates multiple integration platforms. <strong>SALTO KS Connect API</strong>, <strong>KS Core API</strong>, <strong>SALTO Nebula API</strong>, <strong>SALTO Space Hospitality API</strong>, and the licensed <strong>SALTO Host Interface Protocol (SHIP)</strong> are different contracts. Select by deployed platform and workflow; similar concepts such as users, locks and access groups don't imply schema or identifier compatibility.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Deployment/transport</th>
+  <th>Publicly documented purpose</th>
+  <th>Access boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>KS Connect API</td>
+  <td>SALTO KS cloud; REST/JSON</td>
+  <td>Third party management of KS installations; broad parity with KS front end operations</td>
+  <td>Client ID/secret from local SALTO business unit; site/user consent and permissions apply</td>
+</tr>
+<tr>
+  <td>KS Core API</td>
+  <td>KS cloud; OpenAPI REST</td>
+  <td>Core access objects under a separate versioned reference</td>
+  <td>Use only when SALTO provisions this surface; do not substitute for Connect API</td>
+</tr>
+<tr>
+  <td>Nebula API</td>
+  <td>SALTO cloud platform; HTTP/2 RPC with Protocol Buffers</td>
+  <td>Access point, identity/access and event operations for supported Nebula based products</td>
+  <td>Product/tenant/client entitlement and exact proto/API revision apply</td>
+</tr>
+<tr>
+  <td>Space Hospitality API</td>
+  <td>On premises Space plus WalletHub cloud</td>
+  <td>Apple Wallet hotel guest key lifecycle</td>
+  <td>Space 6.10+ baseline, later versions for named features/limits, licences and compatible hardware documented</td>
+</tr>
+<tr>
+  <td>SHIP</td>
+  <td>Space on premises proprietary protocol</td>
+  <td>Connects Space to security, BMS, CCTV and time/attendance systems</td>
+  <td>Licence dependent; NDA required; specification supplied by SALTO/partner</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-ks-authentication-and-integration-types">KS authentication and integration types<a class="heading-link" href="#s-ks-authentication-and-integration-types" aria-label="Link to KS authentication and integration types">#</a></h2>
+<p>The KS documentation says its identity provider implements OpenID Connect on OAuth 2.0 and documents interactive web/mobile and non interactive backend integration types. Client ID and, where applicable, client secret are provisioned for the registered application and redirect/environment.</p>
+<p>Follow the exact SALTO supported flow for the client type. Keep confidential credentials in a backend or secure workload store, validate redirect state and issuer/audience, and protect refresh tokens. The public KS page describes a password based backend flow; don't collect or retain a user password unless the currently approved SALTO integration contract explicitly requires that legacy style flow. Ask SALTO whether a stronger workload flow is available for new production designs.</p>
+<p>Authorisation is site/user/role specific. Enumerate effective permissions instead of assuming a token can manage every site. Separate read/event access, user/access group administration, lock configuration and unlock/control.</p>
+<h2 id="s-events-pagination-and-schema">Events, pagination, and schema<a class="heading-link" href="#s-events-pagination-and-schema" aria-label="Link to Events, pagination, and schema">#</a></h2>
+<p>KS publishes an event streaming guide. Establish connection renewal, filter, checkpoint/replay, duplicate/gap and authorisation change behaviour from that guide before treating it as a durable feed. Maintain an authoritative reconciliation poll for identities, access groups and lock state.</p>
+<p>The Connect API is described by an OpenAPI reference whose paths can carry different versions; its aggregate reference is labelled <code>v-latest</code>. Pin the version of every operation/schema used, rather than recording only “latest.” The Core API public reference was labelled v1.2 during review.</p>
+<p>Nebula’s documentation explicitly covers pagination, filtering and event types. Its Protocol Buffer interface is the schema authority even when documentation renders responses as JSON for readability. Generate clients only from the vendor supplied supported definitions and reject unknown oversized fields safely.</p>
+<h2 id="s-space-hospitality-boundary">Space Hospitality boundary<a class="heading-link" href="#s-space-hospitality-boundary" aria-label="Link to Space Hospitality boundary">#</a></h2>
+<p>The public Space Hospitality guide documents a narrow workflow: Apple Wallet guest room keys. It explicitly excludes physical/staff keys from that API. As reviewed, prerequisites included Space 6.10 or later, 6.12+ for full named feature support, 6.14+ for increased rate limit capacity, specific Space licences, compatible NFC hardware/firmware, an Ethernet NCoder, TLS and WalletHub credentials. Recheck every value with the live guide.</p>
+<p>The documented capacity was 20 concurrent requests plus 10 queued; excess requests receive HTTP 429. This is a concurrency contract, not a per minute quota. Implement bounded retry and make check in/check out/key invalidation idempotent or reconcilable. An API response doesn't prove a wallet provisioned or a lock received updated authorisation.</p>
+<h2 id="s-ship-boundary">SHIP boundary<a class="heading-link" href="#s-ship-boundary" aria-label="Link to SHIP boundary">#</a></h2>
+<p>SHIP is proprietary, licensed and NDA gated. Don't implement it from captured traffic or third party summaries. Obtain the current specification, Space version support and licence. Segment its TCP service, restrict peer IPs, use the strongest supported transport/security options and don't expose it to the Internet. Treat SHIP control of access/BMS objects as high impact.</p>
+<h2 id="s-safety-and-lifecycle">Safety and lifecycle<a class="heading-link" href="#s-safety-and-lifecycle" aria-label="Link to Safety and lifecycle">#</a></h2>
+<p>For all SALTO platforms, record tenant/site, lock and firmware compatibility, online/offline behaviour, credential propagation, time schedules, gateway state and audit provenance. Never blind retry lock/unlock or key operations. Query access point and credential state, and preserve local egress/life safety authority.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://developer.saltosystems.com/ks/" rel="noopener noreferrer">SALTO KS developer portal</a>, official API family catalogue.</li>
+<li><a href="https://developer.saltosystems.com/ks/connect-api/" rel="noopener noreferrer">KS Connect API</a> and <a href="https://developer.saltosystems.com/ks/connect-api/authentication/" rel="noopener noreferrer">authentication</a>, purpose, client credentials and OIDC model.</li>
+<li><a href="https://developer.saltosystems.com/ks/connect-api/integration-types/" rel="noopener noreferrer">KS integration types</a>, registered client flow distinctions.</li>
+<li><a href="https://developer.saltosystems.com/ks/connect-api/reference/" rel="noopener noreferrer">KS API reference</a> and <a href="https://developer.saltosystems.com/ks/guides/" rel="noopener noreferrer">event guides</a>, versioned operations and streaming.</li>
+<li><a href="https://developer.saltosystems.com/ks/core-api/reference/" rel="noopener noreferrer">KS Core API reference</a>, separate core surface.</li>
+<li><a href="https://developer.saltosystems.com/nebula/api/" rel="noopener noreferrer">SALTO Nebula API</a>, HTTP/2/Protocol Buffer contract and reference structure.</li>
+<li><a href="https://developer.saltosystems.com/space/hospitality-api/" rel="noopener noreferrer">Space Hospitality API</a>, exact wallet, licence, hardware and capacity scope.</li>
+<li><a href="https://support.saltosystems.com/space/user-guide/operator/general-options/ship/" rel="noopener noreferrer">Space SHIP configuration</a>, proprietary, licensed and NDA boundary.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/mobile-access/">Mobile access</a></li>
+<li><a href="../../../02-protocols/access-control/credential-formats-and-mobile-credentials/">Credential formats and mobile credentials</a></li>
+<li><a href="../../../05-development-and-integration/patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../lenels2-onguard-openaccess-and-elements/"><span>Previous in this section</span>LenelS2 OnGuard, OpenAccess, and Elements</a><a href="../suprema-biostar-2-api/"><span>Next in this section</span>Suprema BioStar 2 API</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/salto-apis.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/salto-apis.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-ks-authentication-and-integration-types">KS authentication and integration types</a></li><li class="toc-level-2"><a href="#s-events-pagination-and-schema">Events, pagination, and schema</a></li><li class="toc-level-2"><a href="#s-space-hospitality-boundary">Space Hospitality boundary</a></li><li class="toc-level-2"><a href="#s-ship-boundary">SHIP boundary</a></li><li class="toc-level-2"><a href="#s-safety-and-lifecycle">Safety and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

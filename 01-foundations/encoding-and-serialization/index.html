@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Encoding and serialisation · Security Technician Wiki</title>
+<meta name="description" content="Validate incoming data before using it. Check its size, encoding, structure and values, including data from devices on a private network.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/encoding-and-serialization/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Encoding and serialisation · Security Technician Wiki">
+<meta property="og:description" content="Validate incoming data before using it. Check its size, encoding, structure and values, including data from devices on a private network.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/encoding-and-serialization/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="./" aria-current="page">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Encoding and serialisation</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-encoding-and-serialisation">Encoding and serialisation</h1>
+<p>Validate incoming data before using it. Check its size, encoding, structure and values, including data from devices on a private network.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Language neutral principles; implementation guidance must follow the chosen parser/library version.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-processing-pipeline">Processing pipeline</a></li><li class="toc-level-2"><a href="#s-binary-protocols">Binary protocols</a></li><li class="toc-level-2"><a href="#s-json">JSON</a></li><li class="toc-level-2"><a href="#s-xml-and-soap">XML and SOAP</a></li><li class="toc-level-2"><a href="#s-compact-and-schema-driven-encodings">Compact and schema driven encodings</a></li><li class="toc-level-2"><a href="#s-logging-and-evidence">Logging and evidence</a></li><li class="toc-level-2"><a href="#s-schema-evolution">Schema evolution</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Treat every byte from a device, broker, SDK, file, webhook, or discovery response as untrusted, even on a private network. Physical security devices are long lived, heterogeneous, and frequently expose legacy parsers.</p>
+<h2 id="s-processing-pipeline">Processing pipeline<a class="heading-link" href="#s-processing-pipeline" aria-label="Link to Processing pipeline">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">bounded read -&gt; frame detection -&gt; integrity check -&gt; structural parse
+             -&gt; schema validation -&gt; semantic validation -&gt; authorization
+             -&gt; state change or storage
+</code></pre></div>
+<p>Set limits before allocation: total message size, nesting depth, collection count, field/string length, decompressed size, number of XML entities, attachment count, and processing time. Reject trailing or concatenated data unless the framing explicitly permits it.</p>
+<h2 id="s-binary-protocols">Binary protocols<a class="heading-link" href="#s-binary-protocols" aria-label="Link to Binary protocols">#</a></h2>
+<p>Document byte order, bit numbering, signedness, length unit, escape rules, checksum coverage, alignment, and counter wrap. Before reading a field:</p>
+<ol>
+<li>prove the minimum remaining length;</li>
+<li>validate declared lengths against frame and configured maximum;</li>
+<li>use checked arithmetic for offsets and lengths;</li>
+<li>reject impossible enum/reserved combinations as specified;</li>
+<li>distinguish incomplete stream data from malformed frames.</li>
+</ol>
+<p>A checksum detects some transmission errors; it isn't cryptographic integrity or peer authentication.</p>
+<h2 id="s-json">JSON<a class="heading-link" href="#s-json" aria-label="Link to JSON">#</a></h2>
+<p><a href="https://www.rfc-editor.org/rfc/rfc8259" rel="noopener noreferrer">RFC 8259</a> defines JSON syntax and interoperability considerations. Applications must still decide:</p>
+<ul>
+<li>duplicate member names;</li>
+<li>integer/float precision and range;</li>
+<li>unknown fields and enum values;</li>
+<li>Unicode normalisation and display safety;</li>
+<li>absent versus <code>null</code>;</li>
+<li>canonicalization if signing or hashing;</li>
+<li>schema/version negotiation.</li>
+</ul>
+<p>Reject non finite numbers unless explicitly defined by another encoding. Avoid round tripping large credential identifiers through a number type that loses precision.</p>
+<h2 id="s-xml-and-soap">XML and SOAP<a class="heading-link" href="#s-xml-and-soap" aria-label="Link to XML and SOAP">#</a></h2>
+<p>Use namespace aware parsing, a local schema set for the applicable edition, and hardened parser defaults. Disable external entity resolution and network retrieval unless a narrowly controlled use case requires it. Cap entity expansion and document size. Don't select elements by local name alone when namespaces distinguish semantics.</p>
+<p>The authoritative XML specifications are maintained by the <a href="https://www.w3.org/TR/xml/" rel="noopener noreferrer">W3C</a>. Protocols such as ONVIF also publish their own schemas and Web Services Description Language (WSDL); validate against the version actually negotiated or documented.</p>
+<h2 id="s-compact-and-schema-driven-encodings">Compact and schema driven encodings<a class="heading-link" href="#s-compact-and-schema-driven-encodings" aria-label="Link to Compact and schema driven encodings">#</a></h2>
+<p>CBOR (<a href="https://www.rfc-editor.org/rfc/rfc8949" rel="noopener noreferrer">RFC 8949</a>), Protocol Buffers, and vendor binary SDKs can reduce size but still require bounds, schema versioning, unknown field policy, and canonicalization rules. “Generated parser” doesn't remove semantic validation.</p>
+<h2 id="s-logging-and-evidence">Logging and evidence<a class="heading-link" href="#s-logging-and-evidence" aria-label="Link to Logging and evidence">#</a></h2>
+<p>Never log credentials, authorisation headers, cookies, private keys, biometric templates, card secrets, full access tokens, or unnecessary personal data. Store a bounded sanitised excerpt, message type, sizes, parse outcome, source identity, trace ID, and integrity hash/reference when raw evidence belongs in a separately controlled store.</p>
+<h2 id="s-schema-evolution">Schema evolution<a class="heading-link" href="#s-schema-evolution" aria-label="Link to Schema evolution">#</a></h2>
+<p>Prefer additive compatible change. Producers shouldn't reuse a field with new meaning; consumers should define unknown field and unknown enum behaviour; both should expose schema/protocol version. A mapper version belongs in provenance so historical data can be interpreted after corrections.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../dry-contacts-and-supervised-circuits/"><span>Previous in this section</span>Dry contacts and supervised circuits</a><a href="../ethernet-poe-and-power-budgets/"><span>Next in this section</span>Ethernet, PoE, and power budgets</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/encoding-and-serialization.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/encoding-and-serialization.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-processing-pipeline">Processing pipeline</a></li><li class="toc-level-2"><a href="#s-binary-protocols">Binary protocols</a></li><li class="toc-level-2"><a href="#s-json">JSON</a></li><li class="toc-level-2"><a href="#s-xml-and-soap">XML and SOAP</a></li><li class="toc-level-2"><a href="#s-compact-and-schema-driven-encodings">Compact and schema driven encodings</a></li><li class="toc-level-2"><a href="#s-logging-and-evidence">Logging and evidence</a></li><li class="toc-level-2"><a href="#s-schema-evolution">Schema evolution</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

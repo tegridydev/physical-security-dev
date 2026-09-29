@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Operational runbooks · Security Technician Wiki</title>
+<meta name="description" content="Write runbooks with the symptom, checks, expected results and escalation point. Keep live changes tied to the site&#x27;s approved procedures.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/runbooks/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Operational runbooks · Security Technician Wiki">
+<meta property="og:description" content="Write runbooks with the symptom, checks, expected results and escalation point. Keep live changes tied to the site&#x27;s approved procedures.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/runbooks/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="./" aria-current="page">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Operational runbooks</span></nav><div class="page-kicker">Operations <span>About 2 min read</span></div><div class="prose"><h1 id="s-operational-runbooks">Operational runbooks</h1>
+<p>Write runbooks with the symptom, checks, expected results and escalation point. Keep live changes tied to the site's approved procedures.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-universal-first-response">Universal first response</a></li><li class="toc-level-2"><a href="#s-device-offline-or-stream-loss">Device offline or stream loss</a></li><li class="toc-level-2"><a href="#s-clock-drift-or-certificate-failure">Clock drift or certificate failure</a></li><li class="toc-level-2"><a href="#s-storage-pressure-or-evidence-gap">Storage pressure or evidence gap</a></li><li class="toc-level-2"><a href="#s-controller-reader-or-alarm-path-failure">Controller, reader, or alarm path failure</a></li><li class="toc-level-2"><a href="#s-credential-compromise">Credential compromise</a></li><li class="toc-level-2"><a href="#s-vendor-cloud-outage">Vendor cloud outage</a></li><li class="toc-level-2"><a href="#s-local-adaptation-and-validation">Local adaptation and validation</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>These runbooks structure evidence collection and escalation. Any live site action requires the applicable product procedure, local authority, system owner approval, and controlled change record.</p>
+<h2 id="s-universal-first-response">Universal first response<a class="heading-link" href="#s-universal-first-response" aria-label="Link to Universal first response">#</a></h2>
+<ol>
+<li>Establish human and physical safety, required coverage and local authority.</li>
+<li>Define affected sites, devices, functions, users, time range and first observation.</li>
+<li>Preserve clocks, logs, configuration, alert history and recent changes.</li>
+<li>Identify the failing layer: power/physical, link, address/routing, trust/authentication, protocol/session, application/state, storage/data, or external dependency.</li>
+<li>Prefer read only evidence and narrow containment.</li>
+<li>Record each action, expected result, observed environment result, and accountable operator.</li>
+<li>Stop if an action could actuate equipment, suppress signalling, erase evidence, break egress, or expand impact.</li>
+</ol>
+<h2 id="s-device-offline-or-stream-loss">Device offline or stream loss<a class="heading-link" href="#s-device-offline-or-stream-loss" aria-label="Link to Device offline or stream loss">#</a></h2>
+<ul>
+<li>Check whether monitoring distinguishes power/link/device/application/stream failure.</li>
+<li>Compare device, switch/PoE, routing/firewall, DNS/time, certificate/authentication, VMS and storage evidence.</li>
+<li>Determine whether only one media profile, codec, multicast group, recorder or client is affected.</li>
+<li>Check configuration/change/reboot history and edge recording continuity.</li>
+<li>Don't reboot before preserving volatile evidence when compromise is suspected.</li>
+</ul>
+<h2 id="s-clock-drift-or-certificate-failure">Clock drift or certificate failure<a class="heading-link" href="#s-clock-drift-or-certificate-failure" aria-label="Link to Clock drift or certificate failure">#</a></h2>
+<ul>
+<li>Compare UTC, offset, monotonic sequence and time source state across affected components.</li>
+<li>Identify recent NTP/DNS/firewall/certificate/trust anchor changes.</li>
+<li>Determine whether invalid time is causing certificate/token rejection or misleading event order.</li>
+<li>Don't disable validation. Restore trustworthy time/trust through the approved recovery path.</li>
+</ul>
+<h2 id="s-storage-pressure-or-evidence-gap">Storage pressure or evidence gap<a class="heading-link" href="#s-storage-pressure-or-evidence-gap" aria-label="Link to Storage pressure or evidence gap">#</a></h2>
+<ul>
+<li>Separate recording failure, indexing failure, retention deletion, export failure and playback failure.</li>
+<li>Preserve capacity, write errors, stream arrival, database/index, failover and deletion audit.</li>
+<li>Reduce nonessential load only through approved policy; never conceal loss of required recording.</li>
+</ul>
+<h2 id="s-controller-reader-or-alarm-path-failure">Controller, reader, or alarm path failure<a class="heading-link" href="#s-controller-reader-or-alarm-path-failure" aria-label="Link to Controller, reader, or alarm path failure">#</a></h2>
+<ul>
+<li>Establish door/alarm local state and responsible safety authority.</li>
+<li>Separate reader/field bus, controller, host, network, identity, event receiver and monitoring automation layers.</li>
+<li>Review supervision, polling, sequence/CRC, power, termination and recent configuration.</li>
+<li>Never generate dispatchable tests or change lock/alarm behaviour without the approved site procedure.</li>
+</ul>
+<h2 id="s-credential-compromise">Credential compromise<a class="heading-link" href="#s-credential-compromise" aria-label="Link to Credential compromise">#</a></h2>
+<ul>
+<li>Identify credential type, holder/device, sites/doors, issuance system, mobile/cloud tokens and observed use.</li>
+<li>Suspend narrowly, preserve events/video/identity audit, rotate related secrets if exposed, and issue replacement through the authoritative process.</li>
+<li>Search for duplicate/replay or anomalous use without publishing raw credential values broadly.</li>
+</ul>
+<h2 id="s-vendor-cloud-outage">Vendor cloud outage<a class="heading-link" href="#s-vendor-cloud-outage" aria-label="Link to Vendor cloud outage">#</a></h2>
+<ul>
+<li>Confirm supplier status through an independent channel and identify affected region/tenant/service.</li>
+<li>Determine retained local operation, cached authorisation, queues, data loss risk and safe duration.</li>
+<li>Prevent reconnect storms or insecure fallback.</li>
+<li>Preserve queued event reconciliation evidence and validate state after recovery.</li>
+</ul>
+<h2 id="s-local-adaptation-and-validation">Local adaptation and validation<a class="heading-link" href="#s-local-adaptation-and-validation" aria-label="Link to Local adaptation and validation">#</a></h2>
+<p>Convert each decision tree into a product and version specific local runbook with exact authority, evidence sources, stop conditions, recovery actions, and escalation contacts. Validate it in a representative controlled environment and retain the result as <code>partially-runtime-validated</code> or <code>runtime-validated</code> evidence under the repository verification policy.</p>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../monitoring-and-health/">Monitoring and health</a></li>
+<li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li>
+<li><a href="../../08-defensive-labs/">Defensive labs</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../monitoring-and-health/"><span>Previous in this section</span>Monitoring and health</a><a href="../requirements-and-procurement/"><span>Next in this section</span>Requirements and procurement</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/runbooks.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/runbooks.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-universal-first-response">Universal first response</a></li><li class="toc-level-2"><a href="#s-device-offline-or-stream-loss">Device offline or stream loss</a></li><li class="toc-level-2"><a href="#s-clock-drift-or-certificate-failure">Clock drift or certificate failure</a></li><li class="toc-level-2"><a href="#s-storage-pressure-or-evidence-gap">Storage pressure or evidence gap</a></li><li class="toc-level-2"><a href="#s-controller-reader-or-alarm-path-failure">Controller, reader, or alarm path failure</a></li><li class="toc-level-2"><a href="#s-credential-compromise">Credential compromise</a></li><li class="toc-level-2"><a href="#s-vendor-cloud-outage">Vendor cloud outage</a></li><li class="toc-level-2"><a href="#s-local-adaptation-and-validation">Local adaptation and validation</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

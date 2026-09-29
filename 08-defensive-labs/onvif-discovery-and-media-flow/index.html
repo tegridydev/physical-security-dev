@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>ONVIF discovery and media flow reasoning · Security Technician Wiki</title>
+<meta name="description" content="Map a fictional ONVIF device through discovery, services, media and events. Use the supplied offline material to follow each stage.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/onvif-discovery-and-media-flow/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ONVIF discovery and media flow reasoning · Security Technician Wiki">
+<meta property="og:description" content="Map a fictional ONVIF device through discovery, services, media and events. Use the supplied offline material to follow each stage.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/onvif-discovery-and-media-flow/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="../modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="../mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="./" aria-current="page">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="../incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="../sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="../time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">ONVIF discovery and media flow reasoning</span></nav><div class="page-kicker">Defensive labs <span>About 1 min read</span></div><div class="prose"><h1 id="s-onvif-discovery-and-media-flow-reasoning">ONVIF discovery and media flow reasoning</h1>
+<p>Map a fictional ONVIF device through discovery, services, media and events. Use the supplied offline material to follow each stage.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline research and planning only; product or deployment acceptance belongs to separately governed environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-objectives">Objectives</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-safety-boundaries">Safety boundaries</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Offline specification and synthetic trace</strong></p>
+<h2 id="s-objectives">Objectives<a class="heading-link" href="#s-objectives" aria-label="Link to Objectives">#</a></h2>
+<ul>
+<li>Separate WS Discovery from device/service operations.</li>
+<li>Map SOAP service endpoints, authentication and profile dependent features.</li>
+<li>Follow media configuration to RTSP/RTP transport.</li>
+<li>Follow event subscription/delivery and optional MQTT handling.</li>
+<li>Tie conformance to exact product and firmware, not a generic ONVIF label.</li>
+</ul>
+<h2 id="s-procedure">Procedure<a class="heading-link" href="#s-procedure" aria-label="Link to Procedure">#</a></h2>
+<ol>
+<li>Select an invented device/client combination and record the exact ONVIF 26.06 namespaces plus an example conformance listing structure.</li>
+<li>Draw discovery scope, multicast/broadcast boundary and post commissioning need.</li>
+<li>List service endpoints and whether HTTPS identity is validated.</li>
+<li>Select one read only capability/media profile exchange and document synthetic request/response namespaces and bounds without sending it.</li>
+<li>Map the returned media URI to RTSP control, RTP/RTCP transport, codec/payload and credential exposure risk.</li>
+<li>Map an event subscription's lease, filters, delivery, renewal, gaps and authentication.</li>
+<li>Compare every observed feature with the exact profile requirements and conditional/optional status.</li>
+<li>Record unsupported, vendor specific and ambiguous behaviour separately.</li>
+</ol>
+<h2 id="s-safety-boundaries">Safety boundaries<a class="heading-link" href="#s-safety-boundaries" aria-label="Link to Safety boundaries">#</a></h2>
+<p>Scope is limited to specification review and synthetic response fragments. Network discovery, device contact, configuration, PTZ, I/O, media retrieval, and product acceptance belong to the separately authorised commissioning process.</p>
+<h2 id="s-evidence-checklist">Evidence checklist<a class="heading-link" href="#s-evidence-checklist" aria-label="Link to Evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="ONVIF specification release, profile status, namespaces, and synthetic product roles pinned">ONVIF specification release, profile status, namespaces, and synthetic product roles pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Discovery and post discovery trust boundaries separated">Discovery and post discovery trust boundaries separated</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Media URI, RTSP, RTP/RTCP, codec, and credential exposure path mapped">Media URI, RTSP, RTP/RTCP, codec, and credential exposure path mapped</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Subscription lease, renewal, duplicate, gap, and authentication behaviour documented">Subscription lease, renewal, duplicate, gap, and authentication behaviour documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Conformance listing, implementation support, interoperability, and site acceptance treated as separate evidence">Conformance listing, implementation support, interoperability, and site acceptance treated as separate evidence</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://www.onvif.org/profiles/specifications/" rel="noopener noreferrer">ONVIF specifications</a>, accessed 25 August 2026.</li>
+<li><a href="https://www.onvif.org/conformant-products/" rel="noopener noreferrer">ONVIF conformant products</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../02-protocols/video-and-media/onvif/">ONVIF</a></li>
+<li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP/RTP/SDP trace analysis</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../offline-packet-and-trace-reading/"><span>Previous in this section</span>Offline packet and trace reading</a><a href="../osdp-and-wiegand-offline-decoding/"><span>Next in this section</span>OSDP and Wiegand offline decoding</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/onvif-discovery-and-media-flow.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/onvif-discovery-and-media-flow.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-objectives">Objectives</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-safety-boundaries">Safety boundaries</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

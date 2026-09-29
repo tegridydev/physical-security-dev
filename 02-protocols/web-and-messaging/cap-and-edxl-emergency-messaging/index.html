@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>CAP and EDXL emergency messaging · Security Technician Wiki</title>
+<meta name="description" content="CAP and EDXL exchange warning and emergency information. Check the issuing authority, message lifecycle, recipients and acknowledgement requirements of the receiving workflow.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CAP and EDXL emergency messaging · Security Technician Wiki">
+<meta property="og:description" content="CAP and EDXL exchange warning and emergency information. Check the issuing authority, message lifecycle, recipients and acknowledgement requirements of the receiving workflow.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group" open><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="./" aria-current="page">CAP and EDXL emergency messaging</a></li><li><a href="../coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Web and messaging protocols</a><span aria-hidden="true">/</span><span aria-current="page">CAP and EDXL emergency messaging</span></nav><div class="page-kicker">Protocols <span>About 7 min read</span></div><div class="prose"><h1 id="s-cap-and-edxl-emergency-messaging">CAP and EDXL emergency messaging</h1>
+<p>CAP and EDXL exchange warning and emergency information. Check the issuing authority, message lifecycle, recipients and acknowledgement requirements of the receiving workflow.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Message semantics and defensive integration only; local warning authority, CAP profile, dissemination policy, geospatial practice, accessibility requirements, and operational approval govern every deployment.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-standards-and-profiles">Standards and profiles</a></li><li class="toc-level-2"><a href="#s-roles-and-trust-boundaries">Roles and trust boundaries</a></li><li class="toc-level-2"><a href="#s-cap-document-model">CAP document model</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-correlation">Lifecycle and correlation</a></li><li class="toc-level-2"><a href="#s-severity-certainty-urgency-and-local-policy">Severity, certainty, urgency, and local policy</a></li><li class="toc-level-2"><a href="#s-areas-and-geospatial-handling">Areas and geospatial handling</a></li><li class="toc-level-2"><a href="#s-edxl-de-distribution-envelope">EDXL DE distribution envelope</a></li><li class="toc-level-2"><a href="#s-cap-au-considerations">CAP AU considerations</a></li><li class="toc-level-2"><a href="#s-xml-resource-and-transport-security">XML, resource, and transport security</a></li><li class="toc-level-2"><a href="#s-delivery-to-outcome-model">Delivery to outcome model</a></li><li class="toc-level-2"><a href="#s-verification-evidence">Verification evidence</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>The Common Alerting Protocol (CAP) is an OASIS XML format for exchanging all hazard alerts across warning systems. CAP 1.2 is also published by ITU T as X.1303 bis. The Emergency Data Exchange Language Distribution Element (EDXL DE) adds a distribution envelope that can route CAP or other emergency payloads. Neither format decides who is authorised to warn, whether a message should be disseminated, or whether a recipient actually perceived and acted on it.</p>
+<h2 id="s-standards-and-profiles">Standards and profiles<a class="heading-link" href="#s-standards-and-profiles" aria-label="Link to Standards and profiles">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Publication</th>
+  <th>Standing</th>
+  <th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>CAP 1.2</td>
+  <td>OASIS Standard</td>
+  <td>Core alert document, lifecycle, information blocks, areas, resources, and references</td>
+</tr>
+<tr>
+  <td>ITU T X.1303 bis</td>
+  <td>ITU T publication of CAP 1.2</td>
+  <td>International telecommunications reference for the same protocol family</td>
+</tr>
+<tr>
+  <td>EDXL DE 2.0</td>
+  <td>OASIS Committee Specification 02</td>
+  <td>Distribution metadata and one or more embedded or referenced content objects</td>
+</tr>
+<tr>
+  <td>CAP Australia Profile 1.0 (CAP AU)</td>
+  <td>Australian profile published through OASIS and supported by Australian government implementation material</td>
+  <td>Constrains CAP use for Australian public warning interoperability</td>
+</tr>
+</tbody>
+</table></div>
+<p>CAP permits implementation profiles to impose tighter vocabulary, cardinality, identifier, language, geospatial, transport, signing, or governance requirements. Declare the exact profile and version. “CAP 1.2 XML” isn't sufficient evidence of interoperability with a national warning system.</p>
+<h2 id="s-roles-and-trust-boundaries">Roles and trust boundaries<a class="heading-link" href="#s-roles-and-trust-boundaries" aria-label="Link to Roles and trust boundaries">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">authoring system -&gt; approving / issuing authority -&gt; CAP originator
+       -&gt; broker, hub, gateway, or EDXL distributor
+       -&gt; channel adapter -&gt; recipient application or public channel
+</code></pre></div>
+<p>One organization or service can hold multiple roles. Keep them distinct in the security model:</p>
+<ul>
+<li><strong>author</strong> creates proposed content;</li>
+<li><strong>approver/issuer</strong> applies legal and operational authority;</li>
+<li><strong>originator/sender</strong> assigns protocol identity and transmits;</li>
+<li><strong>distributor</strong> routes, filters, aggregates, transforms, or relays;</li>
+<li><strong>channel adapter</strong> maps content to siren, cellular, broadcast, web, app, signage, or another medium;</li>
+<li><strong>recipient</strong> validates and presents or processes the alert.</li>
+</ul>
+<p>Transport authentication establishes a connection or message source within its trust model. It doesn't establish warning authority unless that authenticated identity is explicitly bound to the relevant sender, jurisdiction, hazard, area, severity, and channel policy.</p>
+<h2 id="s-cap-document-model">CAP document model<a class="heading-link" href="#s-cap-document-model" aria-label="Link to CAP document model">#</a></h2>
+<p>A CAP <code>alert</code> has top level lifecycle and routing fields and can contain one or more <code>info</code> blocks.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Representative content</th>
+  <th>Important interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Alert identity</td>
+  <td><code>identifier</code>, <code>sender</code>, <code>sent</code></td>
+  <td>The tuple is protocol identity context; validate uniqueness and sender ownership</td>
+</tr>
+<tr>
+  <td>Lifecycle</td>
+  <td><code>status</code>, <code>msgType</code>, <code>scope</code>, <code>references</code></td>
+  <td>Test/draft/actual state and alert/update/cancel relationships require policy aware handling</td>
+</tr>
+<tr>
+  <td>Routing</td>
+  <td>restrictions, addresses, codes, notes</td>
+  <td>These constrain distribution; they are not display text</td>
+</tr>
+<tr>
+  <td>Information</td>
+  <td>language, category, event, urgency, severity, certainty, effective/onset/expiry, headline, description, instruction</td>
+  <td>Preserve the selected profile's vocabulary and language specific block semantics</td>
+</tr>
+<tr>
+  <td>Area</td>
+  <td>area description, polygons, circles, geocodes, altitude/ceiling</td>
+  <td>Geometry and codes can overlap, conflict, or exceed channel capabilities</td>
+</tr>
+<tr>
+  <td>Resource</td>
+  <td>description, MIME type, size, URI, digest, embedded data</td>
+  <td>Treat every URI and payload as untrusted external content</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't flatten multiple <code>info</code> blocks into one lossy record. Language, audience, time, parameter, event code, area, and resource can differ by block. Preserve unknown extension data under a namespace aware policy so it can be audited without becoming an implicit command.</p>
+<h2 id="s-lifecycle-and-correlation">Lifecycle and correlation<a class="heading-link" href="#s-lifecycle-and-correlation" aria-label="Link to Lifecycle and correlation">#</a></h2>
+<p>CAP <code>msgType</code> distinguishes at least an initial alert, update, cancellation, acknowledgement, and error. Implement lifecycle as a graph tied to the cited prior message references, not as “same identifier means replacement.”</p>
+<ul>
+<li>Require the referenced sender, identifier, and sent time tuple to resolve within the expected authority and tenant.</li>
+<li>Authenticate an update or cancellation to an authority permitted to modify the earlier alert.</li>
+<li>Retain prior versions and the raw canonical evidence needed by policy.</li>
+<li>Make out of order, duplicate, delayed, and missing reference behaviour explicit.</li>
+<li>Don't infer cancellation from expiry, transport silence, or a disconnected feed.</li>
+<li>Don't let a late update revive an expired or cancelled warning without profile defined authority.</li>
+</ul>
+<p>An acknowledgement says what the applicable profile or application defines it to say. It doesn't prove public receipt, comprehension, siren operation, broadcast completion, or response.</p>
+<h2 id="s-severity-certainty-urgency-and-local-policy">Severity, certainty, urgency, and local policy<a class="heading-link" href="#s-severity-certainty-urgency-and-local-policy" aria-label="Link to Severity, certainty, urgency, and local policy">#</a></h2>
+<p>CAP's urgency, severity, and certainty values are separate dimensions. Never combine them into an undocumented numeric score or use one dimension as a substitute for another. Category and event text are also not universal actuation codes.</p>
+<p>Channel selection, interruption level, siren behaviour, accessibility presentation, multilingual content, area targeting, escalation, and expiry are operational policy decisions. They require a locally governed mapping from authenticated CAP fields to each channel's supported semantics. Unknown or unsupported values should route to a safe review/error path rather than silently selecting a default high impact action.</p>
+<h2 id="s-areas-and-geospatial-handling">Areas and geospatial handling<a class="heading-link" href="#s-areas-and-geospatial-handling" aria-label="Link to Areas and geospatial handling">#</a></h2>
+<ul>
+<li>Parse latitude/longitude in the order and range required by CAP; don't swap axes based on a GIS library default.</li>
+<li>Validate polygon closure, point count, circle radius, numeric bounds, altitude/ceiling relationship, and total geometry complexity.</li>
+<li>Define boundary inclusion, coordinate reference assumptions, antimeridian handling, and precision before spatial filtering.</li>
+<li>Treat geocodes and geometry as complementary profile defined inputs, not automatically equivalent.</li>
+<li>Record the original area and any channel specific simplification or clipping.</li>
+<li>Never broaden an invalid area silently to an entire jurisdiction.</li>
+</ul>
+<p>Geospatial match means only that the configured algorithm matched a recipient or channel location. It doesn't prove the person is present, safe, at risk, or reachable.</p>
+<h2 id="s-edxl-de-distribution-envelope">EDXL DE distribution envelope<a class="heading-link" href="#s-edxl-de-distribution-envelope" aria-label="Link to EDXL DE distribution envelope">#</a></h2>
+<p>EDXL DE 2.0 can carry distribution information and multiple content objects. It isn't a newer CAP version and doesn't change CAP's internal lifecycle semantics.</p>
+<p>Keep these layers separate:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">EDXL-DE envelope: distributor identity, distribution ID, time, audience/area,
+                  distribution status/type, content objects
+CAP payload:      alert identity, authority, lifecycle, hazard information,
+                  alert area and resources
+transport:        HTTP, message broker, file exchange, or governed service contract
+</code></pre></div>
+<p>Validate and authorise both envelope and payload. If their audiences, areas, status, identifiers, or policy labels conflict, don't guess which wins. Apply the declared profile and route unresolved conflicts to controlled handling. A distributor must not rewrite CAP sender identity, lifecycle references, or warning meaning without an auditable transformation contract.</p>
+<h2 id="s-cap-au-considerations">CAP AU considerations<a class="heading-link" href="#s-cap-au-considerations" aria-label="Link to CAP AU considerations">#</a></h2>
+<p>Australian integrations should follow the declared CAP AU profile and the current Bureau of Meteorology implementation material, not generic CAP examples. The Bureau of Meteorology states that CAP AU documentation contains inconsistencies and that some details are outdated. Treat that as an active interoperability risk:</p>
+<ul>
+<li>record which OASIS profile document, Bureau guidance, data.gov.au record, code list, and endpoint contract were used;</li>
+<li>resolve conflicting cardinality, vocabulary, identifier, area, and transport interpretations with the responsible Australian authority;</li>
+<li>preserve fixtures from each authorised provider and document provider specific deviations;</li>
+<li>don't make a nationwide/public warning compatibility claim from schema validation alone.</li>
+</ul>
+<p>The inconsistency warning isn't permission to choose whichever interpretation is easiest. Capture an owned decision and revisit it when the government material changes.</p>
+<h2 id="s-xml-resource-and-transport-security">XML, resource, and transport security<a class="heading-link" href="#s-xml-resource-and-transport-security" aria-label="Link to XML, resource, and transport security">#</a></h2>
+<ul>
+<li>Use a hardened XML parser with external entities, external DTDs, XInclude, and network resolution disabled.</li>
+<li>Bound document bytes, element depth/count, attributes, text length, <code>info</code>/area/resource counts, embedded data, and decoded size.</li>
+<li>Match namespace URI and local name; reject ambiguous duplicate security relevant structures.</li>
+<li>Apply schema and profile validation before workflow mapping, but treat both as syntax/contract checks rather than authorisation.</li>
+<li>Validate digital signatures, certificates, trust anchors, algorithms, reference targets, and wrapping resistance where the deployment profile requires signing.</li>
+<li>Authenticate feeds and bind each sender to permitted scope, hazard, geography, status, and message types.</li>
+<li>Fetch resource URIs only through an allowlisted, size and type bounded retrieval service; prevent server side request forgery and redirect escape.</li>
+<li>Deduplicate at the application layer and make retry/idempotency rules explicit.</li>
+<li>Keep test and exercise feeds technically and operationally isolated from production dissemination.</li>
+</ul>
+<p>CAP may contain personal, health, infrastructure, shelter, responder, and sensitive location information. Apply minimisation, audience controls, encryption, logging redaction, retention, and incident handling appropriate to the content and jurisdiction.</p>
+<h2 id="s-delivery-to-outcome-model">Delivery to outcome model<a class="heading-link" href="#s-delivery-to-outcome-model" aria-label="Link to Delivery to outcome model">#</a></h2>
+<p>Record these milestones separately:</p>
+<ol>
+<li>message bytes received;</li>
+<li>transport and sender authenticated;</li>
+<li>XML/profile validation completed;</li>
+<li>sender and alert action authorised;</li>
+<li>lifecycle and area resolved;</li>
+<li>channel adapter accepted the message;</li>
+<li>channel generated its own delivery evidence;</li>
+<li>recipient exposure, comprehension, or action, if independently measurable and lawful.</li>
+</ol>
+<p>No early milestone proves a later one. In particular, HTTP success, broker acknowledgement, valid XML, a CAP acknowledgement, or channel acceptance must not be represented as successful public warning.</p>
+<h2 id="s-verification-evidence">Verification evidence<a class="heading-link" href="#s-verification-evidence" aria-label="Link to Verification evidence">#</a></h2>
+<p>Maintain evidence for:</p>
+<ul>
+<li>exact CAP, EDXL DE, national/local profile, code list, and transport versions;</li>
+<li>sender identity, warning authority, jurisdiction, hazard, area, status, and channel authorisation;</li>
+<li>alert/update/cancel/ack/error correlation, duplicates, ordering, expiry, and missing references;</li>
+<li>multiple languages, multiple areas, geocodes, complex geometry, resources, and unsupported values;</li>
+<li>XML hardening, schema/profile validation, signature verification, and resource fetch controls;</li>
+<li>transformations between CAP, EDXL DE, internal schemas, and channel formats;</li>
+<li>independent distinction between ingestion, dissemination, channel evidence, and operational outcome;</li>
+<li>isolated test/exercise handling and controls preventing production activation.</li>
+</ul>
+<p>Operational testing of public warning paths requires the issuing authority, channel owners, emergency management governance, affected party coordination, and a plan that can't be mistaken for a real alert.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li>OASIS, <a href="https://www.oasis-open.org/standard/cap/" rel="noopener noreferrer">Common Alerting Protocol standards page</a>, accessed 25 August 2026.</li>
+<li>OASIS, <a href="https://docs.oasis-open.org/emergency/cap/v1.2/CAP-v1.2.html" rel="noopener noreferrer">Common Alerting Protocol Version 1.2</a>, OASIS Standard.</li>
+<li>ITU T, <a href="https://www.itu.int/rec/T-REC-X.1303bis/en" rel="noopener noreferrer">Recommendation X.1303 bis</a>, CAP 1.2 publication.</li>
+<li>OASIS, <a href="https://docs.oasis-open.org/emergency/edxl-de/v2.0/edxl-de-v2.0.html" rel="noopener noreferrer">Emergency Data Exchange Language Distribution Element Version 2.0</a>, Committee Specification 02.</li>
+<li>OASIS, <a href="https://docs.oasis-open.org/emergency/edxl-cap1.2-au/v1.0/edxl-cap1.2-au-v1.0.html" rel="noopener noreferrer">Common Alerting Protocol Australia Profile Version 1.0</a>.</li>
+<li>Australian Bureau of Meteorology, <a href="https://www.bom.gov.au/metadata/CAP-AU/Spec.shtml" rel="noopener noreferrer">CAP AU specification and implementation information</a>, reviewed 25 August 2026.</li>
+<li>Australian Government, <a href="https://data.gov.au/data/dataset/cap-au-std" rel="noopener noreferrer">Common Alerting Protocol Australia Profile dataset record</a>, reviewed 25 August 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../amqp-1-0/"><span>Previous in this section</span>AMQP 1.0 messaging</a><a href="../coap-oscore-and-lwm2m/"><span>Next in this section</span>CoAP, OSCORE, and Lightweight M2M</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-standards-and-profiles">Standards and profiles</a></li><li class="toc-level-2"><a href="#s-roles-and-trust-boundaries">Roles and trust boundaries</a></li><li class="toc-level-2"><a href="#s-cap-document-model">CAP document model</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-correlation">Lifecycle and correlation</a></li><li class="toc-level-2"><a href="#s-severity-certainty-urgency-and-local-policy">Severity, certainty, urgency, and local policy</a></li><li class="toc-level-2"><a href="#s-areas-and-geospatial-handling">Areas and geospatial handling</a></li><li class="toc-level-2"><a href="#s-edxl-de-distribution-envelope">EDXL DE distribution envelope</a></li><li class="toc-level-2"><a href="#s-cap-au-considerations">CAP AU considerations</a></li><li class="toc-level-2"><a href="#s-xml-resource-and-transport-security">XML, resource, and transport security</a></li><li class="toc-level-2"><a href="#s-delivery-to-outcome-model">Delivery to outcome model</a></li><li class="toc-level-2"><a href="#s-verification-evidence">Verification evidence</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

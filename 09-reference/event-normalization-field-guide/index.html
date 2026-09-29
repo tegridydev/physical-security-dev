@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Event normalisation field guide · Security Technician Wiki</title>
+<meta name="description" content="Map event identity, time, state and source information into a consistent schema. Retain the original record and document any changes made during normalisation.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/event-normalization-field-guide/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Event normalisation field guide · Security Technician Wiki">
+<meta property="og:description" content="Map event identity, time, state and source information into a consistent schema. Retain the original record and document any changes made during normalisation.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/event-normalization-field-guide/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="./" aria-current="page">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Event normalisation field guide</span></nav><div class="page-kicker">Reference <span>About 10 min read</span></div><div class="prose"><h1 id="s-event-normalisation-field-guide">Event normalisation field guide</h1>
+<p>Map event identity, time, state and source information into a consistent schema. Retain the original record and document any changes made during normalisation.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Vendor neutral envelope and mapping rules only; source code tables, alarm meanings, severity policy, identity namespaces, privacy classification, delivery guarantees, and command behaviour remain source and deployment specific.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-four-records-not-one">Four records, not one</a></li><li class="toc-level-2"><a href="#s-minimum-normalised-envelope">Minimum normalised envelope</a></li><li class="toc-level-3"><a href="#s-event-identity-and-provenance">Event identity and provenance</a></li><li class="toc-level-3"><a href="#s-classification-and-schema">Classification and schema</a></li><li class="toc-level-3"><a href="#s-resource-location-and-identity-references">Resource, location, and identity references</a></li><li class="toc-level-3"><a href="#s-event-semantics">Event semantics</a></li><li class="toc-level-3"><a href="#s-chronology-and-ordering">Chronology and ordering</a></li><li class="toc-level-3"><a href="#s-correlation-and-delivery">Correlation and delivery</a></li><li class="toc-level-3"><a href="#s-quality-validation-and-evidence">Quality, validation, and evidence</a></li><li class="toc-level-2"><a href="#s-missing-null-unknown-and-false">Missing, null, unknown, and false</a></li><li class="toc-level-2"><a href="#s-deduplication-and-ordering">Deduplication and ordering</a></li><li class="toc-level-2"><a href="#s-schema-evolution">Schema evolution</a></li><li class="toc-level-2"><a href="#s-safe-synthetic-cloudevents-shaped-fixture">Safe synthetic CloudEvents shaped fixture</a></li><li class="toc-level-2"><a href="#s-json-and-canonicalization-rules">JSON and canonicalization rules</a></li><li class="toc-level-2"><a href="#s-severity-and-alarm-lifecycle">Severity and alarm lifecycle</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Normalisation should make different sources queryable without erasing their differences. Preserve source meaning, raw evidence or a protected reference, mapping version, clock quality, and uncertainty. Unknown is a valid result; invented certainty isn't.</p>
+<blockquote>
+<p><strong>Safety boundary:</strong> normalisation is observation. It must never itself unlock, lock down, dispatch, silence, reset, acknowledge upstream, change a credential, move PTZ, write BMS/OT state, or drive a relay. A separately authorised command service may consume normalised evidence only through the <a href="../safety-impact-checklist/">safety impact checklist</a>.</p>
+</blockquote>
+<h2 id="s-four-records-not-one">Four records, not one<a class="heading-link" href="#s-four-records-not-one" aria-label="Link to Four records, not one">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Record</th>
+  <th>Meaning</th>
+  <th>Mutability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Event</td>
+  <td>A source reports that something occurred or was observed</td>
+  <td>Immutable after acceptance; corrections are new records</td>
+</tr>
+<tr>
+  <td>State snapshot</td>
+  <td>Best known value at a resource for an effective interval</td>
+  <td>Superseded/reconciled; retain provenance and quality</td>
+</tr>
+<tr>
+  <td>Command</td>
+  <td>A principal requests an intended change</td>
+  <td>Immutable request plus separate lifecycle records</td>
+</tr>
+<tr>
+  <td>Delivery/processing record</td>
+  <td>A broker/adapter/consumer handled an event</td>
+  <td>One event may have many attempts, deliveries, acknowledgements, and failures</td>
+</tr>
+</tbody>
+</table></div>
+<p>See <a href="../../01-foundations/events-state-commands-and-time/">events, state, commands, and time</a> and <a href="../../05-development-and-integration/patterns/event-normalization-and-schema-evolution/">event normalisation and schema evolution</a>.</p>
+<h2 id="s-minimum-normalised-envelope">Minimum normalised envelope<a class="heading-link" href="#s-minimum-normalised-envelope" aria-label="Link to Minimum normalised envelope">#</a></h2>
+<h3 id="s-event-identity-and-provenance">Event identity and provenance<a class="heading-link" href="#s-event-identity-and-provenance" aria-label="Link to Event identity and provenance">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type/shape</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>event_id</code></td>
+  <td>string</td>
+  <td>Stable identity of the distinct event in the normalizer's namespace; never reuse</td>
+</tr>
+<tr>
+  <td><code>source_event_id</code></td>
+  <td>string or absent</td>
+  <td>Original event/message ID exactly as supplied; retain leading zeroes and case rules</td>
+</tr>
+<tr>
+  <td><code>source_system</code></td>
+  <td>governed string</td>
+  <td>Source family/tenant, not a mutable display name</td>
+</tr>
+<tr>
+  <td><code>source_instance</code></td>
+  <td>governed string</td>
+  <td>Exact server/controller/receiver/gateway instance identity</td>
+</tr>
+<tr>
+  <td><code>source_session</code></td>
+  <td>string or absent</td>
+  <td>Boot/session/connection epoch needed to interpret sequence reuse</td>
+</tr>
+<tr>
+  <td><code>source_protocol</code></td>
+  <td>object</td>
+  <td>Protocol/API name, exact edition/profile, transport/binding where material</td>
+</tr>
+<tr>
+  <td><code>source_product</code></td>
+  <td>object/ref</td>
+  <td>Manufacturer/product/firmware evidence reference; never inferred solely from payload text</td>
+</tr>
+<tr>
+  <td><code>adapter_id</code></td>
+  <td>string</td>
+  <td>Normalizing component and release/build identity</td>
+</tr>
+<tr>
+  <td><code>mapping_version</code></td>
+  <td>string</td>
+  <td>Immutable mapping/code table version that produced the normalized fields</td>
+</tr>
+<tr>
+  <td><code>ingest_route</code></td>
+  <td>string/ref</td>
+  <td>Tenant/site pipeline or connector path without exposing credentials/topology unnecessarily</td>
+</tr>
+</tbody>
+</table></div>
+<p>If adopting CloudEvents, its required <code>source</code> plus <code>id</code> identifies a distinct event under the producer's contract. Don't overwrite the source's ID with a broker delivery ID. <a href="https://github.com/cloudevents/spec" rel="noopener noreferrer">CLOUDEVENTS</a></p>
+<h3 id="s-classification-and-schema">Classification and schema<a class="heading-link" href="#s-classification-and-schema" aria-label="Link to Classification and schema">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type/shape</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>event_type</code></td>
+  <td>versioned string</td>
+  <td>Stable semantic class such as <code>reader.connectivity.changed.v1</code>; not a UI sentence</td>
+</tr>
+<tr>
+  <td><code>schema_version</code></td>
+  <td>integer/string</td>
+  <td>Version of the normalized <code>data</code> contract; define compatibility policy</td>
+</tr>
+<tr>
+  <td><code>data_schema</code></td>
+  <td>URI/ref</td>
+  <td>Immutable schema reference when available; access to schema must not be required to safely bound input</td>
+</tr>
+<tr>
+  <td><code>source_type</code></td>
+  <td>string/int</td>
+  <td>Original event type/code exactly preserved</td>
+</tr>
+<tr>
+  <td><code>source_qualifier</code></td>
+  <td>string/int/absent</td>
+  <td>Original new/restore/active/inactive or protocol qualifier</td>
+</tr>
+<tr>
+  <td><code>source_extension</code></td>
+  <td>object/ref/absent</td>
+  <td>Namespaced vendor fields retained without presenting them as standard semantics</td>
+</tr>
+<tr>
+  <td><code>category</code></td>
+  <td>enum</td>
+  <td>Governed broad class: access, intrusion, video, device health, system, audit, etc.</td>
+</tr>
+<tr>
+  <td><code>severity_source</code></td>
+  <td>string/int/absent</td>
+  <td>Original publisher severity/priority, never overwritten by incident policy</td>
+</tr>
+<tr>
+  <td><code>priority_normalized</code></td>
+  <td>enum/int/absent</td>
+  <td>Organization routing priority with documented mapping and version</td>
+</tr>
+<tr>
+  <td><code>mapping_quality</code></td>
+  <td>enum</td>
+  <td><code>exact</code>, <code>partial</code>, <code>ambiguous</code>, <code>unknown</code>, or another governed set</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't map an unknown alarm code to the “closest” known emergency meaning. Preserve it as unknown, route it for review under source/site policy, and keep the raw code.</p>
+<h3 id="s-resource-location-and-identity-references">Resource, location, and identity references<a class="heading-link" href="#s-resource-location-and-identity-references" aria-label="Link to Resource, location, and identity references">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type/shape</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>tenant_ref</code></td>
+  <td>opaque governed ref</td>
+  <td>Required for multi tenant isolation; never trust payload supplied tenant alone</td>
+</tr>
+<tr>
+  <td><code>site_ref</code></td>
+  <td>opaque governed ref</td>
+  <td>Stable site namespace, separately bound to source configuration</td>
+</tr>
+<tr>
+  <td><code>zone_ref</code></td>
+  <td>opaque ref/absent</td>
+  <td>Security/physical zone, not a free text location</td>
+</tr>
+<tr>
+  <td><code>resource.kind</code></td>
+  <td>enum</td>
+  <td>Door, reader, camera, panel, receiver, input, output, point, service, etc.</td>
+</tr>
+<tr>
+  <td><code>resource.id</code></td>
+  <td>string</td>
+  <td>Stable ID in an explicit namespace; do not substitute display name/IP/MAC/token</td>
+</tr>
+<tr>
+  <td><code>resource.source_id</code></td>
+  <td>string/absent</td>
+  <td>Original protocol/product resource identifier</td>
+</tr>
+<tr>
+  <td><code>resource.parent_ref</code></td>
+  <td>ref/absent</td>
+  <td>Controller/device/system relationship under an inventory version</td>
+</tr>
+<tr>
+  <td><code>location_text</code></td>
+  <td>display string/absent</td>
+  <td>Sanitized untrusted label; never used for routing/authorisation</td>
+</tr>
+<tr>
+  <td><code>actor_ref</code></td>
+  <td>privacy preserving ref/absent</td>
+  <td>Governed identity reference only where necessary and lawful</td>
+</tr>
+<tr>
+  <td><code>credential_ref</code></td>
+  <td>privacy preserving ref/absent</td>
+  <td>Credential record reference; never raw key, PIN, biometric, wallet token, or unnecessary number</td>
+</tr>
+</tbody>
+</table></div>
+<p>Keep subject ID, credential ID, facility/card number, card UID, certificate/key identity, device ID, reader ID, and door ID separate. See <a href="../credential-technology-comparison/">credential technology comparison</a>.</p>
+<h3 id="s-event-semantics">Event semantics<a class="heading-link" href="#s-event-semantics" aria-label="Link to Event semantics">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Type/shape</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>condition</code></td>
+  <td>versioned enum/object</td>
+  <td>Semantic condition observed, qualified by source mapping</td>
+</tr>
+<tr>
+  <td><code>state</code></td>
+  <td>typed value/absent</td>
+  <td>State after transition only when source semantics support it</td>
+</tr>
+<tr>
+  <td><code>previous_state</code></td>
+  <td>typed value/absent</td>
+  <td>Source supplied or reconciled value, with provenance; never guessed</td>
+</tr>
+<tr>
+  <td><code>transition</code></td>
+  <td>enum/absent</td>
+  <td><code>entered</code>, <code>exited</code>, <code>changed</code>, <code>asserted</code>, <code>restored</code>, etc., under domain contract</td>
+</tr>
+<tr>
+  <td><code>value</code></td>
+  <td>typed value/absent</td>
+  <td>Preserve units, scale, precision, and quality; avoid locale conversion</td>
+</tr>
+<tr>
+  <td><code>reason_code</code></td>
+  <td>governed value/absent</td>
+  <td>Source or decision reason with namespace/version</td>
+</tr>
+<tr>
+  <td><code>message</code></td>
+  <td>sanitized display text/absent</td>
+  <td>Not an identifier, policy input, or command; control characters and sensitive data constrained</td>
+</tr>
+<tr>
+  <td><code>attributes</code></td>
+  <td>bounded object</td>
+  <td>Only schema governed extension fields; unknown raw data stays namespaced/referenced</td>
+</tr>
+</tbody>
+</table></div>
+<p>Silence isn't restore. A transport reconnect isn't resource recovery. A door contact state isn't lock state. An unlock command accepted isn't a door opened or safely resecured.</p>
+<h3 id="s-chronology-and-ordering">Chronology and ordering<a class="heading-link" href="#s-chronology-and-ordering" aria-label="Link to Chronology and ordering">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>occurred_at</code></td>
+  <td>Source claim for when the underlying occurrence happened</td>
+</tr>
+<tr>
+  <td><code>observed_at</code></td>
+  <td>Time a device/controller directly observed the condition, if distinct</td>
+</tr>
+<tr>
+  <td><code>source_emitted_at</code></td>
+  <td>Time the source says it created/transmitted the event</td>
+</tr>
+<tr>
+  <td><code>received_at</code></td>
+  <td>Time the first trusted ingestion boundary received the message</td>
+</tr>
+<tr>
+  <td><code>normalized_at</code></td>
+  <td>Time this mapping version produced the normalized record</td>
+</tr>
+<tr>
+  <td><code>persisted_at</code></td>
+  <td>Time durable event storage committed the record</td>
+</tr>
+<tr>
+  <td><code>source_offset</code></td>
+  <td>Original UTC offset, if supplied; preserve alongside normalized instant</td>
+</tr>
+<tr>
+  <td><code>source_precision</code></td>
+  <td>Seconds, milliseconds, ticks, or declared precision; do not invent digits</td>
+</tr>
+<tr>
+  <td><code>source_clock_quality</code></td>
+  <td><code>within-policy</code>, <code>outside-policy</code>, <code>unknown</code>, <code>unsynchronized</code>, etc. with evidence</td>
+</tr>
+<tr>
+  <td><code>source_sequence</code></td>
+  <td>Original sequence/counter as string or bounded integer</td>
+</tr>
+<tr>
+  <td><code>sequence_scope</code></td>
+  <td>Device, channel, account, subscription, boot/session, or other reset scope</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use RFC 3339 timestamps when the contract calls for Internet date/time. RFC 9557 extends the format for additional information such as time zone annotations; consumers must explicitly support the selected profile. Preserve the original string, parsed instant, offset/annotation, precision, and parse warning where evidentiary interpretation matters. <a href="https://datatracker.ietf.org/doc/rfc3339/" rel="noopener noreferrer">RFC3339</a> <a href="https://datatracker.ietf.org/doc/rfc9557/" rel="noopener noreferrer">RFC9557</a></p>
+<p>Use monotonic clocks for durations, deadlines, and retry windows. Never order different systems solely by wall clock timestamps when offset/error is unknown.</p>
+<h3 id="s-correlation-and-delivery">Correlation and delivery<a class="heading-link" href="#s-correlation-and-delivery" aria-label="Link to Correlation and delivery">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>correlation_id</code></td>
+  <td>Groups a workflow/incident/session; does not prove causation or identity</td>
+</tr>
+<tr>
+  <td><code>causation_id</code></td>
+  <td>References the event/command that directly caused this record where known</td>
+</tr>
+<tr>
+  <td><code>trace_context</code></td>
+  <td>Propagation telemetry; untrusted inbound values must not become audit identity</td>
+</tr>
+<tr>
+  <td><code>delivery_id</code></td>
+  <td>Unique attempt/delivery identity; changes across redelivery</td>
+</tr>
+<tr>
+  <td><code>delivery_attempt</code></td>
+  <td>Bounded attempt count from the current delivery system, not source event count</td>
+</tr>
+<tr>
+  <td><code>subscription_ref</code></td>
+  <td>Consumer/subscription configuration identity and version</td>
+</tr>
+<tr>
+  <td><code>ack_state</code></td>
+  <td>Transport/broker/consumer milestone explicitly named; not operator or physical acknowledgement</td>
+</tr>
+<tr>
+  <td><code>dedupe_key</code></td>
+  <td>Versioned derived key only when source identity cannot provide one; preserve rationale and collision window</td>
+</tr>
+</tbody>
+</table></div>
+<p>One event can have many deliveries. Deduplicate side effects, not evidence: retain a delivery audit or counters while presenting one logical event when evidence supports equivalence.</p>
+<h3 id="s-quality-validation-and-evidence">Quality, validation, and evidence<a class="heading-link" href="#s-quality-validation-and-evidence" aria-label="Link to Quality, validation, and evidence">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>validation.syntax</code></td>
+  <td>Parser/schema outcome and version</td>
+</tr>
+<tr>
+  <td><code>validation.integrity</code></td>
+  <td>CRC/MAC/signature/TLS evidence stated precisely; CRC is not authenticity</td>
+</tr>
+<tr>
+  <td><code>validation.peer_identity</code></td>
+  <td>Authenticated source identity and trust policy reference, not secret material</td>
+</tr>
+<tr>
+  <td><code>validation.authorization</code></td>
+  <td>Whether the source was allowed to publish for tenant/site/resource/type</td>
+</tr>
+<tr>
+  <td><code>quality</code></td>
+  <td>Stale, uncertain, substituted, test, incomplete, gap, clock, sequence, and mapping flags</td>
+</tr>
+<tr>
+  <td><code>confidence</code></td>
+  <td>Only when the source/model defines scale, calibration, threshold, and version; never generic “percent true”</td>
+</tr>
+<tr>
+  <td><code>parse_warnings</code></td>
+  <td>Bounded codes, not raw attacker controlled text</td>
+</tr>
+<tr>
+  <td><code>raw_ref</code></td>
+  <td>Protected immutable/bounded source record reference, where retention policy allows</td>
+</tr>
+<tr>
+  <td><code>raw_digest</code></td>
+  <td>Algorithm plus digest over explicitly defined original bytes; never recompute over a lossy parse</td>
+</tr>
+<tr>
+  <td><code>evidence_policy</code></td>
+  <td>Retention/access/redaction/classification rule and version</td>
+</tr>
+</tbody>
+</table></div>
+<p>A TLS connection authenticates a peer/hop under a trust policy; it doesn't prove every payload field true. A valid signature doesn't authorise an event type for a tenant/site/resource. Record these decisions separately.</p>
+<h2 id="s-missing-null-unknown-and-false">Missing, null, unknown, and false<a class="heading-link" href="#s-missing-null-unknown-and-false" aria-label="Link to Missing, null, unknown, and false">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Representation</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Field absent</td>
+  <td>Source/mapping did not supply it or schema makes it optional</td>
+</tr>
+<tr>
+  <td><code>null</code></td>
+  <td>Explicit no value only if the schema defines that meaning</td>
+</tr>
+<tr>
+  <td><code>unknown</code> enum/value</td>
+  <td>Source supplied an unsupported/ambiguous value or state cannot be established</td>
+</tr>
+<tr>
+  <td><code>false</code> / zero / empty string</td>
+  <td>Actual values; never use as generic missing defaults</td>
+</tr>
+<tr>
+  <td>Mapping warning</td>
+  <td>Transformation lost precision, namespace, code, or certainty</td>
+</tr>
+</tbody>
+</table></div>
+<p>Preserve unrecognized enum/code values in a source field and mark normalised mapping unknown. Forward compatible parsers must not crash, silently coerce, or grant a more privileged meaning.</p>
+<h2 id="s-deduplication-and-ordering">Deduplication and ordering<a class="heading-link" href="#s-deduplication-and-ordering" aria-label="Link to Deduplication and ordering">#</a></h2>
+<p>Preferred identity evidence, strongest first:</p>
+<ol>
+<li>source defined immutable event ID within a stable authenticated source namespace;</li>
+<li>source session/boot epoch plus sequence/counter whose reset and wrap rules are known;</li>
+<li>protocol transaction/message identity plus source/account/resource/type under a documented retry window;</li>
+<li>a versioned derived fingerprint over defined stable source fields/raw bytes, with collision/false merge analysis;</li>
+<li>heuristic time/value matching only for display correlation, not destructive deduplication.</li>
+</ol>
+<p>Never deduplicate solely on timestamp, event text, card number, door name, or normalised type. A restore and a new alarm can share fields; multiple legitimate events can occur within one timestamp precision.</p>
+<p>For ordering:</p>
+<ul>
+<li>order within the strongest known sequence scope;</li>
+<li>detect gap, duplicate, wrap, reset, rollback, and concurrent sources explicitly;</li>
+<li>preserve arrival order separately from occurrence order;</li>
+<li>use watermarks/bounded lateness only under a documented source/consumer contract;</li>
+<li>reconcile current state from an authoritative query after reconnect when safe and supported;</li>
+<li>never discard a late emergency/alarm event merely because its source time is old.</li>
+</ul>
+<h2 id="s-schema-evolution">Schema evolution<a class="heading-link" href="#s-schema-evolution" aria-label="Link to Schema evolution">#</a></h2>
+<ul>
+<li>Use stable versioned event types or an explicit schema version; document which changes are additive or breaking.</li>
+<li>Add optional fields with defined absence semantics; don't change units/type/meaning in place.</li>
+<li>Never reuse removed enum numbers, bit meanings, protocol codes, or schema field numbers.</li>
+<li>Consumers must preserve or safely ignore unknown additive fields and reject unsupported breaking versions deterministically.</li>
+<li>Version code tables and severity mappings independently when they change on a different lifecycle.</li>
+<li>Dual publish/migrate only for a bounded window; correlate old/new records without causing duplicate side effects.</li>
+<li>Reprocessing raw records with a new mapping produces a new derived version/provenance, not silent mutation of old evidence.</li>
+</ul>
+<h2 id="s-safe-synthetic-cloudevents-shaped-fixture">Safe synthetic CloudEvents shaped fixture<a class="heading-link" href="#s-safe-synthetic-cloudevents-shaped-fixture" aria-label="Link to Safe synthetic CloudEvents shaped fixture">#</a></h2>
+<p>The fixture below is a synthetic protocol illustration. Its people, credentials, endpoints, commands, and identifiers are deliberately non operational.</p>
+<div class="code-block"><div class="code-toolbar"><span>json</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy json example">Copy</button></div><pre tabindex="0" aria-label="json example"><code id="code-1">{
+  &quot;specversion&quot;: &quot;1.0&quot;,
+  &quot;id&quot;: &quot;evt-synthetic-0007&quot;,
+  &quot;source&quot;: &quot;urn:example:lab:access-controller:ac-01&quot;,
+  &quot;type&quot;: &quot;org.example.reader.connectivity.changed.v1&quot;,
+  &quot;subject&quot;: &quot;reader/rdr-014&quot;,
+  &quot;time&quot;: &quot;2026-08-25T03:14:15.120Z&quot;,
+  &quot;datacontenttype&quot;: &quot;application/json&quot;,
+  &quot;dataschema&quot;: &quot;https://schemas.example/events/reader-connectivity/v1&quot;,
+  &quot;data&quot;: {
+    &quot;schema_version&quot;: 1,
+    &quot;source_type&quot;: &quot;SYNTHETIC_LINK_STATE&quot;,
+    &quot;mapping_version&quot;: &quot;access-map-1.0.0&quot;,
+    &quot;tenant_ref&quot;: &quot;tenant-synthetic&quot;,
+    &quot;site_ref&quot;: &quot;site-synthetic-a&quot;,
+    &quot;resource&quot;: {
+      &quot;kind&quot;: &quot;reader&quot;,
+      &quot;id&quot;: &quot;rdr-014&quot;
+    },
+    &quot;previous_state&quot;: &quot;online&quot;,
+    &quot;state&quot;: &quot;offline&quot;,
+    &quot;transition&quot;: &quot;changed&quot;,
+    &quot;observed_at&quot;: &quot;2026-08-25T03:14:14.900Z&quot;,
+    &quot;received_at&quot;: &quot;2026-08-25T03:14:15.120Z&quot;,
+    &quot;source_sequence&quot;: &quot;88421&quot;,
+    &quot;sequence_scope&quot;: &quot;controller-boot-session-synthetic-3&quot;,
+    &quot;mapping_quality&quot;: &quot;exact&quot;,
+    &quot;quality&quot;: [&quot;synthetic&quot;, &quot;source-clock-within-policy&quot;],
+    &quot;raw_ref&quot;: &quot;urn:example:evidence:trace:0007&quot;
+  }
+}
+</code></pre></div>
+<p>CloudEvents defines interoperable context attributes and bindings; it doesn't define this physical security <code>data</code> schema, processing model, security policy, or event meaning. Stable CloudEvents release 1.0.2 was the published baseline on 25 August 2026; the repository main branch showed 1.0.3 work in progress, so production profiles should pin the released tag. <a href="https://github.com/cloudevents/spec" rel="noopener noreferrer">CLOUDEVENTS</a></p>
+<h2 id="s-json-and-canonicalization-rules">JSON and canonicalization rules<a class="heading-link" href="#s-json-and-canonicalization-rules" aria-label="Link to JSON and canonicalization rules">#</a></h2>
+<ul>
+<li>Accept only the contract's character encoding/media type; JSON interoperability is <code>UTF-8</code> under RFC 8259 network use.</li>
+<li>Bound encoded bytes, decompressed bytes, nesting, object members, arrays, strings, numbers, and total events before allocation.</li>
+<li>Reject duplicate object member names or define a single strict policy across all producers/consumers; don't let parsers disagree.</li>
+<li>Validate integers/ranges without floating point loss, especially identifiers, sequences, counters, and epoch values.</li>
+<li>Don't sign/hash “ordinary protobuf/JSON serialisation” as though it were inherently canonical.</li>
+<li>If JSON canonicalization is required, implement and name RFC 8785 JCS exactly, including its input constraints; preserve the original bytes separately when evidentiary identity depends on them. <a href="https://datatracker.ietf.org/doc/rfc8785/" rel="noopener noreferrer">JCS</a></li>
+<li>Authenticate before expensive schema resolution/normalisation where possible, but retain a bounded rejection audit.</li>
+</ul>
+<h2 id="s-severity-and-alarm-lifecycle">Severity and alarm lifecycle<a class="heading-link" href="#s-severity-and-alarm-lifecycle" aria-label="Link to Severity and alarm lifecycle">#</a></h2>
+<p>Keep at least three values separate:</p>
+<ol>
+<li>source severity/priority/code;</li>
+<li>normalised domain condition under a versioned mapping;</li>
+<li>local incident/routing priority under site policy.</li>
+</ol>
+<p>Likewise, <code>new</code>, <code>active</code>, <code>acknowledged</code>, <code>silenced</code>, <code>restored</code>, <code>closed</code>, and <code>dispatched</code> aren't interchangeable. A receiver ACK, broker ACK, application persistence, operator acknowledgement, and physical restoration are different milestones. See <a href="../../02-protocols/alarm-monitoring/">alarm monitoring protocols</a>.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Event, state, command, and delivery records separate">Event, state, command, and delivery records separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Source plus event ID, delivery ID, correlation, and causation have distinct semantics">Source plus event ID, delivery ID, correlation, and causation have distinct semantics</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Source code/qualifier/extensions preserved with namespace and edition">Source code/qualifier/extensions preserved with namespace and edition</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Tenant/site/resource/actor/credential references use governed separate namespaces">Tenant/site/resource/actor/credential references use governed separate namespaces</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Occurred/observed/emitted/received/normalised/persisted times and clock quality preserved">Occurred/observed/emitted/received/normalised/persisted times and clock quality preserved</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sequence scope, reboot/reset/wrap/gap/duplicate/late behaviour defined">Sequence scope, reboot/reset/wrap/gap/duplicate/late behaviour defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Null/missing/unknown/false and enum forward compatibility rules explicit">Null/missing/unknown/false and enum forward compatibility rules explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Mapping and code table versions immutable and auditable">Mapping and code table versions immutable and auditable</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Raw evidence reference/digest boundary and privacy/retention policy defined">Raw evidence reference/digest boundary and privacy/retention policy defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Parser/message/decompression/resource limits and duplicate JSON member policy defined">Parser/message/decompression/resource limits and duplicate JSON member policy defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Authentication, source authorisation, integrity, quality, and semantic truth not collapsed">Authentication, source authorisation, integrity, quality, and semantic truth not collapsed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Normalized event can&#x27;t directly actuate or acknowledge a high impact system">Normalized event can't directly actuate or acknowledge a high impact system</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Fixture uses only synthetic, non operational identifiers; source/product behaviour is evidenced through separate environment validation">Fixture uses only synthetic, non operational identifiers; source/product behaviour is evidenced through separate environment validation</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>CLOUDEVENTS</strong>, <a href="https://github.com/cloudevents/spec" rel="noopener noreferrer">CloudEvents specification repository and released documents</a>, CNCF, stable release 1.0.2 and work in progress state reviewed 25 August 2026.</li>
+<li><strong>CLOUDEVENTS 102</strong>, <a href="https://github.com/cloudevents/spec/blob/ce%40v1.0.2/cloudevents/spec.md" rel="noopener noreferrer">CloudEvents 1.0.2 core specification</a>, CNCF, released baseline.</li>
+<li><strong>JSON</strong>, <a href="https://datatracker.ietf.org/doc/rfc8259/" rel="noopener noreferrer">RFC 8259: The JavaScript Object Notation Data Interchange Format</a>, IETF, December 2017.</li>
+<li><strong>RFC3339</strong>, <a href="https://datatracker.ietf.org/doc/rfc3339/" rel="noopener noreferrer">RFC 3339: Date and Time on the Internet: Timestamps</a>, IETF, July 2002.</li>
+<li><strong>RFC9557</strong>, <a href="https://datatracker.ietf.org/doc/rfc9557/" rel="noopener noreferrer">RFC 9557: Date and Time on the Internet: Timestamps with Additional Information</a>, IETF, April 2024; updates RFC 3339.</li>
+<li><strong>JCS</strong>, <a href="https://datatracker.ietf.org/doc/rfc8785/" rel="noopener noreferrer">RFC 8785: JSON Canonicalization Scheme</a>, IETF, June 2020.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../discovery-and-multicast/"><span>Previous in this section</span>Discovery and multicast</a><a href="../glossary/"><span>Next in this section</span>Glossary</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/event-normalization-field-guide.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/event-normalization-field-guide.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-four-records-not-one">Four records, not one</a></li><li class="toc-level-2"><a href="#s-minimum-normalised-envelope">Minimum normalised envelope</a></li><li class="toc-level-3"><a href="#s-event-identity-and-provenance">Event identity and provenance</a></li><li class="toc-level-3"><a href="#s-classification-and-schema">Classification and schema</a></li><li class="toc-level-3"><a href="#s-resource-location-and-identity-references">Resource, location, and identity references</a></li><li class="toc-level-3"><a href="#s-event-semantics">Event semantics</a></li><li class="toc-level-3"><a href="#s-chronology-and-ordering">Chronology and ordering</a></li><li class="toc-level-3"><a href="#s-correlation-and-delivery">Correlation and delivery</a></li><li class="toc-level-3"><a href="#s-quality-validation-and-evidence">Quality, validation, and evidence</a></li><li class="toc-level-2"><a href="#s-missing-null-unknown-and-false">Missing, null, unknown, and false</a></li><li class="toc-level-2"><a href="#s-deduplication-and-ordering">Deduplication and ordering</a></li><li class="toc-level-2"><a href="#s-schema-evolution">Schema evolution</a></li><li class="toc-level-2"><a href="#s-safe-synthetic-cloudevents-shaped-fixture">Safe synthetic CloudEvents shaped fixture</a></li><li class="toc-level-2"><a href="#s-json-and-canonicalization-rules">JSON and canonicalization rules</a></li><li class="toc-level-2"><a href="#s-severity-and-alarm-lifecycle">Severity and alarm lifecycle</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

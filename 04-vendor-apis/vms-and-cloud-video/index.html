@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>VMS and cloud video APIs · Security Technician Wiki</title>
+<meta name="description" content="These references cover video platform interfaces for live media, events, recording, export and administration. Check support for each required workflow.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="VMS and cloud video APIs · Security Technician Wiki">
+<meta property="og:description" content="These references cover video platform interfaces for live media, events, recording, export and administration. Check support for each required workflow.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../access-and-identity/">Section overview</a></li><li><a href="../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../device-and-edge-video/">Section overview</a></li><li><a href="../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="./" aria-current="page">Section overview</a></li><li><a href="eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Vendor APIs</a><span aria-hidden="true">/</span><span aria-current="page">VMS and cloud video APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 1 min read</span></div><div class="prose"><h1 id="s-vms-and-cloud-video-apis">VMS and cloud video APIs</h1>
+<p>These references cover video platform interfaces for live media, events, recording, export and administration. Check support for each required workflow.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-integration-mode-decision">Integration mode decision</a></li><li class="toc-level-2"><a href="#s-non-negotiable-controls">Non negotiable controls</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../">Vendor APIs</a> / VMS and cloud video</p>
+<p>Choose the narrowest supported integration mode. A language neutral protocol or REST API reduces in process coupling; an SDK component can expose richer media and object models; a client or server plugin can deliver the deepest workflow integration but inherits the host process, release, signing, and support constraints.</p>
+<h2 id="s-pages">Pages<a class="heading-link" href="#s-pages" aria-label="Link to Pages">#</a></h2>
+<ul>
+<li><a href="milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li>
+<li><a href="genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li>
+<li><a href="network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li>
+<li><a href="motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li>
+<li><a href="eagle-eye-video-api/">Eagle Eye Video API</a></li>
+<li><a href="verkada-command-apis/">Verkada Command APIs</a></li>
+</ul>
+<h2 id="s-integration-mode-decision">Integration mode decision<a class="heading-link" href="#s-integration-mode-decision" aria-label="Link to Integration mode decision">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Mode</th>
+  <th>Strength</th>
+  <th>Coupling and risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Remote REST/protocol</td>
+  <td>Process and language isolation; simpler least privilege</td>
+  <td>May expose less host UI/media functionality; auth and event recovery remain yours</td>
+</tr>
+<tr>
+  <td>Vendor component/library</td>
+  <td>Rich object and media access</td>
+  <td>Runtime, architecture, dependency, licence, and release coupling</td>
+</tr>
+<tr>
+  <td>In process plugin</td>
+  <td>Native UI/workflow and host services</td>
+  <td>Highest crash, privilege, signing, deployment, and upgrade impact</td>
+</tr>
+<tr>
+  <td>Cloud API</td>
+  <td>Vendor managed reachability and elastic service</td>
+  <td>Tenant/region identity, rate limits, data residency, service lifecycle, and outage dependency</td>
+</tr>
+<tr>
+  <td>Media URL/session</td>
+  <td>Efficient browser/player delivery</td>
+  <td>Short lived authorisation, codec/container, privacy, export, and redistribution constraints</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-non-negotiable-controls">Non negotiable controls<a class="heading-link" href="#s-non-negotiable-controls" aria-label="Link to Non negotiable controls">#</a></h2>
+<ul>
+<li>Authorise metadata, live view, playback, export, audio, PTZ, configuration, and administration independently.</li>
+<li>Treat a returned media URL or session token as a secret with evidence level sensitivity.</li>
+<li>Never infer durable event delivery; document cursors, acknowledgement, replay window, ordering, and reconciliation.</li>
+<li>Pin SDK and VMS builds and rehearse upgrades against vendor compatibility statements.</li>
+<li>Preserve source time, ingest time, camera/VMS identity, tenant/site, event ID, and correlation through normalisation.</li>
+<li>Keep evidence export immutable and separate from convenience snapshots or transcodes.</li>
+</ul>
+<p>See <a href="../../03-systems/video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS architecture</a>, <a href="../../03-systems/video-surveillance/recording-storage-and-retention/">recording and retention</a>, <a href="../../06-security-and-assurance/api-and-event-security/">event security</a>, and <a href="../../05-development-and-integration/patterns/adapters-gateways-and-translation/">adapter patterns</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="eagle-eye-video-api/"><span>Next in this section</span>Eagle Eye Video API</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-integration-mode-decision">Integration mode decision</a></li><li class="toc-level-2"><a href="#s-non-negotiable-controls">Non negotiable controls</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

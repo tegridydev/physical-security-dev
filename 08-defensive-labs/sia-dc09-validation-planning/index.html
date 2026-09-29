@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>SIA DC09 validation planning · Security Technician Wiki</title>
+<meta name="description" content="Plan an alarm reporting test using a fictional system. Specify evidence for message acceptance, supervision and monitoring response without generating a real alarm.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/sia-dc09-validation-planning/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SIA DC09 validation planning · Security Technician Wiki">
+<meta property="og:description" content="Plan an alarm reporting test using a fictional system. Specify evidence for message acceptance, supervision and monitoring response without generating a real alarm.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/sia-dc09-validation-planning/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="../modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="../mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="../onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="../incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="./" aria-current="page">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="../time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">SIA DC09 validation planning</span></nav><div class="page-kicker">Defensive labs <span>About 1 min read</span></div><div class="prose"><span class="heading-alias" id="s-sia-dc-09-validation-planning" aria-hidden="true"></span><h1 id="s-sia-dc09-validation-planning">SIA DC09 validation planning</h1>
+<p>Plan an alarm reporting test using a fictional system. Specify evidence for message acceptance, supervision and monitoring response without generating a real alarm.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline planning only; normative message syntax requires the licensed SIA standard, and receiver acceptance is outside lab scope.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-plan-the-fixture-set">Plan the fixture set</a></li><li class="toc-level-2"><a href="#s-receiver-questions">Receiver questions</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Offline synthetic fixture and tabletop</strong></p>
+<blockquote>
+<p>Scope is an offline paper model built from invented records. Receiver, monitoring account, network, automation, and dispatch acceptance is a separate activity controlled by the monitoring centre.</p>
+</blockquote>
+<h2 id="s-plan-the-fixture-set">Plan the fixture set<a class="heading-link" href="#s-plan-the-fixture-set" aria-label="Link to Plan the fixture set">#</a></h2>
+<p>Using a lawfully accessed ANSI/SIA DC09 2026 specification and receiver documentation, define synthetic valid and invalid fixtures for framing length/integrity, account/receiver identity, sequence, timestamp, encrypted/authenticated mode where applicable, content format, retry/acknowledgement and duplicate handling. Don't reproduce licensed normative tables in the KB.</p>
+<h2 id="s-receiver-questions">Receiver questions<a class="heading-link" href="#s-receiver-questions" aria-label="Link to Receiver questions">#</a></h2>
+<ul>
+<li>What proves the message origin and account authorisation?</li>
+<li>What transport/security mode is required and is insecure fallback disabled?</li>
+<li>How are sequence, timestamp, replay, duplicate and delayed messages handled?</li>
+<li>What does transport/application acknowledgement prove?</li>
+<li>Which failures cause retry, alternate path, operator indication or supervised path alarm?</li>
+<li>How is receiver to automation forwarding correlated and audited?</li>
+</ul>
+<h2 id="s-evidence-checklist">Evidence checklist<a class="heading-link" href="#s-evidence-checklist" aria-label="Link to Evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Licensed standard edition and receiver documentation identified without reproducing protected tables">Licensed standard edition and receiver documentation identified without reproducing protected tables</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Synthetic identifiers and non routable topology recorded">Synthetic identifiers and non routable topology recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Valid, malformed, duplicate, delayed, replayed, and missing acknowledgement cases mapped">Valid, malformed, duplicate, delayed, replayed, and missing acknowledgement cases mapped</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Receiver, automation, operator, and dispatch boundaries kept distinct">Receiver, automation, operator, and dispatch boundaries kept distinct</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Expected evidence and interpretation limits documented for every case">Expected evidence and interpretation limits documented for every case</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://www.securityindustry.org/industry-standards/dc-09-2026/" rel="noopener noreferrer">ANSI/SIA DC09 2026</a>, official status/scope page, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../02-protocols/alarm-monitoring/">Alarm monitoring protocols</a></li>
+<li><a href="../../03-systems/intrusion-monitoring/">Intrusion monitoring</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../rtsp-rtp-sdp-trace-analysis/"><span>Previous in this section</span>RTSP, RTP, RTCP, and SDP trace analysis</a><a href="../snmp-and-syslog-health-correlation/"><span>Next in this section</span>SNMP and syslog health correlation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/sia-dc09-validation-planning.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/sia-dc09-validation-planning.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-plan-the-fixture-set">Plan the fixture set</a></li><li class="toc-level-2"><a href="#s-receiver-questions">Receiver questions</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

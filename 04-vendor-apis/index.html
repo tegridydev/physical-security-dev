@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Vendor APIs and SDKs · Security Technician Wiki</title>
+<meta name="description" content="Find the supported API for the exact product and version. These pages cover public documentation, access requirements, licensing and integration checks.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vendor APIs and SDKs · Security Technician Wiki">
+<meta property="og:description" content="Find the supported API for the exact product and version. These pages cover public documentation, access requirements, licensing and integration checks.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="./" aria-current=page><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="access-and-identity/">Section overview</a></li><li><a href="access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="device-and-edge-video/">Section overview</a></li><li><a href="device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="vms-and-cloud-video/">Section overview</a></li><li><a href="vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Vendor APIs and SDKs</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-vendor-apis-and-sdks">Vendor APIs and SDKs</h1>
+<p>Find the supported API for the exact product and version. These pages cover public documentation, access requirements, licensing and integration checks.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-start-here">Start here</a></li><li class="toc-level-2"><a href="#s-how-to-use-a-vendor-page">How to use a vendor page</a></li><li class="toc-level-2"><a href="#s-evidence-grades-in-this-section">Evidence grades in this section</a></li><li class="toc-level-2"><a href="#s-integration-boundaries">Integration boundaries</a></li><li class="toc-level-2"><a href="#s-shared-engineering-guidance">Shared engineering guidance</a></li><li class="toc-level-2"><a href="#s-maintenance-rule">Maintenance rule</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>This catalogue answers the first integration question: <strong>which vendor owned surface is authoritative for the product and job in front of you?</strong> It separates public APIs from login gated references, partner SDKs, licensed server interfaces, on device application frameworks, and open standard interfaces. It doesn't turn a marketing claim such as “open API” into an endpoint, entitlement, or compatibility claim.</p>
+<h2 id="s-start-here">Start here<a class="heading-link" href="#s-start-here" aria-label="Link to Start here">#</a></h2>
+<ul>
+<li><a href="selection-and-capability-matrix/">Selection and capability matrix</a>, compare deployment, access tier, capabilities, and evidence quality.</li>
+<li><a href="device-and-edge-video/">Device and edge video</a>, camera, intercom, edge application, device management, and native SDK surfaces.</li>
+<li><a href="vms-and-cloud-video/">VMS and cloud video</a>, server, client, plugin, media, cloud, and event integrations.</li>
+<li><a href="access-and-identity/">Access and identity</a>, PACS, mobile credentials, cloud access, identity lifecycle, door, and biometric surfaces.</li>
+</ul>
+<h2 id="s-how-to-use-a-vendor-page">How to use a vendor page<a class="heading-link" href="#s-how-to-use-a-vendor-page" aria-label="Link to How to use a vendor page">#</a></h2>
+<ol>
+<li>Match the exact product family, deployment model, and integration direction.</li>
+<li>Confirm whether the normative material is public, account gated, partner only, licensed, or delivered with an installed product.</li>
+<li>Pin product, firmware/server, API/SDK, operating system/runtime, region, tenant, and licence assumptions.</li>
+<li>Obtain the current vendor compatibility and lifecycle statement before designing against a surface.</li>
+<li>Separate read, event, configuration, credential, media, and physical command privileges.</li>
+<li>Build recovery for duplicate, delayed, missing, reordered, and partially applied operations.</li>
+<li>Validate integrations in an owner approved non production environment before any live deployment.</li>
+</ol>
+<h2 id="s-evidence-grades-in-this-section">Evidence grades in this section<a class="heading-link" href="#s-evidence-grades-in-this-section" aria-label="Link to Evidence grades in this section">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Grade</th>
+  <th>Meaning here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>V2</code></td>
+  <td>Multiple official sources were cross checked, including a reference plus release, lifecycle, product, or access source where available.</td>
+</tr>
+<tr>
+  <td><code>V1</code></td>
+  <td>An official public landing page or product artefact establishes the surface, but the normative guide, package, entitlement, compatibility matrix, or current details are gated or incomplete.</td>
+</tr>
+<tr>
+  <td><code>V0</code></td>
+  <td>Reserved for an unverified inventory claim; confirm the vendor documentation before relying on an unverified claim.</td>
+</tr>
+</tbody>
+</table></div>
+<p>The grade describes source quality, not vendor certification or deployment compatibility. Environment evidence must identify the exact account, entitlement, product build, configuration, and controlled test scope. See <a href="../00-start-here/verification-and-safety/">verification and safety</a> and the <a href="../10-sources-and-maintenance/verification-policy/">verification policy</a>.</p>
+<h2 id="s-integration-boundaries">Integration boundaries<a class="heading-link" href="#s-integration-boundaries" aria-label="Link to Integration boundaries">#</a></h2>
+<ul>
+<li>A vendor API isn't automatically enabled on every model or edition.</li>
+<li>A public reference doesn't grant a tenant, licence, developer account, export right, media entitlement, or command privilege.</li>
+<li>An SDK package version and the product it targets can have independent release lifecycles.</li>
+<li>Cloud regions, sovereign environments, and government editions can use different identities, hosts, features, and data residency terms.</li>
+<li>ONVIF, SIP, BACnet, OSDP, and other standards based support must be confirmed through the exact product declaration or conformance record; it is distinct from a vendor native API.</li>
+<li>“Unlock”, “override”, “arm/disarm”, “output”, “firmware”, “credential”, “biometric”, “audio”, and evidence export operations are high impact even when the transport is ordinary HTTPS.</li>
+</ul>
+<h2 id="s-shared-engineering-guidance">Shared engineering guidance<a class="heading-link" href="#s-shared-engineering-guidance" aria-label="Link to Shared engineering guidance">#</a></h2>
+<p>Use these pages with:</p>
+<ul>
+<li><a href="../01-foundations/physical-security-system-architecture/">Physical security system architecture</a></li>
+<li><a href="../01-foundations/identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li>
+<li><a href="../01-foundations/events-state-commands-and-time/">Events, state, commands, and time</a></li>
+<li><a href="../01-foundations/interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li>
+<li><a href="../05-development-and-integration/">Development and integration patterns</a></li>
+<li><a href="../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+<li><a href="../06-security-and-assurance/privacy-and-sensitive-data/">Privacy and sensitive data</a></li>
+<li><a href="../07-operations-and-lifecycle/asset-and-configuration-inventory/">Asset and configuration inventory</a></li>
+</ul>
+<h2 id="s-maintenance-rule">Maintenance rule<a class="heading-link" href="#s-maintenance-rule" aria-label="Link to Maintenance rule">#</a></h2>
+<p>Vendor claims in this section expire quickly. Recheck public versus gated access, release status, identity flow, licences, regions, limits, deprecations, and compatibility at least every 90 days and before procurement or implementation. A dated version on a page is an observed documentation fact, not a claim that the version remains latest.</p>
+<p><a href="../">Section overview</a> · <a href="../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="selection-and-capability-matrix/"><span>Next in this section</span>Vendor API selection and capability matrix</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-start-here">Start here</a></li><li class="toc-level-2"><a href="#s-how-to-use-a-vendor-page">How to use a vendor page</a></li><li class="toc-level-2"><a href="#s-evidence-grades-in-this-section">Evidence grades in this section</a></li><li class="toc-level-2"><a href="#s-integration-boundaries">Integration boundaries</a></li><li class="toc-level-2"><a href="#s-shared-engineering-guidance">Shared engineering guidance</a></li><li class="toc-level-2"><a href="#s-maintenance-rule">Maintenance rule</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Motorola Solutions and Avigilon integration interfaces · Security Technician Wiki</title>
+<meta name="description" content="Identify the exact Avigilon platform and release. Check its interfaces, access requirements and supported media or event functions.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/motorola-avigilon-integration-surfaces/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Motorola Solutions and Avigilon integration interfaces · Security Technician Wiki">
+<meta property="og:description" content="Identify the exact Avigilon platform and release. Check its interfaces, access requirements and supported media or event functions.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/motorola-avigilon-integration-surfaces/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="./" aria-current="page">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Motorola Solutions and Avigilon integration interfaces</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><span class="heading-alias" id="s-motorola-solutions-and-avigilon-integration-surfaces" aria-hidden="true"></span><h1 id="s-motorola-solutions-and-avigilon-integration-interfaces">Motorola Solutions and Avigilon integration interfaces</h1>
+<p>Identify the exact Avigilon platform and release. Check its interfaces, access requirements and supported media or event functions.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Motorola Solutions and Avigilon programme, product, release, and help material; detailed SDK/API contracts, endpoints, credentials, licences, compatibility, and partner entitlements are fragmented or gated and are not inferred.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-verified-product-separation">Verified product separation</a></li><li class="toc-level-2"><a href="#s-current-documentation-observations">Current documentation observations</a></li><li class="toc-level-2"><a href="#s-required-evidence-before-design">Required evidence before design</a></li><li class="toc-level-2"><a href="#s-security-and-physical-safety-boundary">Security and physical safety boundary</a></li><li class="toc-level-2"><a href="#s-events-and-media">Events and media</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-product-identity">Lifecycle and product identity</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Motorola Solutions and Avigilon</p>
+<p>The current portfolio spans multiple independently versioned platforms. <strong>Unity Video</strong>, <strong>Unity Access</strong>, <strong>Alta Video</strong>, <strong>Alta Access</strong>, and other Motorola Solutions command center products don't share one universal “Avigilon API.” The official developer program page and Avigilon documentation portal are the correct starting points, but much of the detailed developer contract is programme, product or licence controlled.</p>
+<h2 id="s-verified-product-separation">Verified product separation<a class="heading-link" href="#s-verified-product-separation" aria-label="Link to Verified product separation">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Product family</th>
+  <th>Publicly evidenced integration route</th>
+  <th>Evidence limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Avigilon Unity Video</td>
+  <td>Web Endpoint API and interoperability/developer programme references</td>
+  <td>Detailed current API/SDK contract and licences were not verified publicly as one catalogue</td>
+</tr>
+<tr>
+  <td>Avigilon Unity Access</td>
+  <td>Product specific REST/integration and licensed partner surfaces</td>
+  <td>Public product/release docs exist; older official integration blueprints prove a REST API licence for that exact workflow only</td>
+</tr>
+<tr>
+  <td>Avigilon Alta Video</td>
+  <td>Cloud video integrations documented in the Avigilon help portal</td>
+  <td>Tenant/region API contract and developer entitlement must be obtained for the intended integration</td>
+</tr>
+<tr>
+  <td>Avigilon Alta Access</td>
+  <td>Cloud access, identity and app integrations; formerly Openpath</td>
+  <td>Public administration/integration guides exist; a general current public developer API reference was not established in this review</td>
+</tr>
+<tr>
+  <td>Motorola Solutions developer programmes</td>
+  <td>Avigilon and command center developer/interoperability routes</td>
+  <td>Programme acceptance, agreements, documentation and support are distinct by product</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-current-documentation-observations">Current documentation observations<a class="heading-link" href="#s-current-documentation-observations" aria-label="Link to Current documentation observations">#</a></h2>
+<p>The Avigilon portal contained Unity Video 8.8 documentation and Unity Access 7.20 release material during the 25 August 2026 review. These observations don't establish that either is universally latest, licensed, or compatible with a given integration. The portal also retains older product documentation; always select the exact version label.</p>
+<p>Alta Access documentation reflects the Openpath to Avigilon product transition. Record both legacy and current names only for traceability; use current product identifiers in new contracts. Alta cloud sign in and feature availability can be region and subscription specific.</p>
+<h2 id="s-required-evidence-before-design">Required evidence before design<a class="heading-link" href="#s-required-evidence-before-design" aria-label="Link to Required evidence before design">#</a></h2>
+<p>Obtain a vendor/partner statement that identifies:</p>
+<ul>
+<li>exact Unity/Alta/Motorola product and edition;</li>
+<li>server/cloud release, region and tenant type;</li>
+<li>API/SDK/package name and version;</li>
+<li>development, test and production licence/entitlement;</li>
+<li>supported operations and event/media semantics;</li>
+<li>identity, token/certificate and permission model;</li>
+<li>rate, pagination, session and retention limits;</li>
+<li>compatibility, deprecation, support and security advisory route.</li>
+</ul>
+<p>Don't use a PDF for a named third party integration as proof of a general purpose endpoint. For example, an official 2023 integration blueprint referenced a Unity Access REST API licence and minimum product version for that blueprint; it doesn't authorise or define other workflows.</p>
+<h2 id="s-security-and-physical-safety-boundary">Security and physical safety boundary<a class="heading-link" href="#s-security-and-physical-safety-boundary" aria-label="Link to Security and physical safety boundary">#</a></h2>
+<p>Unity and Alta surfaces can span live/recorded video, evidence, alarms, identities, credentials, doors and physical commands. Create separate principals and authorisation policies for each capability. Cloud credentials must be bound to the correct organization/region; on premises credentials must remain inside the management conduit.</p>
+<p>For Alta identity provider integrations, current official guides document subscription dependent sync intervals and read permissions for named providers. Those application specific settings aren't a general Alta developer authentication contract. Pin the exact integration guide and permissions.</p>
+<p>Never retry door, lockdown, alarm acknowledgement, relay, PTZ or other command blindly after timeout. Query product state and audit records or require operator reconciliation. Preserve local life safety authority and egress behaviour independently of cloud/API availability.</p>
+<h2 id="s-events-and-media">Events and media<a class="heading-link" href="#s-events-and-media" aria-label="Link to Events and media">#</a></h2>
+<p>Before relying on an event integration, establish subscription durability, resume cursor, ordering, duplicate/gap behaviour, initial snapshot and retention. Before using media, establish live/playback/export distinctions, session lifetime, codec, authorisation, watermark/integrity and redistribution rights. Product UI deep links aren't media APIs or evidence exports.</p>
+<h2 id="s-lifecycle-and-product-identity">Lifecycle and product identity<a class="heading-link" href="#s-lifecycle-and-product-identity" aria-label="Link to Lifecycle and product identity">#</a></h2>
+<p><code>technology_status: mixed</code> reflects multiple current cloud/on premises product lines, retained older documentation, renaming and separately versioned interfaces. Recheck branding, product ownership, support and replacement paths at every review.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://www.motorolasolutions.com/en_us/developers.html" rel="noopener noreferrer">Motorola Solutions developer programmes</a>, official programme entry point, including Avigilon.</li>
+<li><a href="https://www.motorolasolutions.com/en_us/products/command-center-software/public-safety-software/public-safety-software-integration/interoperability.html" rel="noopener noreferrer">Motorola Solutions interoperability programmes</a>, official partner/resource route.</li>
+<li><a href="https://docs.avigilon.com/" rel="noopener noreferrer">Avigilon documentation portal</a>, current versioned product documentation.</li>
+<li><a href="https://docs.avigilon.com/bundle/unity-video-occupancy-counting-8-8/page/more-info-and-support.htm" rel="noopener noreferrer">Unity Video 8.8 support and Web Endpoint API links</a>, product specific evidence.</li>
+<li><a href="https://docs.avigilon.com/search?labelkey=unity_access_version_unityaccess7.20" rel="noopener noreferrer">Unity Access 7.20 documentation results</a>, versioned release/product evidence.</li>
+<li><a href="https://docs.avigilon.com/bundle/alta-access-integration-entra-id/page/integrations/microsoft-entra/microsoft-azure-ad-oauth-service-principal.htm" rel="noopener noreferrer">Alta Access Microsoft Entra integration</a>, example of product, subscription and permission specific integration documentation.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../selection-and-capability-matrix/">Selection matrix</a></li>
+<li><a href="../../../03-systems/access-control/pacs-architecture/">PACS architecture</a></li>
+<li><a href="../../../06-security-and-assurance/vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../milestone-mip-sdk-and-api-gateway/"><span>Previous in this section</span>Milestone MIP SDK and API Gateway</a><a href="../network-optix-nx-meta-apis-and-sdks/"><span>Next in this section</span>Network Optix Nx Meta APIs and SDKs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/motorola-avigilon-integration-surfaces.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/motorola-avigilon-integration-surfaces.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-verified-product-separation">Verified product separation</a></li><li class="toc-level-2"><a href="#s-current-documentation-observations">Current documentation observations</a></li><li class="toc-level-2"><a href="#s-required-evidence-before-design">Required evidence before design</a></li><li class="toc-level-2"><a href="#s-security-and-physical-safety-boundary">Security and physical safety boundary</a></li><li class="toc-level-2"><a href="#s-events-and-media">Events and media</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-product-identity">Lifecycle and product identity</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

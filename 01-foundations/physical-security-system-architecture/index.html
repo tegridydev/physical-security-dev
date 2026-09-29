@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Physical security system architecture · Security Technician Wiki</title>
+<meta name="description" content="Map the devices, services and people involved in each workflow. Record which components observe events, make decisions and control equipment.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/physical-security-system-architecture/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Physical security system architecture · Security Technician Wiki">
+<meta property="og:description" content="Map the devices, services and people involved in each workflow. Record which components observe events, make decisions and control equipment.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/physical-security-system-architecture/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="./" aria-current="page">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Physical security system architecture</span></nav><div class="page-kicker">Foundations <span>About 3 min read</span></div><div class="prose"><h1 id="s-physical-security-system-architecture">Physical security system architecture</h1>
+<p>Map the devices, services and people involved in each workflow. Record which components observe events, make decisions and control equipment.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Generic reference architecture; actual authority and safety boundaries are site specific.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-reference-topology">Reference topology</a></li><li class="toc-level-2"><a href="#s-four-planes">Four planes</a></li><li class="toc-level-2"><a href="#s-sources-of-authority">Sources of authority</a></li><li class="toc-level-2"><a href="#s-common-patterns">Common patterns</a></li><li class="toc-level-3"><a href="#s-on-premises-control-enterprise-observation">On premises control, enterprise observation</a></li><li class="toc-level-3"><a href="#s-cloud-managed-edge">Cloud managed edge</a></li><li class="toc-level-3"><a href="#s-cross-domain-broker">Cross domain broker</a></li><li class="toc-level-3"><a href="#s-federated-platforms">Federated platforms</a></li><li class="toc-level-2"><a href="#s-availability-and-safety">Availability and safety</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A useful architecture separates <strong>field effects</strong>, <strong>control decisions</strong>, <strong>observation/data</strong>, and <strong>administration</strong>. Products may combine those planes, but the security review shouldn't.</p>
+<h2 id="s-reference-topology">Reference topology<a class="heading-link" href="#s-reference-topology" aria-label="Link to Reference topology">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">People / vehicles / environment
+            |
+Field devices and circuits
+  cameras | readers | locks | sensors | intercoms | relays
+            |
+Controllers and edge compute
+  access panels | NVR/edge storage | alarm panels | PLC/BAS controllers
+            |
+Site platforms and gateways
+  VMS | PACS | receiver | intercom server | protocol gateway | broker
+            |
+Enterprise and cloud services
+  identity | SIEM | PSIM | analytics | case management | VSaaS | BMS/SCADA
+            |
+Operators, maintainers, APIs, and automation
+</code></pre></div>
+<p>Every vertical line may contain multiple networks, suppliers, credentials, protocols, and administrative owners. A cloud connection initiated from a device still crosses a trust boundary even when no inbound port is exposed.</p>
+<h2 id="s-four-planes">Four planes<a class="heading-link" href="#s-four-planes" aria-label="Link to Four planes">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Plane</th>
+  <th>Examples</th>
+  <th>Design concern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Physical/control</td>
+  <td>lock output, alarm inhibit, PTZ, relay, credential update</td>
+  <td>Safety, least authority, confirmation, manual override</td>
+</tr>
+<tr>
+  <td>Observation/data</td>
+  <td>video, door state, alarms, health, audit</td>
+  <td>Provenance, time, privacy, loss and duplication</td>
+</tr>
+<tr>
+  <td>Management</td>
+  <td>configuration, firmware, users, certificates, time sources</td>
+  <td>Strong identity, separate roles, change control, recovery</td>
+</tr>
+<tr>
+  <td>Discovery/bootstrap</td>
+  <td>DHCP, DNS, WS Discovery, mDNS, enrollment</td>
+  <td>Initial trust, spoofing, unintended exposure, secure defaults</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't give an integration management authority merely because it needs observations. Use distinct accounts, endpoints, ACLs, certificates, and network paths where the product permits.</p>
+<h2 id="s-sources-of-authority">Sources of authority<a class="heading-link" href="#s-sources-of-authority" aria-label="Link to Sources of authority">#</a></h2>
+<p>For each entity or property, name the authoritative writer:</p>
+<ul>
+<li>identity source governs a person's lifecycle attributes;</li>
+<li>PACS governs access rights and access decisions;</li>
+<li>access controller governs local door logic and cached decisions;</li>
+<li>door contact reports a sensed position, not the lock state;</li>
+<li>VMS governs recording policy and logical camera mapping;</li>
+<li>camera or trusted time service may originate capture time;</li>
+<li>the approved monitoring procedure governs alarm response.</li>
+</ul>
+<p>Two sources can both be valid but represent different things. “Door unlocked,” “lock relay energised,” “request to exit active,” and “door open” must not collapse into a single Boolean.</p>
+<h2 id="s-common-patterns">Common patterns<a class="heading-link" href="#s-common-patterns" aria-label="Link to Common patterns">#</a></h2>
+<h3 id="s-on-premises-control-enterprise-observation">On premises control, enterprise observation<a class="heading-link" href="#s-on-premises-control-enterprise-observation" aria-label="Link to On premises control, enterprise observation">#</a></h3>
+<p>Controllers continue local operation during upstream loss; gateways export events northbound. This can limit blast radius, but requires replay/catch up, sequence tracking, local storage bounds, and health signalling.</p>
+<h3 id="s-cloud-managed-edge">Cloud managed edge<a class="heading-link" href="#s-cloud-managed-edge" aria-label="Link to Cloud managed edge">#</a></h3>
+<p>Devices initiate authenticated outbound sessions for configuration, events, and media. Review tenant isolation, device enrolment, token/certificate rotation, offline behaviour, regional storage, support access, and cloud dependency.</p>
+<h3 id="s-cross-domain-broker">Cross domain broker<a class="heading-link" href="#s-cross-domain-broker" aria-label="Link to Cross domain broker">#</a></h3>
+<p>A gateway normalises events from VMS/PACS/alarm/BMS into a shared bus. Treat it as a high value policy enforcement point. It shouldn't automatically create a reverse command route; use separate topics/interfaces and authorisation.</p>
+<h3 id="s-federated-platforms">Federated platforms<a class="heading-link" href="#s-federated-platforms" aria-label="Link to Federated platforms">#</a></h3>
+<p>Multiple sites or products retain local authority while a central platform offers a unified view. Stable global identifiers, site scoping, version compatibility, clock quality, and partial failure visibility are essential.</p>
+<h2 id="s-availability-and-safety">Availability and safety<a class="heading-link" href="#s-availability-and-safety" aria-label="Link to Availability and safety">#</a></h2>
+<p>Define what continues when DNS, identity, cloud, WAN, broker, database, time, or certificates fail. Local emergency and life safety behaviour must not depend on a convenience integration unless the complete system has been engineered and approved for that dependency.</p>
+<p>NIST <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">SP 800-82 Rev. 3</a> includes physical access control and building automation in operational technology and frames controls around performance, reliability, and safety. Use that lens for any path capable of physical effect.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../observability-and-evidence/"><span>Previous in this section</span>Observability and evidence</a><a href="../reliability-and-failure-semantics/"><span>Next in this section</span>Reliability and failure semantics</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/physical-security-system-architecture.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/physical-security-system-architecture.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-reference-topology">Reference topology</a></li><li class="toc-level-2"><a href="#s-four-planes">Four planes</a></li><li class="toc-level-2"><a href="#s-sources-of-authority">Sources of authority</a></li><li class="toc-level-2"><a href="#s-common-patterns">Common patterns</a></li><li class="toc-level-3"><a href="#s-on-premises-control-enterprise-observation">On premises control, enterprise observation</a></li><li class="toc-level-3"><a href="#s-cloud-managed-edge">Cloud managed edge</a></li><li class="toc-level-3"><a href="#s-cross-domain-broker">Cross domain broker</a></li><li class="toc-level-3"><a href="#s-federated-platforms">Federated platforms</a></li><li class="toc-level-2"><a href="#s-availability-and-safety">Availability and safety</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

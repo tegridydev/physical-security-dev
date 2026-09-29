@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>SIEM, SOAR, and case management · Security Technician Wiki</title>
+<meta name="description" content="SIEM, SOAR and case management systems collect and process security information. Assign ownership for telemetry, investigation records and any automated physical actions.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/integration-platforms/siem-soar-and-case-management/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SIEM, SOAR, and case management · Security Technician Wiki">
+<meta property="og:description" content="SIEM, SOAR and case management systems collect and process security information. Assign ownership for telemetry, investigation records and any automated physical actions.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/integration-platforms/siem-soar-and-case-management/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group" open><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="./" aria-current="page">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Integration platforms</a><span aria-hidden="true">/</span><span aria-current="page">SIEM, SOAR, and case management</span></nav><div class="page-kicker">Systems <span>About 7 min read</span></div><div class="prose"><h1 id="s-siem-soar-and-case-management">SIEM, SOAR, and case management</h1>
+<p>SIEM, SOAR and case management systems collect and process security information. Assign ownership for telemetry, investigation records and any automated physical actions.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Defensive architecture and data governance only; no production query, response playbook, credential, live containment, physical actuation, or vendor specific connector claim.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-evidence-flow">Evidence flow</a></li><li class="toc-level-2"><a href="#s-source-types-and-limits">Source types and limits</a></li><li class="toc-level-2"><a href="#s-formats-transports-and-schemas-are-different-layers">Formats, transports, and schemas are different layers</a></li><li class="toc-level-3"><a href="#s-native-syslog-http-and-otlp-ingestion">Native, syslog, HTTP, and OTLP ingestion</a></li><li class="toc-level-3"><a href="#s-cef-and-leef">CEF and LEEF</a></li><li class="toc-level-3"><a href="#s-ocsf-and-ecs">OCSF and ECS</a></li><li class="toc-level-3"><a href="#s-stixtaxii-and-cloudevents">STIX/TAXII and CloudEvents</a></li><li class="toc-level-2"><a href="#s-normalisation">Normalisation</a></li><li class="toc-level-2"><a href="#s-correlation-and-cases">Correlation and cases</a></li><li class="toc-level-2"><a href="#s-soar-boundary">SOAR boundary</a></li><li class="toc-level-2"><a href="#s-log-protection-and-operations">Log protection and operations</a></li><li class="toc-level-2"><a href="#s-source-baseline-and-status-limitation">Source baseline and status limitation</a></li><li class="toc-level-2"><a href="#s-primary-format-and-protocol-sources">Primary format and protocol sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Security information and event management systems collect and correlate telemetry. Security orchestration, automation, and response platforms coordinate workflows and actions. Case systems record investigation. None becomes the authoritative source of physical state merely by ingesting an event.</p>
+<h2 id="s-evidence-flow">Evidence flow<a class="heading-link" href="#s-evidence-flow" aria-label="Link to Evidence flow">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">source-native audit/event/state
+ -&gt; authenticated collection and buffering
+ -&gt; immutable raw record/reference
+ -&gt; parser and normalized record
+ -&gt; enrichment and correlation
+ -&gt; alert
+ -&gt; case and analyst decisions
+ -&gt; separately governed response request
+ -&gt; target-native outcome and audit
+</code></pre></div>
+<p>Maintain stable source identity, native event ID/sequence, raw timestamp and clock basis, collection timestamp, raw record or durable reference, parser/version, normalised fields, enrichments and their sources, rule/version, alert/case IDs, actor, and action result.</p>
+<h2 id="s-source-types-and-limits">Source types and limits<a class="heading-link" href="#s-source-types-and-limits" aria-label="Link to Source types and limits">#</a></h2>
+<p>Useful sources include device authentication/administration, PACS grant/deny and door telemetry, alarm events and receiver delivery, VMS viewing/export/configuration, intercom calls, ANPR reads, gate/controller telemetry, cloud tenant administration, network/security infrastructure, and integration adapter logs.</p>
+<p>Availability varies. Some products expose event journals but not administrative reads; others send state changes without durable sequence or retain only short local history. Document what is absent. A connector marked healthy doesn't prove every event type is enabled, ordered, delivered, parsed correctly, or retained.</p>
+<h2 id="s-formats-transports-and-schemas-are-different-layers">Formats, transports, and schemas are different layers<a class="heading-link" href="#s-formats-transports-and-schemas-are-different-layers" aria-label="Link to Formats, transports, and schemas are different layers">#</a></h2>
+<p>The following technologies solve different problems and shouldn't be listed as interchangeable “SIEM formats.” Pin exact versions and product profiles.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>Examples</th>
+  <th>What it provides</th>
+  <th>Important limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Source native interface</td>
+  <td>Product audit/event API, export file, database view, proprietary stream</td>
+  <td>Closest available source semantics and identifiers</td>
+  <td>Version, completeness, ordering, retention, and support commitments vary</td>
+</tr>
+<tr>
+  <td>General transport/framing</td>
+  <td>Syslog, HTTPS API/webhook, file/object delivery, OTLP</td>
+  <td>Moves or frames records</td>
+  <td>Does not define physical security event meaning or target schema</td>
+</tr>
+<tr>
+  <td>Vendor event representation</td>
+  <td>Common Event Format (CEF), Log Event Extended Format (LEEF)</td>
+  <td>Delimited header/extension convention for supported SIEM ecosystems</td>
+  <td>Escaping, extension keys, typing, version, and receiver limits are profile specific</td>
+</tr>
+<tr>
+  <td>Normalized security schema</td>
+  <td>Open Cybersecurity Schema Framework (OCSF), Elastic Common Schema (ECS)</td>
+  <td>Shared field/class vocabulary for analytics and search</td>
+  <td>Mapping can lose native semantics; neither is a transport or proof of truth</td>
+</tr>
+<tr>
+  <td>Threat intelligence exchange</td>
+  <td>STIX 2.1 with TAXII 2.1</td>
+  <td>Structured cyber threat knowledge and its exchange API</td>
+  <td>Not a general replacement for device telemetry, audit, alarms, or case evidence</td>
+</tr>
+<tr>
+  <td>Event context envelope</td>
+  <td>CloudEvents</td>
+  <td>Portable event identity/source/type/time/content context with bindings</td>
+  <td>Does not define the domain payload, delivery guarantee, or source authorisation</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="s-native-syslog-http-and-otlp-ingestion">Native, syslog, HTTP, and OTLP ingestion<a class="heading-link" href="#s-native-syslog-http-and-otlp-ingestion" aria-label="Link to Native, syslog, HTTP, and OTLP ingestion">#</a></h3>
+<ul>
+<li>Preserve the original product event code, source identity, sequence, timestamps, and raw record or integrity protected reference before normalisation.</li>
+<li>For syslog, identify RFC 5424 versus legacy/product syntax, transport/framing, structured data profile, maximum length, truncation, timestamp, sender authentication, and relay path. A UDP datagram isn't reliable delivery evidence. <a href="https://www.rfc-editor.org/info/rfc5424/" rel="noopener noreferrer">SYSLOG</a></li>
+<li>For HTTP APIs/webhooks, define pagination/cursor, replay window, webhook authentication, request body limits, conditional/rate behaviour, and the meaning of <code>2xx</code>; acceptance isn't durable indexing.</li>
+<li>OTLP 1.11 is an observability export protocol, not a physical security event schema. Pin logs/data model conventions, resource and scope attributes, transport, authentication, partial success handling, and collector transforms. <a href="https://opentelemetry.io/docs/specs/otlp/" rel="noopener noreferrer">OTLP</a></li>
+<li>For files and object delivery, define atomic publication, manifest/integrity, compression and archive bounds, encryption, duplicate/import state, and secure retention.</li>
+</ul>
+<h3 id="s-cef-and-leef">CEF and LEEF<a class="heading-link" href="#s-cef-and-leef" aria-label="Link to CEF and LEEF">#</a></h3>
+<p>CEF and LEEF are vendor defined representations commonly accepted by security analytics products. They can be useful adapter targets, but a product saying “CEF” or “LEEF” is incomplete without a profile.</p>
+<p>Document delimiter and escaping rules, encoding, header version, required fields, timestamp/timezone, typed versus textual values, extension key dictionary, maximum event/field length, multiline/control character handling, transport/framing, and product specific custom fields. Test values containing delimiters, backslashes, equals signs, Unicode, newlines, and maximum lengths in the owning environment.</p>
+<p>Don't reuse standard keys with a different meaning merely to make a dashboard populate. Namespace custom extensions and retain the source native field/code for reverse interpretation.</p>
+<h3 id="s-ocsf-and-ecs">OCSF and ECS<a class="heading-link" href="#s-ocsf-and-ecs" aria-label="Link to OCSF and ECS">#</a></h3>
+<p><a href="https://schema.ocsf.io/" rel="noopener noreferrer">OCSF</a> and <a href="https://www.elastic.co/guide/en/ecs/current/index.html" rel="noopener noreferrer">ECS</a> provide normalisation vocabularies. Select a pinned schema version and mapping version; record both on every transformed record.</p>
+<ul>
+<li>Map an event only to a class/category whose semantics match.</li>
+<li>Preserve native severity separately from normalised severity and operational/alarm priority.</li>
+<li>Keep person, credential, device, source workload, target resource, site/location, and tenant identities distinct.</li>
+<li>Define absent/null/unknown, arrays, units, timestamps, outcome, confidence, and extension namespaces.</li>
+<li>Maintain round trip mapping evidence or a loss table; not every native fact has a normalised equivalent.</li>
+<li>Reprocess historical data only under an explicit migration and evidential policy, the same native record can map differently after a schema update.</li>
+</ul>
+<p>OCSF and ECS can coexist in one estate when different destinations require them. Avoid a chain of lossy mappings such as native → CEF → ECS → OCSF when a direct mapping from protected native input is possible.</p>
+<h3 id="s-stixtaxii-and-cloudevents">STIX/TAXII and CloudEvents<a class="heading-link" href="#s-stixtaxii-and-cloudevents" aria-label="Link to STIX/TAXII and CloudEvents">#</a></h3>
+<p>STIX 2.1 represents cyber threat intelligence objects/relationships; TAXII 2.1 defines an application layer protocol for exchanging that content. <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html" rel="noopener noreferrer">STIX</a> <a href="https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html" rel="noopener noreferrer">TAXII</a> Use them for threat knowledge, indicators, observed data context, and sharing workflows, not as a generic envelope for every access, alarm, camera, or door state event.</p>
+<p>CloudEvents can wrap event context across supported bindings, but its <code>source</code>, <code>id</code>, and <code>type</code> must be profiled and authorised. A valid CloudEvent carrying STIX or a normalised event still needs domain validation, privacy policy, resource limits, and mapping provenance. <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" rel="noopener noreferrer">CLOUDEVENTS</a></p>
+<span class="heading-alias" id="s-normalization" aria-hidden="true"></span><h2 id="s-normalisation">Normalisation<a class="heading-link" href="#s-normalisation" aria-label="Link to Normalisation">#</a></h2>
+<p>Use a common envelope without destroying native meaning:</p>
+<ul>
+<li>source system, device/controller/site/tenant, event class and native code;</li>
+<li>subject/credential/object only where authorised and necessary;</li>
+<li>target resource/location, source and receive time, sequence, severity, quality;</li>
+<li>outcome at the layer observed: requested, accepted, denied, failed, restored, or unknown;</li>
+<li>privacy/sensitivity class and retention class;</li>
+<li>raw record reference, mapping/parser version, and confidence for derived data.</li>
+</ul>
+<p>Don't translate <code>door contact open</code> into <code>forced entry</code> without the required controller context, or <code>receiver acknowledged</code> into <code>operator responded</code>. Preserve alarm, restore, acknowledgement, case closure, and physical outcome separately.</p>
+<p>Keep a machine readable mapping record with source product/schema/version, parser version, destination schema/version, rule set hash/version, field level transformations, dropped/derived fields, test fixture version, approval, and effective date. Parser success isn't semantic correctness.</p>
+<h2 id="s-correlation-and-cases">Correlation and cases<a class="heading-link" href="#s-correlation-and-cases" aria-label="Link to Correlation and cases">#</a></h2>
+<p>Rules should state purpose, sources, time window and clock tolerance, missing data behaviour, suppressions, threshold, owner, version, test evidence, and review date. Keep contributing and contradictory records so an analyst can explain an alert.</p>
+<p>A case is a working record, not a rewrite of source evidence. Record allegations/observations separately from findings; preserve analyst actions, evidence access/export, decision rationale, handovers, retention holds, and closure/reopen events. Restrict sensitive video, biometrics, plate, access, and employee/visitor data by case purpose and role.</p>
+<h2 id="s-soar-boundary">SOAR boundary<a class="heading-link" href="#s-soar-boundary" aria-label="Link to SOAR boundary">#</a></h2>
+<p>Cyber actions such as disabling an account or isolating a host can still cause operational harm. Physical actions, unlocking, locking down, gate cycling, lift control, alarm bypass/reset, camera movement, relay control, or emergency notification, are high impact and must not be driven by a generic playbook.</p>
+<p>Where an action is approved, use a semantic, tightly scoped target request with fresh authorisation, prerequisites, reason, confirmation, idempotency, timeout, human approval where appropriate, rollback/recovery, and target native outcome. Command dispatch isn't physical completion.</p>
+<p>Prefer recommended actions and evidence collection when authority or safety is uncertain. A failed or partially completed playbook must stop visibly and preserve which steps did or did not occur.</p>
+<h2 id="s-log-protection-and-operations">Log protection and operations<a class="heading-link" href="#s-log-protection-and-operations" aria-label="Link to Log protection and operations">#</a></h2>
+<ul>
+<li>Authenticate sources/collectors and protect transport where the system supports it.</li>
+<li>Buffer deliberately; monitor queue age, drops, parser errors, schema drift, and source silence.</li>
+<li>Apply least privilege to collection, search, bulk export, rule change, case access, and response.</li>
+<li>Protect integrity through access control, append oriented handling, replication/backups, and independently retained administration/audit evidence.</li>
+<li>Synchronize time while retaining source and receive clocks and known uncertainty.</li>
+<li>Define retention by operational, security, privacy, legal, and evidential need; don't retain everything indefinitely.</li>
+<li>Test restoration and the ability to reconstruct mapping, rule, case, and audit context.</li>
+<li>Monitor source silence, expected versus received counts where available, sequence gaps, truncation, parser rejection, unmapped values, mapping drift, collector partial success, and destination indexing delay.</li>
+</ul>
+<h2 id="s-source-baseline-and-status-limitation">Source baseline and status limitation<a class="heading-link" href="#s-source-baseline-and-status-limitation" aria-label="Link to Source baseline and status limitation">#</a></h2>
+<p>NIST <a href="https://csrc.nist.gov/pubs/sp/800/92/final" rel="noopener noreferrer">SP 800-92</a> remains the final published <em>Guide to Computer Security Log Management</em>. NIST has also published <a href="https://csrc.nist.gov/pubs/sp/800/92/r1/ipd" rel="noopener noreferrer">SP 800-92 Rev. 1 as an Initial Public Draft</a>; as of 25 August 2026 it isn't treated here as a final standard. Recheck that status at the scheduled review.</p>
+<p>See <a href="../">Integration platforms</a> and <a href="../psim-and-command-platforms/">PSIM and command platforms</a>.</p>
+<h2 id="s-primary-format-and-protocol-sources">Primary format and protocol sources<a class="heading-link" href="#s-primary-format-and-protocol-sources" aria-label="Link to Primary format and protocol sources">#</a></h2>
+<ul>
+<li><strong>SYSLOG</strong>, <a href="https://www.rfc-editor.org/info/rfc5424/" rel="noopener noreferrer">RFC 5424: The Syslog Protocol</a>, IETF.</li>
+<li><strong>OTLP</strong>, <a href="https://opentelemetry.io/docs/specs/otlp/" rel="noopener noreferrer">OpenTelemetry Protocol Specification 1.11</a>, OpenTelemetry project.</li>
+<li><strong>OCSF</strong>, <a href="https://schema.ocsf.io/" rel="noopener noreferrer">Open Cybersecurity Schema Framework schema browser</a>, OCSF project.</li>
+<li><strong>ECS</strong>, <a href="https://www.elastic.co/guide/en/ecs/current/index.html" rel="noopener noreferrer">Elastic Common Schema reference</a>, Elastic.</li>
+<li><strong>STIX</strong>, <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html" rel="noopener noreferrer">STIX Version 2.1 OASIS Standard</a>, OASIS.</li>
+<li><strong>TAXII</strong>, <a href="https://docs.oasis-open.org/cti/taxii/v2.1/os/taxii-v2.1-os.html" rel="noopener noreferrer">TAXII Version 2.1 OASIS Standard</a>, OASIS.</li>
+<li><strong>CLOUDEVENTS</strong>, <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" rel="noopener noreferrer">CloudEvents Specification 1.0.2</a>, Cloud Native Computing Foundation.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../psim-and-command-platforms/"><span>Previous in this section</span>PSIM and command platforms</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/integration-platforms/siem-soar-and-case-management.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/integration-platforms/siem-soar-and-case-management.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-evidence-flow">Evidence flow</a></li><li class="toc-level-2"><a href="#s-source-types-and-limits">Source types and limits</a></li><li class="toc-level-2"><a href="#s-formats-transports-and-schemas-are-different-layers">Formats, transports, and schemas are different layers</a></li><li class="toc-level-3"><a href="#s-native-syslog-http-and-otlp-ingestion">Native, syslog, HTTP, and OTLP ingestion</a></li><li class="toc-level-3"><a href="#s-cef-and-leef">CEF and LEEF</a></li><li class="toc-level-3"><a href="#s-ocsf-and-ecs">OCSF and ECS</a></li><li class="toc-level-3"><a href="#s-stixtaxii-and-cloudevents">STIX/TAXII and CloudEvents</a></li><li class="toc-level-2"><a href="#s-normalisation">Normalisation</a></li><li class="toc-level-2"><a href="#s-correlation-and-cases">Correlation and cases</a></li><li class="toc-level-2"><a href="#s-soar-boundary">SOAR boundary</a></li><li class="toc-level-2"><a href="#s-log-protection-and-operations">Log protection and operations</a></li><li class="toc-level-2"><a href="#s-source-baseline-and-status-limitation">Source baseline and status limitation</a></li><li class="toc-level-2"><a href="#s-primary-format-and-protocol-sources">Primary format and protocol sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

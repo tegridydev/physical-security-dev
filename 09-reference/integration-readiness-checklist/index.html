@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Integration readiness checklist · Security Technician Wiki</title>
+<meta name="description" content="Review the supported interface, permissions, failure handling and recovery before accepting an integration. Record the test results and unresolved requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/integration-readiness-checklist/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Integration readiness checklist · Security Technician Wiki">
+<meta property="og:description" content="Review the supported interface, permissions, failure handling and recovery before accepting an integration. Record the test results and unresolved requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/integration-readiness-checklist/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="./" aria-current="page">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Integration readiness checklist</span></nav><div class="page-kicker">Reference <span>About 7 min read</span></div><div class="prose"><h1 id="s-integration-readiness-checklist">Integration readiness checklist</h1>
+<p>Review the supported interface, permissions, failure handling and recovery before accepting an integration. Record the test results and unresolved requirements.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Process and evidence gates only; it does not approve a product, architecture, production change, safety case, electrical design, legal position, or environment acceptance result.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-readiness-record">Readiness record</a></li><li class="toc-level-2"><a href="#s-evidence-strength">Evidence strength</a></li><li class="toc-level-2"><a href="#s-gate-0-authority-consequence-and-scope">Gate 0, authority, consequence, and scope</a></li><li class="toc-level-2"><a href="#s-gate-1-exact-systems-roles-and-topology">Gate 1, exact systems, roles, and topology</a></li><li class="toc-level-2"><a href="#s-gate-2-standards-products-and-capability-evidence">Gate 2, standards, products, and capability evidence</a></li><li class="toc-level-2"><a href="#s-gate-3-data-and-semantic-contract">Gate 3, data and semantic contract</a></li><li class="toc-level-2"><a href="#s-gate-4-security-and-privacy">Gate 4, security and privacy</a></li><li class="toc-level-2"><a href="#s-gate-5-reliability-and-failure-semantics">Gate 5, reliability and failure semantics</a></li><li class="toc-level-2"><a href="#s-gate-6-capacity-and-physical-infrastructure">Gate 6, capacity and physical infrastructure</a></li><li class="toc-level-2"><a href="#s-gate-7-implementation-and-static-review">Gate 7, implementation and static review</a></li><li class="toc-level-2"><a href="#s-gate-8-isolated-environment-validation-plan">Gate 8, isolated environment validation plan</a></li><li class="toc-level-2"><a href="#s-gate-9-operations-and-lifecycle">Gate 9, operations and lifecycle</a></li><li class="toc-level-2"><a href="#s-final-acceptance-record">Final acceptance record</a></li><li class="toc-level-2"><a href="#s-related-governance">Related governance</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Use this checklist at design review, before an isolated evaluation, before production change, and at acceptance. A checked box needs an evidence reference and named owner; the checklist alone isn't acceptance evidence.</p>
+<h2 id="s-readiness-record">Readiness record<a class="heading-link" href="#s-readiness-record" aria-label="Link to Readiness record">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">integration ID:
+decision/change ID:
+business and security owner:
+system/data owners:
+implementer and independent reviewer:
+environments in scope:
+target products and exact firmware/software:
+protocol/API editions and roles:
+observation-only or actuation-capable:
+safety classification:
+evidence folder/register:
+planned validation window and owner:
+production approval authority:
+rollback owner and stop authority:
+</code></pre></div>
+<h2 id="s-evidence-strength">Evidence strength<a class="heading-link" href="#s-evidence-strength" aria-label="Link to Evidence strength">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Label</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>D</code></td>
+  <td>Design assumption or proposed requirement, not verified</td>
+</tr>
+<tr>
+  <td><code>S</code></td>
+  <td>Official standard/profile evidence for exact edition</td>
+</tr>
+<tr>
+  <td><code>P</code></td>
+  <td>Official product/API documentation for exact product/version</td>
+</tr>
+<tr>
+  <td><code>C</code></td>
+  <td>Approved configuration/inventory evidence</td>
+</tr>
+<tr>
+  <td><code>E</code></td>
+  <td>Environment observation with date, owner, versions, configuration, input, result, and artifacts</td>
+</tr>
+<tr>
+  <td><code>A</code></td>
+  <td>Named owner/authority acceptance of stated evidence and residual risk</td>
+</tr>
+</tbody>
+</table></div>
+<p>Most production gates need several evidence types. A product claim (<code>P</code>) doesn't substitute for site configuration (<code>C</code>) or environment evidence (<code>E</code>); environment validation can't rewrite normative semantics (<code>S</code>). Apply the evidence rules in the <a href="../../10-sources-and-maintenance/verification-policy/">verification policy</a>.</p>
+<span class="heading-alias" id="s-gate-0--authority-consequence-and-scope" aria-hidden="true"></span><h2 id="s-gate-0-authority-consequence-and-scope">Gate 0, authority, consequence, and scope<a class="heading-link" href="#s-gate-0-authority-consequence-and-scope" aria-label="Link to Gate 0, authority, consequence, and scope">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Integration purpose, owner, users, assets, sites, tenants, and out of scope systems named">Integration purpose, owner, users, assets, sites, tenants, and out of scope systems named</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Read, subscribe, create, update, delete, configure, administer, and actuate capabilities separated">Read, subscribe, create, update, delete, configure, administer, and actuate capabilities separated</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Observation and actuation classified using the safety impact checklist">Observation and actuation classified using the <a href="../safety-impact-checklist/">safety impact checklist</a></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Doors/locks, gates, lifts, relays, alarms, fire/emergency, dispatch, audio, PTZ, power cycle, and firmware effects identified">Doors/locks, gates, lifts, relays, alarms, fire/emergency, dispatch, audio, PTZ, power cycle, and firmware effects identified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Privacy/sensitive data includes video, audio, location, access history, credentials, biometrics, device identifiers, and topology">Privacy/sensitive data includes video, audio, location, access history, credentials, biometrics, device identifiers, and topology</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Applicable organizational policy, contract, regulator, jurisdiction, labor/privacy, retention, accessibility, and AHJ review assigned to qualified owners">Applicable organizational policy, contract, regulator, jurisdiction, labor/privacy, retention, accessibility, and AHJ review assigned to qualified owners</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Written authority exists for every environment, account, device, network, dataset, and validation activity">Written authority exists for every environment, account, device, network, dataset, and validation activity</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Explicit stop conditions, emergency contact, maintenance window, rollback, and decision authority recorded">Explicit stop conditions, emergency contact, maintenance window, rollback, and decision authority recorded</li>
+</ul>
+<p><strong>Stop:</strong> no technical readiness claim is possible while ownership, legal authority, safety consequence, or environment scope is unknown.</p>
+<span class="heading-alias" id="s-gate-1--exact-systems-roles-and-topology" aria-hidden="true"></span><h2 id="s-gate-1-exact-systems-roles-and-topology">Gate 1, exact systems, roles, and topology<a class="heading-link" href="#s-gate-1-exact-systems-roles-and-topology" aria-label="Link to Gate 1, exact systems, roles, and topology">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Source of authority identified for identity, configuration, current state, event history, command completion, and evidence">Source of authority identified for identity, configuration, current state, event history, command completion, and evidence</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Products, licenses, firmware/software, modules, cloud region/tenant, and support lifecycle inventoried">Products, licenses, firmware/software, modules, cloud region/tenant, and support lifecycle inventoried</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Client/server, producer/consumer, controller/peripheral, publisher/subscriber, proxy/gateway, and admin roles explicit">Client/server, producer/consumer, controller/peripheral, publisher/subscriber, proxy/gateway, and admin roles explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Trust boundaries and every decrypt/re encrypt, protocol translation, queue, cache, database, and export boundary diagrammed">Trust boundaries and every decrypt/re encrypt, protocol translation, queue, cache, database, and export boundary diagrammed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="IPv4/IPv6, VLAN/zone, routing, NAT, proxy, DNS, time, discovery/multicast, serial/radio, and management paths recorded">IPv4/IPv6, VLAN/zone, routing, NAT, proxy, DNS, time, discovery/multicast, serial/radio, and management paths recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Normal, degraded, offline, failover, recovery, and replacement topologies recorded">Normal, degraded, offline, failover, recovery, and replacement topologies recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Shared dependencies and failure domains include identity, PKI, DNS, time, broker, storage, cloud, license, update, and remote support">Shared dependencies and failure domains include identity, PKI, DNS, time, broker, storage, cloud, license, update, and remote support</li>
+</ul>
+<p>Use <a href="../../01-foundations/physical-security-system-architecture/">physical security system architecture</a>, <a href="../protocol-layer-and-role-matrix/">protocol layer and role matrix</a>, and <a href="../system-protocol-matrix/">system protocol matrix</a>.</p>
+<span class="heading-alias" id="s-gate-2--standards-products-and-capability-evidence" aria-hidden="true"></span><h2 id="s-gate-2-standards-products-and-capability-evidence">Gate 2, standards, products, and capability evidence<a class="heading-link" href="#s-gate-2-standards-products-and-capability-evidence" aria-label="Link to Gate 2, standards, products, and capability evidence">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact standard/specification title, edition/date, amendments, errata, namespace, and lifecycle status pinned">Exact standard/specification title, edition/date, amendments, errata, namespace, and lifecycle status pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Profile/addon/companion specification and required versus conditional features mapped">Profile/addon/companion specification and required versus conditional features mapped</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Official product documentation and conformance/certification listing match exact model, firmware, role, feature, and region">Official product documentation and conformance/certification listing match exact model, firmware, role, feature, and region</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="API base/version, schema/WSDL/proto/MIB, SDK/runtime support window, and deprecation policy pinned">API base/version, schema/WSDL/proto/MIB, SDK/runtime support window, and deprecation policy pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Capability discovery treated as an untrusted product claim until reconciled with configuration and official evidence">Capability discovery treated as an untrusted product claim until reconciled with configuration and official evidence</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Defaults, optional modes, fallback, proprietary extensions, undocumented behaviour, and license dependencies recorded">Defaults, optional modes, fallback, proprietary extensions, undocumented behaviour, and license dependencies recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Standards/profile changes monitored through the status register">Standards/profile changes monitored through the <a href="../standards-and-profile-status/">status register</a></li>
+</ul>
+<p><strong>Stop:</strong> “supports ONVIF/OSDP/REST/MQTT/BACnet/SDK” without version, role, security mode, and exact product evidence isn't an integration contract.</p>
+<span class="heading-alias" id="s-gate-3--data-and-semantic-contract" aria-hidden="true"></span><h2 id="s-gate-3-data-and-semantic-contract">Gate 3, data and semantic contract<a class="heading-link" href="#s-gate-3-data-and-semantic-contract" aria-label="Link to Gate 3, data and semantic contract">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Resource identities and namespaces stable; display names, addresses, tokens, UIDs, and business IDs not collapsed">Resource identities and namespaces stable; display names, addresses, tokens, UIDs, and business IDs not collapsed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Field types, units, scale, precision, enum/code tables, null/unknown, default, limits, character encoding, and time semantics defined">Field types, units, scale, precision, enum/code tables, null/unknown, default, limits, character encoding, and time semantics defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Source payload retained or referenced safely enough to diagnose mapping changes">Source payload retained or referenced safely enough to diagnose mapping changes</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Event, current state, command, acknowledgement, acceptance, completion, and alarm/operator lifecycle are separate records">Event, current state, command, acknowledgement, acceptance, completion, and alarm/operator lifecycle are separate records</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Source occurrence, device observation, receive, ingest, normalisation, persistence, and operator times preserved with clock quality">Source occurrence, device observation, receive, ingest, normalisation, persistence, and operator times preserved with clock quality</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Duplicate, ordering, sequence reset, restart, replay, gap, reconciliation, and stale state behaviour defined">Duplicate, ordering, sequence reset, restart, replay, gap, reconciliation, and stale state behaviour defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Schema/version compatibility, unknown fields/enums, migration, rollback, and consumer support window defined">Schema/version compatibility, unknown fields/enums, migration, rollback, and consumer support window defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Mapping is loss aware and uses the event normalisation field guide">Mapping is loss aware and uses the <a href="../event-normalization-field-guide/">event normalisation field guide</a></li>
+</ul>
+<span class="heading-alias" id="s-gate-4--security-and-privacy" aria-hidden="true"></span><h2 id="s-gate-4-security-and-privacy">Gate 4, security and privacy<a class="heading-link" href="#s-gate-4-security-and-privacy" aria-label="Link to Gate 4, security and privacy">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Threat model covers external, adjacent network, malicious/compromised authorised client, device replacement, supply chain, operator error, and dependency failure">Threat model covers external, adjacent network, malicious/compromised authorised client, device replacement, supply chain, operator error, and dependency failure</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Server/device/application/user/service/credential identities separated and bound to expected site/tenant/resource">Server/device/application/user/service/credential identities separated and bound to expected site/tenant/resource</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TLS/security profile, certificate/key validation, bootstrap, rotation, revocation, expiry, backup, recovery, and compromise response owned">TLS/security profile, certificate/key validation, bootstrap, rotation, revocation, expiry, backup, recovery, and compromise response owned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Least privilege applies per object/action/topic/stream/door/site; observation and actuation identities are separate">Least privilege applies per object/action/topic/stream/door/site; observation and actuation identities are separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Secrets never appear in examples, source, URLs, logs, exports, crash dumps, packet captures, or support bundles">Secrets never appear in examples, source, URLs, logs, exports, crash dumps, packet captures, or support bundles</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Input/message/decompressed body/XML depth/field/string/array/connection/rate/queue/export limits defined before allocation/use">Input/message/decompressed body/XML depth/field/string/array/connection/rate/queue/export limits defined before allocation/use</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="SSRF, redirect, callback registration, discovery URL, archive/path, injection, parser differential, and unsafe deserialization controls reviewed">SSRF, redirect, callback registration, discovery URL, archive/path, injection, parser differential, and unsafe deserialization controls reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Logs/audit protect integrity and privacy; correlation identifiers can&#x27;t impersonate trusted identity">Logs/audit protect integrity and privacy; correlation identifiers can't impersonate trusted identity</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Data minimisation, purpose, access, retention, export, deletion, subject/worker rights, and incident handling approved by qualified owners">Data minimisation, purpose, access, retention, export, deletion, subject/worker rights, and incident handling approved by qualified owners</li>
+</ul>
+<p>Use <a href="../protocol-security-comparison/">protocol security comparison</a> and <a href="../../06-security-and-assurance/">security and assurance</a>.</p>
+<span class="heading-alias" id="s-gate-5--reliability-and-failure-semantics" aria-hidden="true"></span><h2 id="s-gate-5-reliability-and-failure-semantics">Gate 5, reliability and failure semantics<a class="heading-link" href="#s-gate-5-reliability-and-failure-semantics" aria-label="Link to Gate 5, reliability and failure semantics">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Connect, handshake, header, body/idle, transaction, total, and shutdown deadlines defined with monotonic time">Connect, handshake, header, body/idle, transaction, total, and shutdown deadlines defined with monotonic time</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Retry matrix is operation specific; mutation unknown outcome and idempotency/deduplication are explicit">Retry matrix is operation specific; mutation unknown outcome and idempotency/deduplication are explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Backoff, jitter, retry budget, circuit breaking, load shedding, queue/disk bounds, and poison message policy defined">Backoff, jitter, retry budget, circuit breaking, load shedding, queue/disk bounds, and poison message policy defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Subscription/session lease, renewal, reconnect, resume/replay, checkpoint, and full reconciliation behaviour defined">Subscription/session lease, renewal, reconnect, resume/replay, checkpoint, and full reconciliation behaviour defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Backpressure propagates without silent loss or unsafe fail open; loss/gap counters are observable">Backpressure propagates without silent loss or unsafe fail open; loss/gap counters are observable</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Failover doesn&#x27;t duplicate actuation, reuse stale authorisation, split authority, or hide data gaps">Failover doesn't duplicate actuation, reuse stale authorisation, split authority, or hide data gaps</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Restart/restore/clock step/certificate expiry/dependency outage/partial connectivity behaviour modeled">Restart/restore/clock step/certificate expiry/dependency outage/partial connectivity behaviour modeled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Transport success never represented as physical completion; authoritative feedback and timeout/unknown states exist">Transport success never represented as physical completion; authoritative feedback and timeout/unknown states exist</li>
+</ul>
+<p>Use <a href="../../05-development-and-integration/patterns/retries-timeouts-and-idempotency/">retries, timeouts, and idempotency</a> and <a href="../../05-development-and-integration/patterns/reconnect-backpressure-and-queues/">reconnect, backpressure, and queues</a>.</p>
+<span class="heading-alias" id="s-gate-6--capacity-and-physical-infrastructure" aria-hidden="true"></span><h2 id="s-gate-6-capacity-and-physical-infrastructure">Gate 6, capacity and physical infrastructure<a class="heading-link" href="#s-gate-6-capacity-and-physical-infrastructure" aria-label="Link to Gate 6, capacity and physical infrastructure">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Normal, peak, burst, restart, failover, backlog, replay, export, and recovery workloads quantified">Normal, peak, burst, restart, failover, backlog, replay, export, and recovery workloads quantified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Connections, subscriptions, sessions, messages, bytes, packet rate, bandwidth, CPU/memory, queues, storage, and rate limits budgeted">Connections, subscriptions, sessions, messages, bytes, packet rate, bandwidth, CPU/memory, queues, storage, and rate limits budgeted</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Media model uses measured mean/peak and bandwidth/storage units">Media model uses measured mean/peak and <a href="../media-bandwidth-and-storage/">bandwidth/storage units</a></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Multicast/discovery scope, response count, IGMP/MLD, reflectors/proxies, and storm behaviour designed">Multicast/discovery scope, response count, IGMP/MLD, reflectors/proxies, and storm behaviour designed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Cabling, power, distance, temperature, grounding, surge, UPS, and degraded power reviewed under physical layer caveats">Cabling, power, distance, temperature, grounding, surge, UPS, and degraded power reviewed under <a href="../cabling-power-and-distance-caveats/">physical layer caveats</a></li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Service limits and quotas protect small embedded endpoints and shared tenants">Service limits and quotas protect small embedded endpoints and shared tenants</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Capacity acceptance includes fill level, failure/rebuild state, and operational headroom, not headline throughput">Capacity acceptance includes fill level, failure/rebuild state, and operational headroom, not headline throughput</li>
+</ul>
+<span class="heading-alias" id="s-gate-7--implementation-and-static-review" aria-hidden="true"></span><h2 id="s-gate-7-implementation-and-static-review">Gate 7, implementation and static review<a class="heading-link" href="#s-gate-7-implementation-and-static-review" aria-label="Link to Gate 7, implementation and static review">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Protocol parser is incremental/bounded and validates framing, length, type, integrity, state, and semantics in the correct order">Protocol parser is incremental/bounded and validates framing, length, type, integrity, state, and semantics in the correct order</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Safe integer conversion, endian/sign/overflow, Unicode, duplicate key/field, path/URI, and allocation behaviour reviewed">Safe integer conversion, endian/sign/overflow, Unicode, duplicate key/field, path/URI, and allocation behaviour reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Generated code/compiler/SDK/runtime versions pinned; dependency and artifact provenance recorded">Generated code/compiler/SDK/runtime versions pinned; dependency and artifact provenance recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Configuration schema, secrets injection, environment separation, safe defaults, and fail closed behaviour reviewed">Configuration schema, secrets injection, environment separation, safe defaults, and fail closed behaviour reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Read only and mutating clients are separate modules/credentials; examples can&#x27;t accidentally target production">Read only and mutating clients are separate modules/credentials; examples can't accidentally target production</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Logs/metrics/traces identify layer and failure without exposing sensitive content">Logs/metrics/traces identify layer and failure without exposing sensitive content</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Independent static review records assumptions, unresolved findings, and evidence references">Independent static review records assumptions, unresolved findings, and evidence references</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Any environment specific claim links to a scoped evidence record; see the code example index">Any environment specific claim links to a scoped evidence record; see the <a href="../code-example-index/">code example index</a></li>
+</ul>
+<span class="heading-alias" id="s-gate-8--isolated-environment-validation-plan" aria-hidden="true"></span><h2 id="s-gate-8-isolated-environment-validation-plan">Gate 8, isolated environment validation plan<a class="heading-link" href="#s-gate-8-isolated-environment-validation-plan" aria-label="Link to Gate 8, isolated environment validation plan">#</a></h2>
+<p>The responsible integration owner plans, authorises, supervises, and records environment validation using the <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">validation guidance</a>.</p>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Synthetic/non production accounts, identities, addresses, media, credentials, events, and endpoints only">Synthetic/non production accounts, identities, addresses, media, credentials, events, and endpoints only</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="No dispatch, emergency service, production notification, egress/lock, relay/load, fire/life safety, or live control path">No dispatch, emergency service, production notification, egress/lock, relay/load, fire/life safety, or live control path</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact test environment, versions, topology, configuration hash, time source, input, expected result, observed result, and artefacts recorded">Exact test environment, versions, topology, configuration hash, time source, input, expected result, observed result, and artefacts recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Positive, malformed, boundary, duplicate, replay, loss, reorder, timeout, restart, dependency outage, certificate rotation/expiry, and recovery cases planned">Positive, malformed, boundary, duplicate, replay, loss, reorder, timeout, restart, dependency outage, certificate rotation/expiry, and recovery cases planned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Interoperability covers each product/firmware/role pairing, not only a mock or SDK">Interoperability covers each product/firmware/role pairing, not only a mock or SDK</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Security negative tests include wrong identity/role/resource, expired/revoked trust, downgrade, oversized input, and rate/queue limits">Security negative tests include wrong identity/role/resource, expired/revoked trust, downgrade, oversized input, and rate/queue limits</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Safety observer, stop authority, isolation proof, and rollback/witness defined where any physical effect could exist">Safety observer, stop authority, isolation proof, and rollback/witness defined where any physical effect could exist</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Failed and ambiguous results preserved; no environment validation claim published without evidence">Failed and ambiguous results preserved; no environment validation claim published without evidence</li>
+</ul>
+<span class="heading-alias" id="s-gate-9--operations-and-lifecycle" aria-hidden="true"></span><h2 id="s-gate-9-operations-and-lifecycle">Gate 9, operations and lifecycle<a class="heading-link" href="#s-gate-9-operations-and-lifecycle" aria-label="Link to Gate 9, operations and lifecycle">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Named service owner, runbook, escalation, supplier/support path, and after hours responsibility">Named service owner, runbook, escalation, supplier/support path, and after hours responsibility</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Health model distinguishes network, transport, protocol, authentication, authorisation, data freshness, physical subsystem, and dependency health">Health model distinguishes network, transport, protocol, authentication, authorisation, data freshness, physical subsystem, and dependency health</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Alerts have owner, threshold, suppression/deduplication, diagnostic evidence, and safe response">Alerts have owner, threshold, suppression/deduplication, diagnostic evidence, and safe response</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Backup/restore includes configuration, keys/trust, schemas/mappings, queues/checkpoints, audit, and restore verification">Backup/restore includes configuration, keys/trust, schemas/mappings, queues/checkpoints, audit, and restore verification</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Certificate/key/token/account/credential rotation and emergency recovery rehearsed by owner">Certificate/key/token/account/credential rotation and emergency recovery rehearsed by owner</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Firmware/API/standard/dependency advisories, end of life, deprecation, and compatibility review scheduled">Firmware/API/standard/dependency advisories, end of life, deprecation, and compatibility review scheduled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Change/rollback/migration preserve old/new schema and credential overlap only for a bounded period">Change/rollback/migration preserve old/new schema and credential overlap only for a bounded period</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Decommission revokes trust/accounts/tokens, removes flows/discovery/DNS, sanitizes data, and retains required evidence">Decommission revokes trust/accounts/tokens, removes flows/discovery/DNS, sanitizes data, and retains required evidence</li>
+</ul>
+<p>Use <a href="../../07-operations-and-lifecycle/">operations and lifecycle</a> and the <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">contribution guide</a>.</p>
+<h2 id="s-final-acceptance-record">Final acceptance record<a class="heading-link" href="#s-final-acceptance-record" aria-label="Link to Final acceptance record">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Decision</th>
+  <th>Required entry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Accepted scope</td>
+  <td>Exact versions, sites, roles, actions, data classes, and exclusions</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td><code>S/P/C/E/A</code> references, dates, owner, immutable artifact/hash where used</td>
+</tr>
+<tr>
+  <td>Open limitations</td>
+  <td>Unassessed cases, vendor claims, scale/failure gaps, regional/legal unknowns</td>
+</tr>
+<tr>
+  <td>Residual risk</td>
+  <td>Consequence, likelihood rationale, compensating controls, accepting authority, expiry</td>
+</tr>
+<tr>
+  <td>Production guardrails</td>
+  <td>Least privilege, feature flags, rate limits, canary, monitoring, stop/rollback</td>
+</tr>
+<tr>
+  <td>Review triggers</td>
+  <td>Firmware/API/standard/security advisory, topology, key, policy, incident, owner change</td>
+</tr>
+<tr>
+  <td>Outcome</td>
+  <td><code>not ready</code>, <code>ready for isolated validation</code>, or <code>accepted by named authority for exact scope</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>This page never assigns an “accepted” outcome. That decision belongs to the authorised owners and qualified safety/legal/electrical authorities for the exact system.</p>
+<h2 id="s-related-governance">Related governance<a class="heading-link" href="#s-related-governance" aria-label="Link to Related governance">#</a></h2>
+<ul>
+<li><a href="../../10-sources-and-maintenance/authorized-and-safe-use/">Authorised and safe use</a></li>
+<li><a href="../../10-sources-and-maintenance/source-policy/">Source policy</a></li>
+<li><a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">Environment validation checklist</a></li>
+<li><a href="../../01-foundations/secure-integration-lifecycle/">Secure integration lifecycle</a></li>
+<li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../glossary/"><span>Previous in this section</span>Glossary</a><a href="../media-bandwidth-and-storage/"><span>Next in this section</span>Media bandwidth and storage</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/integration-readiness-checklist.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/integration-readiness-checklist.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-readiness-record">Readiness record</a></li><li class="toc-level-2"><a href="#s-evidence-strength">Evidence strength</a></li><li class="toc-level-2"><a href="#s-gate-0-authority-consequence-and-scope">Gate 0, authority, consequence, and scope</a></li><li class="toc-level-2"><a href="#s-gate-1-exact-systems-roles-and-topology">Gate 1, exact systems, roles, and topology</a></li><li class="toc-level-2"><a href="#s-gate-2-standards-products-and-capability-evidence">Gate 2, standards, products, and capability evidence</a></li><li class="toc-level-2"><a href="#s-gate-3-data-and-semantic-contract">Gate 3, data and semantic contract</a></li><li class="toc-level-2"><a href="#s-gate-4-security-and-privacy">Gate 4, security and privacy</a></li><li class="toc-level-2"><a href="#s-gate-5-reliability-and-failure-semantics">Gate 5, reliability and failure semantics</a></li><li class="toc-level-2"><a href="#s-gate-6-capacity-and-physical-infrastructure">Gate 6, capacity and physical infrastructure</a></li><li class="toc-level-2"><a href="#s-gate-7-implementation-and-static-review">Gate 7, implementation and static review</a></li><li class="toc-level-2"><a href="#s-gate-8-isolated-environment-validation-plan">Gate 8, isolated environment validation plan</a></li><li class="toc-level-2"><a href="#s-gate-9-operations-and-lifecycle">Gate 9, operations and lifecycle</a></li><li class="toc-level-2"><a href="#s-final-acceptance-record">Final acceptance record</a></li><li class="toc-level-2"><a href="#s-related-governance">Related governance</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

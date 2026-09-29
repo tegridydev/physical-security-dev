@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>ONVIF device information · Security Technician Wiki</title>
+<meta name="description" content="Send a read only GetDeviceInformation request to one ONVIF device service over HTTPS.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/onvif-soap-request/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ONVIF device information · Security Technician Wiki">
+<meta property="og:description" content="Send a read only GetDeviceInformation request to one ONVIF device service over HTTPS.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/onvif-soap-request/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="./" aria-current="page">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">ONVIF device information</span></nav><div class="page-kicker">Development <span>About 3 min read</span></div><div class="prose"><h1 id="s-onvif-device-information">ONVIF device information</h1>
+<p>Send a read only GetDeviceInformation request to one ONVIF device service over HTTPS.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">python examples/python/onvif_device_info.py --demo
+</code></pre></div>
+<p>The demo parses a synthetic SOAP 1.2 response and prints five device information fields.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Supply the exact service endpoint with <code>--url</code>. Use <code>--ca</code> for a private CA and <code>--username</code> for HTTP Digest authentication. The password is prompted, or read from <code>WIKI_ONVIF_PASSWORD</code>. It is not accepted as a command argument.</p>
+<p>The program validates the certificate, SOAP namespace, response operation and required fields. It rejects redirects, DTD declarations, entity declarations, duplicate fields and responses over 64 KiB. It accepts UTF8 XML only.</p>
+<p>This is one device service operation. It does not discover devices, stream video, move a camera, change configuration or implement ONVIF conformance testing. Devices that require SOAP UsernameToken or lack a suitable HTTPS endpoint need a different reviewed client. Do not disable TLS to make this example connect. Serial numbers may identify equipment; redact real results before sharing them.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/python/onvif_device_info.py">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy python example">Copy</button></div><pre tabindex="0" aria-label="python example"><code id="code-2">#!/usr/bin/env python3
+&quot;&quot;&quot;Read ONVIF GetDeviceInformation over HTTPS or parse a built in SOAP response.&quot;&quot;&quot;
+from __future__ import annotations
+import argparse
+import getpass
+import json
+import os
+import re
+import ssl
+import sys
+import urllib.error
+import urllib.request
+import xml.etree.ElementTree as ET
+from urllib.parse import urlsplit
+
+SOAP = &#x27;http://www.w3.org/2003/05/soap-envelope&#x27;
+DEVICE = &#x27;http://www.onvif.org/ver10/device/wsdl&#x27;
+ACTION = DEVICE + &#x27;/GetDeviceInformation&#x27;
+MAX_BYTES = 65_536
+REQUEST = (f&#x27;&lt;s:Envelope xmlns:s=&quot;{SOAP}&quot; xmlns:tds=&quot;{DEVICE}&quot;&gt;&#x27;
+           &#x27;&lt;s:Body&gt;&lt;tds:GetDeviceInformation/&gt;&lt;/s:Body&gt;&lt;/s:Envelope&gt;&#x27;).encode()
+DEMO = (f&#x27;&lt;s:Envelope xmlns:s=&quot;{SOAP}&quot; xmlns:tds=&quot;{DEVICE}&quot;&gt;&lt;s:Body&gt;&#x27;
+        &#x27;&lt;tds:GetDeviceInformationResponse&gt;&lt;tds:Manufacturer&gt;Example&lt;/tds:Manufacturer&gt;&#x27;
+        &#x27;&lt;tds:Model&gt;Camera Demo&lt;/tds:Model&gt;&lt;tds:FirmwareVersion&gt;1.0&lt;/tds:FirmwareVersion&gt;&#x27;
+        &#x27;&lt;tds:SerialNumber&gt;DEMO0001&lt;/tds:SerialNumber&gt;&lt;tds:HardwareId&gt;demo&lt;/tds:HardwareId&gt;&#x27;
+        &#x27;&lt;/tds:GetDeviceInformationResponse&gt;&lt;/s:Body&gt;&lt;/s:Envelope&gt;&#x27;).encode()
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise ValueError(&quot;Redirects are not accepted&quot;)
+
+def parse_device_info(data: bytes) -&gt; dict[str, str]:
+    if len(data) &gt; MAX_BYTES:
+        raise ValueError(&quot;SOAP response exceeds 64 KiB&quot;)
+    # Decode first so alternate encodings cannot hide declaration tokens.
+    text = data.decode(&#x27;utf-8-sig&#x27;)
+    if &#x27;\x00&#x27; in text or re.search(r&#x27;&lt;!\s*(DOCTYPE|ENTITY)\b&#x27;, text, re.I):
+        raise ValueError(&quot;Only UTF8 XML without DTD or entity declarations is accepted&quot;)
+    root = ET.fromstring(text)
+    if root.tag != f&#x27;{{{SOAP}}}Envelope&#x27;:
+        raise ValueError(&quot;Expected a SOAP 1.2 envelope&quot;)
+    bodies = root.findall(f&#x27;{{{SOAP}}}Body&#x27;)
+    if len(bodies) != 1 or len(bodies[0]) != 1:
+        raise ValueError(&quot;Expected one SOAP body containing one response&quot;)
+    response = bodies[0][0]
+    if response.tag == f&#x27;{{{SOAP}}}Fault&#x27;:
+        raise ValueError(&quot;The device returned a SOAP fault&quot;)
+    if response.tag != f&#x27;{{{DEVICE}}}GetDeviceInformationResponse&#x27;:
+        raise ValueError(&quot;Unexpected ONVIF response&quot;)
+    result = {}
+    for field in (&#x27;Manufacturer&#x27;, &#x27;Model&#x27;, &#x27;FirmwareVersion&#x27;, &#x27;SerialNumber&#x27;, &#x27;HardwareId&#x27;):
+        nodes = response.findall(f&#x27;{{{DEVICE}}}{field}&#x27;)
+        if len(nodes) != 1 or list(nodes[0]):
+            raise ValueError(f&quot;Missing, repeated or structured field: {field}&quot;)
+        value = nodes[0].text or &#x27;&#x27;
+        if len(value) &gt; 512 or any(ord(c) &lt; 32 for c in value):
+            raise ValueError(&quot;Invalid device information text&quot;)
+        result[field] = value
+    return result
+
+def read_device(url: str, *, ca: str | None = None, username: str | None = None,
+                password: str | None = None) -&gt; dict[str, str]:
+    target = urlsplit(url)
+    if (target.scheme != &#x27;https&#x27; or not target.hostname or target.username or target.password
+            or target.fragment or any(ord(c) &lt;= 32 or ord(c) == 127 for c in url)):
+        raise ValueError(&quot;Use an exact HTTPS device service URL without embedded credentials&quot;)
+    context = ssl.create_default_context(cafile=ca)
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+    handlers = [urllib.request.ProxyHandler({}), NoRedirect(),
+                urllib.request.HTTPSHandler(context=context)]
+    if username:
+        manager = urllib.request.HTTPPasswordMgrWithDefaultRealm()
+        manager.add_password(None, url, username, password or &#x27;&#x27;)
+        handlers.append(urllib.request.HTTPDigestAuthHandler(manager))
+    opener = urllib.request.build_opener(*handlers)
+    req = urllib.request.Request(url, REQUEST, method=&#x27;POST&#x27;, headers={
+        &#x27;Content-Type&#x27;: f&#x27;application/soap+xml; charset=utf-8; action=&quot;{ACTION}&quot;&#x27;,
+        &#x27;Accept&#x27;: &#x27;application/soap+xml&#x27;, &#x27;Accept-Encoding&#x27;: &#x27;identity&#x27;})
+    with opener.open(req, timeout=5) as response:
+        if response.status != 200:
+            raise ValueError(&quot;Unexpected HTTP status&quot;)
+        if response.headers.get_content_type() != &#x27;application/soap+xml&#x27;:
+            raise ValueError(&quot;Expected application/soap+xml&quot;)
+        if response.headers.get(&#x27;Content-Encoding&#x27;, &#x27;identity&#x27;).lower() != &#x27;identity&#x27;:
+            raise ValueError(&quot;Compressed responses are not accepted&quot;)
+        return parse_device_info(response.read(MAX_BYTES + 1))
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(&#x27;--demo&#x27;, action=&#x27;store_true&#x27;)
+    mode.add_argument(&#x27;--url&#x27;, help=&#x27;Exact HTTPS device service endpoint&#x27;)
+    parser.add_argument(&#x27;--ca&#x27;, help=&#x27;PEM certificate authority bundle&#x27;)
+    parser.add_argument(&#x27;--username&#x27;, help=&#x27;HTTP Digest user; password is prompted or read from WIKI_ONVIF_PASSWORD&#x27;)
+    args = parser.parse_args()
+    try:
+        password = os.environ.get(&#x27;WIKI_ONVIF_PASSWORD&#x27;)
+        if args.username and not args.demo and password is None:
+            password = getpass.getpass(&#x27;Device password: &#x27;)
+        result = parse_device_info(DEMO) if args.demo else read_device(
+            args.url, ca=args.ca, username=args.username, password=password)
+        print(json.dumps(result, indent=2, sort_keys=True))
+        return 0
+    except (ValueError, OSError, urllib.error.URLError, ET.ParseError, RecursionError) as exc:
+        print(f&quot;Error: {type(exc).__name__}. Check the service URL, authentication and certificate.&quot;, file=sys.stderr)
+        return 1
+
+if __name__ == &#x27;__main__&#x27;:
+    raise SystemExit(main())
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://www.onvif.org/ver10/device/wsdl/devicemgmt.wsdl" rel="noopener noreferrer">ONVIF device service</a></p>
+<p><a href="https://www.onvif.org/profiles/profile-s/profile-s-deprecation-qna/" rel="noopener noreferrer">ONVIF authentication guidance</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../mtls-client-go/"><span>Previous in this section</span>Mutual TLS health client</a><a href="../rtsp-sdp-inspection-python/"><span>Next in this section</span>RTSP and SDP inspection</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/onvif-soap-request.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/onvif-soap-request.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

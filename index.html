@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Security Technician Wiki</title>
+<meta name="description" content="A practical reference for security technicians, integrators and developers working with cameras, access control, alarms and connected systems.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Security Technician Wiki">
+<meta property="og:description" content="A practical reference for security technicians, integrators and developers working with cameras, access control, alarms and connected systems.">
+<meta property="og:url" content="https://securitytechnician.wiki/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script src="assets/theme.js"></script>
+<link rel="stylesheet" href="assets/site.css">
+
+<script defer src="assets/app.js"></script>
+</head>
+<body class="home-page" data-root="./">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="./" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home is-current" href="./" aria-current=page>Overview</a><div class="nav-section"><a class="nav-section-link" href="00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="./">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Security Technician Wiki</span></nav><div class="page-kicker">Physical security reference <span>by tegridydev</span></div><div class="prose"><h1 id="s-security-technician-wiki">Security Technician Wiki</h1>
+<p>A practical reference for security technicians, integrators and developers working with cameras, access control, alarms and connected systems.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-where-to-start">Where to start</a></li><li class="toc-level-2"><a href="#s-useful-references">Useful references</a></li><li class="toc-level-2"><a href="#s-browse-by-section">Browse by section</a></li><li class="toc-level-2"><a href="#s-sources-and-verification">Sources and verification</a></li><li class="toc-level-2"><a href="#s-about-this-project">About this project</a></li></ul></nav></details></div>
+<p>The wiki covers how the equipment works, how systems communicate and what to check when something goes wrong. There are protocol notes, integration examples, troubleshooting guides and checklists for day to day work.</p>
+<p><a href="https://securitytechnician.wiki/" rel="noopener noreferrer">securitytechnician.wiki</a> · <a href="00-start-here/learning-paths/">Reading paths</a> · <a href="05-development-and-integration/examples/">Code examples</a> · <a href="physical-security-protocol-landscape/">Protocol map</a> · <a href="09-reference/">Quick reference</a></p>
+<h2 id="s-where-to-start">Where to start<a class="heading-link" href="#s-where-to-start" aria-label="Link to Where to start">#</a></h2>
+<div class="table-scroll route-table" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>What are you working on?</th>
+  <th>Start here</th>
+  <th>Topics covered</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Learning the basics</td>
+  <td><a href="00-start-here/paths/new-to-physical-security/">Getting started</a></td>
+  <td>Equipment, networking, identity, events and system behaviour</td>
+</tr>
+<tr>
+  <td>Cameras and video</td>
+  <td><a href="00-start-here/paths/video-integration/">Video integration</a></td>
+  <td>ONVIF, streams, recording, events and platform APIs</td>
+</tr>
+<tr>
+  <td>Readers and doors</td>
+  <td><a href="00-start-here/paths/access-control/">Access control</a></td>
+  <td>Credentials, OSDP, controllers, door state and permissions</td>
+</tr>
+<tr>
+  <td>MQTT and system events</td>
+  <td><a href="00-start-here/paths/event-integration/">Event integration</a></td>
+  <td>Message schemas, timestamps, delivery, retries and reconciliation</td>
+</tr>
+<tr>
+  <td>Fault finding</td>
+  <td><a href="00-start-here/paths/troubleshooting/">Troubleshooting</a></td>
+  <td>Symptoms, evidence, diagnostic checks and recovery</td>
+</tr>
+<tr>
+  <td>Checking an integration</td>
+  <td><a href="00-start-here/paths/security-review/">Security review</a></td>
+  <td>Permissions, trust boundaries, failures and readiness</td>
+</tr>
+</tbody>
+</table></div>
+<p>Each path groups the relevant pages in a suggested order. The <a href="00-start-here/learning-paths/">full reading guide</a> also covers alarms and building systems.</p>
+<h2 id="s-useful-references">Useful references<a class="heading-link" href="#s-useful-references" aria-label="Link to Useful references">#</a></h2>
+<p>The <a href="09-reference/integration-readiness-checklist/">integration readiness checklist</a> covers the checks before handing over a working integration. The <a href="09-reference/event-normalization-field-guide/">event field guide</a> helps with device identity, timestamps and state when connecting different systems.</p>
+<p>For interface selection, use the <a href="09-reference/protocol-layer-and-role-matrix/">protocol role matrix</a>, <a href="09-reference/protocol-security-comparison/">protocol security comparison</a> and <a href="04-vendor-apis/selection-and-capability-matrix/">vendor capability matrix</a>. Confirm the product version and supported features against the manufacturer's documentation.</p>
+<p>The <a href="05-development-and-integration/examples/">code examples</a> contain 14 small programs for API reads, event validation, protocol parsing, certificates and storage calculations. Each has a demo, a clear input format and the complete source. Start with the <a href="05-development-and-integration/examples/video-storage-python/">video storage calculator</a> or <a href="05-development-and-integration/examples/offline-trace-parsing-python/">event trace parser</a>. Neither needs equipment or extra Python packages.</p>
+<p>The <a href="08-defensive-labs/">defensive labs</a> provide longer exercises using synthetic messages and traces.</p>
+<h2 id="s-browse-by-section">Browse by section<a class="heading-link" href="#s-browse-by-section" aria-label="Link to Browse by section">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Section</th>
+  <th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="00-start-here/">00 · Start here</a></td>
+  <td>Reading paths, terminology and scope</td>
+</tr>
+<tr>
+  <td><a href="01-foundations/">01 · Foundations</a></td>
+  <td>Architecture, networking, identity, media, power and time</td>
+</tr>
+<tr>
+  <td><a href="02-protocols/">02 · Protocols</a></td>
+  <td>Video, access control, alarms, building systems and messaging</td>
+</tr>
+<tr>
+  <td><a href="03-systems/">03 · Systems</a></td>
+  <td>Cameras, VMS, PACS, intercoms, intrusion and integration platforms</td>
+</tr>
+<tr>
+  <td><a href="04-vendor-apis/">04 · Vendor APIs</a></td>
+  <td>Documented interfaces, access requirements and product versions</td>
+</tr>
+<tr>
+  <td><a href="05-development-and-integration/">05 · Development</a></td>
+  <td>Adapters, language guides, code examples and message handling</td>
+</tr>
+<tr>
+  <td><a href="06-security-and-assurance/">06 · Security</a></td>
+  <td>Threat modelling, identity, parsing, hardening and privacy</td>
+</tr>
+<tr>
+  <td><a href="07-operations-and-lifecycle/">07 · Operations</a></td>
+  <td>Inventory, commissioning, monitoring, updates and recovery</td>
+</tr>
+<tr>
+  <td><a href="08-defensive-labs/">08 · Defensive labs</a></td>
+  <td>Offline exercises using synthetic data</td>
+</tr>
+<tr>
+  <td><a href="09-reference/">09 · Reference</a></td>
+  <td>Matrices, ports, field guides, glossaries and checklists</td>
+</tr>
+<tr>
+  <td><a href="10-sources-and-maintenance/">10 · Sources and scope</a></td>
+  <td>Source selection, test boundaries and corrections</td>
+</tr>
+</tbody>
+</table></div>
+<p>The same articles are available on the website, in GitHub and in a local copy of this repository.</p>
+<h2 id="s-sources-and-verification">Sources and verification<a class="heading-link" href="#s-sources-and-verification" aria-label="Link to Sources and verification">#</a></h2>
+<p>Articles link to primary sources and state their scope. Protocol release dates, deprecation notices and runtime support need checking against the version you use. Dated checks are shown on the relevant pages. The <a href="10-sources-and-maintenance/verification-policy/">verification guide</a> explains the difference between a source check, a software test and a result on equipment.</p>
+<p>Check product instructions and site procedures before changing a system. Work involving locks, gates, lifts, fire interfaces or emergency communications needs the relevant engineering review and approval.</p>
+<h2 id="s-about-this-project">About this project<a class="heading-link" href="#s-about-this-project" aria-label="Link to About this project">#</a></h2>
+<p>Maintained by <a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev</a>. Original writing, diagrams, tables and examples use the <a href="license/">MIT licence</a>, unless a page states otherwise. Referenced standards, vendor documents and trademarks remain with their owners.</p>
+<p>Corrections are welcome. Include the page, the relevant source and the product or specification version so the change can be checked.</p>
+<p><a href="https://tegridydev.com/" rel="noopener noreferrer">Website</a> · <a href="https://github.com/tegridydev" rel="noopener noreferrer">GitHub</a> · <a href="https://huggingface.co/tegridydev" rel="noopener noreferrer">Hugging Face</a></p>
+</div><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-where-to-start">Where to start</a></li><li class="toc-level-2"><a href="#s-useful-references">Useful references</a></li><li class="toc-level-2"><a href="#s-browse-by-section">Browse by section</a></li><li class="toc-level-2"><a href="#s-sources-and-verification">Sources and verification</a></li><li class="toc-level-2"><a href="#s-about-this-project">About this project</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

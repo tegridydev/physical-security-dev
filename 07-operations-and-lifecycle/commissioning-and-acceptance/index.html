@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Commissioning and acceptance · Security Technician Wiki</title>
+<meta name="description" content="Collect acceptance evidence from the installed system. Include normal operation, denied requests, degraded conditions and recovery after failures.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/commissioning-and-acceptance/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Commissioning and acceptance · Security Technician Wiki">
+<meta property="og:description" content="Collect acceptance evidence from the installed system. Include normal operation, denied requests, degraded conditions and recovery after failures.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/commissioning-and-acceptance/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="./" aria-current="page">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Commissioning and acceptance</span></nav><div class="page-kicker">Operations <span>About 2 min read</span></div><div class="prose"><h1 id="s-commissioning-and-acceptance">Commissioning and acceptance</h1>
+<p>Collect acceptance evidence from the installed system. Include normal operation, denied requests, degraded conditions and recovery after failures.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-commissioning-sequence">Commissioning sequence</a></li><li class="toc-level-2"><a href="#s-protocol-acceptance-record">Protocol acceptance record</a></li><li class="toc-level-2"><a href="#s-safety-separation">Safety separation</a></li><li class="toc-level-2"><a href="#s-handover-package">Handover package</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Commissioning proves that the installed, configured and integrated system matches the versioned design and behaves predictably in normal, denied, degraded and recovery scenarios.</p>
+<blockquote>
+<p>Commissioning authority comes from the system owner and applicable local authority. High impact and regulated functions also require manufacturer procedures, qualified personnel, local approvals, and an isolated or controlled acceptance window.</p>
+</blockquote>
+<h2 id="s-commissioning-sequence">Commissioning sequence<a class="heading-link" href="#s-commissioning-sequence" aria-label="Link to Commissioning sequence">#</a></h2>
+<ol>
+<li>Verify asset identity, provenance, hardware, firmware, licences and physical installation records.</li>
+<li>Establish isolated ownership and remove defaults using the <a href="../../06-security-and-assurance/secure-commissioning-and-onboarding/">secure onboarding</a> state model.</li>
+<li>Apply and record approved protocol, network, identity, certificate, time, logging, storage and update baselines.</li>
+<li>Confirm only designed flows and roles are enabled.</li>
+<li>Validate each integration with synthetic or non actuating cases first.</li>
+<li>Validate authorisation denials, malformed input handling, timeouts, retries, duplicate/replay behaviour and safe failure.</li>
+<li>Validate failover, offline operation, queue/storage limits, reconnection and state reconciliation.</li>
+<li>Validate monitoring, audit correlation, backup and recovery.</li>
+<li>Resolve deviations or document explicit accepted limitations.</li>
+<li>Capture the system owner approved acceptance record and handover material.</li>
+</ol>
+<h2 id="s-protocol-acceptance-record">Protocol acceptance record<a class="heading-link" href="#s-protocol-acceptance-record" aria-label="Link to Protocol acceptance record">#</a></h2>
+<p>For every interface record client/server/device roles, standard/API revision, optional features, secure mode, certificate identities, accounts/roles, addresses/ports, discovery, timeouts, retries, event ordering, scale, error cases, evidence location, exact validation endpoints, and observed environment result.</p>
+<h2 id="s-safety-separation">Safety separation<a class="heading-link" href="#s-safety-separation" aria-label="Link to Safety separation">#</a></h2>
+<p>Validate software integration without bypassing independent hardware interlocks or certified local control. Don't generate dispatchable monitoring events, unlock occupied site doors, move gates/elevators, alter fire interfaces, silence alarms, or energise outputs as a generic documentation test. Use manufacturer approved simulated/test modes and site procedures.</p>
+<h2 id="s-handover-package">Handover package<a class="heading-link" href="#s-handover-package" aria-label="Link to Handover package">#</a></h2>
+<ul>
+<li>as built architecture, inventories and schedules;</li>
+<li>configuration and approved deviation records;</li>
+<li>credential, certificate and key custody without secret disclosure;</li>
+<li>support and escalation contacts;</li>
+<li>update, backup, restore and decommissioning procedures;</li>
+<li>monitoring and runbooks;</li>
+<li>environment validation scope, results, approval, and limitations;</li>
+<li>outstanding defects, risks and review dates.</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, lifecycle, architecture, testing and safety considerations, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../site-survey-and-design-records/">Site survey and design records</a></li>
+<li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li>
+<li><a href="../../08-defensive-labs/">Defensive labs</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../change-firmware-and-patching/"><span>Previous in this section</span>Change, firmware, and patching</a><a href="../decommissioning-and-disposal/"><span>Next in this section</span>Decommissioning and disposal</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/commissioning-and-acceptance.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/commissioning-and-acceptance.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-commissioning-sequence">Commissioning sequence</a></li><li class="toc-level-2"><a href="#s-protocol-acceptance-record">Protocol acceptance record</a></li><li class="toc-level-2"><a href="#s-safety-separation">Safety separation</a></li><li class="toc-level-2"><a href="#s-handover-package">Handover package</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

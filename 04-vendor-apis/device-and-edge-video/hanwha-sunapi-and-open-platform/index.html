@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Hanwha Vision SUNAPI and Open Platform · Security Technician Wiki</title>
+<meta name="description" content="SUNAPI provides device access, while Open Platform supports applications on compatible Hanwha devices. Check firmware, supported operations and deployment requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/hanwha-sunapi-and-open-platform/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hanwha Vision SUNAPI and Open Platform · Security Technician Wiki">
+<meta property="og:description" content="SUNAPI provides device access, while Open Platform supports applications on compatible Hanwha devices. Check firmware, supported operations and deployment requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/hanwha-sunapi-and-open-platform/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="./" aria-current="page">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Hanwha Vision SUNAPI and Open Platform</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-hanwha-vision-sunapi-and-open-platform">Hanwha Vision SUNAPI and Open Platform</h1>
+<p>SUNAPI provides device access, while Open Platform supports applications on compatible Hanwha devices. Check firmware, supported operations and deployment requirements.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Hanwha Vision product and STEP pages establish the surfaces; current complete SUNAPI/Open Platform packages, universal version claims, model matrices, operations, authentication, and licences are excluded where login gated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-evidence">Version evidence</a></li><li class="toc-level-2"><a href="#s-choosing-a-surface">Choosing a surface</a></li><li class="toc-level-2"><a href="#s-authentication-events-and-commands">Authentication, events, and commands</a></li><li class="toc-level-2"><a href="#s-open-platform-boundary">Open Platform boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / Hanwha Vision</p>
+<p>Hanwha Vision documents <strong>SUNAPI</strong> as a native HTTP API family and distributes related SDK material through its STEP partner/support environment. <strong>Open Platform</strong> is the separate on camera application framework for supported models. Public product pages often identify which of these are present; the exact guide and SDK package remain the implementation authority.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Purpose</th>
+  <th>Access/evidence boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>SUNAPI HTTP API</td>
+  <td>Native device integration for supported cameras, recorders and access products</td>
+  <td>Model pages and STEP catalogue public; exact operation and version guide can require STEP login</td>
+</tr>
+<tr>
+  <td>SUNAPI SDK</td>
+  <td>Vendor development package for supported integration workflows</td>
+  <td>Distributed through STEP download/support routes; package compatibility must be pinned</td>
+</tr>
+<tr>
+  <td>Open Platform SDK</td>
+  <td>Builds applications that execute on compatible Hanwha network cameras</td>
+  <td>Public overview; SDK, model/firmware/toolchain and resource contract through STEP</td>
+</tr>
+<tr>
+  <td>ONVIF profiles</td>
+  <td>Standards based media/device interoperability on conformant models</td>
+  <td>Separate from SUNAPI and Open Platform; use exact declaration/model support</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-version-evidence">Version evidence<a class="heading-link" href="#s-version-evidence" aria-label="Link to Version evidence">#</a></h2>
+<p>On 25 August 2026, the STEP technical support page listed a <strong>SUNAPI v2.6.8 access control API guide</strong> dated 9 April 2026. That is evidence for the named access control document only. It must not be described as the universal latest SUNAPI for cameras, recorders or every region.</p>
+<p>Public camera product pages reviewed for this catalogue listed combinations of ONVIF, SUNAPI HTTP API and Open Platform. Availability varies by model and firmware. Capture the product page, firmware release note, API guide revision and SDK package manifest in the project inventory.</p>
+<h2 id="s-choosing-a-surface">Choosing a surface<a class="heading-link" href="#s-choosing-a-surface" aria-label="Link to Choosing a surface">#</a></h2>
+<ul>
+<li>Use declared ONVIF profiles when the required cross vendor feature is standardised and conformant.</li>
+<li>Use SUNAPI when an officially documented native capability is required and the exact device exposes it.</li>
+<li>Use the SUNAPI SDK when the vendor package provides supported higher level media/event/device behaviour that a direct HTTP integration shouldn't reproduce.</li>
+<li>Use Open Platform only for logic that genuinely must run at the edge and fits the device’s supported application and resource model.</li>
+</ul>
+<p>Do not choose a legacy ActiveX integration from an old example without current vendor support evidence. The historical STEP FAQ cited here is no longer available at its former address; obtain current SDK and migration guidance through the STEP partner portal.</p>
+<h2 id="s-authentication-events-and-commands">Authentication, events, and commands<a class="heading-link" href="#s-authentication-events-and-commands" aria-label="Link to Authentication, events, and commands">#</a></h2>
+<p>Take authentication, HTTPS, certificate, role and session behaviour from the exact current guide and firmware. Product pages advertising HTTPS or security properties are capability evidence, not a universal auth contract. Provision a unique least privileged account and don't accept plaintext fallback or permanent certificate exceptions.</p>
+<p>For events, document subscription/stream framing, heartbeat, reconnect, duplicate/gap behaviour, source timestamps and schema version. For media, pin profile, codec, transport, session lifetime and concurrent stream limits. For access control, PTZ, audio, I/O, restart, firmware and configuration operations, require separate authorisation and post operation reconciliation.</p>
+<h2 id="s-open-platform-boundary">Open Platform boundary<a class="heading-link" href="#s-open-platform-boundary" aria-label="Link to Open Platform boundary">#</a></h2>
+<p>An on camera application can affect availability, privacy and evidence. Before deployment, verify:</p>
+<ul>
+<li>compatible camera models, firmware, architecture and SDK/toolchain;</li>
+<li>application signing/approval and distribution route;</li>
+<li>documented APIs and permissions;</li>
+<li>CPU, accelerator, memory, storage, process and network limits;</li>
+<li>start/restart behaviour and coexistence with recording/analytics;</li>
+<li>secure secret storage, update, rollback and removal;</li>
+<li>support policy when multiple third party applications share a device.</li>
+</ul>
+<p>Never use an undocumented operating system interface simply because it is visible inside an application environment.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>STEP has regional/localized portals and account controlled downloads. Recheck the correct region, product family, document date, licence and firmware release before implementation. Keep restricted packages and documents under their portal terms.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://step.hanwhavision.com/kr/tech-support" rel="noopener noreferrer">Hanwha Vision STEP technical support</a>, official document catalogue and dated access control SUNAPI guide evidence.</li>
+<li><a href="https://step.hanwhavision.com/en" rel="noopener noreferrer">STEP partner portal</a>, current entry point for partner support. The old Download Center, Open Platform and FAQ addresses returned 404 on 29 September 2026; their historical content has not been revalidated at this new entry point.</li>
+<li><a href="https://hanwhavisionamerica.com/product/qno-8020r/" rel="noopener noreferrer">Example Hanwha camera product page</a>, model level API/profile declarations; don't generalize to other products.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/video-and-media/onvif/">ONVIF</a></li>
+<li><a href="../../../06-security-and-assurance/secure-system-baselines/">Secure system baselines</a></li>
+<li><a href="../../../06-security-and-assurance/firmware-updates-and-supply-chain/">Firmware and supply chain</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../dahua-cgi-and-netsdk/"><span>Previous in this section</span>Dahua CGI and NetSDK</a><a href="../hikvision-isapi-and-heop/"><span>Next in this section</span>Hikvision ISAPI and HEOP</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/hanwha-sunapi-and-open-platform.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/hanwha-sunapi-and-open-platform.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-evidence">Version evidence</a></li><li class="toc-level-2"><a href="#s-choosing-a-surface">Choosing a surface</a></li><li class="toc-level-2"><a href="#s-authentication-events-and-commands">Authentication, events, and commands</a></li><li class="toc-level-2"><a href="#s-open-platform-boundary">Open Platform boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Vendor API capability matrix · Security Technician Wiki</title>
+<meta name="description" content="Use this matrix when discussing an integration with a vendor. Confirm product versions, licensing, access programmes and supported operations for the intended deployment.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/vendor-api-capability-matrix/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vendor API capability matrix · Security Technician Wiki">
+<meta property="og:description" content="Use this matrix when discussing an integration with a vendor. Confirm product versions, licensing, access programmes and supported operations for the intended deployment.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/vendor-api-capability-matrix/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="./" aria-current="page">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Vendor API capability matrix</span></nav><div class="page-kicker">Reference <span>About 5 min read</span></div><div class="prose"><h1 id="s-vendor-api-capability-matrix">Vendor API capability matrix</h1>
+<p>Use this matrix when discussing an integration with a vendor. Confirm product versions, licensing, access programmes and supported operations for the intended deployment.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Comparison schema and evidence gates only; this page intentionally carries no vendor capability cells and makes no endpoint, entitlement, licence, region, compatibility, performance, security, or availability claim.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-why-the-matrix-stays-generic">Why the matrix stays generic</a></li><li class="toc-level-2"><a href="#s-one-row-per-exact-surface">One row per exact surface</a></li><li class="toc-level-2"><a href="#s-comparison-dimensions">Comparison dimensions</a></li><li class="toc-level-3"><a href="#s-deployment-and-authority">Deployment and authority</a></li><li class="toc-level-3"><a href="#s-access-and-entitlement">Access and entitlement</a></li><li class="toc-level-3"><a href="#s-identity-and-security">Identity and security</a></li><li class="toc-level-3"><a href="#s-capability-classes">Capability classes</a></li><li class="toc-level-2"><a href="#s-evidence-states-for-a-cell">Evidence states for a cell</a></li><li class="toc-level-2"><a href="#s-suggested-populated-table-contract">Suggested populated table contract</a></li><li class="toc-level-2"><a href="#s-shortlisting-questions">Shortlisting questions</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p>This reference defines <strong>how</strong> to compare vendor APIs. It intentionally doesn't duplicate fast changing vendor capability claims. Use the maintained <a href="../../04-vendor-apis/">vendor API catalogue</a> and its <a href="../../04-vendor-apis/selection-and-capability-matrix/">selection and capability matrix</a> for source backed vendor rows, then open each vendor page and current official documentation.</p>
+</blockquote>
+<h2 id="s-why-the-matrix-stays-generic">Why the matrix stays generic<a class="heading-link" href="#s-why-the-matrix-stays-generic" aria-label="Link to Why the matrix stays generic">#</a></h2>
+<p>A single check mark such as “events,” “video,” or “access control” hides the facts that decide compatibility:</p>
+<ul>
+<li>exact product family/build/firmware and API/SDK release;</li>
+<li>deployment model, region, tenant, licence, partner program, and feature entitlement;</li>
+<li>operation direction and authoritative system;</li>
+<li>resource granularity, security identity, scope, and role;</li>
+<li>delivery, pagination, rate, queue, retention, and reconciliation behaviour;</li>
+<li>deprecation, support, distribution, and legal/licensing terms;</li>
+<li>whether an operation observes, configures, or physically actuates.</li>
+</ul>
+<p>Therefore this page carries no vendor rows. A populated row belongs beside its official sources in <code>04-vendor-apis</code>, not as an uncited summary here.</p>
+<h2 id="s-one-row-per-exact-surface">One row per exact surface<a class="heading-link" href="#s-one-row-per-exact-surface" aria-label="Link to One row per exact surface">#</a></h2>
+<p>Don't create one row per marketing brand. Create a row only for an interface with a documented scope:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">vendor / publisher:
+product family and deployment:
+API, SDK, plug-in framework, or protocol surface:
+exact API/SDK/document version:
+supported product/server/firmware window:
+region/tenant/licence/partner prerequisites:
+official reference and access date:
+release/lifecycle source and access date:
+canonical vendor page:
+evidence grade and coverage limit:
+</code></pre></div>
+<p>If a public landing page establishes that a surface exists but the normative contract is gated, record that limitation. Don't reverse engineer a capability cell from marketing copy, UI screenshots, package names, forum posts, or an SDK class list.</p>
+<h2 id="s-comparison-dimensions">Comparison dimensions<a class="heading-link" href="#s-comparison-dimensions" aria-label="Link to Comparison dimensions">#</a></h2>
+<h3 id="s-deployment-and-authority">Deployment and authority<a class="heading-link" href="#s-deployment-and-authority" aria-label="Link to Deployment and authority">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Values to record, not assume</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Deployment</td>
+  <td>Device/edge, on prem server, appliance, desktop client, mobile, private cloud, SaaS, hybrid</td>
+</tr>
+<tr>
+  <td>Authority</td>
+  <td>System of record for identity, configuration, event history, live state, media, credentials, physical command</td>
+</tr>
+<tr>
+  <td>Direction</td>
+  <td>Read, poll, subscribe, callback, provision, configure, command, plugin/extension, media ingest/export</td>
+</tr>
+<tr>
+  <td>Boundary</td>
+  <td>Direct device, controller, VMS/PACS, gateway, broker, vendor cloud, customer cloud, partner service</td>
+</tr>
+<tr>
+  <td>Tenancy/region</td>
+  <td>Organization/site/tenant hierarchy, regional base URLs, sovereign/private editions, data residency</td>
+</tr>
+<tr>
+  <td>Availability dependency</td>
+  <td>LAN, server cluster, cloud control plane, vendor identity/licensing, mobile platform, partner service</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="s-access-and-entitlement">Access and entitlement<a class="heading-link" href="#s-access-and-entitlement" aria-label="Link to Access and entitlement">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Evidence question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Documentation access</td>
+  <td>Public, account gated, partner only, licensed install, NDA, package local, unavailable</td>
+</tr>
+<tr>
+  <td>Development eligibility</td>
+  <td>Open registration, vendor approval, customer sponsorship, certification, commercial agreement</td>
+</tr>
+<tr>
+  <td>Runtime entitlement</td>
+  <td>Product edition, feature licence, subscription, per device/channel/user entitlement</td>
+</tr>
+<tr>
+  <td>Distribution</td>
+  <td>May the SDK/runtime/plugin be redistributed, and under which official terms?</td>
+</tr>
+<tr>
+  <td>Support</td>
+  <td>Supported integration program versus best effort/public interface; escalation and end of support path</td>
+</tr>
+<tr>
+  <td>Environment</td>
+  <td>Sandbox/demo/non production availability and whether it is behaviorally representative</td>
+</tr>
+</tbody>
+</table></div>
+<p>Access to documentation isn't runtime entitlement. A customer login isn't permission to redistribute a licensed SDK, and a downloaded SDK isn't proof of compatibility with an installed product.</p>
+<h3 id="s-identity-and-security">Identity and security<a class="heading-link" href="#s-identity-and-security" aria-label="Link to Identity and security">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Dimension</th>
+  <th>Required evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Client enrollment</td>
+  <td>Registration, redirect/callback ownership, device/service identity bootstrap</td>
+</tr>
+<tr>
+  <td>Authentication</td>
+  <td>Exact OAuth flow/profile, mTLS/certificate, signed request, API token/key, session, local account, SDK mechanism</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>Tenant/site/resource/action scope; read, event, media, configuration, credential, admin, physical command separated</td>
+</tr>
+<tr>
+  <td>Secret lifecycle</td>
+  <td>Creation, display, storage, rotation, overlap, revocation, expiry, compromise, operator offboarding</td>
+</tr>
+<tr>
+  <td>Transport</td>
+  <td>TLS versions/profile, certificate/hostname validation, proxy/gateway termination, private connectivity</td>
+</tr>
+<tr>
+  <td>Callback security</td>
+  <td>Registration authorisation, destination validation, signature/mTLS, replay window, secret rotation, SSRF controls</td>
+</tr>
+<tr>
+  <td>Audit</td>
+  <td>Trusted principal, target/action, decision, request/result/correlation, admin/config changes, export/redaction</td>
+</tr>
+<tr>
+  <td>Limits</td>
+  <td>Body/message/decompression, pagination, connection, stream, subscription, rate, queue, export and tenant quotas</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="s-capability-classes">Capability classes<a class="heading-link" href="#s-capability-classes" aria-label="Link to Capability classes">#</a></h3>
+<p>Use these only as <strong>headings for evidence</strong>, never yes/no marketing cells:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Class</th>
+  <th>Minimum detail before comparison</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Inventory/discovery</td>
+  <td>Resource types, stable IDs, pagination, filters, consistency, deleted/tombstone behaviour</td>
+</tr>
+<tr>
+  <td>Health/status</td>
+  <td>Poll/event source, freshness, quality, counters, restart/failover semantics</td>
+</tr>
+<tr>
+  <td>Events/alarms</td>
+  <td>Types/schema, ordering, duplicate/replay, delivery/ack, retention/replay, gap reconciliation</td>
+</tr>
+<tr>
+  <td>Live media</td>
+  <td>Codec/transport, session authorisation, concurrency, latency, audio, PTZ/control separation</td>
+</tr>
+<tr>
+  <td>Recorded media/export</td>
+  <td>Search/index semantics, time/clock, watermark/signature, export job, retention/legal hold, evidence custody</td>
+</tr>
+<tr>
+  <td>Configuration</td>
+  <td>Resource/version model, validation, optimistic concurrency, transaction/apply/restart/rollback</td>
+</tr>
+<tr>
+  <td>Identity/credential</td>
+  <td>Subject/credential namespaces, issuance/revocation, keys/mobile/biometric handling, offline propagation</td>
+</tr>
+<tr>
+  <td>Door/output/device control</td>
+  <td>Exact command/preconditions, idempotency, unknown outcome, authoritative physical feedback, audit</td>
+</tr>
+<tr>
+  <td>Plug in/edge app</td>
+  <td>Trust/sandbox, signing, package lifecycle, permissions, resource limits, compatibility/crash isolation</td>
+</tr>
+<tr>
+  <td>Administration/update</td>
+  <td>Accounts/roles, certificate/trust, firmware, backup/restore, restart; normally separate high impact surface</td>
+</tr>
+</tbody>
+</table></div>
+<p>For any physical control class, attach the <a href="../safety-impact-checklist/">safety impact checklist</a>. “Unlock available” without preconditions, exact authorisation, completion feedback, timeout behaviour, and qualified owner approval isn't a useful capability claim.</p>
+<h2 id="s-evidence-states-for-a-cell">Evidence states for a cell<a class="heading-link" href="#s-evidence-states-for-a-cell" aria-label="Link to Evidence states for a cell">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>State</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>not researched</code></td>
+  <td>No official evidence reviewed; do not infer absent or present</td>
+</tr>
+<tr>
+  <td><code>not publicly established</code></td>
+  <td>Official public material reviewed but does not establish the capability; gated material may exist</td>
+</tr>
+<tr>
+  <td><code>documented</code></td>
+  <td>Official exact version reference defines the capability/class within stated limits</td>
+</tr>
+<tr>
+  <td><code>entitlement required</code></td>
+  <td>Official evidence says licence/account/partner/feature access is required</td>
+</tr>
+<tr>
+  <td><code>deprecated</code></td>
+  <td>Official lifecycle source deprecates/withdraws the surface or operation, with date/replacement where stated</td>
+</tr>
+<tr>
+  <td><code>configuration evidenced</code></td>
+  <td>Approved site configuration shows it is enabled for exact scope; this is not behaviour or interoperability evidence</td>
+</tr>
+<tr>
+  <td><code>environment validated</code></td>
+  <td>A scoped record identifies exact versions, configuration, cases, observations, limitations, date, and responsible owner</td>
+</tr>
+<tr>
+  <td><code>unsupported for exact scope</code></td>
+  <td>Official compatibility or support evidence explicitly excludes the exact product, version or role. Missing documentation alone does not establish this status.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Never encode unknown as <code>no</code>. Never promote a vendor documentation claim to <code>environment validated</code>. A product can support an API family while omitting a method, model, event, role, or security mode.</p>
+<h2 id="s-suggested-populated-table-contract">Suggested populated table contract<a class="heading-link" href="#s-suggested-populated-table-contract" aria-label="Link to Suggested populated table contract">#</a></h2>
+<p>The canonical vendor section may use several tables rather than one extremely wide table. Each row should be reducible to:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Column</th>
+  <th>Required content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Surface</td>
+  <td>Vendor, product/deployment, API/SDK/framework, exact version</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td>Official reference(s), release/lifecycle source, access date, evidence grade</td>
+</tr>
+<tr>
+  <td>Prerequisites</td>
+  <td>Product/firmware, region/tenant, licence, partner/account, runtime/OS</td>
+</tr>
+<tr>
+  <td>Authority/direction</td>
+  <td>System of record and read/event/configure/command/extension direction</td>
+</tr>
+<tr>
+  <td>Capability statement</td>
+  <td>Narrow source supported statement with limitations, not a check mark alone</td>
+</tr>
+<tr>
+  <td>Security</td>
+  <td>Authentication, authorisation scope, TLS/callback, secret lifecycle boundary</td>
+</tr>
+<tr>
+  <td>Reliability</td>
+  <td>Pagination/rate, event delivery/replay, retry/idempotency, reconnect/reconciliation</td>
+</tr>
+<tr>
+  <td>Safety/privacy</td>
+  <td>Sensitive data and any high impact operations; qualified approval boundary</td>
+</tr>
+<tr>
+  <td>Validation</td>
+  <td>Linked environment evidence, cases, results, limitations, date, and owner; otherwise <code>not established</code></td>
+</tr>
+<tr>
+  <td>Review</td>
+  <td>Last verified, next review, deprecation/security advisory triggers</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-shortlisting-questions">Shortlisting questions<a class="heading-link" href="#s-shortlisting-questions" aria-label="Link to Shortlisting questions">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Does the surface exist for the exact installed deployment, build, model, licence, region, and role?">Does the surface exist for the exact installed deployment, build, model, licence, region, and role?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Is its normative contract accessible under acceptable terms for development, deployment, and maintenance?">Is its normative contract accessible under acceptable terms for development, deployment, and maintenance?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Is it authoritative for the desired data/action, or a cache/proxy with weaker semantics?">Is it authoritative for the desired data/action, or a cache/proxy with weaker semantics?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Can observation, configuration, administration, credential, media, and physical command privileges be separated?">Can observation, configuration, administration, credential, media, and physical command privileges be separated?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Are stable IDs, schema/version, pagination, event replay, reconciliation, and deletion semantics documented?">Are stable IDs, schema/version, pagination, event replay, reconciliation, and deletion semantics documented?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Are timeout/retry/duplicate/unknown outcome rules safe for every mutating operation?">Are timeout/retry/duplicate/unknown outcome rules safe for every mutating operation?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Are quotas, concurrency, retention, export, and failure/recovery limits available and owner testable?">Are quotas, concurrency, retention, export, and failure/recovery limits available and owner testable?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Are certificates/secrets/tokens/callbacks manageable throughout deployment and offboarding?">Are certificates/secrets/tokens/callbacks manageable throughout deployment and offboarding?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Are release notes, deprecation notices, security advisories, compatibility matrices, and support paths durable?">Are release notes, deprecation notices, security advisories, compatibility matrices, and support paths durable?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Is a standards based surface preferable or required, and is the exact product/profile registered/certified?">Is a standards based surface preferable or required, and is the exact product/profile registered/certified?</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Can the integration team validate it with synthetic data in an isolated authorised environment without physical consequence?">Can the integration team validate it with synthetic data in an isolated authorised environment without physical consequence?</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../04-vendor-apis/">Vendor API catalogue</a></li>
+<li><a href="../../04-vendor-apis/selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li>
+<li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li>
+<li><a href="../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+<li><a href="../../05-development-and-integration/patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li>
+<li><a href="../../05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li>
+<li><a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">Contribution guide</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../system-protocol-matrix/"><span>Previous in this section</span>System to protocol matrix</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/vendor-api-capability-matrix.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/vendor-api-capability-matrix.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-why-the-matrix-stays-generic">Why the matrix stays generic</a></li><li class="toc-level-2"><a href="#s-one-row-per-exact-surface">One row per exact surface</a></li><li class="toc-level-2"><a href="#s-comparison-dimensions">Comparison dimensions</a></li><li class="toc-level-3"><a href="#s-deployment-and-authority">Deployment and authority</a></li><li class="toc-level-3"><a href="#s-access-and-entitlement">Access and entitlement</a></li><li class="toc-level-3"><a href="#s-identity-and-security">Identity and security</a></li><li class="toc-level-3"><a href="#s-capability-classes">Capability classes</a></li><li class="toc-level-2"><a href="#s-evidence-states-for-a-cell">Evidence states for a cell</a></li><li class="toc-level-2"><a href="#s-suggested-populated-table-contract">Suggested populated table contract</a></li><li class="toc-level-2"><a href="#s-shortlisting-questions">Shortlisting questions</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>gRPC and serialisation contracts · Security Technician Wiki</title>
+<meta name="description" content="gRPC uses typed service definitions and serialised messages. Define permissions, deadlines and failure handling for each operation alongside the API schema.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/web-and-messaging/grpc-and-serialization/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="gRPC and serialisation contracts · Security Technician Wiki">
+<meta property="og:description" content="gRPC uses typed service definitions and serialised messages. Define permissions, deadlines and failure handling for each operation alongside the API schema.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/web-and-messaging/grpc-and-serialization/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group" open><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="./" aria-current="page">gRPC and serialisation contracts</a></li><li><a href="../http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Web and messaging protocols</a><span aria-hidden="true">/</span><span aria-current="page">gRPC and serialisation contracts</span></nav><div class="page-kicker">Protocols <span>About 6 min read</span></div><div class="prose"><h1 id="s-grpc-and-serialisation-contracts">gRPC and serialisation contracts</h1>
+<p>gRPC uses typed service definitions and serialised messages. Define permissions, deadlines and failure handling for each operation alongside the API schema.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>RPC and serialisation contract guidance only; no schema compilation, generated client/server, serializer, parser, TLS, HTTP/2, retry, stream, or interoperability behaviour is validated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-rpc-shapes">RPC shapes</a></li><li class="toc-level-2"><a href="#s-wire-level-essentials">Wire level essentials</a></li><li class="toc-level-2"><a href="#s-service-contract-example">Service contract example</a></li><li class="toc-level-2"><a href="#s-deadlines-cancellation-and-completion">Deadlines, cancellation, and completion</a></li><li class="toc-level-2"><a href="#s-retry-and-idempotency">Retry and idempotency</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-protocol-buffers-evolution">Protocol Buffers evolution</a></li><li class="toc-level-3"><a href="#s-safe-changes">Safe changes</a></li><li class="toc-level-3"><a href="#s-dangerous-changes">Dangerous changes</a></li><li class="toc-level-3"><a href="#s-resource-and-type-controls">Resource and type controls</a></li><li class="toc-level-2"><a href="#s-json">JSON</a></li><li class="toc-level-2"><a href="#s-cbor">CBOR</a></li><li class="toc-level-2"><a href="#s-xml">XML</a></li><li class="toc-level-2"><a href="#s-status-model">Status model</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>gRPC defines typed remote calls and streaming over HTTP/2 in its core wire protocol. Protocol Buffers are its default interface and message definition technology, but gRPC security, lifecycle, deadlines, and domain semantics remain application responsibilities. <a href="https://grpc.io/docs/what-is-grpc/introduction/" rel="noopener noreferrer">GRPC INTRO</a> <a href="https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md" rel="noopener noreferrer">GRPC H2</a></p>
+<h2 id="s-rpc-shapes">RPC shapes<a class="heading-link" href="#s-rpc-shapes" aria-label="Link to RPC shapes">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Shape</th>
+  <th>Request/response flow</th>
+  <th>Physical security fit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Unary</td>
+  <td>One request, one response</td>
+  <td>Read configuration/state; bounded command submission</td>
+</tr>
+<tr>
+  <td>Server streaming</td>
+  <td>One request, response stream</td>
+  <td>Event/health feed or search results</td>
+</tr>
+<tr>
+  <td>Client streaming</td>
+  <td>Request stream, one response</td>
+  <td>Batched telemetry/upload with explicit commit semantics</td>
+</tr>
+<tr>
+  <td>Bidirectional streaming</td>
+  <td>Independent streams in both directions</td>
+  <td>Gateway synchronisation; complex backpressure and authorisation</td>
+</tr>
+</tbody>
+</table></div>
+<p>HTTP/2 stream success isn't domain completion. gRPC conveys final status in trailers; clients must consume the final status rather than treating receipt of messages or HTTP status <code>200</code> alone as success. <a href="https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md" rel="noopener noreferrer">GRPC H2</a></p>
+<h2 id="s-wire-level-essentials">Wire level essentials<a class="heading-link" href="#s-wire-level-essentials" aria-label="Link to Wire level essentials">#</a></h2>
+<ul>
+<li>The canonical gRPC media type begins with <code>application/grpc</code>.</li>
+<li>Each message is length prefixed and can be compressed according to negotiated message encoding.</li>
+<li>HTTP/2 headers carry method path, timeout, content type, accepted encodings, and metadata.</li>
+<li>Response trailers carry <code>grpc-status</code> and optional <code>grpc-message</code>/status details.</li>
+<li>Binary metadata names use the <code>-bin</code> suffix and have specific encoding rules.</li>
+<li>HTTP/2 flow control is necessary but not a complete application backpressure policy.</li>
+</ul>
+<p>Cap compressed and decompressed message sizes, metadata, concurrent streams, per stream buffered messages, stream lifetime, and total work. Don't allocate the declared message length before checking it.</p>
+<h2 id="s-service-contract-example">Service contract example<a class="heading-link" href="#s-service-contract-example" aria-label="Link to Service contract example">#</a></h2>
+<p><strong>Target:</strong> Read only synthetic door state API definition.</p>
+<p><strong>Inputs:</strong> No production identifiers or endpoint.</p>
+<p><strong>Side effects:</strong> The example exposes only a read operation.</p>
+<div class="code-block"><div class="code-toolbar"><span>proto</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy proto example">Copy</button></div><pre tabindex="0" aria-label="proto example"><code id="code-1">syntax = &quot;proto3&quot;;
+
+package securitytechnician.access.v1;
+
+import &quot;google/protobuf/timestamp.proto&quot;;
+
+service DoorStateService {
+  rpc GetDoorState(GetDoorStateRequest) returns (DoorState);
+}
+
+message GetDoorStateRequest {
+  string door_id = 1;
+}
+
+message DoorState {
+  string door_id = 1;
+  Position position = 2;
+  google.protobuf.Timestamp observed_at = 3;
+  uint64 revision = 4;
+
+  enum Position {
+    POSITION_UNSPECIFIED = 0;
+    POSITION_OPEN = 1;
+    POSITION_CLOSED = 2;
+    POSITION_UNKNOWN = 3;
+  }
+}
+</code></pre></div>
+<p>Use an explicit unknown/unspecified enum value. Validate <code>door_id</code> by authenticated tenant and authorisation; generated types don't enforce object level access control.</p>
+<h2 id="s-deadlines-cancellation-and-completion">Deadlines, cancellation, and completion<a class="heading-link" href="#s-deadlines-cancellation-and-completion" aria-label="Link to Deadlines, cancellation, and completion">#</a></h2>
+<ul>
+<li>Every call should have a deadline derived from user/system budget; avoid infinite streams without renewal.</li>
+<li>Propagate a shorter downstream budget rather than resetting the full timeout at every hop.</li>
+<li>Observe cancellation and stop downstream work; client cancellation doesn't prove a physical command was not already committed.</li>
+<li>For high impact mutations, return an operation/command ID and separately report accepted, dispatched, controller acknowledged, and sensor confirmed states.</li>
+<li>Bound stream idle time and maximum age, and reauthorise on renewal/reconnect.</li>
+</ul>
+<h2 id="s-retry-and-idempotency">Retry and idempotency<a class="heading-link" href="#s-retry-and-idempotency" aria-label="Link to Retry and idempotency">#</a></h2>
+<p>gRPC retry behaviour can be controlled by service config and client libraries. A transparent or configured retry can duplicate an application invocation. <a href="https://grpc.io/docs/guides/retry/" rel="noopener noreferrer">GRPC RETRY</a></p>
+<ul>
+<li>Mark/document which methods are safe to retry.</li>
+<li>Use a scoped operation ID and request fingerprint for mutating calls.</li>
+<li>Store deduplication state durably for at least the maximum retry/replay window.</li>
+<li>Apply backoff, jitter, attempt count, retry budget, and deadline.</li>
+<li>Never retry every <code>UNAVAILABLE</code> blindly: the server may have performed the action before losing the response.</li>
+<li>Don't use <code>UNKNOWN</code> or <code>INTERNAL</code> as a generic retry signal.</li>
+</ul>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<ul>
+<li>Use TLS with server validation; use mutual TLS for workload/device identity where appropriate.</li>
+<li>Treat metadata as untrusted until the transport/auth interceptor validates it.</li>
+<li>Validate token issuer, audience, signature policy, time, and scope; strip client attempts to set internal identity headers.</li>
+<li>Authorise the exact RPC plus tenant/site/resource/action.</li>
+<li>Reauthorize streams and each high impact message where entitlement can change.</li>
+<li>Protect reflection, health, channelz, debugging, and admin services; they can expose schema/topology/operational data.</li>
+<li>Keep credentials and personal/access data out of status messages, metadata logs, and traces.</li>
+</ul>
+<h2 id="s-protocol-buffers-evolution">Protocol Buffers evolution<a class="heading-link" href="#s-protocol-buffers-evolution" aria-label="Link to Protocol Buffers evolution">#</a></h2>
+<p>The official Protocol Buffers documentation covers proto2, proto3, and Editions; Editions 2023 and 2024 are documented in the current support matrix. Pin the compiler/runtime compatibility window and the language edition/syntax in source control. <a href="https://protobuf.dev/programming-guides/proto3/" rel="noopener noreferrer">PROTO3</a> <a href="https://protobuf.dev/support/version-support/" rel="noopener noreferrer">PROTO SUPPORT</a></p>
+<h3 id="s-safe-changes">Safe changes<a class="heading-link" href="#s-safe-changes" aria-label="Link to Safe changes">#</a></h3>
+<ul>
+<li>Add a new field using a never used positive field number.</li>
+<li>Make receivers tolerate and preserve unknown fields where the runtime/round trip path supports it.</li>
+<li>Add enum values only when consumers handle unknown numeric values.</li>
+<li>Add new RPCs without changing existing path semantics.</li>
+</ul>
+<h3 id="s-dangerous-changes">Dangerous changes<a class="heading-link" href="#s-dangerous-changes" aria-label="Link to Dangerous changes">#</a></h3>
+<ul>
+<li>Never reuse a deleted field number; reserve deleted numbers and names.</li>
+<li>Don't change a field between semantically incompatible wire/application types merely because some encodings are wire compatible.</li>
+<li>Avoid changing repeated/singular, oneof membership, signedness, or interpretation without the official compatibility rules and migration.</li>
+<li>Don't assume old clients preserve unknown fields after converting through ProtoJSON or another representation.</li>
+<li>Don't sign/hash ordinary protobuf serialisation as though it were canonical: Protocol Buffers explicitly states serialisation isn't canonical. “Deterministic” output isn't a cross language, cross version canonical format guarantee. <a href="https://protobuf.dev/programming-guides/serialization-not-canonical/" rel="noopener noreferrer">PROTO NONCANON</a></li>
+</ul>
+<h3 id="s-resource-and-type-controls">Resource and type controls<a class="heading-link" href="#s-resource-and-type-controls" aria-label="Link to Resource and type controls">#</a></h3>
+<p>Bound total bytes, recursion depth, repeated/map entries, string/bytes length, unknown field volume, <code>Any</code> type resolution, and decompressed input. The Protocol Buffers implementation limits document hard and practical limits, but application limits should be much lower. <a href="https://protobuf.dev/programming-guides/proto-limits/" rel="noopener noreferrer">PROTO LIMITS</a></p>
+<h2 id="s-json">JSON<a class="heading-link" href="#s-json" aria-label="Link to JSON">#</a></h2>
+<p>RFC 8259 defines JSON. A safe API profile additionally defines number range/precision, duplicate member policy, Unicode handling, top level shape, null/absent semantics, date/time format, canonicalization if signatures need it, and maximum depth/size. <a href="https://datatracker.ietf.org/doc/rfc8259/" rel="noopener noreferrer">JSON</a></p>
+<ul>
+<li>Reject duplicate object names or define one consistent rejection behaviour across every component.</li>
+<li>Don't evaluate JSON as code.</li>
+<li>Treat large/exponential numbers carefully; JavaScript and integer runtimes have different exact ranges.</li>
+<li>Normalise identifiers under domain rules, not by silently normalising signed payload bytes.</li>
+<li>ProtoJSON is a mapping with its own compatibility rules; it isn't identical to protobuf binary and doesn't carry unknown fields in the same way.</li>
+</ul>
+<h2 id="s-cbor">CBOR<a class="heading-link" href="#s-cbor" aria-label="Link to CBOR">#</a></h2>
+<p>RFC 8949 / STD 94 defines CBOR. It supports compact typed values and streaming friendly encodings, but a deployment must choose a deterministic encoding profile when byte for byte signing or hashing is required. Validate preferred/allowed tags, map key types, duplicate keys, indefinite length items, nesting, lengths, numeric range, and floating point edge cases. Valid CBOR isn't necessarily deterministic CBOR. <a href="https://datatracker.ietf.org/doc/rfc8949/" rel="noopener noreferrer">CBOR</a></p>
+<h2 id="s-xml">XML<a class="heading-link" href="#s-xml" aria-label="Link to XML">#</a></h2>
+<p>SOAP and XML Schema are covered separately in <a href="../soap-and-xml/">SOAP and XML</a>. When translating XML, JSON, CBOR, and protobuf, write a loss table for absent/null/empty, number precision, byte strings, map keys, ordering, timestamps, enum unknowns, extensions, and signatures. A generic transcoder can silently change security relevant meaning.</p>
+<h2 id="s-status-model">Status model<a class="heading-link" href="#s-status-model" aria-label="Link to Status model">#</a></h2>
+<p>Use canonical gRPC codes consistently:</p>
+<ul>
+<li><code>INVALID_ARGUMENT</code>: request invalid independent of current system state.</li>
+<li><code>FAILED_PRECONDITION</code>: operation can't run in current state.</li>
+<li><code>NOT_FOUND</code>: resource absent/concealed by policy.</li>
+<li><code>ALREADY_EXISTS</code>: creation conflicts with an existing resource.</li>
+<li><code>UNAUTHENTICATED</code>: valid authentication credentials missing/invalid.</li>
+<li><code>PERMISSION_DENIED</code>: authenticated caller lacks permission.</li>
+<li><code>ABORTED</code>: concurrency/transaction conflict that the application may retry after reread.</li>
+<li><code>RESOURCE_EXHAUSTED</code>: quota/limit reached.</li>
+<li><code>UNAVAILABLE</code>: transient service reachability; mutation outcome may be unknown.</li>
+<li><code>DEADLINE_EXCEEDED</code>: deadline expired; work may still have completed unless cancellation/commit semantics say otherwise.</li>
+</ul>
+<p>Return structured, bounded details and a trusted correlation ID; don't reveal stacks or policy internals.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="RPC shape, method path, schema syntax/edition, compiler/runtime window pinned">RPC shape, method path, schema syntax/edition, compiler/runtime window pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TLS/auth metadata and per resource authorisation defined">TLS/auth metadata and per resource authorisation defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Deadlines, cancellation, stream idle/max age, and downstream budget propagation implemented">Deadlines, cancellation, stream idle/max age, and downstream budget propagation implemented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Retryable methods and operation deduplication explicitly documented">Retryable methods and operation deduplication explicitly documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Message/metadata/decompression/depth/stream/concurrency limits enforced">Message/metadata/decompression/depth/stream/concurrency limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Field numbers never reused; deletions reserved; enum unknowns handled">Field numbers never reused; deletions reserved; enum unknowns handled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="No ordinary protobuf encoding treated as canonical for signatures/hashes">No ordinary protobuf encoding treated as canonical for signatures/hashes</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="JSON/CBOR duplicate, numeric, depth, tag, and deterministic encoding rules defined">JSON/CBOR duplicate, numeric, depth, tag, and deterministic encoding rules defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Reflection/health/debug/admin surfaces protected">Reflection/health/debug/admin surfaces protected</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Domain completion distinguished from gRPC transport status">Domain completion distinguished from gRPC transport status</li>
+</ul>
+<span class="heading-alias" id="s-what-to-check-in-your-environment" aria-hidden="true"></span><h2 id="s-checks-for-your-system">Checks for your system<a class="heading-link" href="#s-checks-for-your-system" aria-label="Link to Checks for your system">#</a></h2>
+<p>Pin a supported compiler/runtime matrix and validate generated client/server compatibility, HTTP/2 limits, TLS identity, deadline and cancellation propagation, retry/deduplication, streaming backpressure, malformed serialisation, schema evolution, and cross language interoperability.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>GRPC INTRO</strong>, <a href="https://grpc.io/docs/what-is-grpc/introduction/" rel="noopener noreferrer">Introduction to gRPC</a>, gRPC project documentation, accessed 25 August 2026.</li>
+<li><strong>GRPC H2</strong>, <a href="https://github.com/grpc/grpc/blob/master/doc/PROTOCOL-HTTP2.md" rel="noopener noreferrer">gRPC over HTTP/2 Protocol</a>, gRPC project protocol specification, accessed 25 August 2026.</li>
+<li><strong>GRPC RETRY</strong>, <a href="https://grpc.io/docs/guides/retry/" rel="noopener noreferrer">Retry</a>, gRPC project documentation, accessed 25 August 2026.</li>
+<li><strong>GRPC AUTH</strong>, <a href="https://grpc.io/docs/guides/auth/" rel="noopener noreferrer">Authentication</a>, gRPC project documentation, accessed 25 August 2026.</li>
+<li><strong>PROTO3</strong>, <a href="https://protobuf.dev/programming-guides/proto3/" rel="noopener noreferrer">Language Guide (proto 3)</a>, Protocol Buffers documentation, accessed 25 August 2026.</li>
+<li><strong>PROTO SUPPORT</strong>, <a href="https://protobuf.dev/support/version-support/" rel="noopener noreferrer">Version Support</a>, Protocol Buffers documentation, accessed 25 August 2026.</li>
+<li><strong>PROTO NONCANON</strong>, <a href="https://protobuf.dev/programming-guides/serialization-not-canonical/" rel="noopener noreferrer">Proto Serialisation Isn't Canonical</a>, Protocol Buffers documentation, accessed 25 August 2026.</li>
+<li><strong>PROTO LIMITS</strong>, <a href="https://protobuf.dev/programming-guides/proto-limits/" rel="noopener noreferrer">Proto Limits</a>, Protocol Buffers documentation, accessed 25 August 2026.</li>
+<li><strong>JSON</strong>, <a href="https://datatracker.ietf.org/doc/rfc8259/" rel="noopener noreferrer">RFC 8259: The JavaScript Object Notation Data Interchange Format</a>, IETF, December 2017.</li>
+<li><strong>CBOR</strong>, <a href="https://datatracker.ietf.org/doc/rfc8949/" rel="noopener noreferrer">RFC 8949 / STD 94: Concise Binary Object Representation</a>, IETF, December 2020.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../coap-oscore-and-lwm2m/"><span>Previous in this section</span>CoAP, OSCORE, and Lightweight M2M</a><a href="../http-and-rest/"><span>Next in this section</span>HTTP and REST API engineering</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/web-and-messaging/grpc-and-serialization.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/web-and-messaging/grpc-and-serialization.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-rpc-shapes">RPC shapes</a></li><li class="toc-level-2"><a href="#s-wire-level-essentials">Wire level essentials</a></li><li class="toc-level-2"><a href="#s-service-contract-example">Service contract example</a></li><li class="toc-level-2"><a href="#s-deadlines-cancellation-and-completion">Deadlines, cancellation, and completion</a></li><li class="toc-level-2"><a href="#s-retry-and-idempotency">Retry and idempotency</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-protocol-buffers-evolution">Protocol Buffers evolution</a></li><li class="toc-level-3"><a href="#s-safe-changes">Safe changes</a></li><li class="toc-level-3"><a href="#s-dangerous-changes">Dangerous changes</a></li><li class="toc-level-3"><a href="#s-resource-and-type-controls">Resource and type controls</a></li><li class="toc-level-2"><a href="#s-json">JSON</a></li><li class="toc-level-2"><a href="#s-cbor">CBOR</a></li><li class="toc-level-2"><a href="#s-xml">XML</a></li><li class="toc-level-2"><a href="#s-status-model">Status model</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

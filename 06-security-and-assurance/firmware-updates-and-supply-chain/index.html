@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Firmware updates and software supply chain · Security Technician Wiki</title>
+<meta name="description" content="Review an update&#x27;s origin, supported installation path and effect on the deployed system. Check compatibility and rollback limits before scheduling the change.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/firmware-updates-and-supply-chain/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Firmware updates and software supply chain · Security Technician Wiki">
+<meta property="og:description" content="Review an update&#x27;s origin, supported installation path and effect on the deployed system. Check compatibility and rollback limits before scheduling the change.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/firmware-updates-and-supply-chain/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="./" aria-current="page">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Firmware updates and software supply chain</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-firmware-updates-and-software-supply-chain">Firmware updates and software supply chain</h1>
+<p>Review an update's origin, supported installation path and effect on the deployed system. Check compatibility and rollback limits before scheduling the change.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-product-and-dependency-record">Product and dependency record</a></li><li class="toc-level-2"><a href="#s-update-trust-chain">Update trust chain</a></li><li class="toc-level-2"><a href="#s-sbom-and-component-analysis">SBOM and component analysis</a></li><li class="toc-level-2"><a href="#s-physical-service-constraints">Physical service constraints</a></li><li class="toc-level-2"><a href="#s-developer-controls">Developer controls</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security deployments combine embedded firmware, operating systems, codecs, protocol libraries, SDKs, drivers, containers, mobile applications, cloud services, browser components, and integration code. The assurance boundary includes every component that can alter data, policy, identity, or physical behaviour.</p>
+<h2 id="s-product-and-dependency-record">Product and dependency record<a class="heading-link" href="#s-product-and-dependency-record" aria-label="Link to Product and dependency record">#</a></h2>
+<p>For each deployed component record supplier, exact model/package, hardware revision, firmware/software build, bootloader where relevant, enabled modules, dependencies, licence, support end date, update source, signing identity, configuration compatibility, and rollback constraints. A marketing product name isn't a sufficient vulnerability identifier.</p>
+<h2 id="s-update-trust-chain">Update trust chain<a class="heading-link" href="#s-update-trust-chain" aria-label="Link to Update trust chain">#</a></h2>
+<p>An update workflow should establish:</p>
+<ol>
+<li>provenance from an official authenticated distribution channel;</li>
+<li>integrity and publisher identity using a verified signature or equivalent mechanism;</li>
+<li>authorisation for the exact product, hardware and target version;</li>
+<li>anti rollback policy appropriate to recovery and safety needs;</li>
+<li>compatibility with configuration, profiles, integrations, certificates and evidence formats;</li>
+<li>atomic or recoverable installation and bounded reboot behaviour;</li>
+<li>post update version, configuration, trust and service state evidence;</li>
+<li>an environment validated recovery route that doesn't reintroduce known vulnerable trust.</li>
+</ol>
+<p>Never treat a hash copied from the same unauthenticated location as independent provenance. Keep update signing trust separate from ordinary TLS distribution trust.</p>
+<h2 id="s-sbom-and-component-analysis">SBOM and component analysis<a class="heading-link" href="#s-sbom-and-component-analysis" aria-label="Link to SBOM and component analysis">#</a></h2>
+<p>An SBOM helps map a disclosed component issue to products, but presence alone doesn't prove reachability or exploitability, and absence from an SBOM doesn't prove absence from a binary. Preserve supplier statements, component versions, build features, exposure, compensating controls, and the evidence supporting the triage decision.</p>
+<h2 id="s-physical-service-constraints">Physical service constraints<a class="heading-link" href="#s-physical-service-constraints" aria-label="Link to Physical service constraints">#</a></h2>
+<p>Updates may interrupt recording, door decisions, alarm signalling, intercom, time, analytics, or failover. Sequence redundant components, preserve certified local functions, define maintenance state, notify operators, and avoid updates during high risk operating windows. Firmware procedures for life safety connected equipment must come from the manufacturer and qualified authority.</p>
+<h2 id="s-developer-controls">Developer controls<a class="heading-link" href="#s-developer-controls" aria-label="Link to Developer controls">#</a></h2>
+<ul>
+<li>Protect source, build workers, signing services and release credentials as production assets.</li>
+<li>Pin and review dependencies; record why each dependency is needed.</li>
+<li>Generate reproducible provenance where the build system supports it.</li>
+<li>Sign artefacts after controlled build and before distribution.</li>
+<li>Separate development, test and production signing roots.</li>
+<li>Verify updates in the device boot/update path, not only in the management UI.</li>
+<li>Make downgrade and recovery decisions explicit and auditable.</li>
+<li>Publish vulnerability reporting, support period and end of support information.</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST SSDF</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener noreferrer">NIST SP 800-218 Version 1.1</a>, secure development and release practices, accessed 25 August 2026.</li>
+<li><strong>NIST 800 193</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/193/final" rel="noopener noreferrer">NIST SP 800-193: Platform Firmware Resiliency Guidelines</a>, protection, detection and recovery principles, accessed 25 August 2026.</li>
+<li><strong>NTIA SBOM</strong>, <a href="https://www.ntia.gov/page/software-bill-materials" rel="noopener noreferrer">NTIA Software Bill of Materials resources</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li>
+<li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li>
+<li><a href="../../07-operations-and-lifecycle/">Operations and lifecycle</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../api-and-event-security/"><span>Previous in this section</span>API and event security</a><a href="../identity-authentication-and-authorization/"><span>Next in this section</span>Identity, authentication, and authorisation controls</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/firmware-updates-and-supply-chain.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/firmware-updates-and-supply-chain.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-product-and-dependency-record">Product and dependency record</a></li><li class="toc-level-2"><a href="#s-update-trust-chain">Update trust chain</a></li><li class="toc-level-2"><a href="#s-sbom-and-component-analysis">SBOM and component analysis</a></li><li class="toc-level-2"><a href="#s-physical-service-constraints">Physical service constraints</a></li><li class="toc-level-2"><a href="#s-developer-controls">Developer controls</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

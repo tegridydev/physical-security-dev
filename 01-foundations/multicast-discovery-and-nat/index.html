@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Multicast, discovery, and NAT · Security Technician Wiki</title>
+<meta name="description" content="Check how discovery traffic crosses the network and how devices are enrolled afterwards. Verify device identity before using an advertised service.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/multicast-discovery-and-nat/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Multicast, discovery, and NAT · Security Technician Wiki">
+<meta property="og:description" content="Check how discovery traffic crosses the network and how devices are enrolled afterwards. Verify device identity before using an advertised service.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/multicast-discovery-and-nat/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="./" aria-current="page">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Multicast, discovery, and NAT</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-multicast-discovery-and-nat">Multicast, discovery, and NAT</h1>
+<p>Check how discovery traffic crosses the network and how devices are enrolled afterwards. Verify device identity before using an advertised service.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Product discovery behaviour and default enablement vary by firmware and configuration.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-discovery-families">Discovery families</a></li><li class="toc-level-2"><a href="#s-secure-enrolment-pattern">Secure enrolment pattern</a></li><li class="toc-level-2"><a href="#s-multicast-media-and-events">Multicast media and events</a></li><li class="toc-level-2"><a href="#s-nat-traversal">NAT traversal</a></li><li class="toc-level-2"><a href="#s-diagnostics-without-scanning">Diagnostics without scanning</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Discovery answers “what claims to be here?” It rarely proves device identity or authorisation. Treat discovery output as untrusted candidate endpoints that must pass a separate enrolment and authentication process.</p>
+<h2 id="s-discovery-families">Discovery families<a class="heading-link" href="#s-discovery-families" aria-label="Link to Discovery families">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Mechanism</th>
+  <th>Typical use</th>
+  <th>Boundary behaviour</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>WS Discovery</td>
+  <td>ONVIF and other SOAP device services</td>
+  <td>Uses multicast discovery plus unicast responses; normally local scope unless proxied</td>
+</tr>
+<tr>
+  <td>Multicast DNS (mDNS) / DNS SD</td>
+  <td>Local service names and attributes</td>
+  <td>Link local multicast by design; reflectors widen trust/exposure</td>
+</tr>
+<tr>
+  <td>SSDP</td>
+  <td>UPnP discovery in some device ecosystems</td>
+  <td>Local multicast with device provided URLs</td>
+</tr>
+<tr>
+  <td>Vendor broadcast/multicast</td>
+  <td>Initial IP assignment or device finder</td>
+  <td>Often unauthenticated and product specific</td>
+</tr>
+<tr>
+  <td>Directory/registry</td>
+  <td>Managed services, cloud enrollment, DNS</td>
+  <td>Routable but depends on registry trust and lifecycle</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="https://www.rfc-editor.org/rfc/rfc6762" rel="noopener noreferrer">RFC 6762</a> defines mDNS and <a href="https://www.rfc-editor.org/rfc/rfc6763" rel="noopener noreferrer">RFC 6763</a> defines DNS Based Service Discovery. The OASIS <a href="https://docs.oasis-open.org/ws-dd/discovery/1.1/wsdd-discovery-1.1-spec.html" rel="noopener noreferrer">WS Discovery 1.1 specification</a> defines multicast discovery and managed discovery using a proxy.</p>
+<h2 id="s-secure-enrolment-pattern">Secure enrolment pattern<a class="heading-link" href="#s-secure-enrolment-pattern" aria-label="Link to Secure enrolment pattern">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">discover candidate
+  -&gt; constrain by expected network/physical location
+  -&gt; fetch minimum identity/capabilities
+  -&gt; authenticate or verify an out-of-band claim
+  -&gt; authorize enrollment
+  -&gt; assign stable inventory identity
+  -&gt; configure trust and rotate bootstrap secret
+  -&gt; disable unnecessary bootstrap services
+</code></pre></div>
+<p>Don't automatically trust a discovered endpoint, import its certificate without validation, or send it production credentials. Display name, MAC prefix, serial claim, and source IP can all be spoofed or reassigned.</p>
+<h2 id="s-multicast-media-and-events">Multicast media and events<a class="heading-link" href="#s-multicast-media-and-events" aria-label="Link to Multicast media and events">#</a></h2>
+<p>IP multicast can efficiently deliver one stream to many receivers, but requires:</p>
+<ul>
+<li>a defined group/address scope and source model;</li>
+<li>Internet Group Management Protocol (IGMP) or Multicast Listener Discovery (MLD) behaviour at switches/routers;</li>
+<li>querier availability and snooping configuration;</li>
+<li>rate/capacity planning for flooding and failover;</li>
+<li>authorisation and confidentiality design, group membership isn't identity;</li>
+<li>monitoring for unwanted senders, joins, and replication.</li>
+</ul>
+<p>Don't stretch multicast across zones solely to avoid a gateway. A controlled relay/proxy can enforce scope, identity, rate, and audit, but becomes a trust boundary.</p>
+<h2 id="s-nat-traversal">NAT traversal<a class="heading-link" href="#s-nat-traversal" aria-label="Link to NAT traversal">#</a></h2>
+<p>NAT usually permits outbound sessions and complicates inbound reachability, embedded addresses, peer to peer media, and negotiated ports. WebRTC uses Interactive Connectivity Establishment (ICE), Session Traversal Utilities for NAT (STUN), and Traversal Using Relays around NAT (TURN) as an explicit framework; generic port forwarding isn't an equivalent security design.</p>
+<p>For cloud connected devices, verify:</p>
+<ul>
+<li>which side initiates and how the peer is authenticated;</li>
+<li>destination allowlisting and DNS behaviour;</li>
+<li>reconnect/backoff and offline storage;</li>
+<li>relay/cloud access to media and metadata;</li>
+<li>token/certificate rotation;</li>
+<li>whether a cloud path creates reverse configuration or actuation authority.</li>
+</ul>
+<h2 id="s-diagnostics-without-scanning">Diagnostics without scanning<a class="heading-link" href="#s-diagnostics-without-scanning" aria-label="Link to Diagnostics without scanning">#</a></h2>
+<p>Begin with managed switch multicast tables, DHCP/DNS logs, product discovery logs, device inventory, and an authorised passive capture at the relevant boundary. Discovery probes can trigger load or state on constrained devices; don't broadcast them outside an approved, isolated scope.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../media-streaming-fundamentals/"><span>Previous in this section</span>Media streaming fundamentals</a><a href="../networking-fundamentals/"><span>Next in this section</span>Networking fundamentals</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/multicast-discovery-and-nat.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/multicast-discovery-and-nat.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-discovery-families">Discovery families</a></li><li class="toc-level-2"><a href="#s-secure-enrolment-pattern">Secure enrolment pattern</a></li><li class="toc-level-2"><a href="#s-multicast-media-and-events">Multicast media and events</a></li><li class="toc-level-2"><a href="#s-nat-traversal">NAT traversal</a></li><li class="toc-level-2"><a href="#s-diagnostics-without-scanning">Diagnostics without scanning</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Scope and boundaries · Security Technician Wiki</title>
+<meta name="description" content="This wiki covers the software and interfaces used in physical security systems. Installation, site engineering and approvals still require the relevant product instructions and qualified people.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/00-start-here/scope-and-boundaries/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Scope and boundaries · Security Technician Wiki">
+<meta property="og:description" content="This wiki covers the software and interfaces used in physical security systems. Installation, site engineering and approvals still require the relevant product instructions and qualified people.">
+<meta property="og:url" content="https://securitytechnician.wiki/00-start-here/scope-and-boundaries/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">00</span>Start here</a><ul class="nav-pages"><li><a href="../glossary-and-conventions/">Glossary and conventions</a></li><li><a href="../how-to-use-this-knowledge-base/">How to use this knowledge base</a></li><li><a href="../learning-paths/">Learning paths</a></li><li><a href="./" aria-current="page">Scope and boundaries</a></li><li><a href="../verification-and-safety/">Verification and safety</a></li></ul><details class="nav-group"><summary>Paths</summary><ul class="nav-pages"><li><a href="../paths/video-integration/">Build a video integration</a></li><li><a href="../paths/event-integration/">Build an event integration</a></li><li><a href="../paths/troubleshooting/">Find the next diagnostic check</a></li><li><a href="../paths/new-to-physical-security/">New to physical security</a></li><li><a href="../paths/security-review/">Review security and readiness</a></li><li><a href="../paths/access-control/">Understand an access control integration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Start here</a><span aria-hidden="true">/</span><span aria-current="page">Scope and boundaries</span></nav><div class="page-kicker">Start here <span>About 2 min read</span></div><div class="prose"><h1 id="s-scope-and-boundaries">Scope and boundaries</h1>
+<p>This wiki covers the software and interfaces used in physical security systems. Installation, site engineering and approvals still require the relevant product instructions and qualified people.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Global technical guidance; local legal, licensing, electrical, fire, building, labour, and privacy obligations are not catalogued exhaustively.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-in-scope">In scope</a></li><li class="toc-level-2"><a href="#s-out-of-scope">Out of scope</a></li><li class="toc-level-2"><a href="#s-physical-effect-boundary">Physical effect boundary</a></li><li class="toc-level-2"><a href="#s-jurisdiction-and-standards">Jurisdiction and standards</a></li><li class="toc-level-2"><a href="#s-research-boundary">Research boundary</a></li></ul></nav></details></div>
+<h2 id="s-in-scope">In scope<a class="heading-link" href="#s-in-scope" aria-label="Link to In scope">#</a></h2>
+<p>This library covers software development and integration knowledge for:</p>
+<ul>
+<li>network video, recording, analytics, metadata, and media transport;</li>
+<li>physical access control, readers, controllers, credentials, and identity exchange;</li>
+<li>intrusion, alarm transmission, monitoring, and verification interfaces;</li>
+<li>intercom, emergency communication, and associated real time media;</li>
+<li>building automation and OT convergence where physical security data or control crosses a boundary;</li>
+<li>supporting networking, discovery, messaging, identity, cryptography, time, serial, radio, and power technologies;</li>
+<li>secure design, defensive analysis, operations, lifecycle, and evidence handling;</li>
+<li>publicly documented vendor APIs, with exact product/version limits.</li>
+</ul>
+<p>The intended reader is a developer, integrator, architect, defensive researcher, or technically minded operator working on systems they own or are explicitly authorised to assess.</p>
+<h2 id="s-out-of-scope">Out of scope<a class="heading-link" href="#s-out-of-scope" aria-label="Link to Out of scope">#</a></h2>
+<ul>
+<li>Instructions to bypass access controls, clone live credentials, defeat alarms, evade detection, exploit production devices, jam radio, tamper with firmware, or create denial of service.</li>
+<li>Undocumented privileged vendor procedures, leaked SDK material, secret keys, production credentials, or private customer data.</li>
+<li>Site design sign off, code compliance, emergency response policy, fire strategy, lock/egress specification, electrical design, or legal advice.</li>
+<li>A claim that any example is conformant, certified, interoperable, production ready, or suitable for a particular site.</li>
+<li>Product purchasing recommendations divorced from a current threat model, lifecycle commitment, and local supply/support context.</li>
+</ul>
+<h2 id="s-physical-effect-boundary">Physical effect boundary<a class="heading-link" href="#s-physical-effect-boundary" aria-label="Link to Physical effect boundary">#</a></h2>
+<p>Many “data” operations can change a physical state. A door unlock API, relay write, PTZ movement, alarm inhibit, credential update, intercom call, BMS command, or PLC register write is an actuation path. Treat it as operational technology:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">software intent -&gt; protocol request -&gt; controller logic -&gt; field output -&gt; physical effect
+</code></pre></div>
+<p>Each arrow can transform, delay, reject, retry, duplicate, or partially apply the request. A successful HTTP response doesn't prove the safe physical outcome; a timeout doesn't prove the command was not applied.</p>
+<p>This library therefore keeps examples involving locks, doors, gates, lifts, fire, alarms, emergency functions, lockdown, and relays conceptual or non actuating. Site execution requires a named authority, isolation plan, affected person coordination, independent observation, abort criteria, and recovery path.</p>
+<h2 id="s-jurisdiction-and-standards">Jurisdiction and standards<a class="heading-link" href="#s-jurisdiction-and-standards" aria-label="Link to Jurisdiction and standards">#</a></h2>
+<p>Standards availability, privacy duties, biometric rules, surveillance notice, credential handling, retention, accessibility, emergency egress, fire interfaces, radio use, electrical installation, and trade licensing differ by jurisdiction and site classification. “Global” here means the technical concept isn't written for one legal system; it does <strong>not</strong> mean the same deployment is lawful everywhere.</p>
+<p>Before implementation, identify:</p>
+<ul>
+<li>the authority having jurisdiction and applicable adopted editions;</li>
+<li>contract, insurance, accreditation, and customer requirements;</li>
+<li>safety integrity and fail safe/fail secure decisions owned by qualified people;</li>
+<li>data controller/processor roles, retention, disclosure, and subject right processes;</li>
+<li>vendor support, warranty, certification, and conformance conditions.</li>
+</ul>
+<h2 id="s-research-boundary">Research boundary<a class="heading-link" href="#s-research-boundary" aria-label="Link to Research boundary">#</a></h2>
+<p>Defensive labs use synthetic/offline fixtures, loopback only simulations, or user controlled isolated equipment. Discovery or packet capture on a shared network isn't assumed authorised. See <a href="../../10-sources-and-maintenance/authorized-and-safe-use/">authorised and safe use</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../learning-paths/"><span>Previous in this section</span>Learning paths</a><a href="../verification-and-safety/"><span>Next in this section</span>Verification and safety</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/00-start-here/scope-and-boundaries.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/00-start-here/scope-and-boundaries.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-in-scope">In scope</a></li><li class="toc-level-2"><a href="#s-out-of-scope">Out of scope</a></li><li class="toc-level-2"><a href="#s-physical-effect-boundary">Physical effect boundary</a></li><li class="toc-level-2"><a href="#s-jurisdiction-and-standards">Jurisdiction and standards</a></li><li class="toc-level-2"><a href="#s-research-boundary">Research boundary</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

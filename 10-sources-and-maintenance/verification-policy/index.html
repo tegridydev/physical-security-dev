@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Verification and testing · Security Technician Wiki</title>
+<meta name="description" content="Source checks, software tests and equipment tests answer different questions.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/10-sources-and-maintenance/verification-policy/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verification and testing · Security Technician Wiki">
+<meta property="og:description" content="Source checks, software tests and equipment tests answer different questions.">
+<meta property="og:url" content="https://securitytechnician.wiki/10-sources-and-maintenance/verification-policy/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">10</span>Sources and scope</a><ul class="nav-pages"><li><a href="../authorized-and-safe-use/">Authorised and safe use</a></li><li><a href="../known-gaps/">Coverage limits</a></li><li><a href="../source-review-2026-09-29/">Source corrections, 29 September 2026</a></li><li><a href="../source-policy/">Source policy</a></li><li><a href="./" aria-current="page">Verification and testing</a></li></ul></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Sources and scope</a><span aria-hidden="true">/</span><span aria-current="page">Verification and testing</span></nav><div class="page-kicker">Sources and scope <span>About 2 min read</span></div><div class="prose"><h1 id="s-verification-and-testing">Verification and testing</h1>
+<p>Source checks, software tests and equipment tests answer different questions.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-source-checks">Source checks</a></li><li class="toc-level-2"><a href="#s-software-tests">Software tests</a></li><li class="toc-level-2"><a href="#s-equipment-tests">Equipment tests</a></li><li class="toc-level-2"><a href="#s-metadata-in-the-repository">Metadata in the repository</a></li><li class="toc-level-2"><a href="#s-evidence-records-for-new-source-checks">Evidence records for new source checks</a></li></ul></nav></details></div>
+<h2 id="s-source-checks">Source checks<a class="heading-link" href="#s-source-checks" aria-label="Link to Source checks">#</a></h2>
+<p>Articles link to the standards bodies, vendors and runtime documentation used for their claims. A dated source check states what was checked. It does not mean every device implements that feature or that the complete article was retested on that date.</p>
+<p>Older review dates remain visible where there has not been a new technical check. A wording edit or website build does not change the source review date.</p>
+<h2 id="s-software-tests">Software tests<a class="heading-link" href="#s-software-tests" aria-label="Link to Software tests">#</a></h2>
+<p>The <a href="../../05-development-and-integration/examples/">code examples</a> include runnable programs, offline demos and automated checks. Network examples are tested against local fixture services where a result is stated. The checks include successful responses and selected failure cases.</p>
+<p>A passing parser test does not establish protocol conformance. A successful connection to a local simulator does not establish compatibility with a camera, controller or monitoring receiver.</p>
+<h2 id="s-equipment-tests">Equipment tests<a class="heading-link" href="#s-equipment-tests" aria-label="Link to Equipment tests">#</a></h2>
+<p>Record the product, firmware, configuration, account permissions, test inputs and expected results. Include failure behaviour, recovery and any effect on other connected systems. Obtain authorisation before sending requests to real equipment.</p>
+<p>Product conformance, site acceptance and regulatory compliance require the applicable assessment process. The wiki does not issue those approvals.</p>
+<h2 id="s-metadata-in-the-repository">Metadata in the repository<a class="heading-link" href="#s-metadata-in-the-repository" aria-label="Link to Metadata in the repository">#</a></h2>
+<p>Source files preserve the existing review records. <code>V0</code> identifies guidance without a technical verification claim. <code>V1</code> records a source check, <code>V2</code> adds broader source and static review, and <code>V3</code> identifies a defined environment result. Read the scope and date alongside the label.</p>
+<p>A value of <code>not-executed</code> means the code has not been run under the documented test scope. <code>partially-runtime-validated</code> means only specified cases were executed. Do not treat those labels as a general compatibility promise.</p>
+<h2 id="s-evidence-records-for-new-source-checks">Evidence records for new source checks<a class="heading-link" href="#s-evidence-records-for-new-source-checks" aria-label="Link to Evidence records for new source checks">#</a></h2>
+<p>A new <code>checked_on</code> date requires <code>checked_scope</code> and an <code>evidence_record</code> link. The record must identify the source, edition, claim, access date and what remains unverified. The builder validates the link; it cannot establish that the source supports the claim.</p>
+<p>Inherited check dates are kept as <code>previous_checked_on</code> with their recorded scope. They do not become fresh verification merely because the website was rebuilt or the source URL responded successfully. A working link does not establish that its source supports a claim.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../source-policy/"><span>Previous in this section</span>Source policy</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/10-sources-and-maintenance/verification-policy.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/10-sources-and-maintenance/verification-policy.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-source-checks">Source checks</a></li><li class="toc-level-2"><a href="#s-software-tests">Software tests</a></li><li class="toc-level-2"><a href="#s-equipment-tests">Equipment tests</a></li><li class="toc-level-2"><a href="#s-metadata-in-the-repository">Metadata in the repository</a></li><li class="toc-level-2"><a href="#s-evidence-records-for-new-source-checks">Evidence records for new source checks</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Polling, subscriptions, and state reconciliation · Security Technician Wiki</title>
+<meta name="description" content="Polling and subscriptions provide different views of system changes. Plan gap detection and state reconciliation so the application can recover after missed events.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Polling, subscriptions, and state reconciliation · Security Technician Wiki">
+<meta property="og:description" content="Polling and subscriptions provide different views of system changes. Plan gap detection and state reconciliation so the application can recover after missed events.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../../examples/">Section overview</a></li><li><a href="../../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="./" aria-current="page">Polling, subscriptions, and state reconciliation</a></li><li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Integration patterns</a><span aria-hidden="true">/</span><span aria-current="page">Polling, subscriptions, and state reconciliation</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-polling-subscriptions-and-state-reconciliation">Polling, subscriptions, and state reconciliation</h1>
+<p>Polling and subscriptions provide different views of system changes. Plan gap detection and state reconciliation so the application can recover after missed events.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Protocol neutral state reconciliation pattern; snapshot consistency, sequence, subscription, replay, and retention guarantees are protocol and product specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-state-record">State record</a></li><li class="toc-level-2"><a href="#s-bootstrap-pattern">Bootstrap pattern</a></li><li class="toc-level-2"><a href="#s-polling-discipline">Polling discipline</a></li><li class="toc-level-2"><a href="#s-subscription-discipline">Subscription discipline</a></li><li class="toc-level-2"><a href="#s-environment-evidence">Environment evidence</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Polling gives periodic snapshots; subscriptions give changes. Neither alone guarantees a complete current state. Events can be lost, duplicated or reordered, while snapshots can be stale, expensive or internally inconsistent.</p>
+<h2 id="s-state-record">State record<a class="heading-link" href="#s-state-record" aria-label="Link to State record">#</a></h2>
+<p>Store value, source, source native identifier, observation time, ingestion time, sequence/revision where supplied, quality/confidence, freshness deadline and the configuration/profile version used to interpret it. Unknown and stale must remain distinct from a legitimate false, closed, inactive or zero value.</p>
+<h2 id="s-bootstrap-pattern">Bootstrap pattern<a class="heading-link" href="#s-bootstrap-pattern" aria-label="Link to Bootstrap pattern">#</a></h2>
+<ol>
+<li>Establish authenticated session and capability/version context.</li>
+<li>Start or prepare the event subscription without discarding early events.</li>
+<li>Obtain a consistent snapshot or mark its consistency limitation.</li>
+<li>Merge buffered events newer than the snapshot boundary.</li>
+<li>Publish state only after provenance and freshness are known.</li>
+<li>Periodically reconcile with authoritative snapshots and inventory.</li>
+</ol>
+<p>When the protocol can't provide a revision or atomic boundary, document the race and use conservative unknown/transitional state rather than claiming certainty.</p>
+<h2 id="s-polling-discipline">Polling discipline<a class="heading-link" href="#s-polling-discipline" aria-label="Link to Polling discipline">#</a></h2>
+<ul>
+<li>Add jitter to avoid synchronised fleets.</li>
+<li>Bound concurrency, response size and per device work.</li>
+<li>Distinguish unsupported, denied, offline, timeout, invalid response and stale cache.</li>
+<li>Adapt cadence to operational need without hiding failures.</li>
+<li>Don't poll an actuation endpoint to infer whether a command was authorised or physically completed unless the returned state is explicitly authoritative.</li>
+</ul>
+<h2 id="s-subscription-discipline">Subscription discipline<a class="heading-link" href="#s-subscription-discipline" aria-label="Link to Subscription discipline">#</a></h2>
+<ul>
+<li>Track subscription identity, lease/expiry, filters and negotiated schema.</li>
+<li>Renew before expiry with bounded retry and visible failure.</li>
+<li>Deduplicate by stable event identity or carefully scoped composite key.</li>
+<li>Reconcile after reconnect, peer restart, sequence gap or queue loss.</li>
+<li>Persist only the offset/token semantics the protocol guarantees.</li>
+</ul>
+<h2 id="s-environment-evidence">Environment evidence<a class="heading-link" href="#s-environment-evidence" aria-label="Link to Environment evidence">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Cite the exact snapshot, sequence, subscription, lease, replay, and retention guarantees used by the implementation.">Cite the exact snapshot, sequence, subscription, lease, replay, and retention guarantees used by the implementation.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Cover bootstrap races, duplicate/reordered events, sequence gaps, lease expiry, reconnect, peer restart, stale snapshots, and partial inventory.">Cover bootstrap races, duplicate/reordered events, sequence gaps, lease expiry, reconnect, peer restart, stale snapshots, and partial inventory.</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Record protocol/product versions, configuration, synthetic case set, observed state transitions, unresolved races, and reconciliation limits.">Record protocol/product versions, configuration, synthetic case set, observed state transitions, unresolved races, and reconciliation limits.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li>
+<li><a href="../event-normalization-and-schema-evolution/">Event normalisation and schema evolution</a></li>
+<li><a href="../../../07-operations-and-lifecycle/monitoring-and-health/">Monitoring and health</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../observability-and-diagnostics/"><span>Previous in this section</span>Observability and diagnostics</a><a href="../reconnect-backpressure-and-queues/"><span>Next in this section</span>Reconnect, backpressure, and queues</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-state-record">State record</a></li><li class="toc-level-2"><a href="#s-bootstrap-pattern">Bootstrap pattern</a></li><li class="toc-level-2"><a href="#s-polling-discipline">Polling discipline</a></li><li class="toc-level-2"><a href="#s-subscription-discipline">Subscription discipline</a></li><li class="toc-level-2"><a href="#s-environment-evidence">Environment evidence</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

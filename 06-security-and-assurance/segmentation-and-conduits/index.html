@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Segmentation and conduits · Security Technician Wiki</title>
+<meta name="description" content="Define the required network flows and permissions between zones. Use segmentation alongside device security, application access rules and monitoring.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/segmentation-and-conduits/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Segmentation and conduits · Security Technician Wiki">
+<meta property="og:description" content="Define the required network flows and permissions between zones. Use segmentation alongside device security, application access rules and monitoring.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/segmentation-and-conduits/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="./" aria-current="page">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Segmentation and conduits</span></nav><div class="page-kicker">Security <span>About 3 min read</span></div><div class="prose"><h1 id="s-segmentation-and-conduits">Segmentation and conduits</h1>
+<p>Define the required network flows and permissions between zones. Use segmentation alongside device security, application access rules and monitoring.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-recommended-zones">Recommended zones</a></li><li class="toc-level-2"><a href="#s-flow-specification">Flow specification</a></li><li class="toc-level-2"><a href="#s-discovery-and-multicast">Discovery and multicast</a></li><li class="toc-level-2"><a href="#s-failure-behaviour">Failure behaviour</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Segmentation limits which identities and flows can reach a component; it doesn't repair an insecure protocol. A VLAN is an addressing and broadcast boundary, not a complete security policy. Enforce conduits with routed policy, firewalls, application gateways, host controls, and monitored identities.</p>
+<h2 id="s-recommended-zones">Recommended zones<a class="heading-link" href="#s-recommended-zones" aria-label="Link to Recommended zones">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Zone</th>
+  <th>Typical contents</th>
+  <th>Default policy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Field/device</td>
+  <td>Cameras, readers, panels, sensors, intercoms</td>
+  <td>Initiate only explicitly required flows; no general Internet or user access</td>
+</tr>
+<tr>
+  <td>Management</td>
+  <td>VMS, PACS, alarm servers, configuration services</td>
+  <td>Reach devices on documented management/media/event ports only</td>
+</tr>
+<tr>
+  <td>Integration</td>
+  <td>Brokers, gateways, API adapters, PSIM connectors</td>
+  <td>Terminate and normalise cross system traffic; no implicit transit</td>
+</tr>
+<tr>
+  <td>Identity and trust</td>
+  <td>Directory, IdP, RADIUS, CA, time</td>
+  <td>Only named consumers and protocols; protect administration separately</td>
+</tr>
+<tr>
+  <td>Operator</td>
+  <td>Workstations and consoles</td>
+  <td>Application access, not direct device administration by default</td>
+</tr>
+<tr>
+  <td>Security operations</td>
+  <td>Logging, monitoring, update and backup services</td>
+  <td>Prefer one way collection where practical; tightly control response paths</td>
+</tr>
+<tr>
+  <td>Vendor support</td>
+  <td>Bastion or just in time support path</td>
+  <td>Disabled by default, approved, time bound, recorded, and revocable</td>
+</tr>
+<tr>
+  <td>Safety regulated</td>
+  <td>Fire, egress, elevator or other regulated functions</td>
+  <td>Separate authority and change control; integration must not replace certified functions</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-flow-specification">Flow specification<a class="heading-link" href="#s-flow-specification" aria-label="Link to Flow specification">#</a></h2>
+<p>Document each permitted flow as a tuple:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Example meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Source identity and zone</td>
+  <td>Recording server service identity in management zone</td>
+</tr>
+<tr>
+  <td>Destination identity and zone</td>
+  <td>Exact camera inventory group in device zone</td>
+</tr>
+<tr>
+  <td>Protocol and secure mode</td>
+  <td>HTTPS with validated server certificate; RTP mode recorded separately</td>
+</tr>
+<tr>
+  <td>Ports/direction</td>
+  <td>Explicit fixed or negotiated range, including return behaviour</td>
+</tr>
+<tr>
+  <td>Purpose</td>
+  <td>Configuration, events, media, health, or time</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>Required device/API role and permitted object scope</td>
+</tr>
+<tr>
+  <td>Availability need</td>
+  <td>Continuous, commissioning only, scheduled, or break glass</td>
+</tr>
+<tr>
+  <td>Logging</td>
+  <td>Connection, authentication, command and denial evidence</td>
+</tr>
+<tr>
+  <td>Owner/review</td>
+  <td>Named system role and change trigger</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't approve a broad any to any rule merely because a vendor publishes a long port list. Trace actual topology, optional features, active/passive connection direction, multicast groups, discovery scope, NAT, and failover peers.</p>
+<h2 id="s-discovery-and-multicast">Discovery and multicast<a class="heading-link" href="#s-discovery-and-multicast" aria-label="Link to Discovery and multicast">#</a></h2>
+<p>Broadcast and multicast discovery can cross intended boundaries through relays, proxies, or misconfigured routing. Constrain WS Discovery, mDNS, SSDP, vendor discovery, IGMP, and multicast routing to defined commissioning or media domains. Prefer inventory driven unicast after commissioning where the product permits it.</p>
+<h2 id="s-failure-behaviour">Failure behaviour<a class="heading-link" href="#s-failure-behaviour" aria-label="Link to Failure behaviour">#</a></h2>
+<ul>
+<li>Decide what happens when a firewall, gateway, DNS, NTP, IdP, CA, broker, or cloud path is unavailable.</li>
+<li>Avoid automatic plaintext fallback or silent certificate bypass.</li>
+<li>Rate limit reconnect storms and preserve bounded queues.</li>
+<li>Keep local safety behaviour independent of nonessential remote services.</li>
+<li>Monitor denied flows, but suppress neither repeated authentication failure nor loss of expected heartbeats.</li>
+</ul>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li>Every route maps to a documented system data flow.</li>
+<li>Management and user traffic are distinct from media and device events.</li>
+<li>Administrative interfaces aren't exposed to general client networks.</li>
+<li>Outbound device connectivity is allowlisted by destination identity and purpose.</li>
+<li>IPv6, secondary interfaces, WiFi, cellular, VPNs and vendor tunnels are included.</li>
+<li>Temporary commissioning rules have expiry and removal evidence.</li>
+<li>Firewall policy and application authorisation are both validated in a representative environment before deployment.</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, network architecture and segmentation guidance for OT, accessed 25 August 2026.</li>
+<li><strong>CISA DEFENSE</strong>, <a href="https://www.cisa.gov/resources-tools/resources/ics-recommended-practices" rel="noopener noreferrer">CISA Recommended Practice: Improving Industrial Control Systems Cybersecurity with Defense in Depth Strategies</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../remote-access/">Remote access</a></li>
+<li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li>
+<li><a href="../../02-protocols/infrastructure/">Infrastructure protocols</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../secure-system-baselines/"><span>Previous in this section</span>Secure system baselines</a><a href="../threat-modeling-and-trust-boundaries/"><span>Next in this section</span>Threat modelling and trust boundaries</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/segmentation-and-conduits.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/segmentation-and-conduits.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-recommended-zones">Recommended zones</a></li><li class="toc-level-2"><a href="#s-flow-specification">Flow specification</a></li><li class="toc-level-2"><a href="#s-discovery-and-multicast">Discovery and multicast</a></li><li class="toc-level-2"><a href="#s-failure-behaviour">Failure behaviour</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

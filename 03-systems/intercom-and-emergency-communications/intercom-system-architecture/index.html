@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Intercom system architecture · Security Technician Wiki</title>
+<meta name="description" content="Break an intercom system into identity, call control, media, notifications and physical outputs. Record which component handles each function.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/intercom-and-emergency-communications/intercom-system-architecture/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Intercom system architecture · Security Technician Wiki">
+<meta property="og:description" content="Break an intercom system into identity, call control, media, notifications and physical outputs. Record which component handles each function.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/intercom-and-emergency-communications/intercom-system-architecture/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group" open><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="./" aria-current="page">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Intercom and emergency communication systems</a><span aria-hidden="true">/</span><span aria-current="page">Intercom system architecture</span></nav><div class="page-kicker">Systems <span>About 3 min read</span></div><div class="prose"><h1 id="s-intercom-system-architecture">Intercom system architecture</h1>
+<p>Break an intercom system into identity, call control, media, notifications and physical outputs. Record which component handles each function.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Architecture only; no live relay control, emergency call procedure, acoustic design, accessibility determination, or jurisdiction specific approval.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-component-model">Component model</a></li><li class="toc-level-2"><a href="#s-authorities">Authorities</a></li><li class="toc-level-2"><a href="#s-functional-planes">Functional planes</a></li><li class="toc-level-2"><a href="#s-availability-and-degraded-operation">Availability and degraded operation</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-source-baseline">Source baseline</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An intercom is an identity, call control, real time media, notification, and sometimes physical control system. Treat those planes separately even when a single appliance or cloud service implements all of them.</p>
+<h2 id="s-component-model">Component model<a class="heading-link" href="#s-component-model" aria-label="Link to Component model">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">door/room/help-point station
+  -&gt; discovery, registration, and call controller
+  -&gt; routing/queue/presence
+  -&gt; master station, attendant client, mobile client, or PBX/SIP peer
+  -&gt; media path: audio, video, data, recording
+  -&gt; optional PACS/door-control request through a separate authority
+</code></pre></div>
+<p>Inventory stations, call controllers, directories, master stations, gateways, media relays, recorders, mobile/cloud services, physical I/O, PoE/power, switches, time, certificates, and external telephony. Record physical location and purpose separately from mutable address, extension, or display name.</p>
+<h2 id="s-authorities">Authorities<a class="heading-link" href="#s-authorities" aria-label="Link to Authorities">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Normal authority</th>
+  <th>Integration rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>device identity/configuration</td>
+  <td>intercom management system</td>
+  <td>synchronize deliberately; do not infer from IP address</td>
+</tr>
+<tr>
+  <td>call state and routing</td>
+  <td>call controller/native system</td>
+  <td>retain native call and leg identifiers</td>
+</tr>
+<tr>
+  <td>media</td>
+  <td>negotiated endpoints/relay</td>
+  <td>report negotiated protection and actual path</td>
+</tr>
+<tr>
+  <td>door authorisation</td>
+  <td>PACS/controller and approved life safety design</td>
+  <td>intercom requests; PACS decides and door reports state</td>
+</tr>
+<tr>
+  <td>emergency response</td>
+  <td>approved operational/safety system</td>
+  <td>common UI must not replace native authority silently</td>
+</tr>
+</tbody>
+</table></div>
+<p>A client showing <code>door released</code> after sending a relay command is unsafe. Represent request accepted, authorisation decision, output state, contact state, and held/forced conditions separately.</p>
+<h2 id="s-functional-planes">Functional planes<a class="heading-link" href="#s-functional-planes" aria-label="Link to Functional planes">#</a></h2>
+<ul>
+<li><strong>Identity and enrolment:</strong> device credentials, directory entries, trusted administrators, certificates, replacement and revocation.</li>
+<li><strong>Call signalling:</strong> registration, initiation, ringing, queueing, answer, transfer, escalation, termination, failure reason, and presence.</li>
+<li><strong>Media:</strong> codecs, packet path, jitter/loss handling, echo control, camera source, encryption, recording, and retention.</li>
+<li><strong>Management:</strong> provisioning, firmware, diagnostics, logs, time, configuration backup, and service access.</li>
+<li><strong>Physical I/O:</strong> call buttons, tamper, local inputs, amplifiers/speakers, and separately governed control requests.</li>
+</ul>
+<p>Protection on one plane doesn't prove protection on another. For example, an authenticated management session says nothing about signalling trust, media confidentiality, external call routing, or relay authorisation.</p>
+<h2 id="s-availability-and-degraded-operation">Availability and degraded operation<a class="heading-link" href="#s-availability-and-degraded-operation" aria-label="Link to Availability and degraded operation">#</a></h2>
+<p>Document behaviour for loss of controller, directory, DNS, time, WAN/cloud, mobile push service, PBX gateway, PoE, one network segment, media relay, recorder, and PACS link. State which calls remain local, how queued calls are shown, whether alternate destinations work, and how recovery reconciles duplicate or abandoned calls.</p>
+<p>An endpoint heartbeat doesn't prove microphone, loudspeaker, call button, camera view, intelligibility, or the staffed availability of a destination. Health monitoring should expose each observable function and the age of evidence.</p>
+<h2 id="s-security-and-privacy">Security and privacy<a class="heading-link" href="#s-security-and-privacy" aria-label="Link to Security and privacy">#</a></h2>
+<ul>
+<li>use unique device and administrator identity; remove default/shared credentials;</li>
+<li>segment management, signalling, media, and unrelated tenant/site traffic according to risk;</li>
+<li>restrict remote support, mobile enrolment, directory export, live listening, recording, playback, and control;</li>
+<li>verify negotiated signalling and media protection rather than relying on feature support;</li>
+<li>make recording and live monitoring indication/consent comply with applicable law and policy;</li>
+<li>minimize retained audio, images, call metadata, phone numbers, and visitor details;</li>
+<li>audit configuration, directory, routing, recording, export, and door request actions.</li>
+</ul>
+<h2 id="s-acceptance-evidence">Acceptance evidence<a class="heading-link" href="#s-acceptance-evidence" aria-label="Link to Acceptance evidence">#</a></h2>
+<ul>
+<li>exact endpoints, controller/gateway versions, roles, identities, and trust anchors;</li>
+<li>call matrix for normal, busy, unanswered, transfer, escalation, and failure paths;</li>
+<li>usable audio/video in representative noise, lighting, bandwidth, and accessibility conditions;</li>
+<li>clock alignment and call/media/audit correlation;</li>
+<li>controller, WAN, PoE, destination, gateway, and PACS link failure behaviour;</li>
+<li>role and tenant isolation, recording behaviour, retention, and export;</li>
+<li>native door state feedback rather than command success inference.</li>
+</ul>
+<h2 id="s-source-baseline">Source baseline<a class="heading-link" href="#s-source-baseline" aria-label="Link to Source baseline">#</a></h2>
+<p><a href="https://webstore.iec.ch/en/publication/68745" rel="noopener noreferrer">IEC 62820-1-1:2026</a> provides general building intercom requirements and <a href="https://webstore.iec.ch/en/publication/68746" rel="noopener noreferrer">IEC 62820-1-2:2026</a> covers systems using IP. <a href="https://webstore.iec.ch/en/publication/32331" rel="noopener noreferrer">IEC 62820-2:2017</a> adds advanced security building intercom requirements. Normative content and product conformity must be obtained separately.</p>
+<p>See <a href="../">Intercom and emergency communication systems</a> and <a href="../call-routing-media-and-door-control/">Call routing, media, and door control</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../call-routing-media-and-door-control/"><span>Previous in this section</span>Intercom call routing, media, and door control</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/intercom-and-emergency-communications/intercom-system-architecture.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/intercom-and-emergency-communications/intercom-system-architecture.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-component-model">Component model</a></li><li class="toc-level-2"><a href="#s-authorities">Authorities</a></li><li class="toc-level-2"><a href="#s-functional-planes">Functional planes</a></li><li class="toc-level-2"><a href="#s-availability-and-degraded-operation">Availability and degraded operation</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-source-baseline">Source baseline</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

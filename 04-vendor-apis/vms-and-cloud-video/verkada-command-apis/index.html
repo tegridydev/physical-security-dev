@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Verkada Command APIs · Security Technician Wiki</title>
+<meta name="description" content="Check the Command API and organisation scope for the integration. Assign separate permissions for credentials, events, media and control operations.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/verkada-command-apis/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verkada Command APIs · Security Technician Wiki">
+<meta property="og:description" content="Check the Command API and organisation scope for the integration. Assign separate permissions for credentials, events, media and control operations.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/verkada-command-apis/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="./" aria-current="page">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Verkada Command APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-verkada-command-apis">Verkada Command APIs</h1>
+<p>Check the Command API and organisation scope for the integration. Assign separate permissions for credentials, events, media and control operations.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Verkada API documentation and policy reviewed on 25 August 2026; product subscriptions, organization permissions, critical endpoint approval, region hosts, adjusted quotas, feature availability, and endpoint schemas require the authorised tenant.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-verified-contract">Verified contract</a></li><li class="toc-level-2"><a href="#s-authentication-and-secret-handling">Authentication and secret handling</a></li><li class="toc-level-2"><a href="#s-limits-and-pagination">Limits and pagination</a></li><li class="toc-level-2"><a href="#s-video-events-and-access-control">Video, events, and access control</a></li><li class="toc-level-2"><a href="#s-region-policy-and-lifecycle">Region, policy, and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Verkada</p>
+<p>Verkada publishes APIs across Command product families, including camera and access control capabilities. The identity pattern starts with an organization managed top level API key with explicit product and critical endpoint permissions, then uses short lived API tokens for most calls. Service regions are a first class boundary.</p>
+<h2 id="s-verified-contract">Verified contract<a class="heading-link" href="#s-verified-contract" aria-label="Link to Verified contract">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Area</th>
+  <th>Publicly documented behaviour</th>
+  <th>Design consequence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Top level API key</td>
+  <td>Organization administrator creates a key and assigns product/critical permissions</td>
+  <td>Store only in a confidential backend; review and rotate as a root integration secret</td>
+</tr>
+<tr>
+  <td>API token</td>
+  <td>Generated from the key; documented 30 minute lifetime and no refresh</td>
+  <td>Cache only briefly, renew safely, prevent stampede and never log</td>
+</tr>
+<tr>
+  <td>Service region</td>
+  <td>Credentials and service hosts are region bound across documented commercial/government regions</td>
+  <td>Discover/configure the correct region; never fall back across regions</td>
+</tr>
+<tr>
+  <td>Pagination</td>
+  <td>Common pagination guidance plus endpoint specific fields</td>
+  <td>Follow returned token/link contract, not guessed offsets</td>
+</tr>
+<tr>
+  <td>Rate limit</td>
+  <td>As observed 25 August 2026, 300 requests/minute globally per organization; vendor may adjust</td>
+  <td>Centralize quota across workers and treat the number as mutable configuration</td>
+</tr>
+<tr>
+  <td>Webhooks</td>
+  <td>Product specific camera notification and access event webhook models</td>
+  <td>Authenticate, deduplicate, queue durably and reconcile</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-authentication-and-secret-handling">Authentication and secret handling<a class="heading-link" href="#s-authentication-and-secret-handling" aria-label="Link to Authentication and secret handling">#</a></h2>
+<p>Create one key per integration/purpose rather than sharing an administrator’s general key. Enable only the required product APIs and critical endpoints. A token inherits its key’s permission, so short lifetime reduces exposure time but doesn't compensate for overbroad authority.</p>
+<ul>
+<li>Keep the top level key and token exchange server side.</li>
+<li>Bind region and organization identifiers in configuration and audit.</li>
+<li>Validate TLS and reject redirects to unexpected hosts.</li>
+<li>Rotate keys with overlapping deployment only according to the documented lifecycle.</li>
+<li>Redact keys, tokens, media URLs, webhook secrets and sensitive IDs from traces.</li>
+<li>Treat a token generation failure as an identity incident, not a reason to fall back to another organization key.</li>
+</ul>
+<p>Some streaming interfaces can use different authentication. Follow the exact streaming reference; don't attach an ordinary API token to an undocumented URL.</p>
+<h2 id="s-limits-and-pagination">Limits and pagination<a class="heading-link" href="#s-limits-and-pagination" aria-label="Link to Limits and pagination">#</a></h2>
+<p>The public rate limit page said 300 requests per minute globally per organization on the verification date and notes that Verkada can adjust limits. Coordinate all replicas against that shared budget, reserve capacity for recovery/critical workflows and add jitter. On <code>429</code>, honor the current documented retry guidance; the reviewed page advised waiting at least five seconds rather than immediate retries.</p>
+<p>Use endpoint specific pagination and persist a cursor only for its documented lifetime. Avoid unbounded organization wide scans. For synchronisation, checkpoint only after durable processing and periodically reconcile authoritative collections.</p>
+<h2 id="s-video-events-and-access-control">Video, events, and access control<a class="heading-link" href="#s-video-events-and-access-control" aria-label="Link to Video, events, and access control">#</a></h2>
+<p>Treat live video, archives, thumbnails, analytics/notifications and access events as different data classes. Media session links and tokens are sensitive and shouldn't enter analytics or general logs. Follow platform export/evidence procedures for evidentiary use.</p>
+<p>Access APIs can expose identities, credentials, doors and commands depending on permission. Unlock and other critical operations require a separate high impact policy: named requester, purpose, target, precondition, explicit confirmation, idempotency/uncertain outcome handling, and immutable audit. Never use exploratory calls on production doors.</p>
+<p>For webhooks, validate the vendor documented authenticity mechanism, timestamp/freshness and schema. Deduplicate by stable delivery/event identifier, acknowledge after durable enqueue and reconcile when delivery fails. Don't assume webhook receipt proves physical passage or operator action.</p>
+<h2 id="s-region-policy-and-lifecycle">Region, policy, and lifecycle<a class="heading-link" href="#s-region-policy-and-lifecycle" aria-label="Link to Region, policy, and lifecycle">#</a></h2>
+<p>The service region reference identifies commercial regions including Australia and Europe and a GovCloud environment. Credentials aren't portable between regions. Confirm product API support, organization placement, data residency, egress and legal terms for the selected region.</p>
+<p>The API Use Policy governs permitted use independently of technical access. Monitor the API change log, limits, permissions and policy before each deployment. Date mutable claims in design records.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://apidocs.verkada.com/reference/quick-start-guide" rel="noopener noreferrer">Verkada API quick start</a>, key, permissions, token and HTTPS model.</li>
+<li><a href="https://apidocs.verkada.com/reference/postloginapikeyviewv2" rel="noopener noreferrer">Get API token</a>, 30 minute token/no refresh contract.</li>
+<li><a href="https://apidocs.verkada.com/reference/service-regions" rel="noopener noreferrer">Service regions</a>, region and credential boundary.</li>
+<li><a href="https://apidocs.verkada.com/reference/ratelimiting" rel="noopener noreferrer">Rate limiting</a>, mutable organization quota and retry behaviour.</li>
+<li><a href="https://apidocs.verkada.com/reference/pagination" rel="noopener noreferrer">Pagination</a>, common collection contract.</li>
+<li><a href="https://apidocs.verkada.com/reference/access-api-101" rel="noopener noreferrer">Access API overview</a> and <a href="https://apidocs.verkada.com/reference/access-events-webhooks" rel="noopener noreferrer">access event webhooks</a>, access control boundary.</li>
+<li><a href="https://apidocs.verkada.com/reference/notification-webhook-object-1" rel="noopener noreferrer">Camera notification webhook object</a>, video notification evidence.</li>
+<li><a href="https://docs.verkada.com/docs/API-Use-Policy.pdf" rel="noopener noreferrer">Verkada API Use Policy</a>, use constraints.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../01-foundations/credentials-and-identity-media/">Credentials and identity media</a></li>
+<li><a href="../../../05-development-and-integration/patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li>
+<li><a href="../../../06-security-and-assurance/privacy-and-sensitive-data/">Privacy and sensitive data</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../network-optix-nx-meta-apis-and-sdks/"><span>Previous in this section</span>Network Optix Nx Meta APIs and SDKs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/verkada-command-apis.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/verkada-command-apis.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-verified-contract">Verified contract</a></li><li class="toc-level-2"><a href="#s-authentication-and-secret-handling">Authentication and secret handling</a></li><li class="toc-level-2"><a href="#s-limits-and-pagination">Limits and pagination</a></li><li class="toc-level-2"><a href="#s-video-events-and-access-control">Video, events, and access control</a></li><li class="toc-level-2"><a href="#s-region-policy-and-lifecycle">Region, policy, and lifecycle</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

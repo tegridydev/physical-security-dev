@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Secure protocol parsing · Security Technician Wiki</title>
+<meta name="description" content="Check message size, structure, types and meaning before processing the contents. Apply the same limits to network data, SDK callbacks and saved captures.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/secure-protocol-parsing/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secure protocol parsing · Security Technician Wiki">
+<meta property="og:description" content="Check message size, structure, types and meaning before processing the contents. Apply the same limits to network data, SDK callbacks and saved captures.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/secure-protocol-parsing/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="./" aria-current="page">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Secure protocol parsing</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-secure-protocol-parsing">Secure protocol parsing</h1>
+<p>Check message size, structure, types and meaning before processing the contents. Apply the same limits to network data, SDK callbacks and saved captures.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-parsing-pipeline">Parsing pipeline</a></li><li class="toc-level-2"><a href="#s-binary-protocols">Binary protocols</a></li><li class="toc-level-2"><a href="#s-xml-and-structured-text">XML and structured text</a></li><li class="toc-level-2"><a href="#s-state-machines">State machines</a></li><li class="toc-level-2"><a href="#s-language-emphasis">Language emphasis</a></li><li class="toc-level-2"><a href="#s-defensive-verification-design">Defensive verification design</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Every device message, event, discovery response, media descriptor, serial frame, XML document, JSON body, topic name, SDK callback, and stored capture is untrusted input. Parse bytes into a validated model before any state transition or actuation decision.</p>
+<h2 id="s-parsing-pipeline">Parsing pipeline<a class="heading-link" href="#s-parsing-pipeline" aria-label="Link to Parsing pipeline">#</a></h2>
+<ol>
+<li>Bound transport reads by maximum frame/document size and deadline.</li>
+<li>Distinguish clean end of stream, timeout, truncation, protocol error, and resource exhaustion.</li>
+<li>Validate framing length, checksum or integrity field before allocating from attacker controlled sizes.</li>
+<li>Decode with an explicit character set, byte order, numeric width, and overflow policy.</li>
+<li>Reject unknown critical versions/types; preserve unknown optional fields only when the specification permits it.</li>
+<li>Canonicalize once, then validate schema, ranges, identifiers, counts, nesting, and cross field invariants.</li>
+<li>Apply replay, sequence, timestamp, session, authorisation, and state transition checks.</li>
+<li>Convert to an internal typed representation that can't express impossible combinations.</li>
+<li>Log a bounded, redacted diagnostic; never echo arbitrary binary or sensitive values blindly.</li>
+</ol>
+<h2 id="s-binary-protocols">Binary protocols<a class="heading-link" href="#s-binary-protocols" aria-label="Link to Binary protocols">#</a></h2>
+<ul>
+<li>Check minimum header length before field access.</li>
+<li>Perform overflow safe arithmetic before computing end offsets or allocation sizes.</li>
+<li>Treat declared length as a claim, not a fact; compare it with the received buffer and protocol maximum.</li>
+<li>Decode fixed width integers explicitly and avoid alignment dependent casts.</li>
+<li>Validate CRC/checksum where defined, but don't treat error detection as authentication.</li>
+<li>Bound loops over objects, registers, TLVs, APDUs, topics, channels, or media tracks.</li>
+<li>Keep parser state separate per peer/session and reset it predictably after malformed input.</li>
+</ul>
+<h2 id="s-xml-and-structured-text">XML and structured text<a class="heading-link" href="#s-xml-and-structured-text" aria-label="Link to XML and structured text">#</a></h2>
+<p>Disable external entity resolution and network/file retrieval unless a narrowly reviewed specification truly requires them. Bound document size, nesting, attributes, namespaces, expansion, and collection counts. Validate the post parse semantic model; a well formed SOAP or JSON document can still request an unauthorised or impossible operation.</p>
+<h2 id="s-state-machines">State machines<a class="heading-link" href="#s-state-machines" aria-label="Link to State machines">#</a></h2>
+<p>Reject messages that are valid in isolation but invalid for the negotiated version, direction, role, authentication state, or sequence. Specify behaviour for duplicates, retries, out of order delivery, unknown extensions, reconnect, resumption, peer reboot, and partial writes.</p>
+<h2 id="s-language-emphasis">Language emphasis<a class="heading-link" href="#s-language-emphasis" aria-label="Link to Language emphasis">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Language</th>
+  <th>Minimum discipline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Python</td>
+  <td>Type annotations, explicit byte slices and bounds, maximum input sizes, timeouts, narrow exception handling</td>
+</tr>
+<tr>
+  <td>TypeScript</td>
+  <td>Strict mode plus runtime validation; compile time types do not validate network JSON</td>
+</tr>
+<tr>
+  <td>C#</td>
+  <td>Bounded spans/streams, cancellation tokens, checked numeric conversions, safe XML settings</td>
+</tr>
+<tr>
+  <td>Go</td>
+  <td>Reader limits, contexts/deadlines, exact binary order, explicit resource closure</td>
+</tr>
+<tr>
+  <td>C</td>
+  <td>Fixed width types, checked arithmetic, no unbounded string/memory operations, single cleanup path</td>
+</tr>
+<tr>
+  <td>C++</td>
+  <td>RAII ownership, spans/views with lifetime clarity, checked conversions, bounded containers</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-defensive-verification-design">Defensive verification design<a class="heading-link" href="#s-defensive-verification-design" aria-label="Link to Defensive verification design">#</a></h2>
+<p>Validate parsers with synthetic fixtures covering empty, minimum, maximum, truncated, overlong, wrong version, bad integrity, duplicate, replayed, out of order, unknown field, invalid encoding, and state invalid cases. Keep fuzzing inside an isolated offline parser harness or an explicitly owned loopback process; never direct it at operational devices.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST SSDF</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/218/final" rel="noopener noreferrer">NIST SP 800-218 Version 1.1</a>, secure development practices, accessed 25 August 2026.</li>
+<li><strong>CWE 20</strong>, <a href="https://cwe.mitre.org/data/definitions/20.html" rel="noopener noreferrer">CWE 20: Improper Input Validation</a>, MITRE weakness definition and mitigations, accessed 25 August 2026.</li>
+<li><strong>CWE 611</strong>, <a href="https://cwe.mitre.org/data/definitions/611.html" rel="noopener noreferrer">CWE 611: Improper Restriction of XML External Entity Reference</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../api-and-event-security/">API and event security</a></li>
+<li><a href="../../05-development-and-integration/">Development and integration</a></li>
+<li><a href="../../08-defensive-labs/">Defensive labs</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../secure-commissioning-and-onboarding/"><span>Previous in this section</span>Secure commissioning and onboarding</a><a href="../secure-system-baselines/"><span>Next in this section</span>Secure system baselines</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/secure-protocol-parsing.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/secure-protocol-parsing.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-parsing-pipeline">Parsing pipeline</a></li><li class="toc-level-2"><a href="#s-binary-protocols">Binary protocols</a></li><li class="toc-level-2"><a href="#s-xml-and-structured-text">XML and structured text</a></li><li class="toc-level-2"><a href="#s-state-machines">State machines</a></li><li class="toc-level-2"><a href="#s-language-emphasis">Language emphasis</a></li><li class="toc-level-2"><a href="#s-defensive-verification-design">Defensive verification design</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

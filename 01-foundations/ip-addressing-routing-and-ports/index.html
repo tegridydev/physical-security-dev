@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>IP addressing, routing, and ports · Security Technician Wiki</title>
+<meta name="description" content="Record the addresses, routes, ports and connection direction used by each service. Verify the responding device and its identity separately.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/ip-addressing-routing-and-ports/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="IP addressing, routing, and ports · Security Technician Wiki">
+<meta property="og:description" content="Record the addresses, routes, ports and connection direction used by each service. Verify the responding device and its identity separately.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/ip-addressing-routing-and-ports/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="./" aria-current="page">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">IP addressing, routing, and ports</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-ip-addressing-routing-and-ports">IP addressing, routing, and ports</h1>
+<p>Record the addresses, routes, ports and connection direction used by each service. Verify the responding device and its identity separately.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Does not prescribe a site addressing plan or claim product defaults.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-address-categories">Address categories</a></li><li class="toc-level-2"><a href="#s-routing-and-zones">Routing and zones</a></li><li class="toc-level-2"><a href="#s-ports">Ports</a></li><li class="toc-level-2"><a href="#s-nat-and-port-forwarding">NAT and port forwarding</a></li><li class="toc-level-2"><a href="#s-dns-and-certificates">DNS and certificates</a></li><li class="toc-level-2"><a href="#s-dont-infer">Don&#x27;t infer</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An address locates an interface in a routing context; it isn't a durable device identity or an authorisation claim. A port identifies a transport endpoint convention; it doesn't prove which protocol, version, or peer is present.</p>
+<h2 id="s-address-categories">Address categories<a class="heading-link" href="#s-address-categories" aria-label="Link to Address categories">#</a></h2>
+<ul>
+<li>IPv4 private use space is defined by <a href="https://www.rfc-editor.org/rfc/rfc1918" rel="noopener noreferrer">RFC 1918</a>; it isn't inherently trusted or globally unique.</li>
+<li>IPv6 unique local addresses are defined by <a href="https://www.rfc-editor.org/rfc/rfc4193" rel="noopener noreferrer">RFC 4193</a>; link local addresses have interface scope and often need a zone identifier in software.</li>
+<li>Documentation must use <a href="https://www.rfc-editor.org/rfc/rfc5737" rel="noopener noreferrer">RFC 5737</a> IPv4 ranges and <a href="https://www.rfc-editor.org/rfc/rfc3849" rel="noopener noreferrer">RFC 3849</a> IPv6 space, not plausible customer networks.</li>
+<li>Loopback is appropriate only when the entire example is local and no device connectivity is implied.</li>
+</ul>
+<p>Inventory address assignment source, static, DHCP reservation, dynamic DHCP, SLAAC, vendor discovery, or cloud enrolment, and the recovery procedure when it changes.</p>
+<h2 id="s-routing-and-zones">Routing and zones<a class="heading-link" href="#s-routing-and-zones" aria-label="Link to Routing and zones">#</a></h2>
+<p>Route only the flows the architecture requires. A typical flow record contains:</p>
+<div class="code-block"><div class="code-toolbar"><span>yaml</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy yaml example">Copy</button></div><pre tabindex="0" aria-label="yaml example"><code id="code-1">source_zone: video-edge
+source_role: camera
+destination_service: vms-ingest.example
+address_family: dual-stack
+transport: tcp
+destination_port: product-documented
+initiator: camera
+protection: tls-with-server-auth
+purpose: event-and-health-uplink
+availability: locally-buffered-for-30-minutes
+owner: video-platform-team
+</code></pre></div>
+<p>Prefer service identity and named policy objects where tooling supports them, while retaining resolved address observability. Avoid broad “camera VLAN to server VLAN” permissions that silently expose management and control interfaces.</p>
+<h2 id="s-ports">Ports<a class="heading-link" href="#s-ports" aria-label="Link to Ports">#</a></h2>
+<p>IANA maintains the <a href="https://www.iana.org/assignments/service-names-port-numbers/" rel="noopener noreferrer">Service Name and Transport Protocol Port Number Registry</a>. Registered numbers are references, not universal product facts. Products may use configurable or dynamic ports; protocols such as RTP can negotiate media ports; TLS may protect a service on either a conventional or product specific port.</p>
+<p>For each port, record direction and initiation. A firewall rule written as “allow 443” is incomplete without source/destination, TCP/UDP, IP version, purpose, TLS identity, and whether return traffic is stateful.</p>
+<h2 id="s-nat-and-port-forwarding">NAT and port forwarding<a class="heading-link" href="#s-nat-and-port-forwarding" aria-label="Link to NAT and port forwarding">#</a></h2>
+<p>Network Address Translation changes addressing and often blocks inbound initiation; it doesn't authenticate, authorise, or encrypt. Avoid exposing device management or media interfaces by generic port forwarding. Prefer authenticated outbound device connections, a managed application proxy, or an approved remote access boundary with strong identity and logging.</p>
+<p>Protocols embedding addresses or opening negotiated secondary connections need NAT aware design. Discovery multicast usually doesn't cross routers/NAT without an explicit proxy or gateway, and extending it can widen spoofing/exposure.</p>
+<h2 id="s-dns-and-certificates">DNS and certificates<a class="heading-link" href="#s-dns-and-certificates" aria-label="Link to DNS and certificates">#</a></h2>
+<p>Separate device hostname, service discovery name, certificate identity, and display name. If TLS uses DNS identity, certificate names and DNS lifecycle must be coordinated. Define behaviour for stale cache, split horizon views, multiple addresses, failover, DNSSEC where used, and resolver outage.</p>
+<h2 id="s-dont-infer">Don't infer<a class="heading-link" href="#s-dont-infer" aria-label="Link to Don&#x27;t infer">#</a></h2>
+<ul>
+<li>An open port isn't proof of a service.</li>
+<li>A closed port isn't proof a feature is absent; it may be disabled or outbound only.</li>
+<li>Same subnet isn't authorisation.</li>
+<li>Private address isn't confidentiality.</li>
+<li>Reachability isn't health, and health isn't safe physical operation.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../interoperability-conformance-and-profiles/"><span>Previous in this section</span>Interoperability, conformance, and profiles</a><a href="../media-streaming-fundamentals/"><span>Next in this section</span>Media streaming fundamentals</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/ip-addressing-routing-and-ports.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/ip-addressing-routing-and-ports.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-address-categories">Address categories</a></li><li class="toc-level-2"><a href="#s-routing-and-zones">Routing and zones</a></li><li class="toc-level-2"><a href="#s-ports">Ports</a></li><li class="toc-level-2"><a href="#s-nat-and-port-forwarding">NAT and port forwarding</a></li><li class="toc-level-2"><a href="#s-dns-and-certificates">DNS and certificates</a></li><li class="toc-level-2"><a href="#s-dont-infer">Don&#x27;t infer</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

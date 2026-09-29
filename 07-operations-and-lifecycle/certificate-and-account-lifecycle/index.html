@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Certificate and account lifecycle · Security Technician Wiki</title>
+<meta name="description" content="Maintain records for certificates, service accounts, operators and physical credentials. Assign owners, review triggers and removal processes for each.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/certificate-and-account-lifecycle/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Certificate and account lifecycle · Security Technician Wiki">
+<meta property="og:description" content="Maintain records for certificates, service accounts, operators and physical credentials. Assign owners, review triggers and removal processes for each.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/certificate-and-account-lifecycle/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="./" aria-current="page">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Certificate and account lifecycle</span></nav><div class="page-kicker">Operations <span>About 1 min read</span></div><div class="prose"><h1 id="s-certificate-and-account-lifecycle">Certificate and account lifecycle</h1>
+<p>Maintain records for certificates, service accounts, operators and physical credentials. Assign owners, review triggers and removal processes for each.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lifecycle-events">Lifecycle events</a></li><li class="toc-level-2"><a href="#s-account-rules">Account rules</a></li><li class="toc-level-2"><a href="#s-certificate-register">Certificate register</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Treat device certificates, workload identities, API credentials, operator accounts, physical credentials, vendor access and break glass access as separate inventories with linked owners and review triggers.</p>
+<h2 id="s-lifecycle-events">Lifecycle events<a class="heading-link" href="#s-lifecycle-events" aria-label="Link to Lifecycle events">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Event</th>
+  <th>Required actions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Join/install</td>
+  <td>Verify identity, issue unique least privilege access, set expiry/review, record recovery owner</td>
+</tr>
+<tr>
+  <td>Move/change</td>
+  <td>Recalculate roles, sites, door/device scope, tenant and support access; remove inherited permissions</td>
+</tr>
+<tr>
+  <td>Certificate renewal</td>
+  <td>Validate name/key use, stage trust overlap, confirm time, deploy, verify, retire old trust</td>
+</tr>
+<tr>
+  <td>Suspected compromise</td>
+  <td>Revoke/disable, contain sessions, rotate related material, inspect use, restore trusted identity</td>
+</tr>
+<tr>
+  <td>Leave/remove</td>
+  <td>Disable promptly, revoke tokens/certificates/credentials, transfer ownership, preserve audit</td>
+</tr>
+<tr>
+  <td>Vendor engagement end</td>
+  <td>Remove accounts, tunnels, API keys, certificates, cloud delegation and local exceptions</td>
+</tr>
+<tr>
+  <td>Decommission</td>
+  <td>Destroy private keys/secrets and remove the asset from trust, directory, broker, cloud and recovery systems</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-account-rules">Account rules<a class="heading-link" href="#s-account-rules" aria-label="Link to Account rules">#</a></h2>
+<ul>
+<li>Use named human accounts and unique service identities; prohibit shared daily administration.</li>
+<li>Separate operator, administrator, installer, audit, export and high impact control roles.</li>
+<li>Set service credentials to non interactive use and restrict origin/resource/action.</li>
+<li>Review dormant, orphaned, default, local fallback, vendor and break glass identities.</li>
+<li>Rotate without embedding secrets in integration source or documentation.</li>
+<li>Monitor denied authentication, role changes, token issuance, certificate errors and use outside expected context.</li>
+</ul>
+<h2 id="s-certificate-register">Certificate register<a class="heading-link" href="#s-certificate-register" aria-label="Link to Certificate register">#</a></h2>
+<p>Record subject/service identity, issuer, serial/fingerprint, key usage, endpoints, trust anchors, issue/expiry, renewal method, owner, revocation mechanism, algorithm/profile, deployment status and dependent protocol. Alert early enough for change approval and staged rollout.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 63</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/63/4/final" rel="noopener noreferrer">NIST SP 800-63-4 Digital Identity Guidelines</a>, accessed 25 August 2026.</li>
+<li><strong>NIST 800 57</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/57/pt1/r5/final" rel="noopener noreferrer">NIST SP 800-57 Part 1 Rev. 5: Key Management</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../06-security-and-assurance/pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li>
+<li><a href="../../06-security-and-assurance/identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li>
+<li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../asset-and-configuration-inventory/"><span>Previous in this section</span>Asset and configuration inventory</a><a href="../change-firmware-and-patching/"><span>Next in this section</span>Change, firmware, and patching</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/certificate-and-account-lifecycle.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/certificate-and-account-lifecycle.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lifecycle-events">Lifecycle events</a></li><li class="toc-level-2"><a href="#s-account-rules">Account rules</a></li><li class="toc-level-2"><a href="#s-certificate-register">Certificate register</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

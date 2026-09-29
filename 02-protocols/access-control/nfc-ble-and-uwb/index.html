@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>NFC, Bluetooth Low Energy, and UWB for access control · Security Technician Wiki</title>
+<meta name="description" content="NFC, BLE and UWB provide communication or ranging functions. Check how the credential is authenticated and how the access control system uses the result.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/access-control/nfc-ble-and-uwb/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NFC, Bluetooth Low Energy, and UWB for access control · Security Technician Wiki">
+<meta property="og:description" content="NFC, BLE and UWB provide communication or ranging functions. Check how the credential is authenticated and how the access control system uses the result.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/access-control/nfc-ble-and-uwb/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group" open><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="./" aria-current="page">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group"><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../../web-and-messaging/">Section overview</a></li><li><a href="../../web-and-messaging/amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../../web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../../web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../../web-and-messaging/grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../../web-and-messaging/http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../../web-and-messaging/mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../../web-and-messaging/soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../../web-and-messaging/websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Access control protocols and credentials</a><span aria-hidden="true">/</span><span aria-current="page">NFC, Bluetooth Low Energy, and UWB for access control</span></nav><div class="page-kicker">Protocols <span>About 9 min read</span></div><div class="prose"><h1 id="s-nfc-bluetooth-low-energy-and-uwb-for-access-control">NFC, Bluetooth Low Energy, and UWB for access control</h1>
+<p>NFC, BLE and UWB provide communication or ranging functions. Check how the credential is authenticated and how the access control system uses the result.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Radio/protocol architecture and defensive composition only; no antenna, spectrum compliance, mobile OS, wallet, credential, ranging, reader, lock, interoperability, certification, or physical actuation is validated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-status-snapshot">Current status snapshot</a></li><li class="toc-level-2"><a href="#s-compose-layers-explicitly">Compose layers explicitly</a></li><li class="toc-level-2"><a href="#s-nfc">NFC</a></li><li class="toc-level-3"><a href="#s-technology-mapping">Technology mapping</a></li><li class="toc-level-3"><a href="#s-ndef">NDEF</a></li><li class="toc-level-3"><a href="#s-nfc-access-flow">NFC access flow</a></li><li class="toc-level-2"><a href="#s-bluetooth-low-energy">Bluetooth Low Energy</a></li><li class="toc-level-3"><a href="#s-discovery-and-connection">Discovery and connection</a></li><li class="toc-level-3"><a href="#s-pairing-and-bonding">Pairing and bonding</a></li><li class="toc-level-3"><a href="#s-gatt-design">GATT design</a></li><li class="toc-level-3"><a href="#s-rssi-direction-finding-and-channel-sounding">RSSI, direction finding, and Channel Sounding</a></li><li class="toc-level-2"><a href="#s-ultra-wideband">Ultra Wideband</a></li><li class="toc-level-3"><a href="#s-ranging-forms">Ranging forms</a></li><li class="toc-level-3"><a href="#s-fira">FiRa</a></li><li class="toc-level-2"><a href="#s-multi-radio-mobile-access">Multi radio mobile access</a></li><li class="toc-level-2"><a href="#s-safe-conceptual-state-machine">Safe conceptual state machine</a></li><li class="toc-level-2"><a href="#s-cross-radio-threat-model">Cross radio threat model</a></li><li class="toc-level-2"><a href="#s-global-radio-and-privacy-constraints">Global radio and privacy constraints</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>NFC, Bluetooth Low Energy (BLE), and Ultra Wideband (UWB) are complementary transports and ranging technologies. They don't, by themselves, define who a user is or whether a door should open. A secure access profile must bind fresh credential proof, the intended reader, transport/session, proximity policy, authorisation state, and audit result end to end.</p>
+<h2 id="s-current-status-snapshot">Current status snapshot<a class="heading-link" href="#s-current-status-snapshot" aria-label="Link to Current status snapshot">#</a></h2>
+<p>Status is verified as at <strong>25 August 2026</strong>.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Current public base</th>
+  <th>Important status distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>NFC Forum</td>
+  <td>NFC Release 15 announced June 2025; CR15/TR15.0 launched October 2025; Certification Release 15 authorised for use in certification May 2026</td>
+  <td>Technical specification, test release launch, and authorisation for certification are distinct milestones; product certification is feature/release specific</td>
+</tr>
+<tr>
+  <td>Bluetooth</td>
+  <td>Core Specification <strong>6.3</strong>, adopted May 2026</td>
+  <td>A Core revision contains optional/conditional features; describe qualified product capabilities, not “Bluetooth 6.3” as a feature set</td>
+</tr>
+<tr>
+  <td>IEEE UWB</td>
+  <td><strong>IEEE 802.15.4-2024</strong>, active</td>
+  <td>Supersedes 802.15.4-2020 and incorporates the work previously published as the now superseded 802.15.4z 2020 amendment</td>
+</tr>
+<tr>
+  <td>Enhanced UWB work</td>
+  <td>P802.15.4ab</td>
+  <td>Active draft project, not a published standard on the verification date</td>
+</tr>
+<tr>
+  <td>FiRa</td>
+  <td>Core Specifications and Certification Release <strong>4.0</strong>, December 2025</td>
+  <td>Modular certification covers selected feature sets; a FiRa label does not imply every ranging/data/profile feature</td>
+</tr>
+<tr>
+  <td>Access credential profile</td>
+  <td>Aliro <strong>1.0</strong>, February 2026</td>
+  <td>Current CSA mobile credential and communication standard across NFC, BLE, and BLE+UWB flows</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="https://nfc-forum.org/nfc-release-15" rel="noopener noreferrer">NFC R15</a> <a href="https://nfc-forum.org/certification_releases/certification-release-15/" rel="noopener noreferrer">NFC CR15</a> <a href="https://www.bluetooth.com/specifications/specs/core-specification-6-3/" rel="noopener noreferrer">BT63</a> <a href="https://standards.ieee.org/ieee/802.15.4/11041/" rel="noopener noreferrer">IEEE154</a> <a href="https://standards.ieee.org/ieee/802.15.4z/10230/" rel="noopener noreferrer">IEEE154Z</a> <a href="https://firaconsortium.org/news/press-releases/2025/12/fira-consortium-unveils-fira-core-4-0-specifications-and-certification" rel="noopener noreferrer">FIRA4</a> <a href="https://csa-iot.org/newsroom/introducing-aliro-1-0-a-unified-standard-to-transform-the-access-control-ecosystem/" rel="noopener noreferrer">ALIRO</a></p>
+<h2 id="s-compose-layers-explicitly">Compose layers explicitly<a class="heading-link" href="#s-compose-layers-explicitly" aria-label="Link to Compose layers explicitly">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">credential application
+  key, identity binding, challenge-response, lifecycle, privacy
+                          │
+transport/profile
+  Aliro, PKOC, vendor profile, NFC tag/application, BLE GATT service,
+  FiRa application/profile
+                          │
+radio/link
+  NFC-A/B/F/V       Bluetooth LE       IEEE 802.15.4 UWB
+                          │
+reader/lock -&gt; protected reader-controller/API path -&gt; PACS policy
+</code></pre></div>
+<p>Certification at one layer doesn't certify the entire stack. Record every layer and the exact certified feature set.</p>
+<h2 id="s-nfc">NFC<a class="heading-link" href="#s-nfc" aria-label="Link to NFC">#</a></h2>
+<p>NFC Forum specifications harmonize and extend ISO/IEC 14443, ISO/IEC 18092, ISO/IEC 15693, and related technologies for reader/writer, card emulation, peer, and wireless charging use. Release 15 expands the certified operating volume for applicable new devices to as much as 20 mm under its test model; this isn't a universal read range claim for every antenna, tag, installed reader, or legacy device. <a href="https://nfc-forum.org/build/specifications" rel="noopener noreferrer">NFC SPECS</a> <a href="https://nfc-forum.org/nfc-release-15" rel="noopener noreferrer">NFC R15</a></p>
+<h3 id="s-technology-mapping">Technology mapping<a class="heading-link" href="#s-technology-mapping" aria-label="Link to Technology mapping">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>NFC technology/tag type</th>
+  <th>Lower layer relationship</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>NFC A</td>
+  <td>ISO/IEC 14443 Type A family</td>
+</tr>
+<tr>
+  <td>NFC B</td>
+  <td>ISO/IEC 14443 Type B family</td>
+</tr>
+<tr>
+  <td>NFC F / Type 3 Tag</td>
+  <td>JIS X 6319-4 family</td>
+</tr>
+<tr>
+  <td>Type 4 Tag</td>
+  <td>ISO DEP over ISO/IEC 14443 Type A or B</td>
+</tr>
+<tr>
+  <td>NFC V / Type 5 Tag</td>
+  <td>ISO/IEC 15693 family</td>
+</tr>
+<tr>
+  <td>Type 2 Tag</td>
+  <td>NFC A based tag protocol</td>
+</tr>
+</tbody>
+</table></div>
+<p>NFC Forum removed Type 1 Tag features from its 2021 technical specification release for future device simplification; legacy Type 1 deployments still need explicit handling. The current public specification catalogue lists Digital Protocol 2.4, Analog 3.0, and tag/application specifications with their own versions. Pin individual documents, not only “NFC Release 15.” <a href="https://nfc-forum.org/build/specifications" rel="noopener noreferrer">NFC SPECS</a></p>
+<h3 id="s-ndef">NDEF<a class="heading-link" href="#s-ndef" aria-label="Link to NDEF">#</a></h3>
+<p>NFC Data Exchange Format (NDEF) is an application data container for records such as URI, text, MIME, and external types. It doesn't authenticate a tag or make its content safe. In March 2026 the NFC Forum announced NDEF's adoption as <strong>IEC 63652-2:2026</strong> (and NFC wireless charging as IEC 63652-1:2026). <a href="https://nfc-forum.org/news/2026-03-two-nfc-forum-specifications-adopted-as-iec-standards/" rel="noopener noreferrer">NFC IEC</a></p>
+<p>For NDEF consumers:</p>
+<ul>
+<li>cap message, record, type, ID, payload, nested/handover, and decompressed sizes;</li>
+<li>treat URIs, application links, Bluetooth handover data, and MIME payloads as untrusted;</li>
+<li>require user intent before opening links or changing configuration;</li>
+<li>allowlist schemes and destinations; don't pass records to a shell or unrestricted intent handler;</li>
+<li>don't use the tag UID or an unsigned NDEF identifier as credential authentication.</li>
+</ul>
+<h3 id="s-nfc-access-flow">NFC access flow<a class="heading-link" href="#s-nfc-access-flow" aria-label="Link to NFC access flow">#</a></h3>
+<p>A strong tap flow selects a known credential application, exchanges fresh challenges, performs mutual or credential authentication, binds the transcript to reader and policy context, and closes session state after removal. The short range user gesture helps intent but doesn't prevent relay by itself. See <a href="../contactless-and-smart-card-standards/">Contactless and smart card standards</a>.</p>
+<h2 id="s-bluetooth-low-energy">Bluetooth Low Energy<a class="heading-link" href="#s-bluetooth-low-energy" aria-label="Link to Bluetooth Low Energy">#</a></h2>
+<p>BLE separates discovery/connection behaviour (GAP), link security, attribute transport (ATT), and service/characteristic modeling (GATT). A mobile access profile defines the required roles, services, characteristics, procedures, security levels, and application cryptography.</p>
+<h3 id="s-discovery-and-connection">Discovery and connection<a class="heading-link" href="#s-discovery-and-connection" aria-label="Link to Discovery and connection">#</a></h3>
+<ul>
+<li>Advertising data is observable, spoofable input until authenticated.</li>
+<li>Device names, addresses, service UUIDs, manufacturer data, and RSSI are discovery hints, not credential proof.</li>
+<li>Use privacy address features according to the selected profile and mobile OS; avoid stable identifiers in clear advertising payloads.</li>
+<li>Bound scan duration, advertisements parsed, connections, GATT procedures, MTU, characteristic length, notifications, and reconnect attempts.</li>
+<li>Bind a connected peer to authenticated application state; BLE address equality isn't sufficient.</li>
+</ul>
+<h3 id="s-pairing-and-bonding">Pairing and bonding<a class="heading-link" href="#s-pairing-and-bonding" aria-label="Link to Pairing and bonding">#</a></h3>
+<p>Pairing negotiates link keys/security; bonding stores keys for later use. “Just Works” doesn't provide man in the middle protection. Authenticated pairing methods depend on device I/O and user verification, and LE Secure Connections must be required under the deployment profile when supported. Even an encrypted/authenticated BLE link needs application level credential proof and authorisation.</p>
+<p>Protect long term keys in platform/secure hardware where available, handle OS restore and device replacement, expire stale bonds, cap failed pairing, and never let an unauthenticated client reach control characteristics.</p>
+<h3 id="s-gatt-design">GATT design<a class="heading-link" href="#s-gatt-design" aria-label="Link to GATT design">#</a></h3>
+<ul>
+<li>Allocate/profile UUIDs correctly; a UUID is a type identifier, not a secret.</li>
+<li>Give each characteristic exact read/write/notify and security permissions.</li>
+<li>Put command ID, version, length, freshness, target, and integrity inside the application protocol.</li>
+<li>Define fragmentation/reassembly independent of ATT MTU and bound total message size.</li>
+<li>Make write without response use explicit sequence/ack behaviour at the application layer when delivery matters.</li>
+<li>Remove debug and unauthenticated provisioning services in production.</li>
+</ul>
+<h3 id="s-rssi-direction-finding-and-channel-sounding">RSSI, direction finding, and Channel Sounding<a class="heading-link" href="#s-rssi-direction-finding-and-channel-sounding" aria-label="Link to RSSI, direction finding, and Channel Sounding">#</a></h3>
+<p>RSSI is a noisy path loss observation and is readily influenced by body position, antenna, environment, and transmit power. It isn't secure distance proof.</p>
+<p>Bluetooth Channel Sounding was introduced in Core 6.0 and combines phase based ranging and round trip timing mechanisms with protocol security features. Core 6.3 adds refinements including PHY specific RTT accuracy reporting and inline phase coherent tone transfer. The Bluetooth SIG says the feature provides ranging measurements used by an application algorithm; it doesn't define that final distance algorithm. <a href="https://www.bluetooth.com/learn-about-bluetooth/feature-enhancements/channel-sounding/" rel="noopener noreferrer">BT CS</a> <a href="https://www.bluetooth.com/bluetooth-core-6-3-technical-overview/" rel="noopener noreferrer">BT63 OVERVIEW</a></p>
+<p>Use Channel Sounding only under an authenticated encrypted connection and a use case profile. Validate attack detection indicators, measurement quality, calibrated policy thresholds, hardware/firmware capability, and failure behaviour. Don't map a single range estimate directly to unlock.</p>
+<h2 id="s-ultra-wideband">Ultra Wideband<a class="heading-link" href="#s-ultra-wideband" aria-label="Link to Ultra Wideband">#</a></h2>
+<p>IEEE 802.15.4-2024 defines low rate wireless PHY/MAC behaviour including precision ranging modes and is the active base. The earlier 802.15.4z 2020 amendment enhanced UWB PHYs, ranging integrity/accuracy, and MAC ranging control but is now listed by IEEE as superseded because its work is incorporated into later base revisions. P802.15.4ab remains a draft project for enhanced UWB PHY/MAC/ranging, sensing, discovery, density, power, and data rate features. <a href="https://standards.ieee.org/ieee/802.15.4/11041/" rel="noopener noreferrer">IEEE154</a> <a href="https://standards.ieee.org/ieee/802.15.4z/10230/" rel="noopener noreferrer">IEEE154Z</a> <a href="https://standards.ieee.org/ieee/802.15.4ab/10694/" rel="noopener noreferrer">IEEE154AB</a></p>
+<h3 id="s-ranging-forms">Ranging forms<a class="heading-link" href="#s-ranging-forms" aria-label="Link to Ranging forms">#</a></h3>
+<ul>
+<li><strong>Two Way Ranging (TWR):</strong> peers exchange timed frames to estimate time of flight.</li>
+<li><strong>TDoA:</strong> infrastructure or tags use time differences across synchronised observations.</li>
+<li><strong>Angle of Arrival (AoA):</strong> antenna array measurements estimate direction.</li>
+<li><strong>Secure Timestamp Sequence (STS):</strong> cryptographically generated sequence mechanisms improve ranging integrity under the selected profile/key context.</li>
+</ul>
+<p>Ranging yields a measurement with uncertainty, quality, and threat assumptions. It doesn't establish user identity, device entitlement, line of sight, or safe door conditions.</p>
+<h3 id="s-fira">FiRa<a class="heading-link" href="#s-fira" aria-label="Link to FiRa">#</a></h3>
+<p>FiRa Core 4.0, released December 2025, aligns its use case features with IEEE 802.15.4-2024 and adds/extends UL TDoA, suspend ranging, and Aliro UWB support in UCI. Certification Release 4.0 is modular and can certify TWR, TDoA, AoA, scheduling, data transfer, CCC Digital Key UWB, Aliro UWB, and selected security/configuration features depending on the claim. Verify the device's exact certified feature set. <a href="https://firaconsortium.org/news/press-releases/2025/12/fira-consortium-unveils-fira-core-4-0-specifications-and-certification" rel="noopener noreferrer">FIRA4</a> <a href="https://www.firaconsortium.org/certifications/certification-program" rel="noopener noreferrer">FIRA CERT</a></p>
+<p>FiRa also publishes a Physical Access Control System Profile and BLE out of band channel specification in its catalogue. Profile implementation and profile certification are separate from Core subsystem certification. <a href="https://www.firaconsortium.org/resource-hub/specifications" rel="noopener noreferrer">FIRA SPECS</a></p>
+<h2 id="s-multi-radio-mobile-access">Multi radio mobile access<a class="heading-link" href="#s-multi-radio-mobile-access" aria-label="Link to Multi radio mobile access">#</a></h2>
+<p>Aliro 1.0 defines asymmetric cryptography based mobile access using:</p>
+<ul>
+<li>NFC for tap to access;</li>
+<li>BLE for user initiated longer range interaction;</li>
+<li>BLE plus UWB for hands free authenticated/ranging interaction.</li>
+</ul>
+<p>The BLE discovery/session can establish an authenticated context and configure UWB; UWB can then provide proximity evidence. The access decision must cryptographically bind both transcripts to the same credential, reader, session, and freshness context. Otherwise a system can authenticate one peer and range another. <a href="https://csa-iot.org/newsroom/introducing-aliro-1-0-a-unified-standard-to-transform-the-access-control-ecosystem/" rel="noopener noreferrer">ALIRO</a></p>
+<h2 id="s-safe-conceptual-state-machine">Safe conceptual state machine<a class="heading-link" href="#s-safe-conceptual-state-machine" aria-label="Link to Safe conceptual state machine">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">IDLE
+  -&gt; DISCOVERED (untrusted NFC/BLE/UWB observation)
+  -&gt; SESSION_AUTHENTICATED (credential and reader proof bound)
+  -&gt; PROXIMITY_EVALUATED (optional UWB/Channel Sounding quality + policy)
+  -&gt; AUTHORIZATION_CHECKED (subject, door, time, lifecycle, anti-passback)
+  -&gt; COMMAND_ACCEPTED (unique command ID, expiry, audit)
+  -&gt; PHYSICALLY_CONFIRMED or FAILED (door/lock sensor, not radio assumption)
+  -&gt; CLOSED (keys/session/caches expired)
+</code></pre></div>
+<p>Never skip from <code>DISCOVERED</code> or a raw distance result to actuation.</p>
+<h2 id="s-cross-radio-threat-model">Cross radio threat model<a class="heading-link" href="#s-cross-radio-threat-model" aria-label="Link to Cross radio threat model">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Threat</th>
+  <th>Design response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Advertising/tag spoofing</td>
+  <td>Authenticate at application layer; discovery is untrusted</td>
+</tr>
+<tr>
+  <td>Relay</td>
+  <td>Fresh challenges, reader/credential authentication, secure ranging profile, transcript binding, timing/quality policy</td>
+</tr>
+<tr>
+  <td>Replay</td>
+  <td>Nonces/counters/session IDs, short validity, durable replay state as needed</td>
+</tr>
+<tr>
+  <td>Tracking</td>
+  <td>Rotating/private discovery identifiers, minimal clear metadata, bounded logs</td>
+</tr>
+<tr>
+  <td>Downgrade</td>
+  <td>Pin required transport/profile/algorithm; reject fallback to UID/RSSI/static number</td>
+</tr>
+<tr>
+  <td>Peer mix up</td>
+  <td>Bind credential proof, reader identity, transport, range exchange, and target opening</td>
+</tr>
+<tr>
+  <td>Reader compromise</td>
+  <td>Secure boot/update, protected keys, tamper controls, attestation where profile defined, protected reader controller link</td>
+</tr>
+<tr>
+  <td>Phone compromise/loss</td>
+  <td>Non exportable keys, user verification, rapid suspension/revocation, device replacement workflow</td>
+</tr>
+<tr>
+  <td>Offline revocation lag</td>
+  <td>Short credential/policy validity, signed offline state, bounded grace, reconciliation and audit</td>
+</tr>
+<tr>
+  <td>RF denial/interference</td>
+  <td>Safe denied/degraded state, accessible fallback, life safety egress independent of radio</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-global-radio-and-privacy-constraints">Global radio and privacy constraints<a class="heading-link" href="#s-global-radio-and-privacy-constraints" aria-label="Link to Global radio and privacy constraints">#</a></h2>
+<p>UWB and BLE/NFC power, channels, duty cycle, emissions, coexistence, privacy, accessibility, and product approvals vary by jurisdiction. A globally standardised protocol doesn't remove local regulatory work. Maintain a country/region deployment matrix outside this global protocol page and don't enable unsupported radio modes through configuration alone.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact NFC documents, Bluetooth capabilities, IEEE base, FiRa feature set, and access profile pinned">Exact NFC documents, Bluetooth capabilities, IEEE base, FiRa feature set, and access profile pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Certification claims verified at product/firmware/feature/profile level">Certification claims verified at product/firmware/feature/profile level</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Discovery identifiers, UID, address, service UUID, RSSI, and raw range never treated as authentication">Discovery identifiers, UID, address, service UUID, RSSI, and raw range never treated as authentication</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Credential and reader mutually bound to session, target, freshness, and optional range transcript">Credential and reader mutually bound to session, target, freshness, and optional range transcript</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Pairing/bonding, keys, secure element, rotation, loss, restore, and revocation designed">Pairing/bonding, keys, secure element, rotation, loss, restore, and revocation designed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Radio/parser/message/connections/ranging resource limits enforced">Radio/parser/message/connections/ranging resource limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Replay, relay, downgrade, peer mix up, tracking, interference, and offline policy tested by the system owner">Replay, relay, downgrade, peer mix up, tracking, interference, and offline policy tested by the system owner</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Reader controller hop uses protected authenticated transport">Reader controller hop uses protected authenticated transport</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Physical completion is sensor/controller evidence, not radio success">Physical completion is sensor/controller evidence, not radio success</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Regional radio, privacy, accessibility, and product approval reviewed">Regional radio, privacy, accessibility, and product approval reviewed</li>
+</ul>
+<span class="heading-alias" id="s-what-to-check-in-your-environment" aria-hidden="true"></span><h2 id="s-checks-for-your-system">Checks for your system<a class="heading-link" href="#s-checks-for-your-system" aria-label="Link to Checks for your system">#</a></h2>
+<p>Validate the selected phone, wallet, card/tag, reader, antenna, firmware, and credential profile together. Record BLE session and downgrade behaviour, NFC/APDU state transitions, UWB ranging accuracy and attack resistance limits, radio certification, privacy, interoperability, controller authorisation, and physical lock/door acceptance as separate evidence.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NFC R15</strong>, <a href="https://nfc-forum.org/nfc-release-15" rel="noopener noreferrer">NFC Release 15</a>, NFC Forum, June 2025.</li>
+<li><strong>NFC CR15 LAUNCH</strong>, <a href="https://nfc-forum.org/news/2025-10-nfc-forum-launches-certification-to-support-extended-range-of-contactless-connections/" rel="noopener noreferrer">NFC Forum launches CR15/TR15.0</a>, NFC Forum, 22 October 2025.</li>
+<li><strong>NFC CR15</strong>, <a href="https://nfc-forum.org/certification_releases/certification-release-15/" rel="noopener noreferrer">Certification Release 15</a>, authorised for use in certification May 2026.</li>
+<li><strong>NFC SPECS</strong>, <a href="https://nfc-forum.org/build/specifications" rel="noopener noreferrer">NFC Forum Specifications</a>, NFC Forum, accessed 25 August 2026.</li>
+<li><strong>NFC IEC</strong>, <a href="https://nfc-forum.org/news/2026-03-two-nfc-forum-specifications-adopted-as-iec-standards/" rel="noopener noreferrer">Two NFC Forum Specifications Adopted as IEC Standards</a>, NFC Forum, 5 March 2026.</li>
+<li><strong>BT63</strong>, <a href="https://www.bluetooth.com/specifications/specs/core-specification-6-3/" rel="noopener noreferrer">Core Specification 6.3 Adopted</a>, Bluetooth SIG, May 2026.</li>
+<li><strong>BT63 OVERVIEW</strong>, <a href="https://www.bluetooth.com/bluetooth-core-6-3-technical-overview/" rel="noopener noreferrer">Bluetooth Core 6.3 technical overview</a>, Bluetooth SIG, 2026.</li>
+<li><strong>BT CS</strong>, <a href="https://www.bluetooth.com/learn-about-bluetooth/feature-enhancements/channel-sounding/" rel="noopener noreferrer">Bluetooth Channel Sounding</a>, Bluetooth SIG, accessed 25 August 2026.</li>
+<li><strong>IEEE154</strong>, <a href="https://standards.ieee.org/ieee/802.15.4/11041/" rel="noopener noreferrer">IEEE 802.15.4-2024</a>, IEEE Standards Association, active standard published 12 December 2024.</li>
+<li><strong>IEEE154Z</strong>, <a href="https://standards.ieee.org/ieee/802.15.4z/10230/" rel="noopener noreferrer">IEEE 802.15.4z 2020</a>, IEEE Standards Association, superseded standard.</li>
+<li><strong>IEEE154AB</strong>, <a href="https://standards.ieee.org/ieee/802.15.4ab/10694/" rel="noopener noreferrer">IEEE P802.15.4ab</a>, IEEE Standards Association, active project status accessed 25 August 2026.</li>
+<li><strong>FIRA4</strong>, <a href="https://firaconsortium.org/news/press-releases/2025/12/fira-consortium-unveils-fira-core-4-0-specifications-and-certification" rel="noopener noreferrer">FiRa Consortium Unveils Core 4.0 Specifications and Certification</a>, FiRa Consortium, 3 December 2025.</li>
+<li><strong>FIRA CERT</strong>, <a href="https://www.firaconsortium.org/certifications/certification-program" rel="noopener noreferrer">FiRa Certification Program</a>, FiRa Consortium, Release 4.0 feature scope accessed 25 August 2026.</li>
+<li><strong>FIRA SPECS</strong>, <a href="https://www.firaconsortium.org/resource-hub/specifications" rel="noopener noreferrer">FiRa UWB Specifications</a>, FiRa Consortium, accessed 25 August 2026.</li>
+<li><strong>ALIRO</strong>, <a href="https://csa-iot.org/newsroom/introducing-aliro-1-0-a-unified-standard-to-transform-the-access-control-ecosystem/" rel="noopener noreferrer">Introducing Aliro 1.0</a>, Connectivity Standards Alliance, 26 February 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../legacy-reader-interfaces/"><span>Previous in this section</span>Legacy reader interfaces: Wiegand and Clock and Data</a><a href="../osdp/"><span>Next in this section</span>OSDP reader and controller protocol</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/access-control/nfc-ble-and-uwb.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/access-control/nfc-ble-and-uwb.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-status-snapshot">Current status snapshot</a></li><li class="toc-level-2"><a href="#s-compose-layers-explicitly">Compose layers explicitly</a></li><li class="toc-level-2"><a href="#s-nfc">NFC</a></li><li class="toc-level-3"><a href="#s-technology-mapping">Technology mapping</a></li><li class="toc-level-3"><a href="#s-ndef">NDEF</a></li><li class="toc-level-3"><a href="#s-nfc-access-flow">NFC access flow</a></li><li class="toc-level-2"><a href="#s-bluetooth-low-energy">Bluetooth Low Energy</a></li><li class="toc-level-3"><a href="#s-discovery-and-connection">Discovery and connection</a></li><li class="toc-level-3"><a href="#s-pairing-and-bonding">Pairing and bonding</a></li><li class="toc-level-3"><a href="#s-gatt-design">GATT design</a></li><li class="toc-level-3"><a href="#s-rssi-direction-finding-and-channel-sounding">RSSI, direction finding, and Channel Sounding</a></li><li class="toc-level-2"><a href="#s-ultra-wideband">Ultra Wideband</a></li><li class="toc-level-3"><a href="#s-ranging-forms">Ranging forms</a></li><li class="toc-level-3"><a href="#s-fira">FiRa</a></li><li class="toc-level-2"><a href="#s-multi-radio-mobile-access">Multi radio mobile access</a></li><li class="toc-level-2"><a href="#s-safe-conceptual-state-machine">Safe conceptual state machine</a></li><li class="toc-level-2"><a href="#s-cross-radio-threat-model">Cross radio threat model</a></li><li class="toc-level-2"><a href="#s-global-radio-and-privacy-constraints">Global radio and privacy constraints</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

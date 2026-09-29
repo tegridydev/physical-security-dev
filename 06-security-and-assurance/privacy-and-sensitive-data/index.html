@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Privacy and sensitive data · Security Technician Wiki</title>
+<meta name="description" content="Video, access and alarm records can contain sensitive information. Limit collection and access to the workflow&#x27;s needs, and obtain the required privacy and governance review.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/privacy-and-sensitive-data/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Privacy and sensitive data · Security Technician Wiki">
+<meta property="og:description" content="Video, access and alarm records can contain sensitive information. Limit collection and access to the workflow&#x27;s needs, and obtain the required privacy and governance review.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/privacy-and-sensitive-data/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="./" aria-current="page">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Privacy and sensitive data</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-privacy-and-sensitive-data">Privacy and sensitive data</h1>
+<p>Video, access and alarm records can contain sensitive information. Limit collection and access to the workflow's needs, and obtain the required privacy and governance review.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-data-classes">Data classes</a></li><li class="toc-level-2"><a href="#s-data-flow-questions">Data flow questions</a></li><li class="toc-level-2"><a href="#s-engineering-controls">Engineering controls</a></li><li class="toc-level-2"><a href="#s-developer-anti-patterns">Developer anti patterns</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security data can reveal identity, movement, associations, schedules, facility layout, access rights, behaviour, health related inferences, and response capability. Global technical guidance can't determine whether collection or use is lawful in a particular jurisdiction; obtain local legal and governance review.</p>
+<h2 id="s-data-classes">Data classes<a class="heading-link" href="#s-data-classes" aria-label="Link to Data classes">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Class</th>
+  <th>Examples</th>
+  <th>Special risk</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Media</td>
+  <td>Live/recorded video, audio, intercom calls</td>
+  <td>Captures bystanders and sensitive spaces; secondary use is easy</td>
+</tr>
+<tr>
+  <td>Biometric</td>
+  <td>Face, fingerprint, iris, voice template and quality data</td>
+  <td>Difficult to replace; matching and demographic performance concerns</td>
+</tr>
+<tr>
+  <td>Credential</td>
+  <td>Card/mobile identifiers, keys, access rights, revocation state</td>
+  <td>Enables tracking, impersonation or access policy inference</td>
+</tr>
+<tr>
+  <td>Location and behaviour</td>
+  <td>ANPR/LPR, UWB/BLE position, occupancy, access history</td>
+  <td>Creates detailed movement and association records</td>
+</tr>
+<tr>
+  <td>Identity</td>
+  <td>Names, photos, directory identifiers, visitor records</td>
+  <td>Links system events to people and organizations</td>
+</tr>
+<tr>
+  <td>Security telemetry</td>
+  <td>Alarms, camera health, blind spots, topology, response</td>
+  <td>Can expose facility weaknesses and operational patterns</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-data-flow-questions">Data flow questions<a class="heading-link" href="#s-data-flow-questions" aria-label="Link to Data flow questions">#</a></h2>
+<p>For every field ask: why is it needed, who is the subject, where is it collected, which systems receive it, which identifiers join it, how long is it retained, who can query/export it, which vendors/subprocessors handle it, what leaves the site/region, how is deletion propagated, and what happens if the purpose ends.</p>
+<h2 id="s-engineering-controls">Engineering controls<a class="heading-link" href="#s-engineering-controls" aria-label="Link to Engineering controls">#</a></h2>
+<ul>
+<li>Collect the least resolution, duration, area, audio, biometric feature set, and metadata required for the declared purpose.</li>
+<li>Apply privacy masks and exclusion zones at the earliest reliable stage, while documenting whether raw data exists upstream.</li>
+<li>Separate operational viewing, investigation, export, analytics training, administration and bulk search permissions.</li>
+<li>Default APIs to narrow time/site/object ranges; rate limit bulk enumeration and export.</li>
+<li>Encrypt data in transit and at rest with separately managed keys and auditable access.</li>
+<li>Redact logs and support bundles; use synthetic data in documentation and development.</li>
+<li>Make retention and deletion explicit across edge storage, VMS, cloud replicas, caches, analytics stores, backups and exports.</li>
+<li>Record model/version and evaluation limits for biometric or analytic decisions; keep human review where consequences warrant it.</li>
+<li>Design for subject correction, revocation, deletion and account closure without corrupting audit integrity.</li>
+</ul>
+<h2 id="s-developer-anti-patterns">Developer anti patterns<a class="heading-link" href="#s-developer-anti-patterns" aria-label="Link to Developer anti patterns">#</a></h2>
+<ul>
+<li>using a stable card number as a cross system analytics identifier without necessity;</li>
+<li>placing faces, plate numbers or raw credential values in broker topic names or URLs;</li>
+<li>returning unrestricted historical search results to a broad operator role;</li>
+<li>retaining debug media or full API bodies indefinitely;</li>
+<li>silently repurposing security footage to train analytics;</li>
+<li>claiming anonymization while stable device, location and time fields permit re identification.</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST PRIVACY</strong>, <a href="https://www.nist.gov/privacy-framework/privacy-framework" rel="noopener noreferrer">NIST Privacy Framework 1.0</a>, risk management framework, accessed 25 August 2026.</li>
+<li><strong>NIST FACE</strong>, <a href="https://www.nist.gov/programs-projects/face-technology-evaluations-frtefate" rel="noopener noreferrer">NIST Face Technology Evaluation</a>, official evaluation programme and reports, accessed 25 August 2026.</li>
+<li><strong>OECD PRIVACY</strong>, <a href="https://www.oecd.org/en/topics/sub-issues/privacy-principles.html" rel="noopener noreferrer">OECD Privacy Guidelines</a>, globally recognized principles, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li>
+<li><a href="../../03-systems/access-control/biometrics/">Biometric systems</a></li>
+<li><a href="../../03-systems/perimeter-and-detection/anpr-lpr-systems/">ANPR/LPR systems</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../pki-certificates-keys-and-secrets/"><span>Previous in this section</span>PKI, certificates, keys, and secrets</a><a href="../remote-access/"><span>Next in this section</span>Remote access</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/privacy-and-sensitive-data.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/privacy-and-sensitive-data.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-data-classes">Data classes</a></li><li class="toc-level-2"><a href="#s-data-flow-questions">Data flow questions</a></li><li class="toc-level-2"><a href="#s-engineering-controls">Engineering controls</a></li><li class="toc-level-2"><a href="#s-developer-anti-patterns">Developer anti patterns</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

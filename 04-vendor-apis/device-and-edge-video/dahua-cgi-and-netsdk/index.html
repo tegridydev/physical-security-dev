@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Dahua CGI and NetSDK · Security Technician Wiki</title>
+<meta name="description" content="Check whether the Dahua integration uses CGI or NetSDK. Record supported models, firmware, authentication and callback behaviour before implementing the client.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/dahua-cgi-and-netsdk/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dahua CGI and NetSDK · Security Technician Wiki">
+<meta property="og:description" content="Check whether the Dahua integration uses CGI or NetSDK. Record supported models, firmware, authentication and callback behaviour before implementing the client.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/dahua-cgi-and-netsdk/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="./" aria-current="page">Dahua CGI and NetSDK</a></li><li><a href="../hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Dahua CGI and NetSDK</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-dahua-cgi-and-netsdk">Dahua CGI and NetSDK</h1>
+<p>Check whether the Dahua integration uses CGI or NetSDK. Record supported models, firmware, authentication and callback behaviour before implementing the client.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Dahua product, integration, and release artefacts establish CGI and NetSDK but do not provide a single current public normative contract; endpoints, authentication details, package compatibility, versions, and product support are intentionally excluded.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-surface-map">Surface map</a></li><li class="toc-level-2"><a href="#s-required-procurement-evidence">Required procurement evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport-boundary">Authentication and transport boundary</a></li><li class="toc-level-2"><a href="#s-data-and-failure-handling">Data and failure handling</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-documentation-hygiene">Lifecycle and documentation hygiene</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / Dahua</p>
+<p>Dahua product material identifies two native integration routes: a device <strong>CGI</strong> surface and the native <strong>NetSDK</strong>. Public release notes and integration documents confirm their use, but a single current, global, publicly accessible normative specification and compatibility catalogue was not verified. This page therefore maps decisions and evidence gaps without reconstructing endpoints from old mirrors or third party examples.</p>
+<h2 id="s-surface-map">Surface map<a class="heading-link" href="#s-surface-map" aria-label="Link to Surface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Appropriate use</th>
+  <th>Evidence boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>CGI</td>
+  <td>HTTP oriented device configuration, query, events or control where the exact product guide declares support</td>
+  <td>Confirmed by product/release artefacts; operation/auth/version details require the current vendor package</td>
+</tr>
+<tr>
+  <td>NetSDK</td>
+  <td>Native client integration for supported device media, events, discovery, configuration or control</td>
+  <td>Release artefacts identify package versions for particular products; compatibility is not universal</td>
+</tr>
+<tr>
+  <td>Product specific API/SDK</td>
+  <td>Access control and other vertical product integration</td>
+  <td>Regional file host material exists, but the provenance of <code>files.dahua.support</code> was not independently verified as an official Dahua controlled host</td>
+</tr>
+<tr>
+  <td>ONVIF and other standard protocols</td>
+  <td>Standards based interoperability on declared models</td>
+  <td>Separate from CGI/NetSDK and subject to exact model conformance/support</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-required-procurement-evidence">Required procurement evidence<a class="heading-link" href="#s-required-procurement-evidence" aria-label="Link to Required procurement evidence">#</a></h2>
+<p>Obtain from Dahua or the authorised channel before coding:</p>
+<ul>
+<li>current CGI guide and/or NetSDK package under its applicable terms;</li>
+<li>target model, hardware revision, firmware train and region;</li>
+<li>package version, operating system, architecture, runtime and compiler support;</li>
+<li>feature licence, account role and product capability list;</li>
+<li>security hardening and certificate management guide;</li>
+<li>release notes that explicitly name the tested SDK/API and target product;</li>
+<li>support and vulnerability reporting route.</li>
+</ul>
+<p>A release note that names one NetSDK version proves only that relationship for the listed product/release. It isn't evidence that the package is current for another camera, recorder, intercom or access controller.</p>
+<h2 id="s-authentication-and-transport-boundary">Authentication and transport boundary<a class="heading-link" href="#s-authentication-and-transport-boundary" aria-label="Link to Authentication and transport boundary">#</a></h2>
+<p>Don't derive authentication from historic web snippets or cached CGI examples. Confirm the current firmware’s HTTPS, certificate, digest/session/token, user role, lockout and password rotation contract. Reject plaintext fallback, default credentials and certificate validation bypasses.</p>
+<p>Keep a unique integration account per workload and site. Separate read only health/media/event access from configuration, PTZ, audio, credential, door, relay, alarm, reboot and firmware rights. Native SDK callbacks and credentials must never be logged verbatim.</p>
+<h2 id="s-data-and-failure-handling">Data and failure handling<a class="heading-link" href="#s-data-and-failure-handling" aria-label="Link to Data and failure handling">#</a></h2>
+<p>CGI command names and NetSDK structures can evolve independently. Treat every response, callback and device supplied length/count as untrusted. Pin headers, structure packing, calling convention, character encoding and ownership rules from the exact SDK manual; copy callback data before returning only when the manual requires it.</p>
+<p>For long lived events and media:</p>
+<ul>
+<li>detect disconnect and device reboot;</li>
+<li>bound reconnect backoff, queues, payloads, media buffers and callback work;</li>
+<li>preserve device time and collector time;</li>
+<li>identify duplicates and gaps;</li>
+<li>re read authoritative configuration after reconnect;</li>
+<li>isolate native SDK loading and crash impact from the main application where practical.</li>
+</ul>
+<p>For high impact commands, never repeat blindly after timeout. Determine whether the API defines idempotency, then query state or require operator reconciliation. An SDK “success” isn't proof that a relay, lock, alarm or credential operation completed physically.</p>
+<h2 id="s-lifecycle-and-documentation-hygiene">Lifecycle and documentation hygiene<a class="heading-link" href="#s-lifecycle-and-documentation-hygiene" aria-label="Link to Lifecycle and documentation hygiene">#</a></h2>
+<p>Regional file stores and release artefacts can preserve obsolete manuals alongside current ones. The <code>files.dahua.support</code> hostname used by two linked artefacts below has not been independently established as an official Dahua controlled property, so treat those documents as provenance unverified leads rather than vendor authority. Record source URL, publication/revision, product list and retrieval date, and obtain the same contract through Dahua or an authorised channel before implementation. Don't copy a guide from an unrelated model family merely because command naming looks similar.</p>
+<p>The <code>technology_status: mixed</code> value reflects active products and interfaces alongside old public documents and discontinued product pages, not a claim that CGI or NetSDK as families are deprecated.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://materialfile.dahuasecurity.com/uploads/cpq/SWR/3125267/General_Faraday_V3.140.0000000.40.R.250325_Release_Notes.pdf" rel="noopener noreferrer">Dahua software release note for a named product release</a>, official example tying testing to CGI tooling and a specific NetSDK package; not a universal compatibility statement.</li>
+<li><a href="https://files.dahua.support/Solutions/Access%20Control%20Solution/Integration/" rel="noopener noreferrer">Access control integration document directory</a>, provenance unverified regional file host; use for discovery only.</li>
+<li><a href="https://files.dahua.support/Solutions/Access%20Control%20Solution/Integration/DAHUA%20ACCESS%20CONTROL%20PRODUCTS%20INTEGRATION%20INSTRUCTION%20Ver1.0.pdf" rel="noopener noreferrer">Access control products integration instruction</a>, provenance unverified product specific document; not sufficient authority for implementation.</li>
+<li><a href="https://www.dahuasecurity.com/products" rel="noopener noreferrer">Dahua product catalogue</a>, exact model and regional product status starting point.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../06-security-and-assurance/secure-protocol-parsing/">Secure protocol parsing</a></li>
+<li><a href="../../../05-development-and-integration/patterns/adapters-gateways-and-translation/">Adapters and gateways</a></li>
+<li><a href="../../../07-operations-and-lifecycle/change-firmware-and-patching/">Change, firmware, and patching</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../bosch-video-and-device-integration/"><span>Previous in this section</span>Bosch video and device integration</a><a href="../hanwha-sunapi-and-open-platform/"><span>Next in this section</span>Hanwha Vision SUNAPI and Open Platform</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/dahua-cgi-and-netsdk.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/dahua-cgi-and-netsdk.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-surface-map">Surface map</a></li><li class="toc-level-2"><a href="#s-required-procurement-evidence">Required procurement evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport-boundary">Authentication and transport boundary</a></li><li class="toc-level-2"><a href="#s-data-and-failure-handling">Data and failure handling</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-documentation-hygiene">Lifecycle and documentation hygiene</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

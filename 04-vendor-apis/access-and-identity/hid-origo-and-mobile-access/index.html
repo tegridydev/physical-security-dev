@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>HID Origo and Mobile Access APIs · Security Technician Wiki</title>
+<meta name="description" content="Trace the HID service, mobile credential lifecycle and reader interaction. Check provisioning and revocation across the full access path.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/hid-origo-and-mobile-access/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HID Origo and Mobile Access APIs · Security Technician Wiki">
+<meta property="og:description" content="Trace the HID service, mobile credential lifecycle and reader interaction. Check provisioning and revocation across the full access path.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/hid-origo-and-mobile-access/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="./" aria-current="page">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">HID Origo and Mobile Access APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 4 min read</span></div><div class="prose"><h1 id="s-hid-origo-and-mobile-access-apis">HID Origo and Mobile Access APIs</h1>
+<p>Trace the HID service, mobile credential lifecycle and reader interaction. Check provisioning and revocation across the full access path.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The HID Origo public API index was checked for named API families, including Mobile Identities 2.2. Tenant permissions and operation schemas were not tested.</p><p>Public HID Origo documentation reviewed on 25 August 2026; partner enrolment, subscriptions, part numbers, wallet/app eligibility, mobile SDK packages, organization environments, exact schemas, and tenant credentials require HID confirmation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle-evidence">Version and lifecycle evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-identity-and-credential-state">Identity and credential state</a></li><li class="toc-level-2"><a href="#s-documented-limits-as-observed">Documented limits as observed</a></li><li class="toc-level-2"><a href="#s-safety-and-privacy">Safety and privacy</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / HID</p>
+<p>HID Origo is a cloud platform with several APIs, not a single “Mobile Access endpoint.” Current public documentation includes the Mobile Identities 2.2 family, newer User and Credential Management 3.x services, Events and Callbacks, and Identity Positioning. The <strong>HID Mobile Access SDK</strong> is a separate mobile app component used to provision and use supported credentials; its package and platform contract are partner controlled.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Documented purpose</th>
+  <th>Important boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Mobile Identities API 2.2</td>
+  <td>User, device/credential container, invitation and Mobile ID lifecycle</td>
+  <td>Current public 2.x contract; callback registration moved to Events and Callbacks; some partner environment functions differ</td>
+</tr>
+<tr>
+  <td>User Management API 3.x</td>
+  <td>SCIM oriented user management for newer Origo services</td>
+  <td>Limited SCIM 2 support; public docs say these users currently work with Credential Management, not Mobile Identities 2.x</td>
+</tr>
+<tr>
+  <td>Credential Management API 3.x</td>
+  <td>Pass, pass template, pass design, credential container and credential lifecycle</td>
+  <td>Platform support differs among Apple Wallet, Google Wallet, Identity Positioning and app based Seos workflows</td>
+</tr>
+<tr>
+  <td>Events and Callbacks</td>
+  <td>Asynchronous state change delivery</td>
+  <td>Delivery is not proof that a device has retrieved or applied an issue/revoke instruction</td>
+</tr>
+<tr>
+  <td>Mobile Access SDK</td>
+  <td>Embeds supported mobile credential functionality in an application</td>
+  <td>SDK agreement, platform package, app identity and reader/credential compatibility required</td>
+</tr>
+<tr>
+  <td>Identity Positioning</td>
+  <td>Occupancy/utilization/proximity and site/floor/zone data</td>
+  <td>Separate privacy, lawful basis, consent and subscription boundary</td>
+</tr>
+</tbody>
+</table></div>
+<p>The documentation is publicly readable, but states that its intended audience is developers enrolled in HID’s Technology Partner Program. Application identifiers and environment access are provided through HID Partner Services.</p>
+<h2 id="s-version-and-lifecycle-evidence">Version and lifecycle evidence<a class="heading-link" href="#s-version-and-lifecycle-evidence" aria-label="Link to Version and lifecycle evidence">#</a></h2>
+<p>The Mobile Identities page identified 2.2 and 2.1 as supported and 2.0 as deprecated with a retirement date in 2024. It also recorded 2.2 updates in April and July 2026. On 25 August 2026, the Credential Management page showed a 3.4.1 release line. These are separate API generations; don't upgrade by changing only a path or media type.</p>
+<p>Credential Management 3.x describes a <code>Pass</code> abstraction and states which credential platforms are supported by each release. For example, public 3.4.x notes distinguish wallet, Identity Positioning and app based Seos support and list known limitations. Treat every “future support” statement as non available until a later released contract says otherwise.</p>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>The official authentication page states that Origo endpoints use OAuth 2.0 bearer access tokens issued for <strong>System Accounts</strong> created by an Organization Administrator. It documents password based and certificate based authentication, a one hour token lifetime, application identifiers and data security considerations.</p>
+<p>For production machine integration:</p>
+<ul>
+<li>prefer the documented certificate based system account path where available;</li>
+<li>bind the system account and Application ID to one integration and organization;</li>
+<li>store private keys/passwords in a managed secret or HSM backed service;</li>
+<li>validate TLS and identity provider hosts;</li>
+<li>cache access tokens only for their bounded lifetime and prevent renewal stampedes;</li>
+<li>rotate credentials before expiry and audit every administrator/system account change;</li>
+<li>never put an issuance token, invitation code, access token, mobile credential identifier or user photo in general logs.</li>
+</ul>
+<p>An OAuth token authenticates the integration; application and organization authorisation still govern which users, templates, part numbers and credentials it may manage.</p>
+<h2 id="s-identity-and-credential-state">Identity and credential state<a class="heading-link" href="#s-identity-and-credential-state" aria-label="Link to Identity and credential state">#</a></h2>
+<p>Model API acceptance, credential issuance initiated, handset/app retrieval, credential active, revoke initiated, handset retrieval of revocation, and revoked as distinct states. A phone can be offline. Deleting a user or container can initiate downstream credential revocation, but the resulting physical access risk depends on controller/reader synchronisation and offline policy outside Origo.</p>
+<p>Use immutable enterprise identifiers and don't join solely on mutable e mail address. The 3.x User Management docs explicitly say its user objects aren't currently interchangeable with Mobile Identities users. Build an adapter per API generation and document migration/dual run semantics.</p>
+<p>Events/callbacks must be authenticated using HID’s current contract, deduplicated, durably queued and correlated to the initiating request. Reconcile by reading authoritative API state after gaps or delivery failure. Never treat callback order as business order without a documented sequence contract.</p>
+<h2 id="s-documented-limits-as-observed">Documented limits as observed<a class="heading-link" href="#s-documented-limits-as-observed" aria-label="Link to Documented limits as observed">#</a></h2>
+<p>The official Usage Limits page says limits can change and applies them by organization ID unless specified. On 25 August 2026 it listed:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Service</th>
+  <th style="text-align:right">Documented requests/window</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Mobile Identities API 2.2</td>
+  <td style="text-align:right">300 per 5 minutes</td>
+</tr>
+<tr>
+  <td>Authentication service</td>
+  <td style="text-align:right">50 per 5 minutes</td>
+</tr>
+<tr>
+  <td>Events and Callbacks</td>
+  <td style="text-align:right">300 per 5 minutes</td>
+</tr>
+<tr>
+  <td>User Management API 3.x</td>
+  <td style="text-align:right">5,000 per 5 minutes</td>
+</tr>
+<tr>
+  <td>Credential Management API 3.x</td>
+  <td style="text-align:right">5,000 per 5 minutes</td>
+</tr>
+<tr>
+  <td>Identity Positioning API</td>
+  <td style="text-align:right">5,000 per 5 minutes</td>
+</tr>
+<tr>
+  <td>Identity Positioning authentication</td>
+  <td style="text-align:right">150 per 5 minutes</td>
+</tr>
+</tbody>
+</table></div>
+<p>The page documents HTTP 403 on limit exceed, rather than the more common 429. Treat that behaviour as vendor specific and recheck before coding. Centralize budgets across workers and preserve capacity for revocation and recovery.</p>
+<p>Mobile Identities 2.2 documented a maximum search page size of 25 in July 2026. Credential Management 3.4.0.2 clarified zero indexed pages and page sizes from 1 to 1,000 with a default of 20. Don't share a pagination helper across these APIs without per service configuration.</p>
+<h2 id="s-safety-and-privacy">Safety and privacy<a class="heading-link" href="#s-safety-and-privacy" aria-label="Link to Safety and privacy">#</a></h2>
+<p>Credential issue/revoke is high impact. Require approval, target organization, credential template/part number, effective interval, reason and audit correlation. Protect photos, phone/device identifiers, wallet details, card numbers, occupancy and proximity as sensitive personal/security data. Define deletion, retention, data residency, subject right and support log handling before production.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://doc.origo.hidglobal.com/api/" rel="noopener noreferrer">HID Origo API documentation</a>, official API family and partner audience catalogue.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/authentication/" rel="noopener noreferrer">Authentication and authorisation</a>, OAuth, system account and token contract.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/mobile-identities/" rel="noopener noreferrer">Mobile Identities 2.2</a>, architecture, lifecycle, version and known limitations.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/user-management/" rel="noopener noreferrer">User Management</a>, limited SCIM and cross API user boundary.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/credential-management/" rel="noopener noreferrer">Credential Management</a>, 3.x release, pass and platform scope.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/usage-limits/" rel="noopener noreferrer">Usage limits</a>, mutable per service quotas.</li>
+<li><a href="https://doc.origo.hidglobal.com/api/assets/pdf/ma-api-2.2.pdf" rel="noopener noreferrer">HID Mobile Access API 2.2 specification PDF</a>, fixed versioned contract.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/credential-lifecycle/">Credential lifecycle</a></li>
+<li><a href="../../../03-systems/access-control/mobile-access/">Mobile access</a></li>
+<li><a href="../../../06-security-and-assurance/privacy-and-sensitive-data/">Privacy and sensitive data</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../gallagher-command-centre-integrations/"><span>Previous in this section</span>Gallagher Command Centre integrations</a><a href="../johnson-controls-ccure-integrations/"><span>Next in this section</span>Johnson Controls C•CURE integrations</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/hid-origo-and-mobile-access.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/hid-origo-and-mobile-access.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle-evidence">Version and lifecycle evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-identity-and-credential-state">Identity and credential state</a></li><li class="toc-level-2"><a href="#s-documented-limits-as-observed">Documented limits as observed</a></li><li class="toc-level-2"><a href="#s-safety-and-privacy">Safety and privacy</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

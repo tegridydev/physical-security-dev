@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Remote access · Security Technician Wiki</title>
+<meta name="description" content="Give each remote support session a defined purpose, scope and expiry. Restrict permissions and record administrative actions through the site&#x27;s approved process.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/remote-access/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Remote access · Security Technician Wiki">
+<meta property="og:description" content="Give each remote support session a defined purpose, scope and expiry. Restrict permissions and record administrative actions through the site&#x27;s approved process.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/remote-access/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="./" aria-current="page">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Remote access</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-remote-access">Remote access</h1>
+<p>Give each remote support session a defined purpose, scope and expiry. Restrict permissions and record administrative actions through the site's approved process.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-preferred-pattern">Preferred pattern</a></li><li class="toc-level-2"><a href="#s-requirements">Requirements</a></li><li class="toc-level-2"><a href="#s-vendor-cloud-and-outbound-tunnels">Vendor cloud and outbound tunnels</a></li><li class="toc-level-2"><a href="#s-prohibited-shortcuts">Prohibited shortcuts</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Remote support often crosses the strongest physical security boundary and can expose high impact administrative or actuation functions. Treat it as an exceptional, observable workflow rather than permanent background connectivity.</p>
+<h2 id="s-preferred-pattern">Preferred pattern<a class="heading-link" href="#s-preferred-pattern" aria-label="Link to Preferred pattern">#</a></h2>
+<ol>
+<li>A named operator, support engineer, or vendor representative requests access for a defined purpose, system, and time window.</li>
+<li>An accountable site authority approves the scope.</li>
+<li>Strongly authenticated identity enters through a managed access service or bastion.</li>
+<li>Policy permits only named destinations, protocols, and role capabilities.</li>
+<li>The session and administrative actions are logged; sensitive screen/traffic recording follows applicable privacy rules.</li>
+<li>Access expires automatically, credentials/tokens are invalidated, and temporary rules are removed.</li>
+<li>Changes and resulting system state are reviewed.</li>
+</ol>
+<h2 id="s-requirements">Requirements<a class="heading-link" href="#s-requirements" aria-label="Link to Requirements">#</a></h2>
+<ul>
+<li>No direct inbound exposure of device or management interfaces to the public Internet.</li>
+<li>Separate vendor identities; never share the local administrator account.</li>
+<li>Phishing resistant multifactor authentication where practical, plus managed endpoint posture.</li>
+<li>Just in time authorisation, short session lifetime, and explicit elevation.</li>
+<li>Destination allowlists and prevention of arbitrary lateral movement.</li>
+<li>File transfer controls, malware handling, and provenance for tools/firmware.</li>
+<li>Out of band revocation and a local method to disable the path.</li>
+<li>Safe behaviour if the remote session drops during a configuration change.</li>
+<li>Monitoring for access outside approved windows, unusual targets, repeated denial, and new tunnels.</li>
+</ul>
+<h2 id="s-vendor-cloud-and-outbound-tunnels">Vendor cloud and outbound tunnels<a class="heading-link" href="#s-vendor-cloud-and-outbound-tunnels" aria-label="Link to Vendor cloud and outbound tunnels">#</a></h2>
+<p>Inventory every device originated cloud connection, destination, identity, purpose, data category, update behaviour, and disablement path. Outbound TLS isn't automatically trustworthy: validate destination identity, constrain DNS/routing, monitor changes, and understand whether the tunnel permits reverse administration.</p>
+<h2 id="s-prohibited-shortcuts">Prohibited shortcuts<a class="heading-link" href="#s-prohibited-shortcuts" aria-label="Link to Prohibited shortcuts">#</a></h2>
+<ul>
+<li>persistent shared remote desktop credentials;</li>
+<li>consumer remote access tools installed outside asset/change management;</li>
+<li>port forwarding directly to cameras, controllers, recorders, or panels;</li>
+<li>disabling certificate checks to reach an appliance;</li>
+<li>unmanaged support laptops bridging trusted and untrusted networks;</li>
+<li>leaving commissioning VPNs or firewall exceptions permanently enabled.</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 46</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/46/r2/final" rel="noopener noreferrer">NIST SP 800-46 Rev. 2: Guide to Enterprise Telework, Remote Access, and BYOD Security</a>, accessed 25 August 2026.</li>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, OT remote access and architecture guidance, accessed 25 August 2026.</li>
+<li><strong>NIST 1800 45</strong>, <a href="https://www.nccoe.nist.gov/projects/cybersecurity-water-and-wastewater-sector/ot-remote-access" rel="noopener noreferrer">NIST SP 1800-45: Operational Technology Remote Access</a>, final June 2026, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li>
+<li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li>
+<li><a href="../../07-operations-and-lifecycle/">Operations and lifecycle</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../privacy-and-sensitive-data/"><span>Previous in this section</span>Privacy and sensitive data</a><a href="../resilience-backup-and-recovery/"><span>Next in this section</span>Resilience, backup, and recovery</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/remote-access.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/remote-access.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-preferred-pattern">Preferred pattern</a></li><li class="toc-level-2"><a href="#s-requirements">Requirements</a></li><li class="toc-level-2"><a href="#s-vendor-cloud-and-outbound-tunnels">Vendor cloud and outbound tunnels</a></li><li class="toc-level-2"><a href="#s-prohibited-shortcuts">Prohibited shortcuts</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

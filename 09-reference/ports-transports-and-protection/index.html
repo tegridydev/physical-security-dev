@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Ports, transports, and protection · Security Technician Wiki</title>
+<meta name="description" content="Use this reference to look up common ports, transports and protection options. Confirm the configured service and identity on the actual endpoint.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/ports-transports-and-protection/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Ports, transports, and protection · Security Technician Wiki">
+<meta property="og:description" content="Use this reference to look up common ports, transports and protection options. Confirm the configured service and identity on the actual endpoint.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/ports-transports-and-protection/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="./" aria-current="page">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Ports, transports, and protection</span></nav><div class="page-kicker">Reference <span>About 8 min read</span></div><div class="prose"><h1 id="s-ports-transports-and-protection">Ports, transports, and protection</h1>
+<p>Use this reference to look up common ports, transports and protection options. Confirm the configured service and identity on the actual endpoint.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Registered and standards defined defaults only; listener configuration, product support, negotiated protocol, firewall policy, and deployment security are not inferred from a port number.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-keep-four-facts-separate">Keep four facts separate</a></li><li class="toc-level-2"><a href="#s-registered-and-standards-defined-orientation">Registered and standards defined orientation</a></li><li class="toc-level-2"><a href="#s-protection-map">Protection map</a></li><li class="toc-level-2"><a href="#s-firewall-and-conduit-record">Firewall and conduit record</a></li><li class="toc-level-2"><a href="#s-verification-checklist">Verification checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p>This is a planning summary, not a normative port list or firewall rule set. IANA explicitly warns that assignment doesn't endorse traffic and doesn't prove that traffic on a port is the assigned service. Confirm the exact product, firmware, listener, transport, address family, proxy path, and security mode. <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml" rel="noopener noreferrer">IANA PORTS</a></p>
+</blockquote>
+<h2 id="s-keep-four-facts-separate">Keep four facts separate<a class="heading-link" href="#s-keep-four-facts-separate" aria-label="Link to Keep four facts separate">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Fact</th>
+  <th>Question</th>
+  <th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Service convention</td>
+  <td>Which port is registered or specified?</td>
+  <td>IANA registry and the protocol specification</td>
+</tr>
+<tr>
+  <td>Deployed listener</td>
+  <td>Where is this instance actually listening?</td>
+  <td>Approved configuration and owner controlled validation</td>
+</tr>
+<tr>
+  <td>Transport</td>
+  <td>TCP, UDP, SCTP, QUIC, serial, or another carrier?</td>
+  <td>Negotiation/configuration and packet level evidence</td>
+</tr>
+<tr>
+  <td>Protection</td>
+  <td>What authenticates, encrypts, authorises, and limits the exchange?</td>
+  <td>TLS/security profile, credentials, ACLs, and application policy</td>
+</tr>
+</tbody>
+</table></div>
+<p>A port isn't an identity, an authorisation decision, a discovery method, or proof of encryption. TLS on a conventional secure port can still be misconfigured; a protocol on a non default port doesn't become malicious or secure because of the number.</p>
+<h2 id="s-registered-and-standards-defined-orientation">Registered and standards defined orientation<a class="heading-link" href="#s-registered-and-standards-defined-orientation" aria-label="Link to Registered and standards defined orientation">#</a></h2>
+<p>“Registered” below means an IANA entry exists. “Specified” means the cited protocol assigns the value. Products may use a configurable or entirely different port. Dual entries in IANA don't mean every protocol implementation supports both transports.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th style="text-align:right">Registered or specified endpoint</th>
+  <th>Intended orientation</th>
+  <th>Important qualification</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>DNS</td>
+  <td style="text-align:right">53/TCP and 53/UDP</td>
+  <td>Name resolution</td>
+  <td>Transport choice depends on message and resolver policy; DNS identity is not application authorisation</td>
+</tr>
+<tr>
+  <td>DHCPv4</td>
+  <td style="text-align:right">67/UDP server, 68/UDP client</td>
+  <td>Address/configuration assignment</td>
+  <td>Broadcast/relay behaviour and server trust require network controls</td>
+</tr>
+<tr>
+  <td>NTP</td>
+  <td style="text-align:right">123/UDP</td>
+  <td>Time synchronisation</td>
+  <td>Plain NTP is not NTS; record source authentication and clock quality separately</td>
+</tr>
+<tr>
+  <td>mDNS</td>
+  <td style="text-align:right">5353/UDP</td>
+  <td>Link local multicast naming</td>
+  <td>Advertisements are untrusted discovery input and expose service metadata</td>
+</tr>
+<tr>
+  <td>WS Discovery</td>
+  <td style="text-align:right">3702/UDP in ad hoc multicast mode</td>
+  <td>Probe, resolve, hello, and bye</td>
+  <td>Managed mode can use HTTP; advertised endpoint references still need validation</td>
+</tr>
+<tr>
+  <td>HTTP</td>
+  <td style="text-align:right">80/TCP</td>
+  <td>Cleartext HTTP convention</td>
+  <td>HTTP versions, upgrades, proxies, and redirects require explicit handling</td>
+</tr>
+<tr>
+  <td>HTTPS</td>
+  <td style="text-align:right">443/TCP; HTTP/3 commonly uses QUIC over 443/UDP</td>
+  <td>HTTP protected by TLS, or HTTP/3 over QUIC</td>
+  <td>Validate ALPN, certificate identity, origin, proxy, and application authorisation</td>
+</tr>
+<tr>
+  <td>WebSocket / SSE / webhooks</td>
+  <td style="text-align:right">Usually the parent HTTP(S) listener</td>
+  <td>Streaming or callback application patterns</td>
+  <td>No dedicated port proves WebSocket, SSE, webhook authenticity, or callback safety</td>
+</tr>
+<tr>
+  <td>gRPC</td>
+  <td style="text-align:right">No dedicated universal service port</td>
+  <td>RPC commonly over HTTP/2</td>
+  <td>Product/API documentation owns the listener and TLS policy</td>
+</tr>
+<tr>
+  <td>LDAP / LDAPS convention</td>
+  <td style="text-align:right">389/TCP or UDP; 636/TCP for LDAP over TLS</td>
+  <td>Directory access</td>
+  <td>Prefer an explicitly protected profile; StartTLS and implicit TLS are distinct configurations</td>
+</tr>
+<tr>
+  <td>SSH</td>
+  <td style="text-align:right">22/TCP</td>
+  <td>Secure administration and subsystems such as SFTP</td>
+  <td>Host key validation and user authorisation remain mandatory</td>
+</tr>
+<tr>
+  <td>SNMP</td>
+  <td style="text-align:right">161/UDP requests, 162/UDP notifications are common registrations</td>
+  <td>Monitoring and management</td>
+  <td>SNMP version/security model matters; v1/v2c community strings are not modern authentication</td>
+</tr>
+<tr>
+  <td>Syslog</td>
+  <td style="text-align:right">514/UDP or TCP registrations; 6514/TCP for syslog over TLS</td>
+  <td>Event transport</td>
+  <td>Framing, reliability, TLS identity, durability, and loss accounting remain separate</td>
+</tr>
+<tr>
+  <td>RTSP</td>
+  <td style="text-align:right">554/TCP and UDP registrations</td>
+  <td>Media session control</td>
+  <td>RTSP 1.0/2.0 support, TLS, authentication, and RTP transport are separate capabilities</td>
+</tr>
+<tr>
+  <td>RTP / RTCP / SRTP</td>
+  <td style="text-align:right">Session negotiated dynamic ports in many deployments</td>
+  <td>Media and control reports</td>
+  <td>SDP/ICE or product configuration selects flows; do not open an unrestricted range</td>
+</tr>
+<tr>
+  <td>SIP</td>
+  <td style="text-align:right">5060/TCP, UDP, or SCTP registrations</td>
+  <td>Session signaling</td>
+  <td>A 5060 listener is not protected merely because authentication exists</td>
+</tr>
+<tr>
+  <td>SIP over TLS convention</td>
+  <td style="text-align:right">5061/TCP or SCTP registration</td>
+  <td>TLS protected SIP hop</td>
+  <td>SIPS routing and media protection are separate; require SRTP where appropriate</td>
+</tr>
+<tr>
+  <td>STUN / TURN</td>
+  <td style="text-align:right">3478/TCP or UDP; 5349/TCP or UDP for TLS/DTLS forms</td>
+  <td>NAT traversal and relay</td>
+  <td>WebRTC can also use other configured TURN endpoints and transports</td>
+</tr>
+<tr>
+  <td>MQTT</td>
+  <td style="text-align:right">1883/TCP; <code>secure-mqtt</code> 8883/TCP</td>
+  <td>Brokered messaging</td>
+  <td>The MQTT standard does not make 8883 a complete security profile; verify TLS and topic ACLs</td>
+</tr>
+<tr>
+  <td>AMQP</td>
+  <td style="text-align:right">5672/TCP; 5671/TCP for AMQP over TLS</td>
+  <td>Brokered messaging</td>
+  <td>Protocol version, SASL, virtual host, TLS identity, and authorisation must match</td>
+</tr>
+<tr>
+  <td>CoAP / CoAPS</td>
+  <td style="text-align:right">5683/TCP or UDP; 5684/TCP or UDP for protected forms</td>
+  <td>Constrained request/response and observation</td>
+  <td>Transport and security profile differ; OSCORE protects messages independently of the transport port</td>
+</tr>
+<tr>
+  <td>RADIUS / accounting</td>
+  <td style="text-align:right">1812 and 1813 registrations over TCP/UDP; deployed products commonly use UDP</td>
+  <td>Network AAA and accounting</td>
+  <td>Pin RFC/profile and server identity; classic RADIUS security limitations remain regardless of port</td>
+</tr>
+<tr>
+  <td>RADIUS over TLS / RADIUS 1.1</td>
+  <td style="text-align:right"><code>radsec</code> 2083/TCP registration</td>
+  <td>Experimental TLS protected RADIUS family</td>
+  <td>RFC 6614 and RFC 9765 are distinct Experimental protocols; explicit bilateral support is required</td>
+</tr>
+<tr>
+  <td>BACnet/IP</td>
+  <td style="text-align:right">47808/UDP is the common BACnet/IP value (<code>0xBAC0</code>)</td>
+  <td>BACnet BVLL over IP</td>
+  <td>Project configuration may differ; classic BACnet/IP is not BACnet/SC</td>
+</tr>
+<tr>
+  <td>KNXnet/IP</td>
+  <td style="text-align:right">3671/UDP convention</td>
+  <td>KNX IP routing, tunneling, and discovery</td>
+  <td>KNX IP Secure is an explicit profile, not a consequence of the port</td>
+</tr>
+<tr>
+  <td>Modbus/TCP</td>
+  <td style="text-align:right">502/TCP</td>
+  <td>Classic Modbus application protocol over TCP</td>
+  <td>No native modern peer authentication or confidentiality</td>
+</tr>
+<tr>
+  <td>Modbus Security</td>
+  <td style="text-align:right">802/TCP</td>
+  <td>Modbus/TCP protected with mutual TLS and certificates</td>
+  <td>Product authorisation remains product specific; a TLS gateway may expose cleartext downstream</td>
+</tr>
+<tr>
+  <td>OPC UA</td>
+  <td style="text-align:right">4840/TCP is a registered convention for OPC UA TCP</td>
+  <td>UA client/server endpoint</td>
+  <td>Endpoint URL, transport/profile, SecurityPolicy, mode, application certificate, and user token form one decision</td>
+</tr>
+<tr>
+  <td>DNP3</td>
+  <td style="text-align:right">20000/TCP and UDP registrations</td>
+  <td>DNP3 over IP convention</td>
+  <td>Exact master/outstation profile, transport, Secure Authentication, and command authority remain separate</td>
+</tr>
+<tr>
+  <td>IEC 60870-5-104</td>
+  <td style="text-align:right">2404/TCP registration</td>
+  <td>Telecontrol over TCP companion profile</td>
+  <td>Address/cause/type/time/quality semantics and IEC 62351 protection require explicit profiles</td>
+</tr>
+<tr>
+  <td>IEC 61850 MMS</td>
+  <td style="text-align:right">102/TCP convention inherited from ISO TSAP/COTP services</td>
+  <td>Client/server MMS mapping</td>
+  <td>GOOSE and Sampled Values use data link multicast rather than this TCP port; never invent an IP port for them</td>
+</tr>
+<tr>
+  <td>Matter</td>
+  <td style="text-align:right">5540/TCP and UDP registration</td>
+  <td>Operational discovery and communication</td>
+  <td>Fabric identity, secure session, ACL, commissioning, and transport support remain product specific</td>
+</tr>
+<tr>
+  <td>ONVIF services</td>
+  <td style="text-align:right">No single ONVIF application port</td>
+  <td>SOAP/HTTP(S), RTSP, events, and optional transports</td>
+  <td>Use device advertised, validated service endpoints and registered product/profile evidence</td>
+</tr>
+<tr>
+  <td>OSDP</td>
+  <td style="text-align:right">No IP service port in the base reader controller link</td>
+  <td>Serial multidrop access control link</td>
+  <td>Record RS485 profile, address, Secure Channel, and any gateway boundary</td>
+</tr>
+<tr>
+  <td>Wiegand / Clock and Data</td>
+  <td style="text-align:right">No IP service port</td>
+  <td>Electrical reader signaling</td>
+  <td>A network converter adds a separate vendor transport; it does not upgrade the legacy link</td>
+</tr>
+<tr>
+  <td>GB/T 28181</td>
+  <td style="text-align:right">Deployment/profile selected SIP and media endpoints</td>
+  <td>Platform/device signalling and media</td>
+  <td>Record the exact national profile and configured endpoints; do not infer a universal listener from SIP conventions</td>
+</tr>
+<tr>
+  <td>SRT / RIST</td>
+  <td style="text-align:right">No universal port for the protocol families</td>
+  <td>Media contribution</td>
+  <td>Endpoint/port, caller/listener/profile, firewall, encryption, and authorisation are deployment contracts</td>
+</tr>
+<tr>
+  <td>CAP / EDXL</td>
+  <td style="text-align:right">No dedicated universal port</td>
+  <td>Emergency XML commonly carried by a profiled HTTPS or messaging service</td>
+  <td>Transport delivery and alert activation are separate; the issuing authority/feed contract owns the endpoint</td>
+</tr>
+</tbody>
+</table></div>
+<p>Primary port evidence is the live IANA registry, reviewed 25 August 2026. Protocol specific pages remain canonical for semantics: <a href="../../02-protocols/video-and-media/">video and media</a>, <a href="../../02-protocols/web-and-messaging/">web and messaging</a>, <a href="../../02-protocols/access-control/">access control</a>, <a href="../../02-protocols/building-and-industrial/">building and industrial</a>, and <a href="../../02-protocols/infrastructure/">infrastructure</a>.</p>
+<h2 id="s-protection-map">Protection map<a class="heading-link" href="#s-protection-map" aria-label="Link to Protection map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Carrier or wrapper</th>
+  <th>What it can provide</th>
+  <th>What it does not establish by itself</th>
+  <th>Canonical guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>TLS</td>
+  <td>Confidentiality and integrity for a connection; authenticated server and optionally client when validation is correct</td>
+  <td>Business authorisation, safe command semantics, downstream protection, durable delivery</td>
+  <td><a href="../../02-protocols/infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></td>
+</tr>
+<tr>
+  <td>DTLS</td>
+  <td>TLS like protection for datagrams</td>
+  <td>Reliable delivery, application authorisation, or protection beyond the terminating peer</td>
+  <td><a href="../../02-protocols/video-and-media/webrtc/">WebRTC</a></td>
+</tr>
+<tr>
+  <td>QUIC</td>
+  <td>Encrypted authenticated transport incorporating TLS 1.3</td>
+  <td>Safe HTTP/API semantics or authorisation</td>
+  <td><a href="../../02-protocols/web-and-messaging/http-and-rest/">HTTP and REST</a></td>
+</tr>
+<tr>
+  <td>SRTP / SRTCP</td>
+  <td>Media confidentiality, integrity/authentication profiles, and replay handling</td>
+  <td>Signaling identity, call authorisation, recording policy</td>
+  <td><a href="../../02-protocols/video-and-media/sip-and-srtp/">SIP and SRTP</a></td>
+</tr>
+<tr>
+  <td>OSDP Secure Channel</td>
+  <td>Protected messaging between OSDP control panel and peripheral</td>
+  <td>Protection of a credential before the reader or beyond a terminating gateway</td>
+  <td><a href="../../02-protocols/access-control/osdp/">OSDP</a></td>
+</tr>
+<tr>
+  <td>BACnet/SC</td>
+  <td>TLS/WebSocket based secure BACnet data link</td>
+  <td>Object/property write safety or encryption on attached MS/TP segments</td>
+  <td><a href="../../02-protocols/building-and-industrial/bacnet-secure-connect/">BACnet/SC</a></td>
+</tr>
+<tr>
+  <td>Modbus Security</td>
+  <td>Mutual TLS protection and certificate carried role information for Modbus/TCP</td>
+  <td>Correct register model, safe write, or protected RTU segment</td>
+  <td><a href="../../02-protocols/building-and-industrial/modbus-security/">Modbus Security</a></td>
+</tr>
+<tr>
+  <td>KNX IP Secure / Data Secure</td>
+  <td>Protected IP communication / protected selected application telegrams</td>
+  <td>Protection of unrelated management APIs or unselected/plain group objects</td>
+  <td><a href="../../02-protocols/building-and-industrial/knx-secure/">KNX Secure</a></td>
+</tr>
+<tr>
+  <td>Network tunnel or VPN</td>
+  <td>Protected conduit between tunnel endpoints</td>
+  <td>Native endpoint identity, least privilege application authorisation, or protection past the tunnel</td>
+  <td><a href="../../01-foundations/trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></td>
+</tr>
+</tbody>
+</table></div>
+<p>See <a href="../protocol-security-comparison/">protocol security comparison</a> for a family level view.</p>
+<h2 id="s-firewall-and-conduit-record">Firewall and conduit record<a class="heading-link" href="#s-firewall-and-conduit-record" aria-label="Link to Firewall and conduit record">#</a></h2>
+<p>For every allowed flow, record:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Required detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Purpose and owner</td>
+  <td>Named integration, operational owner, data/controller owner</td>
+</tr>
+<tr>
+  <td>Direction</td>
+  <td>Initiator, responder, return path, address family, and whether callbacks reverse the expected direction</td>
+</tr>
+<tr>
+  <td>Endpoint identity</td>
+  <td>Asset IDs, approved names/addresses, certificate/application identity, expected service</td>
+</tr>
+<tr>
+  <td>Service</td>
+  <td>Actual configured local/remote port and transport, not only a registry value</td>
+</tr>
+<tr>
+  <td>Discovery dependency</td>
+  <td>Broadcast/multicast/proxy requirement and how discovery becomes trusted inventory</td>
+</tr>
+<tr>
+  <td>Protection</td>
+  <td>TLS/DTLS/security profile, mutual authentication, trust anchors, credential rotation</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>Resource, action, tenant/site, topic, object/property, or stream scope</td>
+</tr>
+<tr>
+  <td>Reliability</td>
+  <td>Timeout, retry, keepalive, session renewal, failover, duplicate/unknown outcome policy</td>
+</tr>
+<tr>
+  <td>Capacity</td>
+  <td>Connection, packet, message, bandwidth, rate, and queue limits</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td>Configuration reference, standard revision, product documentation, approval, environment validation date</td>
+</tr>
+<tr>
+  <td>Revocation</td>
+  <td>Expiry/review date and removal/rollback owner</td>
+</tr>
+</tbody>
+</table></div>
+<p>Avoid “any to device on standard ports.” Resolve bounded source and destination sets, preserve IPv4/IPv6 parity, deny management services from operational clients, and monitor both accepted and denied flows without logging secrets.</p>
+<h2 id="s-verification-checklist">Verification checklist<a class="heading-link" href="#s-verification-checklist" aria-label="Link to Verification checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="IANA/standard value treated as orientation, not product evidence">IANA/standard value treated as orientation, not product evidence</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Actual listener and transport obtained from approved configuration">Actual listener and transport obtained from approved configuration</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Redirect, proxy, gateway, NAT, multicast, and callback paths included">Redirect, proxy, gateway, NAT, multicast, and callback paths included</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TLS/security profile and both endpoint identities verified separately">TLS/security profile and both endpoint identities verified separately</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Application authorisation and physical consequence recorded">Application authorisation and physical consequence recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Dynamic RTP/ICE ranges bounded by negotiated/product policy">Dynamic RTP/ICE ranges bounded by negotiated/product policy</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Serial and radio protocols not forced into an invented IP port model">Serial and radio protocols not forced into an invented IP port model</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Firewall rule has owner, evidence, expiry, monitoring, and rollback">Firewall rule has owner, evidence, expiry, monitoring, and rollback</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Listener evidence comes from approved configuration or a separately authorised environment validation record, not an inferred default">Listener evidence comes from approved configuration or a separately authorised environment validation record, not an inferred default</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>IANA PORTS</strong>, <a href="https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml" rel="noopener noreferrer">Service Name and Transport Protocol Port Number Registry</a>, IANA, last updated status reviewed 25 August 2026.</li>
+<li><strong>PORT GUIDANCE</strong>, <a href="https://datatracker.ietf.org/doc/rfc6335/" rel="noopener noreferrer">RFC 6335: Internet Assigned Numbers Authority Procedures for the Management of the Service Name and Transport Protocol Port Number Registry</a>, IETF, August 2011.</li>
+<li><strong>HTTP3</strong>, <a href="https://datatracker.ietf.org/doc/rfc9114/" rel="noopener noreferrer">RFC 9114: HTTP/3</a>, IETF, June 2022.</li>
+<li><strong>WSD</strong>, <a href="https://docs.oasis-open.org/ws-dd/discovery/1.1/os/wsdd-discovery-1.1-spec-os.html" rel="noopener noreferrer">WS Discovery 1.1</a>, OASIS Standard, 1 July 2009.</li>
+<li><strong>MDNS</strong>, <a href="https://datatracker.ietf.org/doc/rfc6762/" rel="noopener noreferrer">RFC 6762: Multicast DNS</a>, IETF, February 2013.</li>
+<li><strong>MODBUS SEC</strong>, <a href="https://www.modbus.org/modbus-specifications" rel="noopener noreferrer">Modbus specifications and implementation guides</a>, Modbus Organization, status reviewed 25 August 2026.</li>
+<li><strong>TLS13</strong>, <a href="https://datatracker.ietf.org/doc/rfc8446/" rel="noopener noreferrer">RFC 8446: TLS 1.3</a>, IETF, August 2018.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../media-bandwidth-and-storage/"><span>Previous in this section</span>Media bandwidth and storage</a><a href="../protocol-layer-and-role-matrix/"><span>Next in this section</span>Protocol layer and role matrix</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/ports-transports-and-protection.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/ports-transports-and-protection.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-keep-four-facts-separate">Keep four facts separate</a></li><li class="toc-level-2"><a href="#s-registered-and-standards-defined-orientation">Registered and standards defined orientation</a></li><li class="toc-level-2"><a href="#s-protection-map">Protection map</a></li><li class="toc-level-2"><a href="#s-firewall-and-conduit-record">Firewall and conduit record</a></li><li class="toc-level-2"><a href="#s-verification-checklist">Verification checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

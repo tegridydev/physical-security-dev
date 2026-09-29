@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Media bandwidth and storage · Security Technician Wiki</title>
+<meta name="description" content="Calculate network capacity and recording capacity separately. State bitrate, retention and overhead assumptions so the result can be reviewed.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/media-bandwidth-and-storage/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Media bandwidth and storage · Security Technician Wiki">
+<meta property="og:description" content="Calculate network capacity and recording capacity separately. State bitrate, retention and overhead assumptions so the result can be reviewed.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/media-bandwidth-and-storage/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="./" aria-current="page">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Media bandwidth and storage</span></nav><div class="page-kicker">Reference <span>About 5 min read</span></div><div class="prose"><h1 id="s-media-bandwidth-and-storage">Media bandwidth and storage</h1>
+<p>Calculate network capacity and recording capacity separately. State bitrate, retention and overhead assumptions so the result can be reviewed.</p><details class="evidence"><summary>Sources and scope<span>Checked 29 September 2026</span></summary><p>AV1 RTP reference identity only</p><p><a href="../../10-sources-and-maintenance/source-review-2026-09-29/">Source check record</a></p><p>Deterministic formulas and a synthetic worksheet only; codec behaviour, scene complexity, product overhead, storage protection efficiency, retention law, failure performance, and measured workloads are deployment specific.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-unit-discipline">Unit discipline</a></li><li class="toc-level-2"><a href="#s-core-model">Core model</a></li><li class="toc-level-2"><a href="#s-network-model">Network model</a></li><li class="toc-level-2"><a href="#s-workload-variables">Workload variables</a></li><li class="toc-level-2"><a href="#s-synthetic-worked-worksheet">Synthetic worked worksheet</a></li><li class="toc-level-2"><a href="#s-retention-isnt-only-capacity">Retention isn&#x27;t only capacity</a></li><li class="toc-level-2"><a href="#s-failure-and-recovery-capacity">Failure and recovery capacity</a></li><li class="toc-level-2"><a href="#s-acceptance-worksheet">Acceptance worksheet</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Capacity is a workload model, not a camera count lookup. Measure representative streams and failure modes, preserve units, and keep payload, network, usable storage, raw media, and retained evidence as distinct quantities.</p>
+<p>The worked scenario is a synthetic unit checking worksheet, not a recommendation, field measurement, or product capacity result.</p>
+<h2 id="s-unit-discipline">Unit discipline<a class="heading-link" href="#s-unit-discipline" aria-label="Link to Unit discipline">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Symbol</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>bit</code>, <code>kbit</code>, <code>Mbit</code>, <code>Gbit</code></td>
+  <td>bits; decimal prefixes mean powers of 1000</td>
+</tr>
+<tr>
+  <td><code>B</code>, <code>kB</code>, <code>MB</code>, <code>GB</code>, <code>TB</code></td>
+  <td>bytes; <code>1 B = 8 bit</code>; decimal prefixes mean powers of 1000</td>
+</tr>
+<tr>
+  <td><code>KiB</code>, <code>MiB</code>, <code>GiB</code>, <code>TiB</code></td>
+  <td>binary byte multiples, powers of 1024</td>
+</tr>
+<tr>
+  <td><code>s</code>, <code>h</code>, <code>d</code></td>
+  <td>seconds, hours, days; define recording schedule explicitly</td>
+</tr>
+</tbody>
+</table></div>
+<p>Network tools often report bit/s while storage products report decimal bytes and operating systems may display binary units. Always write the unit, prefix basis, and whether a value is payload, wire, usable, or raw.</p>
+<h2 id="s-core-model">Core model<a class="heading-link" href="#s-core-model" aria-label="Link to Core model">#</a></h2>
+<p>For stream <code>i</code>:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">mean_payload_bps_i = mean_video_bps_i + mean_audio_bps_i + mean_metadata_bps_i
+
+retained_payload_bytes =
+  sum(mean_payload_bps_i × recorded_seconds_per_day_i × retention_days_i) / 8
+
+planned_logical_bytes =
+  retained_payload_bytes × container_index_filesystem_factor
+
+required_raw_bytes =
+  planned_logical_bytes × storage_protection_factor / target_fill_fraction
+</code></pre></div>
+<p>The factors aren't universal constants:</p>
+<ul>
+<li><code>container_index_filesystem_factor</code> must come from measurement or documented architecture and can include container, index, thumbnail, database, journal, filesystem, and metadata effects;</li>
+<li><code>storage_protection_factor</code> must be calculated for the exact mirror/replica/erasure/parity layout, drive count/capacity, hot spares, and failure policy;</li>
+<li><code>target_fill_fraction</code> is a design selected operating limit below physical fullness, not a standards value.</li>
+</ul>
+<p>Don't multiply an already vendor reported “usable after protection” capacity by a protection factor again.</p>
+<h2 id="s-network-model">Network model<a class="heading-link" href="#s-network-model" aria-label="Link to Network model">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Quantity</th>
+  <th>Calculation or evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Mean ingest payload</td>
+  <td>Sum of measured mean video/audio/metadata bitrates for simultaneously recording streams</td>
+</tr>
+<tr>
+  <td>Peak ingest payload</td>
+  <td>Measured short window peaks plus synchronized keyframe/restart behaviour</td>
+</tr>
+<tr>
+  <td>Wire rate</td>
+  <td>Payload plus RTP/RTCP, UDP/TCP/IP, Ethernet, TLS/SRTP, tunneling, retransmission, and encapsulation overhead for actual packet sizes</td>
+</tr>
+<tr>
+  <td>Read/export load</td>
+  <td>Concurrent live views, playback, analytics, export, replication, scrubbing, thumbnails, and rebuild reads</td>
+</tr>
+<tr>
+  <td>Failover load</td>
+  <td>Streams reassigned during recorder/link/node failure plus reconnect/keyframe surge</td>
+</tr>
+<tr>
+  <td>Control plane load</td>
+  <td>Discovery, authentication, events, health, time, and management, not normally large, but latency sensitive</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't apply one fixed percentage for network overhead across all packet sizes and transports. Measure actual wire behaviour. Average bitrate sizes retention; peak and burst behaviour sizes interfaces, buffers, switching, uplinks, and recorder ingest.</p>
+<h2 id="s-workload-variables">Workload variables<a class="heading-link" href="#s-workload-variables" aria-label="Link to Workload variables">#</a></h2>
+<p>For each stream or policy class, record:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Variable</th>
+  <th>Why it changes the result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Codec, profile, level, bit depth/chroma</td>
+  <td>Encoder/decoder compatibility and compression behaviour</td>
+</tr>
+<tr>
+  <td>Resolution and frame rate</td>
+  <td>Source sample volume and operational requirement</td>
+</tr>
+<tr>
+  <td>Rate control and target/max bitrate</td>
+  <td>Mean versus peak behaviour; “VBR” is not a measured distribution</td>
+</tr>
+<tr>
+  <td>GOP/keyframe interval</td>
+  <td>Seek/recovery behaviour and synchronized bursts</td>
+</tr>
+<tr>
+  <td>Scene, lighting, noise, motion, weather</td>
+  <td>Real compression workload; day/night can differ materially</td>
+</tr>
+<tr>
+  <td>Audio tracks</td>
+  <td>Continuous extra bitrate and retention/privacy impact</td>
+</tr>
+<tr>
+  <td>Metadata/analytics</td>
+  <td>Event/object streams, indexes, thumbnails, model/version data</td>
+</tr>
+<tr>
+  <td>Recording mode</td>
+  <td>Continuous, schedule, event, pre/post event, edge buffering</td>
+</tr>
+<tr>
+  <td>Retention class</td>
+  <td>Different cameras/evidence may have different policy and legal holds</td>
+</tr>
+<tr>
+  <td>Simultaneous consumers</td>
+  <td>Live, playback, export, analytics, federation, mobile clients</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use <a href="../../02-protocols/video-and-media/codecs-and-streaming/">codecs and streaming</a>, <a href="../../03-systems/video-surveillance/recording-storage-and-retention/">recording, storage, and retention</a>, and the offline <a href="../../08-defensive-labs/video-bandwidth-and-storage-calculation/">defensive capacity lab</a>.</p>
+<h2 id="s-synthetic-worked-worksheet">Synthetic worked worksheet<a class="heading-link" href="#s-synthetic-worked-worksheet" aria-label="Link to Synthetic worked worksheet">#</a></h2>
+<p>The worksheet is conceptual arithmetic using synthetic assumptions.</p>
+<p>Assume solely for demonstrating units:</p>
+<ul>
+<li>48 continuously recorded streams;</li>
+<li>4 Mbit/s measured mean payload per stream;</li>
+<li>30 days retention;</li>
+<li>an assumed logical overhead factor of <code>1.12</code>;</li>
+<li>an assumed target fill fraction of <code>0.75</code>;</li>
+<li>calculate one logical copy first; don't assume a protection factor.</li>
+</ul>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">per stream per day
+= 4,000,000 bit/s × 86,400 s / 8
+= 43,200,000,000 B
+= 43.2 GB (decimal)
+
+48 streams × 30 days
+= 43.2 GB × 48 × 30
+= 62,208 GB
+= 62.208 TB retained payload
+
+logical data including the synthetic 1.12 factor
+= 62.208 TB × 1.12
+= 69.67296 TB
+
+raw capacity before any protection-layout factor,
+at the synthetic 0.75 target fill
+= 69.67296 TB / 0.75
+= 92.89728 TB
+</code></pre></div>
+<p>This result is deliberately incomplete. If the exact design needs mirroring, parity, erasure coding, replicas, hot spares, or cloud copies, calculate the real physical/raw effect from that design. Don't simply double it unless the storage architecture truly stores two full physical copies and no other effects apply.</p>
+<p>The corresponding assumed mean video payload is <code>48 × 4 Mbit/s = 192 Mbit/s</code>. That isn't peak wire rate. A synthetic peak multiplier would be only a scenario input, never a codec fact.</p>
+<h2 id="s-retention-isnt-only-capacity">Retention isn't only capacity<a class="heading-link" href="#s-retention-isnt-only-capacity" aria-label="Link to Retention isn&#x27;t only capacity">#</a></h2>
+<ul>
+<li>Define whether “30 days” means 30 × 24 hours, calendar day boundaries, or local time policy through daylight saving transitions.</li>
+<li>Treat legal hold, incident bookmark, export, and evidence copy as separate retention states.</li>
+<li>Define deletion authority, propagation, tombstone/audit evidence, failed deletion, backup/replica behaviour, and clock source.</li>
+<li>Record gaps explicitly; don't extend an older image and call it continuous retention.</li>
+<li>Preserve source stream/configuration changes so bitrate shifts and evidence interpretation are explainable.</li>
+<li>Separate storage occupancy from searchable/indexed/decodable evidence availability.</li>
+</ul>
+<p>Jurisdiction, regulator, contract, labor/privacy, evidence, and litigation requirements require qualified review. This page provides no universal retention period.</p>
+<h2 id="s-failure-and-recovery-capacity">Failure and recovery capacity<a class="heading-link" href="#s-failure-and-recovery-capacity" aria-label="Link to Failure and recovery capacity">#</a></h2>
+<p>Normal steady state utilization can conceal failure bottlenecks. Model at least:</p>
+<ul>
+<li>one recorder/node/link/PSU/drive/failure domain unavailable;</li>
+<li>rebuild or re protection reads/writes while recording continues;</li>
+<li>simultaneous device restart and keyframe burst after power/network restoration;</li>
+<li>edge recording backlog upload plus live ingest;</li>
+<li>export/playback during an incident;</li>
+<li>replication site or cloud path unavailable and later catching up;</li>
+<li>metadata/index rebuild and database recovery;</li>
+<li>depleted free space, retention deletion lag, and backpressure behaviour.</li>
+</ul>
+<p>Availability claims need measured sustained performance at the intended fill level and failure state, not disk/interface headline throughput.</p>
+<h2 id="s-acceptance-worksheet">Acceptance worksheet<a class="heading-link" href="#s-acceptance-worksheet" aria-label="Link to Acceptance worksheet">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Decimal/binary and bit/byte units explicit">Decimal/binary and bit/byte units explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Every stream class has measured mean, peak window, and variability evidence">Every stream class has measured mean, peak window, and variability evidence</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Video, audio, metadata, container/index/filesystem effects separated">Video, audio, metadata, container/index/filesystem effects separated</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Continuous/event/schedule/pre/post recording seconds defined">Continuous/event/schedule/pre/post recording seconds defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Logical, usable, raw, protected, spare, reserve, and target fill capacities separated">Logical, usable, raw, protected, spare, reserve, and target fill capacities separated</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Live/playback/export/analytics/replication/rebuild concurrency modeled">Live/playback/export/analytics/replication/rebuild concurrency modeled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Day/night, motion, weather, firmware, codec, and configuration changes sampled">Day/night, motion, weather, firmware, codec, and configuration changes sampled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Network payload, wire rate, packet rate, loss/retransmission, and uplink oversubscription supported by environment evidence">Network payload, wire rate, packet rate, loss/retransmission, and uplink oversubscription supported by environment evidence</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Failure, restoration surge, edge backlog, and degraded protection modeled">Failure, restoration surge, edge backlog, and degraded protection modeled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Retention/legal hold/deletion/privacy rules approved by qualified owners">Retention/legal hold/deletion/privacy rules approved by qualified owners</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Result recorded as assumption, calculation, vendor claim, or environment measurement, not mixed">Result recorded as assumption, calculation, vendor claim, or environment measurement, not mixed</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>BIPM SI</strong>, <a href="https://www.bipm.org/en/publications/si-brochure" rel="noopener noreferrer">The International System of Units (SI Brochure), 9th edition</a>, BIPM, current online edition accessed 25 August 2026.</li>
+<li><strong>IEC INFO</strong>, <a href="https://webstore.iec.ch/en/publication/87379" rel="noopener noreferrer">IEC 80000-13:2025, quantities and units for information science and technology</a>, IEC, 2025.</li>
+<li><strong>RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc3550/" rel="noopener noreferrer">RFC 3550: RTP</a>, IETF, July 2003.</li>
+<li><strong>H264 RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc6184/" rel="noopener noreferrer">RFC 6184: RTP Payload Format for H.264 Video</a>, IETF, May 2011.</li>
+<li><strong>H265 RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc7798/" rel="noopener noreferrer">RFC 7798: RTP Payload Format for HEVC</a>, IETF, March 2016.</li>
+<li><strong>AV1 RTP</strong>, <a href="https://aomediacodec.github.io/av1-rtp-spec/v1.0.0.html" rel="noopener noreferrer">RTP Payload Format for AV1 v1.0.0</a>, Alliance for Open Media, final deliverable, 15 December 2024.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../integration-readiness-checklist/"><span>Previous in this section</span>Integration readiness checklist</a><a href="../ports-transports-and-protection/"><span>Next in this section</span>Ports, transports, and protection</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/media-bandwidth-and-storage.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/media-bandwidth-and-storage.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-unit-discipline">Unit discipline</a></li><li class="toc-level-2"><a href="#s-core-model">Core model</a></li><li class="toc-level-2"><a href="#s-network-model">Network model</a></li><li class="toc-level-2"><a href="#s-workload-variables">Workload variables</a></li><li class="toc-level-2"><a href="#s-synthetic-worked-worksheet">Synthetic worked worksheet</a></li><li class="toc-level-2"><a href="#s-retention-isnt-only-capacity">Retention isn&#x27;t only capacity</a></li><li class="toc-level-2"><a href="#s-failure-and-recovery-capacity">Failure and recovery capacity</a></li><li class="toc-level-2"><a href="#s-acceptance-worksheet">Acceptance worksheet</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

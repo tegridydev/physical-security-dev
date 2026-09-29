@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Security policy · Security Technician Wiki</title>
+<meta name="description" content="Report vulnerabilities privately and understand the boundaries of the static website, local builder and example programs.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/security/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Security policy · Security Technician Wiki">
+<meta property="og:description" content="Report vulnerabilities privately and understand the boundaries of the static website, local builder and example programs.">
+<meta property="og:url" content="https://securitytechnician.wiki/security/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Security policy</span></nav><div class="page-kicker">About this resource <span>About 1 min read</span></div><div class="prose"><h1 id="s-security">Security</h1>
+<p>For a vulnerability in the repository's builder, website or publication tooling, use GitHub's private vulnerability reporting option in the repository's <strong>Security</strong> tab when it is enabled. Do not post exploit details or secrets in a public issue. Include the affected file, a minimal reproduction, expected and observed behaviour, and the potential impact.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-website-boundary">Website boundary</a></li></ul></nav></details></div>
+<p>Do not include customer data, real device credentials, private keys or sensitive site details. Do not test the issue against systems you do not own or have explicit permission to assess.</p>
+<p>For a vulnerability in a vendor product, use the vendor's reporting process. This repository is not the product maintainer and cannot authorise testing or disclosure on their behalf.</p>
+<h2 id="s-website-boundary">Website boundary<a class="heading-link" href="#s-website-boundary" aria-label="Link to Website boundary">#</a></h2>
+<p>The published site contains static HTML, local CSS and JavaScript. It has no application backend, login, analytics or remote search service. Article HTML is escaped during rendering and incoming search text is inserted as text, not executed markup.</p>
+<p>The local preview binds to <code>127.0.0.1</code> and serves only the generated output. It is a development preview, not a production server. The builder does not execute article snippets or contact the devices and URLs described in the content.</p>
+<p>Keep dependencies and GitHub Actions pins under review. A passing test suite is not a guarantee that software has no vulnerabilities.</p>
+</div><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/SECURITY.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/SECURITY.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-website-boundary">Website boundary</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

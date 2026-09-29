@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Interoperability, conformance, and profiles · Security Technician Wiki</title>
+<meta name="description" content="Check the exact product, firmware, role, profile and optional features when reviewing compatibility. Keep the supporting documentation with the integration requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/interoperability-conformance-and-profiles/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Interoperability, conformance, and profiles · Security Technician Wiki">
+<meta property="og:description" content="Check the exact product, firmware, role, profile and optional features when reviewing compatibility. Keep the supporting documentation with the integration requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/interoperability-conformance-and-profiles/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="./" aria-current="page">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Interoperability, conformance, and profiles</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-interoperability-conformance-and-profiles">Interoperability, conformance, and profiles</h1>
+<p>Check the exact product, firmware, role, profile and optional features when reviewing compatibility. Keep the supporting documentation with the integration requirements.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>General method; each standards body defines its own marks, testing, and policy.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-distinct-claims">Distinct claims</a></li><li class="toc-level-2"><a href="#s-minimum-capability-record">Minimum capability record</a></li><li class="toc-level-2"><a href="#s-profiles-freeze-choices">Profiles freeze choices</a></li><li class="toc-level-2"><a href="#s-optionality-traps">Optionality traps</a></li><li class="toc-level-2"><a href="#s-evidence-and-procurement">Evidence and procurement</a></li><li class="toc-level-2"><a href="#s-primary-examples">Primary examples</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>“Supports X” isn't an integration requirement you can test. It may mean a marketing claim, a library exists in the product, one role is implemented, an older edition is supported, or a tested profile is available only on certain firmware.</p>
+<h2 id="s-distinct-claims">Distinct claims<a class="heading-link" href="#s-distinct-claims" aria-label="Link to Distinct claims">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Claim</th>
+  <th>What it demonstrates</th>
+  <th>What it does not demonstrate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Specification compliance</td>
+  <td>Implementation follows stated requirements</td>
+  <td>Independent testing or compatibility with a use case</td>
+</tr>
+<tr>
+  <td>Conformance certification/declaration</td>
+  <td>Named product/version passed the publisher's defined process</td>
+  <td>Every optional feature or production suitability</td>
+</tr>
+<tr>
+  <td>Profile conformance</td>
+  <td>Selected roles/features meet that profile</td>
+  <td>Native API behaviour or features outside the profile</td>
+</tr>
+<tr>
+  <td>Interoperability test</td>
+  <td>Exact implementations completed defined exchanges</td>
+  <td>All configurations, loads, failures, or future versions</td>
+</tr>
+<tr>
+  <td>User acceptance</td>
+  <td>Agreed site outcomes were observed</td>
+  <td>General protocol conformance</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-minimum-capability-record">Minimum capability record<a class="heading-link" href="#s-minimum-capability-record" aria-label="Link to Minimum capability record">#</a></h2>
+<p>For both endpoints record:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">manufacturer and exact product
+hardware revision
+firmware/software version
+protocol edition
+client/server or controller/peripheral role
+profile and add-ons
+mandatory and selected optional features
+authentication and secure transport modes
+codec/encoding/schema constraints
+known errata and vendor advisories
+conformance declaration or database entry
+</code></pre></div>
+<p>Compare the <strong>intersection</strong> of supported behaviour, not the union. If a client requires H.265, an event topic, mutual TLS, and edge recording retrieval, “both are ONVIF conformant” isn't enough; the exact profiles, services, optional capabilities, and authentication paths must align.</p>
+<h2 id="s-profiles-freeze-choices">Profiles freeze choices<a class="heading-link" href="#s-profiles-freeze-choices" aria-label="Link to Profiles freeze choices">#</a></h2>
+<p>Profiles improve predictable interoperability by selecting requirements from broader specifications. They also preserve compatibility, which can prevent security mechanisms from being changed in place. ONVIF explains this explicitly in its <a href="https://www.onvif.org/profiles/profile-s/profile-s-deprecation-qna/" rel="noopener noreferrer">Profile S deprecation Q&amp;A</a>: profiles aren't modified in ways that would break conformance interoperability, so Profile T is the replacement path rather than retrofitting Profile S.</p>
+<p>Profile lifecycle is therefore separate from protocol lifecycle. Track:</p>
+<ul>
+<li>release candidate versus final;</li>
+<li>first and last conformance submission dates;</li>
+<li>replacement guidance;</li>
+<li>whether deployed conformant products continue to operate;</li>
+<li>test tool and declaration version;</li>
+<li>security addons that are separate from the base profile.</li>
+</ul>
+<h2 id="s-optionality-traps">Optionality traps<a class="heading-link" href="#s-optionality-traps" aria-label="Link to Optionality traps">#</a></h2>
+<ul>
+<li>Discovery may be optional or administratively disabled.</li>
+<li>A device can stream a codec but not expose it through the selected profile.</li>
+<li>TLS can be supported while certificate validation or client authentication varies.</li>
+<li>Event support can omit the topic/data needed by the use case.</li>
+<li>A server can accept a command but implement different physical timing or confirmation.</li>
+<li>Vendor extensions can be valid yet destroy cross vendor portability.</li>
+</ul>
+<h2 id="s-evidence-and-procurement">Evidence and procurement<a class="heading-link" href="#s-evidence-and-procurement" aria-label="Link to Evidence and procurement">#</a></h2>
+<p>Use public conformance databases where offered, download the declaration, and preserve its date and version. Require a capability matrix and a small acceptance set that includes authentication, negative authorisation, reconnect, clock error, certificate rotation, upgrade, partial outage, and exact semantic mappings.</p>
+<p>Don't call a compatibility matrix “verified” until the exact combinations have evidence. Mark unknown cells unknown; absence of a documented feature isn't proof that it is unsupported, and an undocumented observed feature isn't a stable contract.</p>
+<h2 id="s-primary-examples">Primary examples<a class="heading-link" href="#s-primary-examples" aria-label="Link to Primary examples">#</a></h2>
+<ul>
+<li><a href="https://www.onvif.org/conformant-products/" rel="noopener noreferrer">ONVIF conformant products database</a></li>
+<li><a href="https://www.onvif.org/wp-content/uploads/2024/04/onvif-profile-policy-v3-4.pdf" rel="noopener noreferrer">ONVIF profile policy</a></li>
+<li><a href="https://profiles.opcfoundation.org/" rel="noopener noreferrer">OPC UA profiles</a></li>
+<li><a href="https://bacnetinternational.net/btl/" rel="noopener noreferrer">BACnet Testing Laboratories product listing</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../identity-authentication-and-authorization/"><span>Previous in this section</span>Identity, authentication, and authorisation</a><a href="../ip-addressing-routing-and-ports/"><span>Next in this section</span>IP addressing, routing, and ports</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/interoperability-conformance-and-profiles.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/interoperability-conformance-and-profiles.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-distinct-claims">Distinct claims</a></li><li class="toc-level-2"><a href="#s-minimum-capability-record">Minimum capability record</a></li><li class="toc-level-2"><a href="#s-profiles-freeze-choices">Profiles freeze choices</a></li><li class="toc-level-2"><a href="#s-optionality-traps">Optionality traps</a></li><li class="toc-level-2"><a href="#s-evidence-and-procurement">Evidence and procurement</a></li><li class="toc-level-2"><a href="#s-primary-examples">Primary examples</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Video system health and service monitoring · Security Technician Wiki</title>
+<meta name="description" content="Check image freshness, usability and recording as well as camera connectivity. Record which function was tested and when the observation was made.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/video-surveillance/health-and-service-monitoring/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Video system health and service monitoring · Security Technician Wiki">
+<meta property="og:description" content="Check image freshness, usability and recording as well as camera connectivity. Record which function was tested and when the observation was made.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/video-surveillance/health-and-service-monitoring/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group" open><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="./" aria-current="page">Video system health and service monitoring</a></li><li><a href="../vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Video surveillance systems</a><span aria-hidden="true">/</span><span aria-current="page">Video system health and service monitoring</span></nav><div class="page-kicker">Systems <span>About 2 min read</span></div><div class="prose"><h1 id="s-video-system-health-and-service-monitoring">Video system health and service monitoring</h1>
+<p>Check image freshness, usability and recording as well as camera connectivity. Record which function was tested and when the observation was made.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Monitoring model only; thresholds, service levels, and useful image criteria must come from the site&#x27;s operational requirement and acceptance criteria.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-model">Layered model</a></li><li class="toc-level-2"><a href="#s-signals">Signals</a></li><li class="toc-level-2"><a href="#s-alert-design">Alert design</a></li><li class="toc-level-2"><a href="#s-service-workflow">Service workflow</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-acceptance">Acceptance</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>“Online” isn't a useful video service state. Health must show the highest layer currently evidenced and the age/quality of that evidence.</p>
+<h2 id="s-layered-model">Layered model<a class="heading-link" href="#s-layered-model" aria-label="Link to Layered model">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Examples</th>
+  <th>Does not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Power/environment</td>
+  <td>PoE draw, PSU/UPS, temperature</td>
+  <td>Network or useful image</td>
+</tr>
+<tr>
+  <td>Link/network</td>
+  <td>port/link, IP, packet loss, DNS/routing</td>
+  <td>Authenticated service</td>
+</tr>
+<tr>
+  <td>Device/service</td>
+  <td>HTTPS/ONVIF/RTSP response, certificate</td>
+  <td>Fresh media or recording</td>
+</tr>
+<tr>
+  <td>Stream</td>
+  <td>packets, decode, changing frames, codec/profile</td>
+  <td>Correct scene/quality</td>
+</tr>
+<tr>
+  <td>Image/audio</td>
+  <td>brightness, blur, occlusion, view, audio level</td>
+  <td>Recording continuity</td>
+</tr>
+<tr>
+  <td>Recording/index</td>
+  <td>segments, index lag, playback sample</td>
+  <td>Retention/export/evidence</td>
+</tr>
+<tr>
+  <td>Analytics/events</td>
+  <td>input and inference/event rate</td>
+  <td>Accurate detection</td>
+</tr>
+<tr>
+  <td>Operator outcome</td>
+  <td>alert received/owned/resolved</td>
+  <td>Permanent remediation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Represent each separately. Unknown or stale can't become healthy.</p>
+<h2 id="s-signals">Signals<a class="heading-link" href="#s-signals" aria-label="Link to Signals">#</a></h2>
+<ul>
+<li>device reboot/uptime, firmware/configuration hash/version, certificate/credential expiry;</li>
+<li>PoE/power, temperature, storage/card wear, fan/disk/array/object errors;</li>
+<li>bitrate, frame/keyframe rate, resolution/codec, packet loss/jitter/reconnect;</li>
+<li>last decodable/changing frame and source timestamp/clock offset;</li>
+<li>view/tamper/blur/dark/bright/obstruction and privacy mask drift;</li>
+<li>central/edge recording gap, late segment, index lag, retention/deletion failure;</li>
+<li>event/metadata subscription sequence gaps, silence, rate anomaly, rule/model state;</li>
+<li>recorder/VMS database, license, queue, storage, identity, DNS/time, WAN/cloud dependencies.</li>
+</ul>
+<h2 id="s-alert-design">Alert design<a class="heading-link" href="#s-alert-design" aria-label="Link to Alert design">#</a></h2>
+<p>Define threshold, duration, priority, site/time context, suppression/maintenance, owner, escalation, and recovery evidence. Correlate common cause failures, switch, WAN, power, certificate CA, time, cloud, without collapsing affected cameras into one invisible aggregate.</p>
+<p>Avoid automated restart as first response. Bound retries/reboots, protect recording catch up, and escalate repeated recovery. Preserve pre restart diagnostics.</p>
+<h2 id="s-service-workflow">Service workflow<a class="heading-link" href="#s-service-workflow" aria-label="Link to Service workflow">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">detect -&gt; qualify/correlate -&gt; notify -&gt; acknowledge/own
+ -&gt; diagnose -&gt; restore -&gt; independently verify -&gt; close -&gt; trend/prevent
+</code></pre></div>
+<p>An alert acknowledgement doesn't restore service. Closure should state actual root cause or uncertainty, changes made, validation evidence, gaps/impact, and follow up.</p>
+<h2 id="s-security-and-privacy">Security and privacy<a class="heading-link" href="#s-security-and-privacy" aria-label="Link to Security and privacy">#</a></h2>
+<p>Monitoring agents/accounts should be read only where possible and separately scoped from viewing/actuation. Don't send thumbnails, live URLs, credentials, or personal metadata into general monitoring without need. Protect diagnostics and packet captures as sensitive.</p>
+<p>NIST <a href="https://csrc.nist.gov/pubs/ir/8259/a/final" rel="noopener noreferrer">IR 8259A</a> identifies six core IoT device cybersecurity capabilities useful for acquisition and monitoring: device identification, device configuration, data protection, logical access to interfaces, software update, and cybersecurity state awareness. <a href="https://webstore.iec.ch/en/publication/110108" rel="noopener noreferrer">IEC 62676-4:2025</a> includes maintenance in its VSS application guideline scope.</p>
+<h2 id="s-acceptance">Acceptance<a class="heading-link" href="#s-acceptance" aria-label="Link to Acceptance">#</a></h2>
+<p>Inject approved non destructive faults in an isolated or maintenance context, loss of stream, recording destination, time, certificate renewal, storage pressure, WAN, and view degradation, and verify alert, impact, restoration, and gap visibility.</p>
+<p>Return to <a href="../">Video surveillance systems</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../evidence-export-and-integrity/"><span>Previous in this section</span>Video evidence export and integrity</a><a href="../vms-nvr-and-vsaas/"><span>Next in this section</span>VMS, NVR, and VSaaS platforms</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/video-surveillance/health-and-service-monitoring.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/video-surveillance/health-and-service-monitoring.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-model">Layered model</a></li><li class="toc-level-2"><a href="#s-signals">Signals</a></li><li class="toc-level-2"><a href="#s-alert-design">Alert design</a></li><li class="toc-level-2"><a href="#s-service-workflow">Service workflow</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-acceptance">Acceptance</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

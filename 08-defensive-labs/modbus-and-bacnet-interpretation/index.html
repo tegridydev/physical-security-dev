@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Modbus and BACnet interpretation · Security Technician Wiki</title>
+<meta name="description" content="Interpret synthetic Modbus values and BACnet objects using the supplied definitions. Record uncertain mappings and keep the exercise separate from building equipment.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/modbus-and-bacnet-interpretation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modbus and BACnet interpretation · Security Technician Wiki">
+<meta property="og:description" content="Interpret synthetic Modbus values and BACnet objects using the supplied definitions. Record uncertain mappings and keep the exercise separate from building equipment.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/modbus-and-bacnet-interpretation/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="./" aria-current="page">Modbus and BACnet interpretation</a></li><li><a href="../mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="../onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="../incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="../sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="../time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">Modbus and BACnet interpretation</span></nav><div class="page-kicker">Defensive labs <span>About 1 min read</span></div><div class="prose"><h1 id="s-modbus-and-bacnet-interpretation">Modbus and BACnet interpretation</h1>
+<p>Interpret synthetic Modbus values and BACnet objects using the supplied definitions. Record uncertain mappings and keep the exercise separate from building equipment.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline research and planning only; product or deployment acceptance belongs to separately governed environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-modbus-exercise">Modbus exercise</a></li><li class="toc-level-2"><a href="#s-bacnet-exercise">BACnet exercise</a></li><li class="toc-level-2"><a href="#s-security-comparison">Security comparison</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Offline synthetic frame and object listing fixtures</strong></p>
+<h2 id="s-modbus-exercise">Modbus exercise<a class="heading-link" href="#s-modbus-exercise" aria-label="Link to Modbus exercise">#</a></h2>
+<p>Use the <a href="../../05-development-and-integration/examples/modbus-read-response/">synthetic read response</a> to identify MBAP fields, unit/function, byte count and registers. Then apply a synthetic vendor register map to discuss signedness, scaling, word order, freshness and limits. Don't send reads or writes to a PLC, gate, barrier, power system or controller.</p>
+<h2 id="s-bacnet-exercise">BACnet exercise<a class="heading-link" href="#s-bacnet-exercise" aria-label="Link to BACnet exercise">#</a></h2>
+<p>Use a synthetic object inventory to map device/object identifiers, object types, properties, services and represented network path. Separate BACnet/IP, MS/TP and BACnet/SC transports, and identify BBMD/foreign device or hub/connector trust boundaries where applicable. Represent discovery and property write behaviour conceptually; the fixture contains object metadata only.</p>
+<h2 id="s-security-comparison">Security comparison<a class="heading-link" href="#s-security-comparison" aria-label="Link to Security comparison">#</a></h2>
+<ul>
+<li>Classic Modbus/TCP and BACnet/IP don't inherently provide the endpoint identity and protected transport expected from modern secure variants.</li>
+<li>Modbus Security uses TLS and X.509 on assigned port 802 according to Modbus Organization materials.</li>
+<li>BACnet/SC uses TLS secured WebSockets and certificates; certificate/hub operation remains a deployment responsibility.</li>
+<li>Secure transport doesn't authorise a physical write or establish safe register/object semantics.</li>
+</ul>
+<h2 id="s-evidence-checklist">Evidence checklist<a class="heading-link" href="#s-evidence-checklist" aria-label="Link to Evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Fixture provenance, digest, protocol/version, and synthetic topology recorded">Fixture provenance, digest, protocol/version, and synthetic topology recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Modbus MBAP, unit, function, byte count, register, signedness, scaling, and word order interpretation documented">Modbus MBAP, unit, function, byte count, register, signedness, scaling, and word order interpretation documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="BACnet device/object identifiers, properties, services, and transport family mapped">BACnet device/object identifiers, properties, services, and transport family mapped</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Unknown register/object semantics and vendor map dependencies identified rather than guessed">Unknown register/object semantics and vendor map dependencies identified rather than guessed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Classic and secure transport identity, confidentiality, integrity, and certificate boundaries compared">Classic and secure transport identity, confidentiality, integrity, and certificate boundaries compared</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Read, write, acknowledgement, and physical outcome semantics kept distinct">Read, write, acknowledgement, and physical outcome semantics kept distinct</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Network discovery, field bus access, devices, controllers, and physical writes excluded">Network discovery, field bus access, devices, controllers, and physical writes excluded</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://www.modbus.org/modbus-specifications" rel="noopener noreferrer">Modbus specifications</a>, accessed 25 August 2026.</li>
+<li><a href="https://bacnetinternational.org/bacnetsc/" rel="noopener noreferrer">BACnet Secure Connect</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../02-protocols/building-and-industrial/">Building and industrial protocols</a></li>
+<li><a href="../../03-systems/integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../authorization-topology-and-safety/"><span>Previous in this section</span>Lab authorisation, topology, and safety</a><a href="../mqtt-tls-and-acl-review/"><span>Next in this section</span>MQTT TLS and ACL review</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/modbus-and-bacnet-interpretation.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/modbus-and-bacnet-interpretation.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-modbus-exercise">Modbus exercise</a></li><li class="toc-level-2"><a href="#s-bacnet-exercise">BACnet exercise</a></li><li class="toc-level-2"><a href="#s-security-comparison">Security comparison</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

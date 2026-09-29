@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Reliability and failure semantics · Security Technician Wiki</title>
+<meta name="description" content="A controller may act before its response is lost. Account for uncertain results when setting timeouts, retries and recovery behaviour.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/reliability-and-failure-semantics/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reliability and failure semantics · Security Technician Wiki">
+<meta property="og:description" content="A controller may act before its response is lost. Account for uncertain results when setting timeouts, retries and recovery behaviour.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/reliability-and-failure-semantics/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="./" aria-current="page">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Reliability and failure semantics</span></nav><div class="page-kicker">Foundations <span>About 3 min read</span></div><div class="prose"><h1 id="s-reliability-and-failure-semantics">Reliability and failure semantics</h1>
+<p>A controller may act before its response is lost. Account for uncertain results when setting timeouts, retries and recovery behaviour.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>General distributed systems guidance; product and safety behaviour require evidence from the authorised target environment and acceptance by the system owner.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-failure-categories">Failure categories</a></li><li class="toc-level-2"><a href="#s-delivery-language">Delivery language</a></li><li class="toc-level-2"><a href="#s-retry-policy">Retry policy</a></li><li class="toc-level-2"><a href="#s-offline-and-restart">Offline and restart</a></li><li class="toc-level-2"><a href="#s-backpressure">Backpressure</a></li><li class="toc-level-2"><a href="#s-recovery-and-reconciliation">Recovery and reconciliation</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>The safest default for a timed out command is <strong>indeterminate</strong>, not failed. The request may have reached a controller and produced a physical effect before the response was lost.</p>
+<h2 id="s-failure-categories">Failure categories<a class="heading-link" href="#s-failure-categories" aria-label="Link to Failure categories">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Failure</th>
+  <th>Example</th>
+  <th>Required distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Omission</td>
+  <td>event or response never observed</td>
+  <td>never sent, lost, filtered, or expired</td>
+</tr>
+<tr>
+  <td>Delay</td>
+  <td>stale alarm arrives after restore</td>
+  <td>source time versus receipt/order</td>
+</tr>
+<tr>
+  <td>Duplication</td>
+  <td>reconnect replays retained events</td>
+  <td>duplicate versus repeated real condition</td>
+</tr>
+<tr>
+  <td>Reordering</td>
+  <td>restore arrives before alarm</td>
+  <td>source local sequence and reconciliation</td>
+</tr>
+<tr>
+  <td>Partial success</td>
+  <td>batch updates some credentials</td>
+  <td>per item outcome and rollback policy</td>
+</tr>
+<tr>
+  <td>Ambiguous actuation</td>
+  <td>unlock times out</td>
+  <td>query independent state; do not blind retry</td>
+</tr>
+<tr>
+  <td>Split brain</td>
+  <td>redundant nodes both act authoritative</td>
+  <td>fencing/epoch/ownership</td>
+</tr>
+<tr>
+  <td>Resource exhaustion</td>
+  <td>queue grows during outage</td>
+  <td>bounded buffer and explicit shedding</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-delivery-language">Delivery language<a class="heading-link" href="#s-delivery-language" aria-label="Link to Delivery language">#</a></h2>
+<p>Avoid promising “exactly once” end to end. A transport, broker, database, and physical controller have different acknowledgement boundaries. Prefer:</p>
+<ul>
+<li>at most once attempt;</li>
+<li>at least once delivery with consumer deduplication;</li>
+<li>effect once within a scoped idempotency store;</li>
+<li>ordered only within a named source/partition/session;</li>
+<li>reconciled current state plus immutable event history.</li>
+</ul>
+<p>State the boundary and retention duration.</p>
+<h2 id="s-retry-policy">Retry policy<a class="heading-link" href="#s-retry-policy" aria-label="Link to Retry policy">#</a></h2>
+<p>Classify operations:</p>
+<ul>
+<li>safe read/poll: retry with deadline, jittered backoff, and bounds;</li>
+<li>idempotent write: retry only with the same idempotency key and documented server semantics;</li>
+<li>non idempotent/actuating command: after ambiguity, reconcile before any retry;</li>
+<li>batch: require per item result and a deliberate compensation plan.</li>
+</ul>
+<p>Retries must respect rate limits, device capacity, alarm priority, maintenance windows, and cancellation. Use circuit breaking or admission control so an offline site can't create a reconnect storm.</p>
+<h2 id="s-offline-and-restart">Offline and restart<a class="heading-link" href="#s-offline-and-restart" aria-label="Link to Offline and restart">#</a></h2>
+<p>Define each component's behaviour when WAN, DNS, time, identity, certificate service, broker, database, or upstream controller is unavailable. Record:</p>
+<ul>
+<li>local cached policy and expiry;</li>
+<li>event buffer capacity and overflow order;</li>
+<li>command acceptance/rejection during isolation;</li>
+<li>sequence/session epoch after reboot;</li>
+<li>time quality and certificate bootstrap;</li>
+<li>catch up ordering and duplicate policy;</li>
+<li>operator visible degraded state.</li>
+</ul>
+<p>Local controllers should preserve approved safety and access behaviour without depending unnecessarily on enterprise/cloud services. But cached authorisation can become stale; set risk based expiry and reconciliation.</p>
+<h2 id="s-backpressure">Backpressure<a class="heading-link" href="#s-backpressure" aria-label="Link to Backpressure">#</a></h2>
+<p>Bound every queue by count, bytes, and age. Decide what can be coalesced (health state), sampled (telemetry), dropped with a gap marker (low priority observations), or never silently discarded (critical alarm lifecycle). Separate priority classes so bulk video/export or noisy health events don't starve alarms and control responses.</p>
+<h2 id="s-recovery-and-reconciliation">Recovery and reconciliation<a class="heading-link" href="#s-recovery-and-reconciliation" aria-label="Link to Recovery and reconciliation">#</a></h2>
+<p>After reconnect:</p>
+<ol>
+<li>establish a new authenticated session/epoch;</li>
+<li>obtain authoritative capabilities and state;</li>
+<li>compare sequence/checkpoint and identify gaps;</li>
+<li>replay/catch up within retention and deduplicate;</li>
+<li>surface unrecoverable gaps and stale mappings;</li>
+<li>resume commands only after authority and time are valid.</li>
+</ol>
+<p>Never hide uncertainty. An explicit <code>unknown</code>, <code>stale</code>, <code>gap</code>, or <code>indeterminate</code> is safer than a plausible but false normal state.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a> supplies the OT availability, reliability, safety, redundancy, recovery, and change management framing.</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc9110.html#section-9.2.2" rel="noopener noreferrer">RFC 9110 section 9.2.2</a> defines idempotent HTTP methods and cautions about automatic retry boundaries; application and physical effects still require their own semantics.</li>
+<li><a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html" rel="noopener noreferrer">OASIS MQTT 5.0</a> provides concrete session, acknowledgement, QoS, expiry, retained message, and delivery behaviour used by many event integrations.</li>
+</ul>
+<p>These sources support the shared model, not an exactly once or safe retry claim for any product. The exact acknowledgement, persistence, deduplication, failover, and physical outcome boundary must be verified per protocol and implementation.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../physical-security-system-architecture/"><span>Previous in this section</span>Physical security system architecture</a><a href="../secure-integration-lifecycle/"><span>Next in this section</span>Secure integration lifecycle</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/reliability-and-failure-semantics.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/reliability-and-failure-semantics.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-failure-categories">Failure categories</a></li><li class="toc-level-2"><a href="#s-delivery-language">Delivery language</a></li><li class="toc-level-2"><a href="#s-retry-policy">Retry policy</a></li><li class="toc-level-2"><a href="#s-offline-and-restart">Offline and restart</a></li><li class="toc-level-2"><a href="#s-backpressure">Backpressure</a></li><li class="toc-level-2"><a href="#s-recovery-and-reconciliation">Recovery and reconciliation</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

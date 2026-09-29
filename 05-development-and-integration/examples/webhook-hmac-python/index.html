@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Webhook signature verification · Security Technician Wiki</title>
+<meta name="description" content="Verify an HMAC signature over an unchanged request body and its timestamp.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/webhook-hmac-python/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Webhook signature verification · Security Technician Wiki">
+<meta property="og:description" content="Verify an HMAC signature over an unchanged request body and its timestamp.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/webhook-hmac-python/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="./" aria-current="page">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">Webhook signature verification</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-webhook-signature-verification">Webhook signature verification</h1>
+<p>Verify an HMAC signature over an unchanged request body and its timestamp.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">python examples/python/webhook_hmac.py --demo
+</code></pre></div>
+<p>The demo signs a synthetic event with a public fixture key and verifies the result offline.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>The signing input is the ASCII timestamp, a full stop and the original body bytes. The signature format is <code>sha256=</code> followed by 64 lowercase hex digits. The timestamp is decimal Unix seconds. Requests outside a 300 second window in either direction are rejected.</p>
+<p>Use <code>--file body.json --timestamp VALUE --signature VALUE</code> and supply a secret in <code>WIKI_WEBHOOK_KEY_HEX</code>. Use at least 32 random bytes encoded as hex. The public demo key is not suitable for a service.</p>
+<p>The verifier compares signatures with <code>hmac.compare_digest</code> and accepts at most 64 KiB. It does not parse and reserialise the body before checking the signature.</p>
+<p>This is an explicit example contract, not a vendor compatible signing scheme. A valid signature and timestamp do not prevent replay within the window. Store a signed event identifier or nonce and enforce uniqueness when implementing a receiver. No web server or physical action is included.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/python/webhook_hmac.py">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy python example">Copy</button></div><pre tabindex="0" aria-label="python example"><code id="code-2">#!/usr/bin/env python3
+&quot;&quot;&quot;Verify a raw webhook body against the example signing contract. Offline only.&quot;&quot;&quot;
+from __future__ import annotations
+import argparse
+import hashlib
+import hmac
+import json
+import os
+from pathlib import Path
+import re
+import sys
+import time
+
+MAX_BYTES = 65_536
+WINDOW = 300
+
+def verify(body: bytes, timestamp: str, signature: str, key: bytes, now: int) -&gt; bool:
+    if len(body) &gt; MAX_BYTES or not 32 &lt;= len(key) &lt;= 1024:
+        raise ValueError(&#x27;Body must be at most 64 KiB; key must be 32 to 1024 bytes&#x27;)
+    if not re.fullmatch(r&#x27;[1-9][0-9]{8,11}&#x27;, timestamp):
+        raise ValueError(&#x27;Timestamp must be canonical decimal Unix seconds&#x27;)
+    if abs(now - int(timestamp)) &gt; WINDOW:
+        return False
+    if not re.fullmatch(r&#x27;sha256=[0-9a-f]{64}&#x27;, signature):
+        return False
+    # Sign exactly the timestamp, a full stop, and the unchanged body bytes.
+    expected = hmac.new(key, timestamp.encode(&#x27;ascii&#x27;) + b&#x27;.&#x27; + body, hashlib.sha256).hexdigest()
+    return hmac.compare_digest(signature[7:], expected)
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(&#x27;--demo&#x27;, action=&#x27;store_true&#x27;)
+    mode.add_argument(&#x27;--file&#x27;, type=Path, help=&#x27;Raw request body; do not parse and reserialise it first&#x27;)
+    parser.add_argument(&#x27;--timestamp&#x27;)
+    parser.add_argument(&#x27;--signature&#x27;)
+    args = parser.parse_args()
+    if not args.demo and (not args.timestamp or not args.signature):
+        parser.error(&#x27;--timestamp and --signature are required with --file&#x27;)
+    try:
+        if args.demo:
+            # Public fixture key for the demo only. Never use it on a service.
+            key = b&#x27;demo_key_for_offline_example_only&#x27;
+            body, stamp, now = b&#x27;{&quot;event_id&quot;:&quot;evt001&quot;}&#x27;, &#x27;1788994800&#x27;, 1788994800
+            signature = &#x27;sha256=&#x27; + hmac.new(key, stamp.encode() + b&#x27;.&#x27; + body, hashlib.sha256).hexdigest()
+        else:
+            key_hex = os.environ.get(&#x27;WIKI_WEBHOOK_KEY_HEX&#x27;, &#x27;&#x27;)
+            if not re.fullmatch(r&#x27;[0-9A-Fa-f]{64,2048}&#x27;, key_hex) or len(key_hex) % 2:
+                raise ValueError(&#x27;Set WIKI_WEBHOOK_KEY_HEX to a secret key of at least 32 random bytes&#x27;)
+            key = bytes.fromhex(key_hex)
+            with args.file.open(&#x27;rb&#x27;) as source:
+                body = source.read(MAX_BYTES + 1)
+            stamp, signature, now = args.timestamp, args.signature, int(time.time())
+        valid = verify(body, stamp, signature, key, now)
+        print(json.dumps({&#x27;signature_valid&#x27;: valid}))
+        return 0 if valid else 2
+    except (ValueError, OSError) as exc:
+        print(f&#x27;Error: {exc}&#x27;, file=sys.stderr)
+        return 1
+
+if __name__ == &#x27;__main__&#x27;:
+    raise SystemExit(main())
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://docs.python.org/3/library/hmac.html" rel="noopener noreferrer">Python HMAC</a></p>
+<p><a href="https://www.rfc-editor.org/rfc/rfc2104" rel="noopener noreferrer">HMAC specification</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../video-storage-python/"><span>Previous in this section</span>Video storage calculator</a><a href="../websocket-events-typescript/"><span>Next in this section</span>WebSocket event reader</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/webhook-hmac-python.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/webhook-hmac-python.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

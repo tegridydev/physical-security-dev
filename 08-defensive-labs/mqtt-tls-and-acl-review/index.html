@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>MQTT TLS and ACL review · Security Technician Wiki</title>
+<meta name="description" content="Review broker trust and topic permissions in a synthetic design. Check publisher and subscriber access, retained messages and replay handling.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/mqtt-tls-and-acl-review/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MQTT TLS and ACL review · Security Technician Wiki">
+<meta property="og:description" content="Review broker trust and topic permissions in a synthetic design. Check publisher and subscriber access, retained messages and replay handling.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/mqtt-tls-and-acl-review/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="../modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="./" aria-current="page">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="../onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="../incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="../sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="../time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">MQTT TLS and ACL review</span></nav><div class="page-kicker">Defensive labs <span>About 1 min read</span></div><div class="prose"><h1 id="s-mqtt-tls-and-acl-review">MQTT TLS and ACL review</h1>
+<p>Review broker trust and topic permissions in a synthetic design. Check publisher and subscriber access, retained messages and replay handling.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline research and planning only; product or deployment acceptance belongs to separately governed environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-stop-conditions">Stop conditions</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Offline configuration/trace fixture or loopback protocol simulation</strong></p>
+<h2 id="s-procedure">Procedure<a class="heading-link" href="#s-procedure" aria-label="Link to Procedure">#</a></h2>
+<ol>
+<li>Record the broker/product/version represented by the fixture, MQTT version, listener model, TLS policy, and client identity mechanism.</li>
+<li>Map one publisher and subscriber to exact allowed topic filters, sites/tenants and operations.</li>
+<li>Confirm publish and subscribe authorisation are independent and wildcard behaviour can't cross scope.</li>
+<li>Review retained messages, persistent sessions, session/message expiry, wills, shared subscriptions, queue limits and dead letter storage.</li>
+<li>Review TLS endpoint validation, client certificate or credential rotation and denial behaviour.</li>
+<li>Map synthetic cases for authorised publish/subscribe, denied cross site topic, malformed/oversized payload, duplicate event, session expiry, and reconnect to expected state transitions. A purpose built loopback simulator may model these transitions without implementing or contacting a broker.</li>
+<li>Record what QoS acknowledgement guarantees and what it doesn't guarantee downstream.</li>
+</ol>
+<h2 id="s-stop-conditions">Stop conditions<a class="heading-link" href="#s-stop-conditions" aria-label="Link to Stop conditions">#</a></h2>
+<p>Don't start or contact a broker, connect to a network endpoint, enumerate real topics, publish operational looking alarms/commands, test resource exhaustion, or use real device credentials. Broker and product acceptance belongs to separately governed environment validation.</p>
+<h2 id="s-evidence-checklist">Evidence checklist<a class="heading-link" href="#s-evidence-checklist" aria-label="Link to Evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Fixture provenance and represented broker, MQTT, and configuration versions recorded">Fixture provenance and represented broker, MQTT, and configuration versions recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Publisher and subscriber identities mapped to exact tenant/site/topic permissions">Publisher and subscriber identities mapped to exact tenant/site/topic permissions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Publish, subscribe, wildcard, retained message, and shared subscription authorisation reviewed independently">Publish, subscribe, wildcard, retained message, and shared subscription authorisation reviewed independently</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Session expiry, wills, retained state, queue limits, overflow, reconnect, and duplicate behaviour mapped">Session expiry, wills, retained state, queue limits, overflow, reconnect, and duplicate behaviour mapped</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TLS identity, client credential lifecycle, denial, and downgrade expectations recorded">TLS identity, client credential lifecycle, denial, and downgrade expectations recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Synthetic positive, cross scope denial, malformed, oversized, duplicate, expiry, and reconnect cases assessed">Synthetic positive, cross scope denial, malformed, oversized, duplicate, expiry, and reconnect cases assessed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="QoS milestones kept distinct from downstream persistence or physical outcome">QoS milestones kept distinct from downstream persistence or physical outcome</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html" rel="noopener noreferrer">OASIS MQTT Version 5.0</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../02-protocols/web-and-messaging/mqtt/">MQTT</a></li>
+<li><a href="../../05-development-and-integration/examples/mqtt-event-contract/">MQTT event contract</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../modbus-and-bacnet-interpretation/"><span>Previous in this section</span>Modbus and BACnet interpretation</a><a href="../offline-packet-and-trace-reading/"><span>Next in this section</span>Offline packet and trace reading</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/mqtt-tls-and-acl-review.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/mqtt-tls-and-acl-review.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-stop-conditions">Stop conditions</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

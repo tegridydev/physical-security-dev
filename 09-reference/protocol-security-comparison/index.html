@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Protocol security comparison · Security Technician Wiki</title>
+<meta name="description" content="Compare transport protection, peer identity, permissions, replay handling and key management separately. Check the supported configuration for the specific product.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/protocol-security-comparison/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Protocol security comparison · Security Technician Wiki">
+<meta property="og:description" content="Compare transport protection, peer identity, permissions, replay handling and key management separately. Check the supported configuration for the specific product.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/protocol-security-comparison/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="./" aria-current="page">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Protocol security comparison</span></nav><div class="page-kicker">Reference <span>About 8 min read</span></div><div class="prose"><h1 id="s-protocol-security-comparison">Protocol security comparison</h1>
+<p>Compare transport protection, peer identity, permissions, replay handling and key management separately. Check the supported configuration for the specific product.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Protocol family summary only; exact algorithms, editions, profiles, product implementations, certificates, keys, authorisation, fallback, and end to end boundaries require primary specifications and deployment evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-comparison-dimensions">Comparison dimensions</a></li><li class="toc-level-2"><a href="#s-family-level-summary">Family level summary</a></li><li class="toc-level-2"><a href="#s-security-terminators-are-architectural-components">Security terminators are architectural components</a></li><li class="toc-level-2"><a href="#s-common-false-equivalences">Common false equivalences</a></li><li class="toc-level-2"><a href="#s-selection-checklist">Selection checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p>This table isn't a security certification or product claim. “Can provide” means a named standard/profile defines the property when correctly selected, implemented, provisioned, and validated. It doesn't mean a product supports or enables it.</p>
+</blockquote>
+<h2 id="s-comparison-dimensions">Comparison dimensions<a class="heading-link" href="#s-comparison-dimensions" aria-label="Link to Comparison dimensions">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Dimension</th>
+  <th>Evidence required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Confidentiality</td>
+  <td>Exact protected bytes/hops, algorithm/profile, key ownership, termination points</td>
+</tr>
+<tr>
+  <td>Peer authentication</td>
+  <td>Server/client/device/user identities and validation rules</td>
+</tr>
+<tr>
+  <td>Integrity and freshness</td>
+  <td>Authenticated data, replay window/counter/sequence, restart/rollback handling</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>Which identity may read, subscribe, configure, or actuate which resource</td>
+</tr>
+<tr>
+  <td>Downgrade resistance</td>
+  <td>Whether cleartext/legacy fallback exists and how it is prohibited/detected</td>
+</tr>
+<tr>
+  <td>Lifecycle</td>
+  <td>Enrollment, rotation, revocation, replacement, backup, expiry, recovery, audit</td>
+</tr>
+<tr>
+  <td>Residual boundary</td>
+  <td>Plain downstream bus/media, gateway cache, export, logs, physical completion</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-family-level-summary">Family level summary<a class="heading-link" href="#s-family-level-summary" aria-label="Link to Family level summary">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Protocol/family</th>
+  <th>Base or legacy posture</th>
+  <th>Protected option or required security</th>
+  <th>Principal residual risk</th>
+  <th>Canonical page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>HTTP/REST</td>
+  <td>HTTP alone is cleartext; application auth varies</td>
+  <td>HTTPS with validated TLS; OAuth/mTLS/message signatures as profiled</td>
+  <td>TLS does not make methods safe, authorise objects, or stop SSRF/parser faults</td>
+  <td><a href="../../02-protocols/web-and-messaging/http-and-rest/">HTTP and REST</a></td>
+</tr>
+<tr>
+  <td>SOAP/XML</td>
+  <td>SOAP/XML has no inherent channel protection</td>
+  <td>HTTPS; WS Security/XML Signature only under a tightly specified profile</td>
+  <td>XML parser/entity/signature wrapping risk; intermediaries and signed part ambiguity</td>
+  <td><a href="../../02-protocols/web-and-messaging/soap-and-xml/">SOAP and XML</a></td>
+</tr>
+<tr>
+  <td>WebSocket</td>
+  <td><code>ws</code> is cleartext and upgrade inherits HTTP auth context</td>
+  <td><code>wss</code> with TLS plus origin/session/resource authorisation</td>
+  <td>Long lived revocation, reauthentication, message bounds, and connection hijack</td>
+  <td><a href="../../02-protocols/web-and-messaging/websocket-sse-and-webhooks/">WebSocket, SSE, and webhooks</a></td>
+</tr>
+<tr>
+  <td>SSE / webhooks</td>
+  <td>Inherits HTTP; callback authenticity is application defined</td>
+  <td>HTTPS plus scoped auth; signed webhooks with replay policy where specified</td>
+  <td>Callback SSRF, secret rotation, retries/duplicates, receiver durability</td>
+  <td><a href="../../02-protocols/web-and-messaging/websocket-sse-and-webhooks/">WebSocket, SSE, and webhooks</a></td>
+</tr>
+<tr>
+  <td>MQTT</td>
+  <td>Protocol can run without protected transport; broker auth/ACLs are deployment choices</td>
+  <td>TLS/mTLS and per client topic/action authorisation</td>
+  <td>Wildcards, retained/Will state, shared identities, bridges, queue exhaustion</td>
+  <td><a href="../../02-protocols/web-and-messaging/mqtt/">MQTT</a></td>
+</tr>
+<tr>
+  <td>AMQP 1.0</td>
+  <td>SASL/TLS and authorisation are selected by the deployment; settlement is not security</td>
+  <td>TLS/mTLS, appropriate SASL mechanism, virtual host/node/link permissions</td>
+  <td>Anonymous/weak SASL, cross tenant link authorisation, settlement mistaken for physical completion</td>
+  <td><a href="../../02-protocols/web-and-messaging/amqp-1-0/">AMQP 1.0</a></td>
+</tr>
+<tr>
+  <td>CoAP / LwM2M</td>
+  <td>Plain CoAP has no universal application security; bootstrap/profile choices vary</td>
+  <td>DTLS/TLS or OSCORE, including Group OSCORE only under an explicit group security design</td>
+  <td>Proxy termination, replay/context loss, unsafe bootstrap, observation amplification, ACK mistaken for outcome</td>
+  <td><a href="../../02-protocols/web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and LwM2M</a></td>
+</tr>
+<tr>
+  <td>CAP / EDXL</td>
+  <td>XML formats do not authenticate an alert issuer by themselves</td>
+  <td>Authenticated transport and/or an explicitly profiled XML signature plus issuer/feed authorisation</td>
+  <td>Signature wrapping/canonicalization, stale update/cancel chains, wrong geography/audience, delivery mistaken for activation</td>
+  <td><a href="../../02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL</a></td>
+</tr>
+<tr>
+  <td>gRPC</td>
+  <td>Security comes from its HTTP/2/transport and application profile</td>
+  <td>TLS/mTLS plus per RPC/resource authorisation and bounded metadata</td>
+  <td>Reflection/admin exposure, retrying mutations, streaming revocation, schema/resource exhaustion</td>
+  <td><a href="../../02-protocols/web-and-messaging/grpc-and-serialization/">gRPC and serialisation</a></td>
+</tr>
+<tr>
+  <td>ONVIF</td>
+  <td>Services span HTTP/SOAP, WS Discovery, events, RTSP/RTP; deployments vary</td>
+  <td>TLS/device/user security capabilities, protected service endpoints, SRTP where profiled/supported</td>
+  <td>Discovery is unauthenticated; profile registration does not prove site configuration; media may remain plain</td>
+  <td><a href="../../02-protocols/video-and-media/onvif/">ONVIF</a></td>
+</tr>
+<tr>
+  <td>GB/T 28181</td>
+  <td>Base SIP/XML/RTP deployments require an explicit security profile and national requirement mapping</td>
+  <td>Applicable GB 35114 mechanisms plus authenticated signalling/transport and platform authorisation</td>
+  <td>Domain/account impersonation, catalogue leakage, weak media protection, security standard edition mismatch</td>
+  <td><a href="../../02-protocols/video-and-media/gbt-28181/">GB/T 28181</a></td>
+</tr>
+<tr>
+  <td>RTSP / RTP / RTCP</td>
+  <td>Plain control/media lacks modern confidentiality; RTP sequence is not anti replay security</td>
+  <td>RTSP over TLS where supported; SRTP/SRTCP with authenticated key management</td>
+  <td>SDP/address injection, weak URL credentials, multicast joinability, key management mismatch</td>
+  <td><a href="../../02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></td>
+</tr>
+<tr>
+  <td>SIP</td>
+  <td>Hop by hop signaling commonly appears in legacy/plain forms</td>
+  <td>SIP over TLS/SIPS routing; current Digest/identity profiles; SRTP for media</td>
+  <td>TLS signaling does not protect media; DTMF/door actions need separate authorisation</td>
+  <td><a href="../../02-protocols/video-and-media/sip-and-srtp/">SIP and SRTP</a></td>
+</tr>
+<tr>
+  <td>WebRTC</td>
+  <td>Security architecture requires protected media/keying in conforming WebRTC</td>
+  <td>DTLS SRTP/SRTP, ICE credentials, HTTPS/WSS signaling under application control</td>
+  <td>Signaling service can misauthorize; TURN/SFU may observe metadata/media by design</td>
+  <td><a href="../../02-protocols/video-and-media/webrtc/">WebRTC</a></td>
+</tr>
+<tr>
+  <td>SRT / RIST</td>
+  <td>Contribution recovery profiles do not supply application/user authorisation or evidence policy</td>
+  <td>SRT encryption/passphrase handling or RIST security profile as explicitly supported, plus endpoint/network identity</td>
+  <td>Shared/static secrets, unauthenticated endpoint selection, resource exhaustion, confusing contribution protection with content entitlement</td>
+  <td><a href="../../02-protocols/video-and-media/srt-and-rist/">SRT and RIST</a></td>
+</tr>
+<tr>
+  <td>OSDP</td>
+  <td>CRC/checksum mode is not cryptographic protection</td>
+  <td>OSDP Secure Channel with unique managed keys</td>
+  <td>Install mode/default key misuse, cleartext fallback, insecure credential before/after link</td>
+  <td><a href="../../02-protocols/access-control/osdp/">OSDP</a></td>
+</tr>
+<tr>
+  <td>Wiegand / Clock and Data</td>
+  <td>No native confidentiality, mutual authentication, or replay protection</td>
+  <td>Replacement by protected reader controller transport; compensating physical controls during migration</td>
+  <td>Static identifiers, easy observation/injection, no supervision, converters preserve weak hop</td>
+  <td><a href="../../02-protocols/access-control/legacy-reader-interfaces/">Legacy reader interfaces</a></td>
+</tr>
+<tr>
+  <td>Contactless/smart card</td>
+  <td>UID or public memory is not authentication; security is application/profile specific</td>
+  <td>Challenge response, secure messaging, shared key or public key applications</td>
+  <td>Default/shared keys, relay, downgrade to UID, reader controller loss of assurance</td>
+  <td><a href="../../02-protocols/access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></td>
+</tr>
+<tr>
+  <td>BACnet/IP classic</td>
+  <td>Does not provide modern per message peer authentication/confidentiality for every exchange</td>
+  <td>BACnet/SC uses WebSocket/TLS and PKI for a secure data link</td>
+  <td>Object/property/priority authorisation; legacy MS/TP remains plain behind a router</td>
+  <td><a href="../../02-protocols/building-and-industrial/bacnet-secure-connect/">BACnet/SC</a></td>
+</tr>
+<tr>
+  <td>Modbus RTU/TCP classic</td>
+  <td>CRC/MBAP transaction ID are not security; no native authorisation/confidentiality</td>
+  <td>Modbus Security uses mutual TLS, X.509 identities, and certificate role information</td>
+  <td>Product specific authorisation, unsafe register writes, cleartext gateway downstream</td>
+  <td><a href="../../02-protocols/building-and-industrial/modbus-security/">Modbus Security</a></td>
+</tr>
+<tr>
+  <td>OPC UA</td>
+  <td>Security modes/policies are explicitly selectable, including insecure choices</td>
+  <td>SecureChannel, application certificates, Sessions, user tokens, roles/access controls</td>
+  <td>Auto trust, <code>None</code>, obsolete policy, namespace/semantic mistakes, method/write consequence</td>
+  <td><a href="../../02-protocols/building-and-industrial/opc-ua/">OPC UA</a></td>
+</tr>
+<tr>
+  <td>IEC 60870-5-101/-104</td>
+  <td>Base telecontrol profiles were not designed with modern end to end identity/confidentiality</td>
+  <td>Applicable IEC 62351-5 mechanisms, protected conduits, strict station/ASDU allowlists, and operational authorisation</td>
+  <td>Legacy endpoint support, gateway security termination, replay/time/quality ambiguity, high impact commands</td>
+  <td><a href="../../02-protocols/building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and -104</a></td>
+</tr>
+<tr>
+  <td>IEC 61850</td>
+  <td>MMS, GOOSE, SV, and engineering workflows have different threat and timing models</td>
+  <td>Applicable IEC 62351 parts, certificates/roles, message security, and protected engineering lifecycle</td>
+  <td>Protection latency/availability trade offs, SCL tampering, multicast trust, control/protection coupling</td>
+  <td><a href="../../02-protocols/building-and-industrial/iec-61850/">IEC 61850</a></td>
+</tr>
+<tr>
+  <td>Matter</td>
+  <td>Commissioning, fabrics, operational certificates, and ACLs provide ecosystem security primitives</td>
+  <td>Device attestation during commissioning, fabric operational credentials, ACLs, secure sessions, lifecycle removal</td>
+  <td>Attestation is not authorisation; stale fabrics/controllers, bridge trust, cloud/ecosystem account compromise</td>
+  <td><a href="../../02-protocols/building-and-industrial/matter/">Matter</a></td>
+</tr>
+<tr>
+  <td>KNX classic</td>
+  <td>Plain telegrams do not provide modern cryptographic protection</td>
+  <td>KNX IP Secure for IP paths; KNX Data Secure for selected group/object data</td>
+  <td>Mixed secure/plain configuration, keyring exposure, gateway termination, sequence recovery</td>
+  <td><a href="../../02-protocols/building-and-industrial/knx-secure/">KNX Secure</a></td>
+</tr>
+<tr>
+  <td>SNMP</td>
+  <td>v1/v2c community model is weak and generally unencrypted</td>
+  <td>SNMPv3 USM <code>authPriv</code>, or applicable secure transport model</td>
+  <td>Shared engine state/keys, overly broad views, SET permission, trap authenticity</td>
+  <td><a href="../../02-protocols/infrastructure/monitoring-and-secure-administration/">Monitoring and administration</a></td>
+</tr>
+<tr>
+  <td>Syslog</td>
+  <td>UDP/TCP forms may be unauthenticated and cleartext</td>
+  <td>Syslog over TLS with validated identities</td>
+  <td>Hop protection is not durable storage integrity; loss/framing/backpressure remains</td>
+  <td><a href="../../02-protocols/infrastructure/monitoring-and-secure-administration/">Monitoring and administration</a></td>
+</tr>
+<tr>
+  <td>NTP</td>
+  <td>Plain NTP can be spoofed/manipulated on reachable paths</td>
+  <td>Network Time Security (NTS) for supported NTP deployments</td>
+  <td>Authenticated source may still be wrong; endpoint clock/holdover/step policy matters</td>
+  <td><a href="../../02-protocols/infrastructure/time-synchronisation/">Time synchronisation</a></td>
+</tr>
+<tr>
+  <td>Alarm formats DC03/DC05/DC07</td>
+  <td>Historical formats do not provide a complete modern cryptographic security model</td>
+  <td>Protected conduit/gateway and strict source/account binding; use a modern supported reporting profile</td>
+  <td>A syntactically valid event is not dispatch authorisation; downstream routes are high impact</td>
+  <td><a href="../../02-protocols/alarm-monitoring/">Alarm monitoring</a></td>
+</tr>
+<tr>
+  <td>SIA DC09</td>
+  <td>Edition/configuration dependent; older deployments may use weak/long lived material</td>
+  <td>Exact edition's encryption/authentication/key management options; 2026 adds key rotation capability</td>
+  <td>Account authorisation, duplicate/replay handling, monitoring policy, product interoperability</td>
+  <td><a href="../../02-protocols/alarm-monitoring/sia-dc-09/">SIA DC09</a></td>
+</tr>
+<tr>
+  <td>SAML / OIDC</td>
+  <td>Assertions/tokens are bearer like security objects whose validation profile is application specific</td>
+  <td>Signed assertions/tokens over HTTPS; strict issuer, audience, recipient/redirect, nonce/state/PKCE, key lifecycle</td>
+  <td>XML signature wrapping, token substitution, confused deputy, broad role mapping, stale sessions</td>
+  <td><a href="../../02-protocols/infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation</a></td>
+</tr>
+<tr>
+  <td>SCIM</td>
+  <td>HTTPS API protection and OAuth scope are deployment choices</td>
+  <td>TLS plus narrowly scoped client identity, resource/attribute authorisation, reconciliation, and audit</td>
+  <td>Overbroad provisioning, tenant crossing, mutable identifiers, async acceptance mistaken for downstream completion</td>
+  <td><a href="../../02-protocols/infrastructure/scim-identity-provisioning/">SCIM provisioning</a></td>
+</tr>
+<tr>
+  <td>WebAuthn / FIDO</td>
+  <td>Public key authentication is scoped to the relying party origin and credential policy</td>
+  <td>WebAuthn ceremony validation, authenticator policy, secure origin, challenge/freshness, recovery controls</td>
+  <td>Account recovery downgrade, sync/account boundary, attestation overclaim, login mistaken for PACS authorisation</td>
+  <td><a href="../../02-protocols/infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-security-terminators-are-architectural-components">Security terminators are architectural components<a class="heading-link" href="#s-security-terminators-are-architectural-components" aria-label="Link to Security terminators are architectural components">#</a></h2>
+<p>A gateway, reverse proxy, recorder, broker, hub, router, or cloud service that decrypts and re emits data creates a new boundary. Record:</p>
+<ul>
+<li>identity and trust before and after termination;</li>
+<li>plaintext exposure in memory, disk, queues, logs, backups, and diagnostics;</li>
+<li>authorisation translation and any loss of source identity;</li>
+<li>schema/semantic translation and unknown field handling;</li>
+<li>key and certificate custody;</li>
+<li>outage, failover, replay, retry, and duplicate behaviour;</li>
+<li>whether a secure upstream link becomes a legacy cleartext field link.</li>
+</ul>
+<p>End to end should name endpoints and bytes. “Encrypted in transit” without that boundary isn't actionable evidence.</p>
+<h2 id="s-common-false-equivalences">Common false equivalences<a class="heading-link" href="#s-common-false-equivalences" aria-label="Link to Common false equivalences">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Claim</th>
+  <th>Why it is unsafe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>“It is on 443, therefore secure.”</td>
+  <td>Port 443 does not prove TLS validation, expected application, or authorisation</td>
+</tr>
+<tr>
+  <td>“The VLAN is trusted.”</td>
+  <td>Segmentation limits reachability; it does not authenticate endpoints or constrain authorised insiders</td>
+</tr>
+<tr>
+  <td>“The CRC passed.”</td>
+  <td>CRC detects accidental corruption, not deliberate forgery</td>
+</tr>
+<tr>
+  <td>“The certificate is valid.”</td>
+  <td>A valid chain may still identify the wrong endpoint, role, site, or compromised key</td>
+</tr>
+<tr>
+  <td>“The user logged in.”</td>
+  <td>Authentication does not grant every resource/action or prove current session intent</td>
+</tr>
+<tr>
+  <td>“The command returned success.”</td>
+  <td>Transport/application acceptance is not physical completion</td>
+</tr>
+<tr>
+  <td>“The profile is certified.”</td>
+  <td>Certification must match exact product/firmware/role and does not verify deployment configuration</td>
+</tr>
+<tr>
+  <td>“Media is encrypted.”</td>
+  <td>Signaling, metadata, recording, exports, or an SFU/gateway may remain exposed</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-selection-checklist">Selection checklist<a class="heading-link" href="#s-selection-checklist" aria-label="Link to Selection checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact protocol edition, security addon/profile, and product role pinned">Exact protocol edition, security addon/profile, and product role pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Plain/legacy fallback prohibited or explicitly isolated and monitored">Plain/legacy fallback prohibited or explicitly isolated and monitored</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Server, client/device, service, user, and credential identities modeled separately">Server, client/device, service, user, and credential identities modeled separately</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Least privilege defined for observe, subscribe, configure, and actuate actions">Least privilege defined for observe, subscribe, configure, and actuate actions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Key/certificate bootstrap, rotation, revocation, replacement, backup, and recovery owned">Key/certificate bootstrap, rotation, revocation, replacement, backup, and recovery owned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Replay/sequence/counter behaviour across reboot and restore documented">Replay/sequence/counter behaviour across reboot and restore documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Every security termination and cleartext downstream segment diagrammed">Every security termination and cleartext downstream segment diagrammed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Parser, connection, rate, queue, and decompression limits included">Parser, connection, rate, queue, and decompression limits included</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Successful request never substituted for authoritative physical state confirmation">Successful request never substituted for authoritative physical state confirmation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Product claims and configuration require exact owner approved evidence rather than inference from this comparison">Product claims and configuration require exact owner approved evidence rather than inference from this comparison</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>TLS13</strong>, <a href="https://datatracker.ietf.org/doc/rfc8446/" rel="noopener noreferrer">RFC 8446: TLS 1.3</a>, IETF, August 2018.</li>
+<li><strong>SRTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc3711/" rel="noopener noreferrer">RFC 3711: Secure Real time Transport Protocol</a>, IETF, March 2004.</li>
+<li><strong>WEBRTC SEC</strong>, <a href="https://datatracker.ietf.org/doc/rfc8827/" rel="noopener noreferrer">RFC 8827: WebRTC Security Architecture</a>, IETF, January 2021.</li>
+<li><strong>OSDP</strong>, <a href="https://www.securityindustry.org/industry-standards/open-supervised-device-protocol/" rel="noopener noreferrer">Open Supervised Device Protocol</a>, Security Industry Association, OSDP 2.2.2 status reviewed 25 August 2026.</li>
+<li><strong>BACNET SC</strong>, <a href="https://bacnetinternational.org/bacnetsc/" rel="noopener noreferrer">BACnet Secure Connect resources</a>, ASHRAE BACnet Committee, accessed 25 August 2026.</li>
+<li><strong>MODBUS SEC</strong>, <a href="https://www.modbus.org/modbus-specifications" rel="noopener noreferrer">Modbus Security specifications</a>, Modbus Organization, accessed 25 August 2026.</li>
+<li><strong>OPCUA SEC</strong>, <a href="https://reference.opcfoundation.org/specs/OPC-10000-2/full" rel="noopener noreferrer">OPC UA Part 2: Security Model</a>, OPC Foundation, accessed 25 August 2026.</li>
+<li><strong>KNX SEC</strong>, <a href="https://support.knx.org/hc/en-us/articles/360012630199-KNX-Security-overview" rel="noopener noreferrer">KNX Security overview</a>, KNX Association, accessed 25 August 2026.</li>
+<li><strong>SNMP USM</strong>, <a href="https://datatracker.ietf.org/doc/rfc3414/" rel="noopener noreferrer">RFC 3414: User based Security Model for SNMPv3</a>, IETF, December 2002.</li>
+<li><strong>NTS</strong>, <a href="https://datatracker.ietf.org/doc/rfc8915/" rel="noopener noreferrer">RFC 8915: Network Time Security for NTP</a>, IETF, September 2020.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../protocol-layer-and-role-matrix/"><span>Previous in this section</span>Protocol layer and role matrix</a><a href="../safety-impact-checklist/"><span>Next in this section</span>Safety impact checklist</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/protocol-security-comparison.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/protocol-security-comparison.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-comparison-dimensions">Comparison dimensions</a></li><li class="toc-level-2"><a href="#s-family-level-summary">Family level summary</a></li><li class="toc-level-2"><a href="#s-security-terminators-are-architectural-components">Security terminators are architectural components</a></li><li class="toc-level-2"><a href="#s-common-false-equivalences">Common false equivalences</a></li><li class="toc-level-2"><a href="#s-selection-checklist">Selection checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

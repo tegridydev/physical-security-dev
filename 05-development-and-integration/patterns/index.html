@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Integration patterns · Security Technician Wiki</title>
+<meta name="description" content="These patterns cover retries, stale state, reconnection, schemas and secrets. Apply them consistently across adapters and document the behaviour your application relies on.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Integration patterns · Security Technician Wiki">
+<meta property="og:description" content="These patterns cover retries, stale state, reconnection, schemas and secrets. Apply them consistently across adapters and document the behaviour your application relies on.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../examples/">Section overview</a></li><li><a href="../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../language-guides/">Section overview</a></li><li><a href="../language-guides/c/">C protocol development</a></li><li><a href="../language-guides/csharp/">C# protocol development</a></li><li><a href="../language-guides/cpp/">C++ protocol development</a></li><li><a href="../language-guides/go/">Go protocol development</a></li><li><a href="../language-guides/python/">Python protocol development</a></li><li><a href="../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="./" aria-current="page">Section overview</a></li><li><a href="adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Development</a><span aria-hidden="true">/</span><span aria-current="page">Integration patterns</span></nav><div class="page-kicker">Development <span>About 1 min read</span></div><div class="prose"><h1 id="s-integration-patterns">Integration patterns</h1>
+<p>These patterns cover retries, stale state, reconnection, schemas and secrets. Apply them consistently across adapters and document the behaviour your application relies on.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Page</th>
+  <th>Problem addressed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="adapters-gateways-and-translation/">Adapters, gateways, and translation</a></td>
+  <td>Isolate vendor/protocol variation from the domain model</td>
+</tr>
+<tr>
+  <td><a href="polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></td>
+  <td>Combine snapshots and event streams without inventing state</td>
+</tr>
+<tr>
+  <td><a href="retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></td>
+  <td>Avoid duplicate or uncertain physical actions</td>
+</tr>
+<tr>
+  <td><a href="event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></td>
+  <td>Preserve meaning, provenance and compatibility</td>
+</tr>
+<tr>
+  <td><a href="reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></td>
+  <td>Bound work during bursts, failure and recovery</td>
+</tr>
+<tr>
+  <td><a href="secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></td>
+  <td>Keep trust material outside code and lifecycle safe</td>
+</tr>
+<tr>
+  <td><a href="observability-and-diagnostics/">Observability and diagnostics</a></td>
+  <td>Correlate device, protocol, integration and physical outcomes</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../06-security-and-assurance/secure-protocol-parsing/">Secure protocol parsing</a></li>
+<li><a href="../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="adapters-gateways-and-translation/"><span>Next in this section</span>Adapters, gateways, and protocol translation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

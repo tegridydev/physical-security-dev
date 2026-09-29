@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Decommissioning and disposal · Security Technician Wiki</title>
+<meta name="description" content="Revoke device identities, cloud claims, credentials and integrations during retirement. Handle stored data and backups through the approved disposal process.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/decommissioning-and-disposal/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Decommissioning and disposal · Security Technician Wiki">
+<meta property="og:description" content="Revoke device identities, cloud claims, credentials and integrations during retirement. Handle stored data and backups through the approved disposal process.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/decommissioning-and-disposal/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="./" aria-current="page">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Decommissioning and disposal</span></nav><div class="page-kicker">Operations <span>About 1 min read</span></div><div class="prose"><h1 id="s-decommissioning-and-disposal">Decommissioning and disposal</h1>
+<p>Revoke device identities, cloud claims, credentials and integrations during retirement. Handle stored data and backups through the approved disposal process.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-preconditions">Preconditions</a></li><li class="toc-level-2"><a href="#s-removal-sequence">Removal sequence</a></li><li class="toc-level-2"><a href="#s-transfer-and-resale">Transfer and resale</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Removing hardware doesn't remove its identities, data, credentials, certificates, cloud claim, API access, licences, backups or references from other systems. Decommissioning is a coordinated trust and data transition.</p>
+<h2 id="s-preconditions">Preconditions<a class="heading-link" href="#s-preconditions" aria-label="Link to Preconditions">#</a></h2>
+<ul>
+<li>Confirm replacement coverage and safe physical behaviour.</li>
+<li>Identify authoritative configuration, evidence, retention and legal hold needs.</li>
+<li>Export only required records through an auditable process.</li>
+<li>Map device/workload certificates, shared keys, tokens, accounts, mobile credentials, broker ACLs, firewall rules, DNS/DHCP, monitoring, backups, vendor cloud and support contracts.</li>
+<li>Obtain manufacturer guidance for reset, ownership release, storage removal and licensed/certified functions.</li>
+</ul>
+<h2 id="s-removal-sequence">Removal sequence<a class="heading-link" href="#s-removal-sequence" aria-label="Link to Removal sequence">#</a></h2>
+<ol>
+<li>Stop new assignments and integrations; announce the maintenance boundary.</li>
+<li>Preserve required evidence, configuration and support records.</li>
+<li>Revoke or remove accounts, certificates, tokens, shared keys and cloud ownership.</li>
+<li>Remove routes, firewall policy, discovery, DNS/DHCP, broker/API permissions and monitoring exceptions.</li>
+<li>Remove credentials and mappings from controller, VMS/PACS/PSIM, mobile and identity systems.</li>
+<li>Sanitize storage using media and sensitivity appropriate methods; physically destroy when required.</li>
+<li>Remove recovery copies and backups when retention permits.</li>
+<li>Update inventories, diagrams, licences, risk records and certificate/source registers.</li>
+<li>Complete a system owner review confirming that no orphaned access, event noise, physical gap, or unsafe dependency remains.</li>
+</ol>
+<h2 id="s-transfer-and-resale">Transfer and resale<a class="heading-link" href="#s-transfer-and-resale" aria-label="Link to Transfer and resale">#</a></h2>
+<p>Factory reset isn't proof that all storage, secure elements, cloud bindings, logs, edge recordings, certificates or recoverable data were removed. Record the exact sanitisation method and verification limitation. Transfer must include explicit release from vendor/cloud tenancy and destruction or revocation of prior trust.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 88</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/88/r2/final" rel="noopener noreferrer">NIST SP 800-88 Rev. 2: Guidelines for Media Sanitization</a>, final September 2025, accessed 25 August 2026.</li>
+<li><strong>NISTIR 8259A</strong>, <a href="https://csrc.nist.gov/pubs/ir/8259/a/final" rel="noopener noreferrer">NISTIR 8259A IoT Device Cybersecurity Capability Core Baseline</a>, device lifecycle capabilities, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li>
+<li><a href="../../06-security-and-assurance/privacy-and-sensitive-data/">Privacy and sensitive data</a></li>
+<li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../commissioning-and-acceptance/"><span>Previous in this section</span>Commissioning and acceptance</a><a href="../incident-response-and-evidence/"><span>Next in this section</span>Incident response and evidence</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/decommissioning-and-disposal.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/decommissioning-and-disposal.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-preconditions">Preconditions</a></li><li class="toc-level-2"><a href="#s-removal-sequence">Removal sequence</a></li><li class="toc-level-2"><a href="#s-transfer-and-resale">Transfer and resale</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

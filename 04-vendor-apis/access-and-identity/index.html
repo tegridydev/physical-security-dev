@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Access and identity APIs · Security Technician Wiki</title>
+<meta name="description" content="These references cover identity, credential and event interfaces in access control platforms. Confirm access conditions and product support before implementing a client.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Access and identity APIs · Security Technician Wiki">
+<meta property="og:description" content="These references cover identity, credential and event interfaces in access control platforms. Confirm access conditions and product support before implementing a client.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="./" aria-current="page">Section overview</a></li><li><a href="brivo-api/">Brivo Access API</a></li><li><a href="gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="salto-apis/">SALTO APIs</a></li><li><a href="suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../device-and-edge-video/">Section overview</a></li><li><a href="../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../vms-and-cloud-video/">Section overview</a></li><li><a href="../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Vendor APIs</a><span aria-hidden="true">/</span><span aria-current="page">Access and identity APIs</span></nav><div class="page-kicker">Vendor APIs <span>About 1 min read</span></div><div class="prose"><h1 id="s-access-and-identity-apis">Access and identity APIs</h1>
+<p>These references cover identity, credential and event interfaces in access control platforms. Confirm access conditions and product support before implementing a client.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-separate-these-capabilities">Separate these capabilities</a></li><li class="toc-level-2"><a href="#s-safety-boundary">Safety boundary</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../">Vendor APIs</a> / Access and identity</p>
+<p>Access control integrations cross multiple authorities: the identity source, PACS cardholder record, credential issuer, controller policy, reader transaction, lock/egress system, and audit trail. An API “success” proves only that the service accepted or completed its defined operation; it doesn't by itself prove a credential reached a handset, a controller received policy, a lock changed state, or a person passed through a door.</p>
+<h2 id="s-pages">Pages<a class="heading-link" href="#s-pages" aria-label="Link to Pages">#</a></h2>
+<ul>
+<li><a href="hid-origo-and-mobile-access/">HID Origo and Mobile Access</a></li>
+<li><a href="gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li>
+<li><a href="lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li>
+<li><a href="johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li>
+<li><a href="salto-apis/">SALTO APIs</a></li>
+<li><a href="brivo-api/">Brivo API</a></li>
+<li><a href="suprema-biostar-2-api/">Suprema BioStar 2 API</a></li>
+<li><a href="kisi-api/">Kisi API</a></li>
+</ul>
+<h2 id="s-separate-these-capabilities">Separate these capabilities<a class="heading-link" href="#s-separate-these-capabilities" aria-label="Link to Separate these capabilities">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Capability</th>
+  <th>Required control</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Identity/user synchronisation</td>
+  <td>Authoritative source rules, joiner/mover/leaver semantics, stable identifiers, conflict and deletion policy</td>
+</tr>
+<tr>
+  <td>Credential issue/revoke</td>
+  <td>Issuer authority, inventory/subscription, proof of possession, asynchronous delivery state, revocation recovery</td>
+</tr>
+<tr>
+  <td>Access assignment</td>
+  <td>Approval, effective interval, site/tenant scope, role separation, controller propagation and offline state</td>
+</tr>
+<tr>
+  <td>Events and occupancy</td>
+  <td>Duplicate/order/gap handling, privacy minimization, passage uncertainty, antipassback semantics</td>
+</tr>
+<tr>
+  <td>Door/output/lockdown commands</td>
+  <td>Explicit high impact privilege, preconditions, idempotency/uncertain outcome, local life safety authority, immutable audit</td>
+</tr>
+<tr>
+  <td>Biometrics and photos</td>
+  <td>Lawful basis, consent where required, template/image minimization, retention, export/deletion, vendor and jurisdiction constraints</td>
+</tr>
+<tr>
+  <td>Mobile SDK</td>
+  <td>App signing, device integrity, keychain/keystore protection, lifecycle, offline behaviour, reader proximity proof, accessibility</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-safety-boundary">Safety boundary<a class="heading-link" href="#s-safety-boundary" aria-label="Link to Safety boundary">#</a></h2>
+<p>Never exercise unlock, lockdown, elevator, output, alarm, antipassback, or credential operations on a live site as exploratory testing. Door hardware, emergency egress, fire interfaces, and accessibility remain under qualified design and the authority having jurisdiction. Use a documented test tenant and physically isolated lab only under written authority from the integration and site owners.</p>
+<p>See <a href="../../03-systems/access-control/pacs-architecture/">PACS architecture</a>, <a href="../../03-systems/access-control/credential-lifecycle/">credential lifecycle</a>, <a href="../../03-systems/access-control/mobile-access/">mobile access</a>, <a href="../../06-security-and-assurance/identity-authentication-and-authorization/">identity and authorisation security</a>, and <a href="../../06-security-and-assurance/privacy-and-sensitive-data/">privacy</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="brivo-api/"><span>Next in this section</span>Brivo Access API</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-pages">Pages</a></li><li class="toc-level-2"><a href="#s-separate-these-capabilities">Separate these capabilities</a></li><li class="toc-level-2"><a href="#s-safety-boundary">Safety boundary</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

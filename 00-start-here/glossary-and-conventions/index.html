@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Glossary and conventions · Security Technician Wiki</title>
+<meta name="description" content="A camera vendor, an access control engineer and a developer can use the same word differently. These definitions explain how terms are used throughout the wiki.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/00-start-here/glossary-and-conventions/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Glossary and conventions · Security Technician Wiki">
+<meta property="og:description" content="A camera vendor, an access control engineer and a developer can use the same word differently. These definitions explain how terms are used throughout the wiki.">
+<meta property="og:url" content="https://securitytechnician.wiki/00-start-here/glossary-and-conventions/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">00</span>Start here</a><ul class="nav-pages"><li><a href="./" aria-current="page">Glossary and conventions</a></li><li><a href="../how-to-use-this-knowledge-base/">How to use this knowledge base</a></li><li><a href="../learning-paths/">Learning paths</a></li><li><a href="../scope-and-boundaries/">Scope and boundaries</a></li><li><a href="../verification-and-safety/">Verification and safety</a></li></ul><details class="nav-group"><summary>Paths</summary><ul class="nav-pages"><li><a href="../paths/video-integration/">Build a video integration</a></li><li><a href="../paths/event-integration/">Build an event integration</a></li><li><a href="../paths/troubleshooting/">Find the next diagnostic check</a></li><li><a href="../paths/new-to-physical-security/">New to physical security</a></li><li><a href="../paths/security-review/">Review security and readiness</a></li><li><a href="../paths/access-control/">Understand an access control integration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Start here</a><span aria-hidden="true">/</span><span aria-current="page">Glossary and conventions</span></nav><div class="page-kicker">Start here <span>About 3 min read</span></div><div class="prose"><h1 id="s-glossary-and-conventions">Glossary and conventions</h1>
+<p>A camera vendor, an access control engineer and a developer can use the same word differently. These definitions explain how terms are used throughout the wiki.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Core cross domain terms only; protocol specific glossaries remain on protocol pages.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-core-terms">Core terms</a></li><li class="toc-level-2"><a href="#s-protocol-and-layer-conventions">Protocol and layer conventions</a></li><li class="toc-level-2"><a href="#s-naming-and-files">Naming and files</a></li><li class="toc-level-2"><a href="#s-requirement-language">Requirement language</a></li><li class="toc-level-2"><a href="#s-status-language">Status language</a></li></ul></nav></details></div>
+<h2 id="s-core-terms">Core terms<a class="heading-link" href="#s-core-terms" aria-label="Link to Core terms">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Term</th>
+  <th>Meaning in this library</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Actuation</td>
+  <td>A request or signal capable of changing a physical or security relevant state.</td>
+</tr>
+<tr>
+  <td>API</td>
+  <td>A defined software interface. “REST API” does not by itself specify authentication, schema, or delivery semantics.</td>
+</tr>
+<tr>
+  <td>Command</td>
+  <td>An expression of requested intent; not proof of acceptance or physical completion.</td>
+</tr>
+<tr>
+  <td>Conformance</td>
+  <td>Evidence that an implementation satisfied a named test/claim for a specific standard edition, profile, role, and version.</td>
+</tr>
+<tr>
+  <td>Controller</td>
+  <td>A component that evaluates logic and/or drives field outputs. Context must say camera, access, industrial, or other controller.</td>
+</tr>
+<tr>
+  <td>Credential</td>
+  <td>Data or an artefact presented in an authentication process; not automatically a person or authorisation.</td>
+</tr>
+<tr>
+  <td>Device identity</td>
+  <td>Identity of hardware/software in a protocol or trust system. It is distinct from operator, user, credential, and workload identity.</td>
+</tr>
+<tr>
+  <td>Event</td>
+  <td>An immutable report that something was observed or decided at a time; delivery may be repeated, delayed, reordered, or lost.</td>
+</tr>
+<tr>
+  <td>Fail safe</td>
+  <td>Failure leads toward the defined safer condition. This is a hazard decision, not synonymous with electrically unlocked.</td>
+</tr>
+<tr>
+  <td>Fail secure</td>
+  <td>Failure preserves the defined security condition. It does not override life safety and egress requirements.</td>
+</tr>
+<tr>
+  <td>Gateway</td>
+  <td>A boundary component translating transport, protocol, data model, trust, or policy. State what it translates.</td>
+</tr>
+<tr>
+  <td>Integration</td>
+  <td>A designed exchange between systems, including ownership, semantics, security, failure and lifecycle.</td>
+</tr>
+<tr>
+  <td>Interoperability</td>
+  <td>Two implementations perform the intended use case together. It is narrower than “both support protocol X.”</td>
+</tr>
+<tr>
+  <td>Metadata</td>
+  <td>Data describing or accompanying other data, such as video analytics objects or provenance. It can itself be sensitive.</td>
+</tr>
+<tr>
+  <td>Observation</td>
+  <td>Data received without an intended control effect. Subscription setup or acknowledgement may still create a control path.</td>
+</tr>
+<tr>
+  <td>Profile</td>
+  <td>A selected, testable set of requirements from one or more specifications. Profile names are not protocol versions.</td>
+</tr>
+<tr>
+  <td>Restore</td>
+  <td>A report that a previously active condition is no longer active; not deletion or negation of the original event.</td>
+</tr>
+<tr>
+  <td>State</td>
+  <td>The current model of a property, usually reconstructed from snapshots, events, polling, and local assumptions.</td>
+</tr>
+<tr>
+  <td>Supervision</td>
+  <td>Detection of path/device/circuit conditions such as open, short, substitution, loss, or timeout.</td>
+</tr>
+<tr>
+  <td>Trust boundary</td>
+  <td>A point where identity, administration, exposure, or assurance changes and policy must be enforced.</td>
+</tr>
+<tr>
+  <td>VMS / VSaaS</td>
+  <td>Video management system / video surveillance as a service. Deployment model does not determine interface openness.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-protocol-and-layer-conventions">Protocol and layer conventions<a class="heading-link" href="#s-protocol-and-layer-conventions" aria-label="Link to Protocol and layer conventions">#</a></h2>
+<ul>
+<li><strong>Ethernet, RS485, RS232, radio, and dry contacts</strong> are media/electrical or physical interfaces, not interchangeable application protocols.</li>
+<li><strong>TCP, UDP, TLS, HTTP, RTP, MQTT, OSDP, and ONVIF</strong> occupy different layers or define different sets of behaviour. Avoid “runs over IP” as a complete architecture description.</li>
+<li>A registered port is a default or service convention, not evidence that traffic is present, authentic, or safe.</li>
+<li>“Secure” is qualified: confidentiality, integrity, peer authentication, user authorisation, replay resistance, key management, secure update, and audit are separate properties.</li>
+</ul>
+<h2 id="s-naming-and-files">Naming and files<a class="heading-link" href="#s-naming-and-files" aria-label="Link to Naming and files">#</a></h2>
+<ul>
+<li>Files and folders use lowercase ASCII <code>kebab-case</code>.</li>
+<li>Acronyms are expanded on first use in prose unless universally clear in the immediate context.</li>
+<li>Dates use ISO <code>YYYY-MM-DD</code>; times should include an offset or <code>Z</code> and identify source clock.</li>
+<li>Byte and bit positions start at zero only when the source convention is stated.</li>
+<li>Network examples use RFC 5737 IPv4, RFC 3849 IPv6, <code>.example</code>, or loopback space.</li>
+<li>Secrets use descriptive placeholders such as <code>${DEVICE_TOKEN}</code>; never plausible sample secrets.</li>
+</ul>
+<h2 id="s-requirement-language">Requirement language<a class="heading-link" href="#s-requirement-language" aria-label="Link to Requirement language">#</a></h2>
+<p>Uppercase <strong>MUST</strong>, <strong>SHOULD</strong>, <strong>MAY</strong>, and related terms are used only in attributed summaries of a normative document that defines those terms. Knowledge base advice uses “require,” “prefer,” “consider,” and “avoid,” with rationale.</p>
+<h2 id="s-status-language">Status language<a class="heading-link" href="#s-status-language" aria-label="Link to Status language">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Label</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>current</td>
+  <td>Final and supported in the stated ecosystem</td>
+</tr>
+<tr>
+  <td>release candidate</td>
+  <td>Not final; details and conformance availability may change</td>
+</tr>
+<tr>
+  <td>legacy</td>
+  <td>Deployed and relevant, but generally not preferred for new design</td>
+</tr>
+<tr>
+  <td>deprecated</td>
+  <td>Publisher has announced withdrawal/end of support or replacement</td>
+</tr>
+<tr>
+  <td>historical</td>
+  <td>Retained to understand installed systems, not current implementation guidance</td>
+</tr>
+<tr>
+  <td>mixed</td>
+  <td>Depends materially on edition, profile, product, or deployment mode</td>
+</tr>
+</tbody>
+</table></div>
+<p>See the <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">metadata schema</a> for controlled values.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Start here</a><a href="../how-to-use-this-knowledge-base/"><span>Next in this section</span>How to use this knowledge base</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/00-start-here/glossary-and-conventions.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/00-start-here/glossary-and-conventions.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-core-terms">Core terms</a></li><li class="toc-level-2"><a href="#s-protocol-and-layer-conventions">Protocol and layer conventions</a></li><li class="toc-level-2"><a href="#s-naming-and-files">Naming and files</a></li><li class="toc-level-2"><a href="#s-requirement-language">Requirement language</a></li><li class="toc-level-2"><a href="#s-status-language">Status language</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

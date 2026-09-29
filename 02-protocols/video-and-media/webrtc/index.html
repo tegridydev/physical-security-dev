@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>WebRTC for physical security media · Security Technician Wiki</title>
+<meta name="description" content="WebRTC provides browser media and data communication. Plan signalling, user identity, permissions and connection setup as part of the application.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/video-and-media/webrtc/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="WebRTC for physical security media · Security Technician Wiki">
+<meta property="og:description" content="WebRTC provides browser media and data communication. Plan signalling, user identity, permissions and connection setup as part of the application.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/video-and-media/webrtc/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group" open><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="./" aria-current="page">WebRTC for physical security media</a></li></ul></details><details class="nav-group"><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../../web-and-messaging/">Section overview</a></li><li><a href="../../web-and-messaging/amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../../web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../../web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../../web-and-messaging/grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../../web-and-messaging/http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../../web-and-messaging/mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../../web-and-messaging/soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../../web-and-messaging/websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Video and media protocols</a><span aria-hidden="true">/</span><span aria-current="page">WebRTC for physical security media</span></nav><div class="page-kicker">Protocols <span>About 6 min read</span></div><div class="prose"><h1 id="s-webrtc-for-physical-security-media">WebRTC for physical security media</h1>
+<p>WebRTC provides browser media and data communication. Plan signalling, user identity, permissions and connection setup as part of the application.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Protocol and browser API architecture only; no browser, TURN, SFU, codec, gateway, firewall, NAT, media session, or compatibility matrix is validated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-standards-snapshot">Standards snapshot</a></li><li class="toc-level-2"><a href="#s-connection-model">Connection model</a></li><li class="toc-level-2"><a href="#s-ice-stun-and-turn">ICE, STUN, and TURN</a></li><li class="toc-level-3"><a href="#s-candidate-types">Candidate types</a></li><li class="toc-level-3"><a href="#s-deployment-policy">Deployment policy</a></li><li class="toc-level-2"><a href="#s-sdp-offeranswer-and-negotiation">SDP offer/answer and negotiation</a></li><li class="toc-level-2"><a href="#s-media-and-data-protection">Media and data protection</a></li><li class="toc-level-2"><a href="#s-safe-browser-configuration-shape">Safe browser configuration shape</a></li><li class="toc-level-2"><a href="#s-physical-security-integration-patterns">Physical security integration patterns</a></li><li class="toc-level-3"><a href="#s-camera-or-gateway-to-browser">Camera or gateway to browser</a></li><li class="toc-level-3"><a href="#s-intercom">Intercom</a></li><li class="toc-level-3"><a href="#s-cloud-uplink">Cloud uplink</a></li><li class="toc-level-2"><a href="#s-operational-telemetry">Operational telemetry</a></li><li class="toc-level-2"><a href="#s-failure-states-to-design">Failure states to design</a></li><li class="toc-level-2"><a href="#s-security-checklist">Security checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>WebRTC is a suite of real time media and data protocols plus APIs. In a physical security system it can deliver low latency live video, audio, intercom, and constrained data to browsers or native clients. It deliberately does <strong>not</strong> standardise the application's signalling transport or authorisation model. <a href="https://datatracker.ietf.org/doc/rfc8825/" rel="noopener noreferrer">WEBRTC OVERVIEW</a> <a href="https://www.w3.org/TR/webrtc/" rel="noopener noreferrer">W3C WEBRTC</a></p>
+<h2 id="s-standards-snapshot">Standards snapshot<a class="heading-link" href="#s-standards-snapshot" aria-label="Link to Standards snapshot">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Base reference</th>
+  <th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Architecture</td>
+  <td>RFC 8825</td>
+  <td>Overall browser real time protocol model</td>
+</tr>
+<tr>
+  <td>Security</td>
+  <td>RFC 8827</td>
+  <td>Threat model and security architecture</td>
+</tr>
+<tr>
+  <td>Transports</td>
+  <td>RFC 8835</td>
+  <td>ICE, TURN, DTLS SRTP, SRTP/SRTCP, and data channel transports</td>
+</tr>
+<tr>
+  <td>Browser API</td>
+  <td>W3C WebRTC Recommendation, 13 March 2025</td>
+  <td><code>RTCPeerConnection</code>, media/data APIs, state, statistics, and privacy behaviour</td>
+</tr>
+<tr>
+  <td>ICE</td>
+  <td>RFC 8445</td>
+  <td>Candidate gathering, connectivity checks, nomination, and consent</td>
+</tr>
+<tr>
+  <td>TURN</td>
+  <td>RFC 8656</td>
+  <td>Relayed connectivity when direct paths fail or policy requires a relay</td>
+</tr>
+<tr>
+  <td>DTLS SRTP</td>
+  <td>RFC 5764</td>
+  <td>Derivation of SRTP/SRTCP keying material from DTLS</td>
+</tr>
+<tr>
+  <td>WebRTC media</td>
+  <td>RFC 8834</td>
+  <td>RTP use, multiplexing, feedback, and media behaviour</td>
+</tr>
+</tbody>
+</table></div>
+<p>The standards continue to be extended, but these are the stable protocol bases used by the current W3C API. <a href="https://datatracker.ietf.org/doc/rfc8835/" rel="noopener noreferrer">WEBRTC TRANSPORT</a> <a href="https://datatracker.ietf.org/doc/rfc8445/" rel="noopener noreferrer">ICE</a> <a href="https://datatracker.ietf.org/doc/rfc8656/" rel="noopener noreferrer">TURN</a></p>
+<h2 id="s-connection-model">Connection model<a class="heading-link" href="#s-connection-model" aria-label="Link to Connection model">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">browser/native client       application signaling       media endpoint/SFU
+        |---- authenticated offer SDP ------------------------&gt;|
+        |&lt;--- authenticated answer SDP ------------------------|
+        |&lt;==== ICE candidates via signaling ==================&gt;|
+        |...... STUN/TURN gathering and ICE checks ............|
+        |&lt;===== DTLS handshake; fingerprint bound via SDP =====&gt;|
+        |&lt;===== SRTP/SRTCP media; SCTP/DTLS data channels =====&gt;|
+</code></pre></div>
+<p>The signalling channel transports offers, answers, and ICE candidates, but its shape, HTTP, WebSocket, SIP, vendor API, or other mechanism, is application defined. Signaling must authenticate both the user and the target resource, authorise requested media/direction, prevent cross session substitution, and protect SDP fingerprints and candidates from tampering.</p>
+<h2 id="s-ice-stun-and-turn">ICE, STUN, and TURN<a class="heading-link" href="#s-ice-stun-and-turn" aria-label="Link to ICE, STUN, and TURN">#</a></h2>
+<h3 id="s-candidate-types">Candidate types<a class="heading-link" href="#s-candidate-types" aria-label="Link to Candidate types">#</a></h3>
+<ul>
+<li><strong>Host:</strong> local interface address.</li>
+<li><strong>Server reflexive:</strong> public mapping learned through STUN.</li>
+<li><strong>Peer reflexive:</strong> mapping discovered during checks.</li>
+<li><strong>Relayed:</strong> address allocated by TURN.</li>
+</ul>
+<p>Full ICE agents gather candidates, form candidate pairs, run authenticated connectivity checks, select a valid pair, and maintain consent. A reachable UDP port isn't proof that the intended peer owns it. ICE credentials are short lived session values, not application identity.</p>
+<h3 id="s-deployment-policy">Deployment policy<a class="heading-link" href="#s-deployment-policy" aria-label="Link to Deployment policy">#</a></h3>
+<ul>
+<li>Use authenticated, time limited TURN credentials; don't embed a permanent shared secret in browser code.</li>
+<li>Bound allocations, bandwidth, lifetime, peer destinations, and protocols.</li>
+<li>Decide whether direct candidates are allowed. TURN only policy can reduce topology disclosure and simplify egress at the cost of relay capacity and latency.</li>
+<li>Treat ICE candidates as sensitive network metadata and redact them from routine telemetry.</li>
+<li>Support both IPv4 and IPv6 deliberately; avoid policy gaps where only one family is filtered.</li>
+<li>Observe consent freshness and close media when consent or application authorisation ends.</li>
+</ul>
+<h2 id="s-sdp-offeranswer-and-negotiation">SDP offer/answer and negotiation<a class="heading-link" href="#s-sdp-offeranswer-and-negotiation" aria-label="Link to SDP offer/answer and negotiation">#</a></h2>
+<p>WebRTC uses SDP offer/answer but imposes a WebRTC specific profile. Applications should:</p>
+<ul>
+<li>serialize offer/answer changes and handle glare using a documented negotiation pattern;</li>
+<li>validate media kinds, directions (<code>sendrecv</code>, <code>sendonly</code>, <code>recvonly</code>, <code>inactive</code>), codecs, header extensions, payload types, fingerprints, and ICE credentials;</li>
+<li>reject unexpected data channels or media sections;</li>
+<li>cap SDP/candidate size and count;</li>
+<li>avoid rewriting security critical SDP unless the intermediary is an intentional trusted endpoint;</li>
+<li>track transceivers and media identifiers rather than relying on array position.</li>
+</ul>
+<h2 id="s-media-and-data-protection">Media and data protection<a class="heading-link" href="#s-media-and-data-protection" aria-label="Link to Media and data protection">#</a></h2>
+<p>WebRTC media is protected with SRTP/SRTCP; DTLS SRTP derives keys after the DTLS peer presents a certificate whose fingerprint is carried in the authenticated signalling exchange. Data channels use SCTP over DTLS. This gives transport protection, but the application still owns user identity, endpoint authorisation, recording notice, retention, and access revocation. <a href="https://datatracker.ietf.org/doc/rfc8827/" rel="noopener noreferrer">WEBRTC SEC</a> <a href="https://datatracker.ietf.org/doc/rfc5764/" rel="noopener noreferrer">DTLS SRTP</a></p>
+<p>Don't infer that “encrypted WebRTC” means end to end encryption across an SFU, gateway, or cloud media service. A component that terminates DTLS SRTP can normally access media. If end to end media protection is required through an intermediary, specify and verify a separate E2EE design, key lifecycle, participant identity, recording policy, and recovery model.</p>
+<h2 id="s-safe-browser-configuration-shape">Safe browser configuration shape<a class="heading-link" href="#s-safe-browser-configuration-shape" aria-label="Link to Safe browser configuration shape">#</a></h2>
+<p><strong>Target:</strong> Browser <code>RTCPeerConnection</code> construction only.</p>
+<p><strong>Inputs:</strong> Documentation only TURN hostname and placeholder ephemeral credential.</p>
+<p><strong>Side effects:</strong> Construction is local; a real browser may contact configured ICE services only after subsequent gathering operations, which aren't shown.</p>
+<div class="code-block"><div class="code-toolbar"><span>javascript</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy javascript example">Copy</button></div><pre tabindex="0" aria-label="javascript example"><code id="code-2">const peer = new RTCPeerConnection({
+  iceTransportPolicy: &quot;relay&quot;,
+  iceServers: [
+    {
+      urls: [&quot;turns:turn.example:5349?transport=tcp&quot;],
+      username: &quot;ephemeral-user&quot;,
+      credential: &quot;replace-with-short-lived-secret&quot;
+    }
+  ],
+  bundlePolicy: &quot;max-bundle&quot;
+});
+</code></pre></div>
+<p>Never ship the placeholder or a long lived TURN secret. Obtain scoped credentials from an authenticated application service immediately before session establishment.</p>
+<h2 id="s-physical-security-integration-patterns">Physical security integration patterns<a class="heading-link" href="#s-physical-security-integration-patterns" aria-label="Link to Physical security integration patterns">#</a></h2>
+<h3 id="s-camera-or-gateway-to-browser">Camera or gateway to browser<a class="heading-link" href="#s-camera-or-gateway-to-browser" aria-label="Link to Camera or gateway to browser">#</a></h3>
+<p>An edge gateway commonly terminates RTSP/RTP from a camera and originates WebRTC. Document whether it transcodes or repacketizes, how it authenticates cameras, its failure behaviour, and whether users can reach only authorised streams. Codec compatibility determines whether “no transcode” operation is possible.</p>
+<h3 id="s-intercom">Intercom<a class="heading-link" href="#s-intercom" aria-label="Link to Intercom">#</a></h3>
+<p>Negotiate audio direction explicitly, gate microphone capture behind user intent and browser permission, process echo cancellation carefully, and authorise door/relay actions outside the media channel. Never treat a spoken phrase, DTMF tone, or data channel message as sufficient authorisation for a high impact action.</p>
+<h3 id="s-cloud-uplink">Cloud uplink<a class="heading-link" href="#s-cloud-uplink" aria-label="Link to Cloud uplink">#</a></h3>
+<p>ONVIF Profile V was a release candidate on the verification date and includes WebRTC related cloud uplink behaviour. It must be represented as release candidate support, not final ONVIF conformance. <a href="https://www.onvif.org/profiles/profile-v/" rel="noopener noreferrer">ONVIF V</a></p>
+<h2 id="s-operational-telemetry">Operational telemetry<a class="heading-link" href="#s-operational-telemetry" aria-label="Link to Operational telemetry">#</a></h2>
+<p>Useful <code>getStats()</code> dimensions include selected candidate pair, bitrate, packets/bytes, loss, jitter, round trip time, frames encoded/decoded/dropped, keyframes, resolution, jitter buffer delay, and quality limitation reason. Treat statistics as untrusted remote influenced telemetry and control cardinality. Don't log raw SDP, ICE passwords, TURN credentials, private candidates, or persistent device identifiers.</p>
+<h2 id="s-failure-states-to-design">Failure states to design<a class="heading-link" href="#s-failure-states-to-design" aria-label="Link to Failure states to design">#</a></h2>
+<ul>
+<li>Signaling authenticated but target stream no longer authorised</li>
+<li>ICE gathering slow, UDP blocked, TURN unavailable, or relay quota exhausted</li>
+<li>DTLS fingerprint mismatch or certificate rotation during reconnect</li>
+<li>Browser backgrounding, permission revocation, device change, or page lifecycle change</li>
+<li>Codec negotiated but unsupported by gateway hardware path</li>
+<li>Packet loss requiring picture loss indication or a fresh keyframe</li>
+<li>ICE restart after network handover</li>
+<li>SFU/gateway restart and stale application session</li>
+<li>User revocation during an established peer connection</li>
+</ul>
+<h2 id="s-security-checklist">Security checklist<a class="heading-link" href="#s-security-checklist" aria-label="Link to Security checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Signaling uses HTTPS/WSS, authenticated sessions, CSRF/origin defenses as applicable, and per stream authorisation">Signaling uses HTTPS/WSS, authenticated sessions, CSRF/origin defenses as applicable, and per stream authorisation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="SDP fingerprint and ICE credentials integrity protected end to end across signalling">SDP fingerprint and ICE credentials integrity protected end to end across signalling</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TURN credentials short lived, scoped, rate limited, and never committed to client code">TURN credentials short lived, scoped, rate limited, and never committed to client code</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Direct versus relay candidate policy intentional">Direct versus relay candidate policy intentional</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Candidate, SDP, track, transceiver, data channel, and message sizes bounded">Candidate, SDP, track, transceiver, data channel, and message sizes bounded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Media directions and microphone/camera permission match user intent">Media directions and microphone/camera permission match user intent</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Authorisation rechecked on reconnect, ICE restart, and long session renewal">Authorisation rechecked on reconnect, ICE restart, and long session renewal</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="SFU/gateway media visibility and recording policy documented">SFU/gateway media visibility and recording policy documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Stats and signalling logs redacted">Stats and signalling logs redacted</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Door, relay, PTZ, and other control actions use a separately authorised API">Door, relay, PTZ, and other control actions use a separately authorised API</li>
+</ul>
+<span class="heading-alias" id="s-what-to-check-in-your-environment" aria-hidden="true"></span><h2 id="s-checks-for-your-system">Checks for your system<a class="heading-link" href="#s-checks-for-your-system" aria-label="Link to Checks for your system">#</a></h2>
+<p>Validate browser compatibility, permission and privacy behaviour, TURN/SFU quota and failure modes, camera gateway and codec negotiation, firewall/NAT paths, network handover, revocation, reconnect, and long session renewal against the supported target versions.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>WEBRTC OVERVIEW</strong>, <a href="https://datatracker.ietf.org/doc/rfc8825/" rel="noopener noreferrer">RFC 8825: Overview: Real Time Protocols for Browser Based Applications</a>, IETF, January 2021.</li>
+<li><strong>WEBRTC SEC</strong>, <a href="https://datatracker.ietf.org/doc/rfc8827/" rel="noopener noreferrer">RFC 8827: WebRTC Security Architecture</a>, IETF, January 2021.</li>
+<li><strong>WEBRTC TRANSPORT</strong>, <a href="https://datatracker.ietf.org/doc/rfc8835/" rel="noopener noreferrer">RFC 8835: Transports for WebRTC</a>, IETF, January 2021.</li>
+<li><strong>WEBRTC MEDIA</strong>, <a href="https://datatracker.ietf.org/doc/rfc8834/" rel="noopener noreferrer">RFC 8834: Media Transport and Use of RTP in WebRTC</a>, IETF, January 2021.</li>
+<li><strong>W3C WEBRTC</strong>, <a href="https://www.w3.org/TR/webrtc/" rel="noopener noreferrer">WebRTC: Real Time Communication in Browsers</a>, W3C Recommendation, 13 March 2025.</li>
+<li><strong>ICE</strong>, <a href="https://datatracker.ietf.org/doc/rfc8445/" rel="noopener noreferrer">RFC 8445: Interactive Connectivity Establishment (ICE)</a>, IETF, July 2018.</li>
+<li><strong>TURN</strong>, <a href="https://datatracker.ietf.org/doc/rfc8656/" rel="noopener noreferrer">RFC 8656: Traversal Using Relays around NAT (TURN)</a>, IETF, February 2020.</li>
+<li><strong>DTLS SRTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc5764/" rel="noopener noreferrer">RFC 5764: DTLS Extension to Establish Keys for SRTP</a>, IETF, May 2010.</li>
+<li><strong>ONVIF V</strong>, <a href="https://www.onvif.org/profiles/profile-v/" rel="noopener noreferrer">Profile V</a>, ONVIF, release candidate dated 9 July 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../srt-and-rist/"><span>Previous in this section</span>SRT and RIST contribution streaming</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/video-and-media/webrtc.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/video-and-media/webrtc.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-standards-snapshot">Standards snapshot</a></li><li class="toc-level-2"><a href="#s-connection-model">Connection model</a></li><li class="toc-level-2"><a href="#s-ice-stun-and-turn">ICE, STUN, and TURN</a></li><li class="toc-level-3"><a href="#s-candidate-types">Candidate types</a></li><li class="toc-level-3"><a href="#s-deployment-policy">Deployment policy</a></li><li class="toc-level-2"><a href="#s-sdp-offeranswer-and-negotiation">SDP offer/answer and negotiation</a></li><li class="toc-level-2"><a href="#s-media-and-data-protection">Media and data protection</a></li><li class="toc-level-2"><a href="#s-safe-browser-configuration-shape">Safe browser configuration shape</a></li><li class="toc-level-2"><a href="#s-physical-security-integration-patterns">Physical security integration patterns</a></li><li class="toc-level-3"><a href="#s-camera-or-gateway-to-browser">Camera or gateway to browser</a></li><li class="toc-level-3"><a href="#s-intercom">Intercom</a></li><li class="toc-level-3"><a href="#s-cloud-uplink">Cloud uplink</a></li><li class="toc-level-2"><a href="#s-operational-telemetry">Operational telemetry</a></li><li class="toc-level-2"><a href="#s-failure-states-to-design">Failure states to design</a></li><li class="toc-level-2"><a href="#s-security-checklist">Security checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

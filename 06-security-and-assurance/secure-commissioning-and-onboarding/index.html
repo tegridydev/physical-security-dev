@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Secure commissioning and onboarding · Security Technician Wiki</title>
+<meta name="description" content="Verify device identity, software, configuration and ownership during commissioning. Record the approved settings and recovery process before putting the device into service.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/secure-commissioning-and-onboarding/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secure commissioning and onboarding · Security Technician Wiki">
+<meta property="og:description" content="Verify device identity, software, configuration and ownership during commissioning. Record the approved settings and recovery process before putting the device into service.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/secure-commissioning-and-onboarding/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="./" aria-current="page">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Secure commissioning and onboarding</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-secure-commissioning-and-onboarding">Secure commissioning and onboarding</h1>
+<p>Verify device identity, software, configuration and ownership during commissioning. Record the approved settings and recovery process before putting the device into service.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-state-machine">State machine</a></li><li class="toc-level-2"><a href="#s-bootstrap-hazards">Bootstrap hazards</a></li><li class="toc-level-2"><a href="#s-developer-requirements">Developer requirements</a></li><li class="toc-level-2"><a href="#s-acceptance-record">Acceptance record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Commissioning is the transition from an untrusted or vendor default device to an inventoried component with a verified owner, unique identity, approved software, trusted configuration, and documented recovery path.</p>
+<blockquote>
+<p>Commissioning procedures that touch locks, gates, alarms, elevators, fire interfaces, relays, or emergency communications require qualified personnel and an isolated, unoccupied test context. Software steps don't replace manufacturer or authority requirements.</p>
+</blockquote>
+<h2 id="s-state-machine">State machine<a class="heading-link" href="#s-state-machine" aria-label="Link to State machine">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>State</th>
+  <th>Required properties</th>
+  <th>Exit evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Received</td>
+  <td>Model, serial, provenance, seals and expected firmware recorded</td>
+  <td>Inventory record and acceptance decision</td>
+</tr>
+<tr>
+  <td>Isolated</td>
+  <td>No production trust or routing; bootstrap exposure bounded</td>
+  <td>Defined commissioning network and authorised operator</td>
+</tr>
+<tr>
+  <td>Identified</td>
+  <td>Device identity and claimed model/firmware checked</td>
+  <td>Exact identifiers and source documentation</td>
+</tr>
+<tr>
+  <td>Owned</td>
+  <td>Default/shared credentials removed; local ownership established</td>
+  <td>Unique admin path and recovery custody</td>
+</tr>
+<tr>
+  <td>Trusted</td>
+  <td>Certificates/keys enrolled and trust anchors installed</td>
+  <td>Certificate/key identifiers and environment validation result</td>
+</tr>
+<tr>
+  <td>Hardened</td>
+  <td>Unused services/accounts disabled; time, logging and update policy set</td>
+  <td>Approved configuration record</td>
+</tr>
+<tr>
+  <td>Integrated</td>
+  <td>Least privilege flows and application authorisation configured</td>
+  <td>Flow and permission matrix</td>
+</tr>
+<tr>
+  <td>Accepted</td>
+  <td>System owner approves functional, failure, and safety validation</td>
+  <td>Approved environment validation record</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-bootstrap-hazards">Bootstrap hazards<a class="heading-link" href="#s-bootstrap-hazards" aria-label="Link to Bootstrap hazards">#</a></h2>
+<ul>
+<li>shared factory credentials or keys;</li>
+<li>unauthenticated discovery/configuration protocols;</li>
+<li>temporary HTTP or wireless setup networks left enabled;</li>
+<li>acceptance of self signed certificates without an out of band identity check;</li>
+<li>permanent installation mode keys or downgrade to legacy reader signalling;</li>
+<li>cloud claim codes exposed in labels, logs, screenshots, or email;</li>
+<li>reset workflows that re enable insecure defaults;</li>
+<li>time dependent certificates enrolled before trustworthy time exists.</li>
+</ul>
+<h2 id="s-developer-requirements">Developer requirements<a class="heading-link" href="#s-developer-requirements" aria-label="Link to Developer requirements">#</a></h2>
+<ul>
+<li>Make onboarding an explicit, auditable state machine rather than a hidden first request shortcut.</li>
+<li>Bind the claimed device identity to independently obtained inventory or manufacturer evidence.</li>
+<li>Require intentional ownership transfer and prevent silent re claiming.</li>
+<li>Make bootstrap credentials single use or short lived, rate limited, and removable.</li>
+<li>Fail closed on identity mismatch while preserving safe local physical behaviour.</li>
+<li>Provide idempotent enrolment and recovery from partial failure.</li>
+<li>Expose clear status without logging keys, tokens, credential IDs, or private topology.</li>
+<li>Treat factory reset and RMA as security transitions with key destruction and ownership removal.</li>
+</ul>
+<h2 id="s-acceptance-record">Acceptance record<a class="heading-link" href="#s-acceptance-record" aria-label="Link to Acceptance record">#</a></h2>
+<p>Record exact product, hardware revision, firmware, enabled profiles, certificates/trust anchors, accounts, network flows, time source, update source, configuration export, recovery custodian, validation date, and approval owner. Keep live secret values out of design, acceptance, and inventory records.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NISTIR 8259A</strong>, <a href="https://csrc.nist.gov/pubs/ir/8259/a/final" rel="noopener noreferrer">NISTIR 8259A: IoT Device Cybersecurity Capability Core Baseline</a>, device identification, configuration, data protection, interface access, update and security state awareness, accessed 25 August 2026.</li>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, OT asset, architecture and lifecycle guidance, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li>
+<li><a href="../secure-system-baselines/">Secure system baselines</a></li>
+<li><a href="../../07-operations-and-lifecycle/">Operations and lifecycle</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../resilience-backup-and-recovery/"><span>Previous in this section</span>Resilience, backup, and recovery</a><a href="../secure-protocol-parsing/"><span>Next in this section</span>Secure protocol parsing</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/secure-commissioning-and-onboarding.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/secure-commissioning-and-onboarding.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-state-machine">State machine</a></li><li class="toc-level-2"><a href="#s-bootstrap-hazards">Bootstrap hazards</a></li><li class="toc-level-2"><a href="#s-developer-requirements">Developer requirements</a></li><li class="toc-level-2"><a href="#s-acceptance-record">Acceptance record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

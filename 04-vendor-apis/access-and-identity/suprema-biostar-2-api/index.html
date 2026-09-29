@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Suprema BioStar 2 API · Security Technician Wiki</title>
+<meta name="description" content="Check the BioStar 2 version and supported API path. Review sessions, identity changes and event handling against the device and platform configuration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/suprema-biostar-2-api/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Suprema BioStar 2 API · Security Technician Wiki">
+<meta property="og:description" content="Check the BioStar 2 version and supported API path. Review sessions, identity changes and event handling against the device and platform configuration.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/suprema-biostar-2-api/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="./" aria-current="page">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">Suprema BioStar 2 API</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-suprema-biostar-2-api">Suprema BioStar 2 API</h1>
+<p>Check the BioStar 2 version and supported API path. Review sessions, identity changes and event handling against the device and platform configuration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Suprema API collection and support documentation reviewed on 25 August 2026; exact BioStar build, licence, device/firmware compatibility, session settings, rate limits, endpoint schemas, old Local API, Device SDK, and TA API behaviour require the target installation contract.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle-evidence">Version and lifecycle evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport">Authentication and transport</a></li><li class="toc-level-2"><a href="#s-pagination-and-data-contract">Pagination and data contract</a></li><li class="toc-level-2"><a href="#s-events-devices-and-biometrics">Events, devices, and biometrics</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / Suprema</p>
+<p>The current <strong>BioStar 2 New Local API</strong> is a JSON/HTTPS service integrated into BioStar 2. It is distinct from the older separately installed Local API server, the native <strong>BioStar 2 Device SDK</strong>, and the separate Time and Attendance (TA) API. Choose the authority plane deliberately: the BioStar server API manages platform state; the Device SDK talks at a lower device integration layer.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Publicly documented purpose</th>
+  <th>Version/access boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>BioStar 2 New Local API</td>
+  <td>Users, access groups/levels, credentials, devices, doors, elevators, schedules, events, audits, zones and administration</td>
+  <td>Integrated from BioStar 2.7.10 onward; exact features evolve by server version</td>
+</tr>
+<tr>
+  <td>Offline/local Swagger</td>
+  <td>Reads bundled New Local API description without a running server connection</td>
+  <td>Available from BioStar 2.8.14 according to support page; does not execute or prove behaviour</td>
+</tr>
+<tr>
+  <td>Old Local API server</td>
+  <td>Earlier separately installed API server</td>
+  <td>Separate version/licence compatibility; do not mix paths or auth with New Local API</td>
+</tr>
+<tr>
+  <td>BioStar 2 Device SDK</td>
+  <td>Direct supported device integration</td>
+  <td>Native SDK package, device/firmware matrix and language/runtime contract apply</td>
+</tr>
+<tr>
+  <td>BioStar 2 TA API</td>
+  <td>Time and attendance service and Swagger</td>
+  <td>Added with BioStar 2.8.13; separate service/port/schema from access control API</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-version-and-lifecycle-evidence">Version and lifecycle evidence<a class="heading-link" href="#s-version-and-lifecycle-evidence" aria-label="Link to Version and lifecycle evidence">#</a></h2>
+<p>The public API collection showed <strong>v2.9.12 revisions dated 11 March 2026</strong> and earlier per release change notes during the 25 August 2026 review. This proves documentation changes tied to that BioStar line; it doesn't mean every installation runs 2.9.12 or that all documented operations work on older builds/devices.</p>
+<p>The collection flags a compatibility change from BioStar 2.9.9: trailing slashes are no longer accepted for API URLs. This illustrates why integrations must pin and review seemingly small parsing changes. Maintain a per release contract and don't normalise URLs in a way that defeats documented behaviour.</p>
+<h2 id="s-authentication-and-transport">Authentication and transport<a class="heading-link" href="#s-authentication-and-transport" aria-label="Link to Authentication and transport">#</a></h2>
+<p>The official overview requires HTTPS. The login operation returns a <code>bs-session-id</code> used for later authorisation. Use a dedicated least privileged BioStar operator, protect its password and session in memory/secret storage, and never log either. Validate the BioStar server certificate under the site PKI instead of accepting a permanent exception.</p>
+<p>Session expiry, concurrency, revocation and failover behaviour must be verified on the target version. Re authenticate safely without replaying a high impact mutation. If a server/UI account uses broad biometric or door privileges, don't reuse it as the API service identity.</p>
+<h2 id="s-pagination-and-data-contract">Pagination and data contract<a class="heading-link" href="#s-pagination-and-data-contract" aria-label="Link to Pagination and data contract">#</a></h2>
+<p>The public collection shows more than one collection pattern: some operations use <code>offset</code>/<code>limit</code>, some use page/limit, and search bodies carry their own conditions/order/total fields. Build endpoint specific pagination adapters. Don't assume page origin or a universal maximum.</p>
+<p>Treat identifiers, counts, dates, device fields, event data and binary/photo/biometric content as untrusted. Validate bounds before allocation. Record server/API build and device firmware with every compatibility workaround.</p>
+<p>A public global request rate limit was not verified. Bound concurrency conservatively, handle throttling/service unavailable responses and obtain site/vendor limits before bulk enrolment or event backfill.</p>
+<h2 id="s-events-devices-and-biometrics">Events, devices, and biometrics<a class="heading-link" href="#s-events-devices-and-biometrics" aria-label="Link to Events, devices, and biometrics">#</a></h2>
+<p>The API includes event search and device log workflows. Distinguish device resident logs from server stored events; deletion or synchronisation has different evidence impact. Preserve immutable exported evidence before any retention/destructive operation and authorise those operations separately.</p>
+<p>User records can contain cards, faces, fingerprints, photos and other sensitive attributes depending on configuration. Minimize collection, encrypt storage/transit, restrict export, define retention/deletion and avoid logging templates/images. Check lawful basis and jurisdiction before biometric processing.</p>
+<p>Device, door, quick action, alarm clear, firmware and user export/delete operations are high impact. Never test wildcards or bulk operations on production. Reconcile server and device state after timeout; a server response doesn't prove all devices synchronised.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://bs2api.biostar2.com/" rel="noopener noreferrer">BioStar 2 API collection</a>, official current API overview, revisions, auth and operation catalogue.</li>
+<li><a href="https://support.supremainc.com/en/support/solutions/articles/24000047041--biostar-2-api-how-to-use-and-start-biostar-2-new-local-api" rel="noopener noreferrer">Using the BioStar 2 New Local API</a>, integrated server and session model.</li>
+<li><a href="https://support.supremainc.com/en/support/solutions/articles/24000072553--biostar-2-api-how-to-login-" rel="noopener noreferrer">BioStar 2 API login</a>, session authorisation guidance.</li>
+<li><a href="https://support.supremainc.com/en/support/solutions/articles/24000073868--biostar-2-api-how-to-use-local-swagger-new-local-api-" rel="noopener noreferrer">Offline Swagger support</a>, version and non runtime documentation boundary.</li>
+<li><a href="https://support.supremainc.com/en/support/solutions/articles/24000073529" rel="noopener noreferrer">BioStar 2 TA API introduction</a>, separate TA surface.</li>
+<li><a href="https://support.supremainc.com/en/support/solutions/articles/24000005839--biostar-2-sdk-sdk-and-api-starter-s-guide" rel="noopener noreferrer">SDK and API starter guide</a>, old API and Device SDK distinction; verify current packages.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/biometrics/">Biometrics</a></li>
+<li><a href="../../../06-security-and-assurance/secure-protocol-parsing/">Secure protocol parsing</a></li>
+<li><a href="../../../07-operations-and-lifecycle/incident-response-and-evidence/">Incident response and evidence</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../salto-apis/"><span>Previous in this section</span>SALTO APIs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/suprema-biostar-2-api.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/suprema-biostar-2-api.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-and-lifecycle-evidence">Version and lifecycle evidence</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport">Authentication and transport</a></li><li class="toc-level-2"><a href="#s-pagination-and-data-contract">Pagination and data contract</a></li><li class="toc-level-2"><a href="#s-events-devices-and-biometrics">Events, devices, and biometrics</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

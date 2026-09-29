@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Genetec Security Center SDK and Web API · Security Technician Wiki</title>
+<meta name="description" content="Choose the appropriate Security Center SDK or web API interface. Check licensing, versions and roles against the functions required by your application.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Genetec Security Center SDK and Web API · Security Technician Wiki">
+<meta property="og:description" content="Choose the appropriate Security Center SDK or web API interface. Check licensing, versions and roles against the functions required by your application.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="./" aria-current="page">Genetec Security Center SDK and Web API</a></li><li><a href="../milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Genetec Security Center SDK and Web API</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-genetec-security-center-sdk-and-web-api">Genetec Security Center SDK and Web API</h1>
+<p>Choose the appropriate Security Center SDK or web API interface. Check licensing, versions and roles against the functions required by your application.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The official Security Center SDK overview was checked for video, access, intrusion and ALPR integration scope and developer programme access. Restricted API contracts were not accessed.</p><p>Public Genetec developer and technical documentation reviewed on 25 August 2026; full package contents, partner entitlements, exact SDK/product compatibility, API methods, licences, and deployment support require DAP and target system confirmation.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-development-programme-and-versions">Development programme and versions</a></li><li class="toc-level-2"><a href="#s-capability-and-authority-boundaries">Capability and authority boundaries</a></li><li class="toc-level-2"><a href="#s-authentication-and-deployment">Authentication and deployment</a></li><li class="toc-level-2"><a href="#s-events-media-and-failure">Events, media, and failure</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Genetec</p>
+<p>Genetec documents a broad <strong>Security Center SDK</strong> for native platform integration and a separate <strong>Web SDK</strong> for HTTP oriented applications. Product specific web APIs, such as the Mission Control Web API, are separate contracts. Don't use “Genetec Web API” as if it names one universal endpoint set.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Documented purpose</th>
+  <th>Access/licence boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Security Center SDK</td>
+  <td>Integrates video, access control, intrusion, ALPR and Security Center platform workflows</td>
+  <td>SDK package and development licence supplied through the Development Acceleration Program (DAP); deployment licences/features apply</td>
+</tr>
+<tr>
+  <td>Platform, Media, Workspace and Plugin samples</td>
+  <td>Illustrate distinct native integration areas</td>
+  <td>Public sample catalogue; full package and target compatibility remain DAP/product controlled</td>
+</tr>
+<tr>
+  <td>Security Center Web SDK</td>
+  <td>Platform/framework neutral web access to many Security Center functions</td>
+  <td>Public overview; Web SDK option/licence and system configuration required</td>
+</tr>
+<tr>
+  <td>Web Player/media surfaces</td>
+  <td>Browser oriented video/media integration</td>
+  <td>Separate media authorisation, browser/codec and licence boundary</td>
+</tr>
+<tr>
+  <td>Mission Control Web API</td>
+  <td>Incident management integration for Genetec Mission Control</td>
+  <td>Product specific; not a synonym for Security Center Web SDK</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-development-programme-and-versions">Development programme and versions<a class="heading-link" href="#s-development-programme-and-versions" aria-label="Link to Development programme and versions">#</a></h2>
+<p>The DAP description states that an SDK package includes documentation and samples and provides a one year development licence. That development entitlement isn't a production deployment licence and doesn't guarantee access to every product module.</p>
+<p>The public sample catalogue includes .NET Framework 4.8 and .NET 8 sample sets. A public release page exists for the Security Center 5.13.1.0 SDK, while Genetec product documentation also contains later Security Center product lines. Therefore, don't call 5.13.1 “latest” or combine sample runtimes across releases. Pin the installed Security Center build, SDK package, target framework, architecture and applicable licence together.</p>
+<h2 id="s-capability-and-authority-boundaries">Capability and authority boundaries<a class="heading-link" href="#s-capability-and-authority-boundaries" aria-label="Link to Capability and authority boundaries">#</a></h2>
+<p>Security Center unifies multiple physical security domains, but authorisation must remain domain and action specific:</p>
+<ul>
+<li>live view, playback, export, audio and camera/PTZ control;</li>
+<li>access control identities, credentials, doors and commands;</li>
+<li>intrusion, alarms and acknowledgement;</li>
+<li>ALPR records and privacy sensitive searches;</li>
+<li>configuration, federation and system administration;</li>
+<li>plugin hosting and client workspace extension.</li>
+</ul>
+<p>The Web SDK overview publicly describes high impact capabilities including door operations. A web integration identity must not inherit broad operator rights merely for convenience. Require explicit site/entity scope, purpose and immutable command audit.</p>
+<h2 id="s-authentication-and-deployment">Authentication and deployment<a class="heading-link" href="#s-authentication-and-deployment" aria-label="Link to Authentication and deployment">#</a></h2>
+<p>Use only identity modes documented for the exact Security Center/Web SDK release. Verify TLS and server identity, use unique non human accounts where supported, store secrets in an approved vault and separate development from production credentials. Web browser clients shouldn't receive a confidential client secret or unconstrained long lived token.</p>
+<p>For a native SDK application, follow the official connection, threading, object lifetime and event subscription contract. For an in process plugin, treat the host as a shared privileged process: bound work, fail closed, protect configuration and design uninstall/rollback. For Web SDK, enforce origin, session, CSRF and authorisation controls in the application tier; the SDK doesn't replace application security.</p>
+<h2 id="s-events-media-and-failure">Events, media, and failure<a class="heading-link" href="#s-events-media-and-failure" aria-label="Link to Events, media, and failure">#</a></h2>
+<p>Establish whether an event subscription is transient, resumable or replayable and how initial state is obtained. Preserve Genetec entity identity, source and ingest time, event ID/type and correlation. Reconcile after Directory failover, token expiry and connection loss.</p>
+<p>Media viewing and evidence export are different workflows. Don't log or cache media session details indiscriminately, and don't present a convenience export as forensic evidence without the documented export/integrity path.</p>
+<p>For a door, alarm or other high impact command that times out, don't blindly retry. Query current state and audit history or require operator resolution; the first request may have succeeded.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>Review the SDK release notes, Security Center compatibility, licence options, known issues and DAP terms for each target. Public product guides are versioned; use the correct version selector rather than a search result from another release.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://developer.genetec.com/r/en-us/overview-of-the-security-center-sdk" rel="noopener noreferrer">Security Center SDK overview</a>, official platform scope.</li>
+<li><a href="https://developer.genetec.com/r/en-us/security-center-sdk-code-samples" rel="noopener noreferrer">Security Center SDK code samples</a>, integration areas and documented runtime sample sets.</li>
+<li><a href="https://developer.genetec.com/r/en-us/development-acceleration-program/what-is-included-in-the-sdk-package" rel="noopener noreferrer">What is included in the SDK package</a>, DAP package and development licence boundary.</li>
+<li><a href="https://developer.genetec.com/r/en-us/overview-of-the-web-sdk" rel="noopener noreferrer">Web SDK overview</a>, web surface and capability scope.</li>
+<li><a href="https://developer.genetec.com/r/en-us/security-center-sdk-release-notes-5.13.1.0/what-s-new-in-the-security-center-5.13.1.0-sdk" rel="noopener noreferrer">Security Center SDK 5.13.1.0 release notes</a>, one fixed release, not a universal latest claim.</li>
+<li><a href="https://techdocs.genetec.com/r/en-US/Security-Center-Administrator-Guide-5.12/License-options-in-Security-Center" rel="noopener noreferrer">Security Center licence options</a>, versioned official evidence for Web SDK and Plugin SDK licence options.</li>
+<li><a href="https://developer.genetec.com/r/en-us/overview-of-the-genetec-mission-controltm-web-api" rel="noopener noreferrer">Mission Control Web API overview</a>, distinct product specific surface.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/pacs-architecture/">PACS architecture</a></li>
+<li><a href="../../../03-systems/video-surveillance/evidence-export-and-integrity/">Evidence export and integrity</a></li>
+<li><a href="../../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../eagle-eye-video-api/"><span>Previous in this section</span>Eagle Eye Video API</a><a href="../milestone-mip-sdk-and-api-gateway/"><span>Next in this section</span>Milestone MIP SDK and API Gateway</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/genetec-security-center-sdk-and-web-api.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/genetec-security-center-sdk-and-web-api.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-development-programme-and-versions">Development programme and versions</a></li><li class="toc-level-2"><a href="#s-capability-and-authority-boundaries">Capability and authority boundaries</a></li><li class="toc-level-2"><a href="#s-authentication-and-deployment">Authentication and deployment</a></li><li class="toc-level-2"><a href="#s-events-media-and-failure">Events, media, and failure</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

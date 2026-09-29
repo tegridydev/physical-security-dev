@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Event API contracts, normalisation, and schema evolution · Security Technician Wiki</title>
+<meta name="description" content="Use a shared schema while preserving the source event. Keep the raw record, mapping version and any uncertainty with the normalised fields.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/event-normalization-and-schema-evolution/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Event API contracts, normalisation, and schema evolution · Security Technician Wiki">
+<meta property="og:description" content="Use a shared schema while preserving the source event. Keep the raw record, mapping version and any uncertainty with the normalised fields.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/event-normalization-and-schema-evolution/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../../examples/">Section overview</a></li><li><a href="../../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="./" aria-current="page">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Integration patterns</a><span aria-hidden="true">/</span><span aria-current="page">Event API contracts, normalisation, and schema evolution</span></nav><div class="page-kicker">Development <span>About 6 min read</span></div><div class="prose"><h1 id="s-event-api-contracts-normalisation-and-schema-evolution">Event API contracts, normalisation, and schema evolution</h1>
+<p>Use a shared schema while preserving the source event. Keep the raw record, mapping version and any uncertainty with the normalised fields.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Event API and normalisation design guidance; source native schemas, transport bindings, broker guarantees, mappings, retention, and physical outcome semantics remain integration specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-keep-four-contract-layers-separate">Keep four contract layers separate</a></li><li class="toc-level-2"><a href="#s-asyncapi-31">AsyncAPI 3.1</a></li><li class="toc-level-2"><a href="#s-cloudevents-context">CloudEvents context</a></li><li class="toc-level-2"><a href="#s-canonical-envelope">Canonical envelope</a></li><li class="toc-level-2"><a href="#s-mapping-rules">Mapping rules</a></li><li class="toc-level-2"><a href="#s-delivery-ordering-and-deduplication">Delivery, ordering, and deduplication</a></li><li class="toc-level-2"><a href="#s-evolution-strategy">Evolution strategy</a></li><li class="toc-level-2"><a href="#s-consumer-contract">Consumer contract</a></li><li class="toc-level-2"><a href="#s-contract-assurance">Contract assurance</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An event contract should make producer intent, transport behaviour, payload meaning, compatibility, and evidence boundaries reviewable. Normalisation should make events comparable without erasing the native facts needed to interpret or troubleshoot them. Preserve the source record and mapping version, or a protected immutable reference to them.</p>
+<h2 id="s-keep-four-contract-layers-separate">Keep four contract layers separate<a class="heading-link" href="#s-keep-four-contract-layers-separate" aria-label="Link to Keep four contract layers separate">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Defines</th>
+  <th>Does not prove</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Transport/binding</td>
+  <td>MQTT, AMQP, WebSocket, HTTP webhook, broker/topic/address, security and delivery profile</td>
+  <td>Payload meaning or physical outcome</td>
+</tr>
+<tr>
+  <td>Operation/channel</td>
+  <td>Who sends/receives which message and under what routing contract</td>
+  <td>Broker retention, authorisation, or consumer completion unless explicitly profiled</td>
+</tr>
+<tr>
+  <td>Event envelope</td>
+  <td>Identity, source, type, time, schema/content context and correlation</td>
+  <td>That the enclosed domain claim is true</td>
+</tr>
+<tr>
+  <td>Domain payload</td>
+  <td>Alarm, access, video, device, analytic, case, or command result semantics</td>
+  <td>Transport delivery or independent sensor confirmation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't make a transport acknowledgement double as a domain acknowledgement. “Webhook returned <code>2xx</code>,” “AMQP delivery accepted,” and “MQTT message arrived” don't mean an operator responded, a credential was revoked, or a door reached a requested state.</p>
+<h2 id="s-asyncapi-31">AsyncAPI 3.1<a class="heading-link" href="#s-asyncapi-31" aria-label="Link to AsyncAPI 3.1">#</a></h2>
+<p>AsyncAPI Specification 3.1.0 provides a machine readable description for asynchronous APIs, including channels, operations, messages, servers, security schemes, correlation identifiers, traits, and protocol bindings. <a href="https://www.asyncapi.com/docs/reference/specification/v3.1.0" rel="noopener noreferrer">ASYNCAPI</a></p>
+<p>Use an AsyncAPI document to make these decisions explicit:</p>
+<ul>
+<li>exact specification version and document identity/version;</li>
+<li>server/environment and protocol binding, without embedding deployable secrets;</li>
+<li>channel/address parameters and their validation/tenant rules;</li>
+<li>send/receive operation direction from the application’s perspective;</li>
+<li>message name, content type, schema format, schema version, examples marked synthetic, and correlation location;</li>
+<li>authentication scheme plus resource/channel authorisation requirements;</li>
+<li>protocol specific delivery, session, acknowledgement, ordering, and size profile;</li>
+<li>operation failure, replay, deprecation, and compatibility policy.</li>
+</ul>
+<p>AsyncAPI describes a contract; it doesn't create a broker, enforce authorisation, validate schemas at runtime, or guarantee that a product implements every binding feature. Pin the exact binding version and validate the generated/configured behaviour separately. Treat channel templates and server variables as untrusted inputs: constrain them before constructing broker addresses or URLs.</p>
+<h2 id="s-cloudevents-context">CloudEvents context<a class="heading-link" href="#s-cloudevents-context" aria-label="Link to CloudEvents context">#</a></h2>
+<p>CloudEvents 1.0.2 defines a common event context format and protocol bindings. Core attributes include <code>specversion</code>, <code>id</code>, <code>source</code>, and <code>type</code>; attributes such as <code>subject</code>, <code>time</code>, <code>datacontenttype</code>, and <code>dataschema</code> add context. <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" rel="noopener noreferrer">CLOUDEVENTS</a></p>
+<p>CloudEvents can improve envelope consistency across transports, but an application profile must still define:</p>
+<ul>
+<li>uniqueness scope and retention for <code>id</code>;</li>
+<li>URI governance and tenant binding for <code>source</code>;</li>
+<li>stable namespace/version rules for <code>type</code>;</li>
+<li>whether <code>time</code> means source occurrence, device observation, or producer publication;</li>
+<li>schema resolution, integrity, availability, and version compatibility;</li>
+<li>extension attributes, their type/cardinality, and which producer may assert them;</li>
+<li>binary versus structured content mode and exact transport binding;</li>
+<li>canonicalization/signature behaviour if message level integrity is required.</li>
+</ul>
+<p>A syntactically valid CloudEvent isn't an authenticated event. Validate transport identity, event source authorisation, tenant/site, schema, resource bounds, and domain invariants. The CloudEvents <code>id</code> helps deduplicate within a defined source scope; it isn't a globally trusted audit identity without that profile.</p>
+<h2 id="s-canonical-envelope">Canonical envelope<a class="heading-link" href="#s-canonical-envelope" aria-label="Link to Canonical envelope">#</a></h2>
+<p>Include or map the following without inventing facts:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Recommended fields or evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Contract</td>
+  <td>Canonical event type, event contract version, payload schema identity/version, content type</td>
+</tr>
+<tr>
+  <td>Identity</td>
+  <td>Unique event ID with scope, native event ID, producer and original device/controller/source identity</td>
+</tr>
+<tr>
+  <td>Scope</td>
+  <td>Tenant, organization, site, subsystem, resource namespace</td>
+</tr>
+<tr>
+  <td>Time</td>
+  <td>Occurrence/observation time, source timezone/offset, receive/ingest time, clock quality and uncertainty</td>
+</tr>
+<tr>
+  <td>Ordering</td>
+  <td>Native sequence, boot/session/epoch identity, revision, gap/reset indicator</td>
+</tr>
+<tr>
+  <td>Domain</td>
+  <td>Subject/object/resource, prior and new state, reason, native result/status</td>
+</tr>
+<tr>
+  <td>Interpretation</td>
+  <td>Severity, alarm priority, analytic confidence, data quality, each as a separate typed field</td>
+</tr>
+<tr>
+  <td>Lineage</td>
+  <td>Correlation, causation, original event/reference, mapping/parser version, enrichment sources</td>
+</tr>
+<tr>
+  <td>Governance</td>
+  <td>Sensitivity, privacy purpose, retention class, integrity/evidence reference</td>
+</tr>
+</tbody>
+</table></div>
+<p>Prefer explicit <code>unknown</code>, <code>not_observed</code>, or omission rules over fabricated defaults. Make source occurrence, gateway receive, broker publication, consumer ingestion, and case creation separate times.</p>
+<h2 id="s-mapping-rules">Mapping rules<a class="heading-link" href="#s-mapping-rules" aria-label="Link to Mapping rules">#</a></h2>
+<ul>
+<li>Map only when semantics match; use vendor/native subtype for non equivalent concepts.</li>
+<li>Keep alarm priority, analytic confidence, device severity and operational urgency distinct.</li>
+<li>Don't turn missing, unsupported or stale values into false or zero.</li>
+<li>Preserve units, coordinate systems, credential format, timezone and identifier namespace.</li>
+<li>Avoid deriving person identity from a raw credential number unless explicitly authorised and necessary.</li>
+<li>Treat restoration/clear/acknowledgement as separate events or transitions according to source semantics.</li>
+<li>Preserve contradictory observations rather than overwriting them with one “current truth.”</li>
+<li>Make each enrichment attributable and expiring; a lookup result isn't part of the original observation.</li>
+<li>Never translate <code>access granted</code> into <code>person entered</code>, <code>door contact open</code> into <code>forced entry</code>, or receiver acknowledgement into operator response without the additional required evidence.</li>
+</ul>
+<h2 id="s-delivery-ordering-and-deduplication">Delivery, ordering, and deduplication<a class="heading-link" href="#s-delivery-ordering-and-deduplication" aria-label="Link to Delivery, ordering, and deduplication">#</a></h2>
+<ul>
+<li>Assume duplicate and delayed delivery unless the complete end to end profile proves otherwise.</li>
+<li>Define ordering scope: producer, device, controller, resource, partition, or tenant. Global order is rarely available.</li>
+<li>Carry a boot/session/epoch marker when counters reset after restart or failover.</li>
+<li>Detect gaps without treating every gap as malicious; record the recovery and evidence impact.</li>
+<li>Scope deduplication by authenticated source and tenant plus event ID; define its retention window.</li>
+<li>Keep replay/test/import traffic in an explicit namespace and prevent it from triggering production automation.</li>
+<li>Bound event age and future clock tolerance, but quarantine stale safety relevant events instead of silently dropping them.</li>
+</ul>
+<h2 id="s-evolution-strategy">Evolution strategy<a class="heading-link" href="#s-evolution-strategy" aria-label="Link to Evolution strategy">#</a></h2>
+<ul>
+<li>Add optional fields compatibly and define consumer behaviour for unknown fields.</li>
+<li>Version breaking semantic changes, not every additive field.</li>
+<li>Keep stable identifiers stable; never recycle meanings under an old type.</li>
+<li>Validate at runtime even when a language has static types.</li>
+<li>Store the decoder/mapping version so historical events remain interpretable.</li>
+<li>Provide dual read or dual publish migration only for a bounded window with observability.</li>
+<li>Reserve removed enum values/field identifiers where the schema technology supports it.</li>
+<li>Don't narrow numeric/time ranges, change units, change requiredness, or reinterpret <code>null</code> silently.</li>
+<li>Test producer old/consumer new and producer new/consumer old combinations with synthetic fixtures.</li>
+<li>Publish deprecation date, migration owner, usage evidence, and rollback criteria.</li>
+</ul>
+<p>Maintain a compatibility table:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Change</th>
+  <th>Usually compatible only when</th>
+  <th>Common breakage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Add optional field</td>
+  <td>Consumers ignore unknown optional fields</td>
+  <td>Strict deserializers reject it</td>
+</tr>
+<tr>
+  <td>Add enum value</td>
+  <td>Consumers preserve/handle unknown values</td>
+  <td>Exhaustive switches fail or map to a false default</td>
+</tr>
+<tr>
+  <td>Widen identifier/time range</td>
+  <td>Every runtime and store preserves it</td>
+  <td>JavaScript integer precision, database truncation</td>
+</tr>
+<tr>
+  <td>Change topic/channel</td>
+  <td>Dual route and deduplication are bounded</td>
+  <td>Duplicate processing or missing consumers</td>
+</tr>
+<tr>
+  <td>Split/merge event type</td>
+  <td>Meaning and correlation are versioned</td>
+  <td>Counts, alarms, and restoration logic change</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-consumer-contract">Consumer contract<a class="heading-link" href="#s-consumer-contract" aria-label="Link to Consumer contract">#</a></h2>
+<p>Consumers must tolerate duplicate and delayed delivery, reject unsupported critical versions, bound input, enforce tenant/resource authorisation, and define how unknown events are quarantined. Apply limits to encoded and decoded bytes, decompression ratio, depth, collection size, strings, numbers, schema resolution, concurrent validation, queue count/bytes/age, and processing time.</p>
+<p>A consumer must not actuate physical equipment solely from an untrusted or low confidence normalised event. Route any approved automation through a separate command contract with fresh authorisation, prerequisites, idempotency, bounded lifetime, audit, and target native outcome confirmation.</p>
+<h2 id="s-contract-assurance">Contract assurance<a class="heading-link" href="#s-contract-assurance" aria-label="Link to Contract assurance">#</a></h2>
+<ul>
+<li>Lint AsyncAPI and schema documents under pinned tool versions as part of the owning project’s review process.</li>
+<li>Review protocol bindings against the actual broker/client profile rather than relying on generated defaults.</li>
+<li>Use synthetic positive, boundary, malformed, duplicate, delayed, reordered, unknown version, and cross tenant fixtures.</li>
+<li>Compare normalised output with protected native input and mapping version.</li>
+<li>Exercise rollback and mixed version migration in an isolated environment owned by the system operator.</li>
+<li>Capture evidence for schema/binding versions, validation results, mapping approval, and known coverage limits.</li>
+</ul>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Transport/binding, operation/channel, envelope, and domain payload documented separately">Transport/binding, operation/channel, envelope, and domain payload documented separately</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="AsyncAPI version, binding version, security, address variables, messages, and correlation profile pinned">AsyncAPI version, binding version, security, address variables, messages, and correlation profile pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="CloudEvents attribute semantics, source/ID scope, schema, content mode, and extensions profiled where used">CloudEvents attribute semantics, source/ID scope, schema, content mode, and extensions profiled where used</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Native record/reference, source identity, mapping version, clocks, sequence, and uncertainty preserved">Native record/reference, source identity, mapping version, clocks, sequence, and uncertainty preserved</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Duplicate, delay, reorder, gap, replay, poison message, and backpressure behaviour defined">Duplicate, delay, reorder, gap, replay, poison message, and backpressure behaviour defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Compatibility matrix covers unknown fields/enums, ranges, null/absence, channels, and mixed versions">Compatibility matrix covers unknown fields/enums, ranges, null/absence, channels, and mixed versions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Tenant/resource authorisation and encoded/decoded resource limits enforced">Tenant/resource authorisation and encoded/decoded resource limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Transport acceptance, workflow processing, and physical outcome kept separate">Transport acceptance, workflow processing, and physical outcome kept separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Test/replay traffic can&#x27;t reach production automation">Test/replay traffic can't reach production automation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sensitive identity, access, alarm, video, and location data minimized in messages, logs, and fixtures">Sensitive identity, access, alarm, video, and location data minimized in messages, logs, and fixtures</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+<li><a href="../../../06-security-and-assurance/logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li>
+<li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li>
+<li><a href="../observability-and-diagnostics/">Observability and diagnostics</a></li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>ASYNCAPI</strong>, <a href="https://www.asyncapi.com/docs/reference/specification/v3.1.0" rel="noopener noreferrer">AsyncAPI Specification 3.1.0</a>, AsyncAPI Initiative.</li>
+<li><strong>CLOUDEVENTS</strong>, <a href="https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md" rel="noopener noreferrer">CloudEvents Specification 1.0.2</a>, Cloud Native Computing Foundation.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../adapters-gateways-and-translation/"><span>Previous in this section</span>Adapters, gateways, and protocol translation</a><a href="../observability-and-diagnostics/"><span>Next in this section</span>Observability and diagnostics</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/event-normalization-and-schema-evolution.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/event-normalization-and-schema-evolution.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-keep-four-contract-layers-separate">Keep four contract layers separate</a></li><li class="toc-level-2"><a href="#s-asyncapi-31">AsyncAPI 3.1</a></li><li class="toc-level-2"><a href="#s-cloudevents-context">CloudEvents context</a></li><li class="toc-level-2"><a href="#s-canonical-envelope">Canonical envelope</a></li><li class="toc-level-2"><a href="#s-mapping-rules">Mapping rules</a></li><li class="toc-level-2"><a href="#s-delivery-ordering-and-deduplication">Delivery, ordering, and deduplication</a></li><li class="toc-level-2"><a href="#s-evolution-strategy">Evolution strategy</a></li><li class="toc-level-2"><a href="#s-consumer-contract">Consumer contract</a></li><li class="toc-level-2"><a href="#s-contract-assurance">Contract assurance</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

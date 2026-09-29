@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Network Optix Nx Meta APIs and SDKs · Security Technician Wiki</title>
+<meta name="description" content="Choose the Nx interface for server access, client integration, device support or analytics. Record the product version and supported SDK or API capabilities.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Network Optix Nx Meta APIs and SDKs · Security Technician Wiki">
+<meta property="og:description" content="Choose the Nx interface for server access, client integration, device support or analytics. Record the product version and supported SDK or API capabilities.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="./" aria-current="page">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Network Optix Nx Meta APIs and SDKs</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-network-optix-nx-meta-apis-and-sdks">Network Optix Nx Meta APIs and SDKs</h1>
+<p>Choose the Nx interface for server access, client integration, device support or analytics. Record the product version and supported SDK or API capabilities.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Nx Meta developer and release documentation reviewed on 25 August 2026; OEM branding, exact server/API/SDK compatibility, credentials, licences, cloud region, build flags, and endpoint behaviour require the target release contract.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-release-and-api-version-boundary">Release and API version boundary</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-rest-integration-contract">REST integration contract</a></li><li class="toc-level-2"><a href="#s-c-plugin-boundary">C++ plugin boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Network Optix</p>
+<p>Network Optix publishes several distinct developer surfaces through Nx Meta: the VMS <strong>Server HTTP REST API</strong>, a native <strong>C++ Server Plugin SDK</strong>, a <strong>Cloud API</strong>, and the source available/open source desktop client route. Nx technology is also OEMed; product branding alone isn't a compatibility contract. Confirm the OEM release and enabled APIs with its supplier.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Documented capability</th>
+  <th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Server HTTP REST API</td>
+  <td>Resource/user management, live and recorded video, events/rules, PTZ and server functions</td>
+  <td>Installed server exposes its own Swagger/reference; API groups include newer, legacy and deprecated contracts</td>
+</tr>
+<tr>
+  <td>C++ Server Plugin SDK</td>
+  <td>Metadata, video source and storage plugins</td>
+  <td>Native package must match supported server release/toolchain and licence</td>
+</tr>
+<tr>
+  <td>Cloud API</td>
+  <td>Cloud account/system integration</td>
+  <td>Cloud programme, identity, tenant and region constraints apply</td>
+</tr>
+<tr>
+  <td>Open source desktop client</td>
+  <td>Builds/customizes the Nx desktop client under published terms</td>
+  <td>Client source does not grant server/cloud APIs, licences, branding or support</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-release-and-api-version-boundary">Release and API version boundary<a class="heading-link" href="#s-release-and-api-version-boundary" aria-label="Link to Release and API version boundary">#</a></h2>
+<p>The official release page listed <strong>Nx Meta VMS 6.1.2.42921</strong>, published 20 May 2026, when reviewed on 25 August 2026. This dated observation is useful for source tracking only. OEM releases can lag, branch or rename components; use the build and SDK package supplied for the deployed product.</p>
+<p>Nx documentation distinguishes new, legacy and deprecated REST API groups. Don't start new code on a legacy route because an old sample is easier to find. Retrieve the API description from the target server/build, pin the operation/schema version, and monitor deprecation/release notes for breaking changes.</p>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>Use the authentication mechanism documented by the exact server or Cloud API release. Protect credentials/tokens outside source and logs, require HTTPS with verified identity, and assign a dedicated least privileged account. Separate system/user administration from camera view, playback, export, PTZ, rules and event access.</p>
+<p>Don't expose a server’s interactive API reference outside its management boundary or enable permissive cross origin access to simplify a browser integration. A cloud identity and a local VMS user can have different authorities and lifecycles.</p>
+<h2 id="s-rest-integration-contract">REST integration contract<a class="heading-link" href="#s-rest-integration-contract" aria-label="Link to REST integration contract">#</a></h2>
+<ul>
+<li>Discover the target build and supported API description at connection/commissioning time.</li>
+<li>Pin serialisation types and treat identifiers as opaque.</li>
+<li>Use documented pagination/filtering; don't assume a full collection fits one response.</li>
+<li>Bound downloads, time ranges, media concurrency and response sizes.</li>
+<li>Distinguish current configuration, current operational state, and historical events.</li>
+<li>Reconcile resources, users, event rules and active streams after reconnect or failover.</li>
+<li>Treat media URLs, session tokens and exported footage as secrets/sensitive evidence.</li>
+</ul>
+<p>For PTZ, I/O, rules or configuration commands, implement authorisation and uncertain outcome handling. An HTTP success doesn't demonstrate camera movement, recording, analytics execution or a physical output.</p>
+<span class="heading-alias" id="s-c-plug-in-boundary" aria-hidden="true"></span><h2 id="s-c-plugin-boundary">C++ plugin boundary<a class="heading-link" href="#s-c-plugin-boundary" aria-label="Link to C++ plugin boundary">#</a></h2>
+<p>Server plugins execute close to media and VMS state. Follow the exact SDK’s ABI, compiler, platform, threading, callback, buffer ownership and lifecycle contract. Validate all metadata and media dimensions, timestamps and lengths. Bound queues and return from callbacks promptly. A crash or leak can affect recording availability, so isolate risky codecs/parsers and provide controlled disable/rollback.</p>
+<p>Developer licences are available through the official developer process, but they aren't production entitlements. Record expiry, feature limits and the production licensing path.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>Monitor release notes for REST changes, SDK package rebuild requirements and deprecated APIs. Maintain separate compatibility records for Nx Meta reference releases and every OEM distribution.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://meta.nxvms.com/docs/developers" rel="noopener noreferrer">Nx Meta developer documentation</a>, official surface catalogue.</li>
+<li><a href="https://meta.nxvms.com/docs/developers/knowledgebase/264-overview-kb--meta" rel="noopener noreferrer">Developer overview</a>, programme and architecture entry point.</li>
+<li><a href="https://meta.nxvms.com/docs/developers/knowledgebase/193-server-http-rest-api" rel="noopener noreferrer">Server HTTP REST API</a>, documented capability and API generation boundary.</li>
+<li><a href="https://meta.nxvms.com/download/other/releases" rel="noopener noreferrer">Nx Meta releases</a>, dated product and SDK packages.</li>
+<li><a href="https://meta.nxvms.com/docs/developers/knowledgebase/208-getting-licenses-for-developers" rel="noopener noreferrer">Developer licences</a>, non production licence route.</li>
+<li><a href="https://meta.nxvms.com/docs/developers/knowledgebase/315-what-is-the-open-source-desktop-client" rel="noopener noreferrer">Open source desktop client</a>, separate client source boundary.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../05-development-and-integration/language-guides/cpp/">C++ guidance</a></li>
+<li><a href="../../../06-security-and-assurance/secure-protocol-parsing/">Secure protocol parsing</a></li>
+<li><a href="../../../03-systems/video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../motorola-avigilon-integration-surfaces/"><span>Previous in this section</span>Motorola Solutions and Avigilon integration interfaces</a><a href="../verkada-command-apis/"><span>Next in this section</span>Verkada Command APIs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-release-and-api-version-boundary">Release and API version boundary</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-rest-integration-contract">REST integration contract</a></li><li class="toc-level-2"><a href="#s-c-plugin-boundary">C++ plugin boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

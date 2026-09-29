@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Milestone MIP SDK and API Gateway · Security Technician Wiki</title>
+<meta name="description" content="Compare MIP SDK and API Gateway against the required XProtect workflow. Check supported versions, permissions and deployment before implementing video, event or configuration access.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Milestone MIP SDK and API Gateway · Security Technician Wiki">
+<meta property="og:description" content="Compare MIP SDK and API Gateway against the required XProtect workflow. Check supported versions, permissions and deployment before implementing video, event or configuration access.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="./" aria-current="page">Milestone MIP SDK and API Gateway</a></li><li><a href="../motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Milestone MIP SDK and API Gateway</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-milestone-mip-sdk-and-api-gateway">Milestone MIP SDK and API Gateway</h1>
+<p>Compare MIP SDK and API Gateway against the required XProtect workflow. Check supported versions, permissions and deployment before implementing video, event or configuration access.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The official integration modes page was checked for the protocol, plugin and component integration families. SDK versions, licences and deployment support remain product specific.</p><p>Public MIP SDK documentation and release notes reviewed on 25 August 2026; exact XProtect edition/build, API availability, licences, runtime, authentication configuration, media entitlement, and backward compatibility are not asserted.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-capability-families">Capability families</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-choosing-an-integration-mode">Choosing an integration mode</a></li><li class="toc-level-2"><a href="#s-release-and-licence-contract">Release and licence contract</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Milestone</p>
+<p>The Milestone Integration Platform (MIP) isn't one SDK call surface. It defines three major integration modes: remote <strong>protocol integrations</strong>, reusable <strong>.NET components</strong>, and in process <strong>plugins</strong> hosted by XProtect applications. The <strong>API Gateway</strong> provides a current front door for selected REST/protocol services. Select the least coupled mode that supplies the required function.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Execution boundary</th>
+  <th>Documented capability</th>
+  <th>Coupling</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>MIP protocol APIs</td>
+  <td>Remote process, potentially any OS/language</td>
+  <td>Configuration, events/alarms, messaging/control, video/audio/metadata, authentication, status and other service families</td>
+  <td>Lowest host coupling; each protocol has its own contract</td>
+</tr>
+<tr>
+  <td>MIP .NET components</td>
+  <td>External .NET application</td>
+  <td>Higher level access to XProtect services and object models</td>
+  <td>Coupled to supported .NET/package/product versions</td>
+</tr>
+<tr>
+  <td>MIP plugins</td>
+  <td>Inside Smart Client, Management Client or Event Server</td>
+  <td>Native UI, configuration and server workflow extensions</td>
+  <td>Highest privilege, process and upgrade coupling</td>
+</tr>
+<tr>
+  <td>API Gateway</td>
+  <td>XProtect gateway/front end</td>
+  <td>REST entry points and selected services, with centralized identity integration</td>
+  <td>Product/build/configuration and API availability apply</td>
+</tr>
+</tbody>
+</table></div>
+<p>The public MIP documentation explicitly describes protocol integrations as usable across operating systems and languages, while components and plugins are .NET centered. Because this page contains no code, <code>languages: []</code> records example coverage, not SDK language support.</p>
+<h2 id="s-capability-families">Capability families<a class="heading-link" href="#s-capability-families" aria-label="Link to Capability families">#</a></h2>
+<p>The official API overview groups integration needs including configuration, events and alarms, messaging and control, video/audio/metadata, authentication, access control, licensing and system status. Availability isn't uniform. Build a capability manifest against the installed XProtect product rather than selecting a library simply because a similarly named API appears in the documentation tree.</p>
+<p>For media, record the selected service/protocol, stream profile, codec, transport, timestamp basis, playback/live distinction and authorisation lifetime. For events, record initial subscription position, filters, renewals, ordering, duplicate/gap behaviour and replay/reconciliation support. For control, document target state, preconditions, timeout outcome and audit correlation.</p>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>Milestone documents Basic, Windows and OAuth related authentication paths in its environment/login guidance; the available method depends on integration mode and system configuration. The API Gateway uses the XProtect identity provider/OAuth/OIDC architecture for supported services.</p>
+<ul>
+<li>Prefer a non human workload identity where the supported flow allows.</li>
+<li>Use HTTPS and validate the server identity; don't disable <code>secureOnly</code> or certificate checks to make an example connect.</li>
+<li>Scope privileges by site/device and capability: configuration, live, playback, export, audio, PTZ and administration are different rights.</li>
+<li>Keep client secrets and refresh/access tokens outside source, plugin packages and logs.</li>
+<li>Re authorise and reconcile after token expiry, management server failover or service restart.</li>
+</ul>
+<p>Never infer that authentication to one MIP service grants access to every API behind the gateway.</p>
+<h2 id="s-choosing-an-integration-mode">Choosing an integration mode<a class="heading-link" href="#s-choosing-an-integration-mode" aria-label="Link to Choosing an integration mode">#</a></h2>
+<p>Use a remote protocol/API when service isolation, language choice and independent deployment matter. Use a component when the supported .NET abstraction removes meaningful protocol complexity. Use a plugin only when the workflow must be native to an XProtect client/server and the operational owner accepts host process risk.</p>
+<p>For plugins:</p>
+<ul>
+<li>verify signing/distribution and supported host locations;</li>
+<li>avoid blocking host UI or Event Server threads;</li>
+<li>bound memory, media and event queues;</li>
+<li>use the host’s supported configuration and credential services;</li>
+<li>handle disable/uninstall and partial upgrade;</li>
+<li>test compatibility for every XProtect release the deployment supports.</li>
+</ul>
+<h2 id="s-release-and-licence-contract">Release and licence contract<a class="heading-link" href="#s-release-and-licence-contract" aria-label="Link to Release and licence contract">#</a></h2>
+<p>The public documentation tree showed <strong>MIP SDK 2026 R1</strong> as a current documentation/release line on 25 August 2026, alongside earlier release trees. This is a dated documentation observation, not a claim that all customers should or can deploy it. The target XProtect edition, installed product build, device licence, integration licence and enabled gateway services determine availability.</p>
+<p>Don't assume forward or backward binary compatibility. Read the exact MIP and XProtect release notes, breaking changes, runtime requirements and known limitations. Maintain an upgrade matrix and rollback plan.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://doc.developer.milestonesys.com/mipvmsapi/" rel="noopener noreferrer">MIP VMS API documentation</a>, current public documentation root.</li>
+<li><a href="https://doc.developer.milestonesys.com/mipsdk/content_4.html" rel="noopener noreferrer">MIP SDK architecture</a> and <a href="https://doc.developer.milestonesys.com/mipvmsapi/content/integration-modes/" rel="noopener noreferrer">integration modes</a>, protocol/component/plugin boundaries.</li>
+<li><a href="https://doc.developer.milestonesys.com/mipvmsapi/api-overview/" rel="noopener noreferrer">MIP API overview</a>, capability families.</li>
+<li><a href="https://doc.developer.milestonesys.com/mipsdk/reference/protocols/index.html" rel="noopener noreferrer">Protocol APIs and API Gateway</a>, official protocol catalogue.</li>
+<li><a href="https://doc.developer.milestonesys.com/mipsdk/gettingstarted/intro_environments_login.html" rel="noopener noreferrer">Environment login and authentication</a>, identity modes and secure connection guidance.</li>
+<li><a href="https://doc.developer.milestonesys.com/mipsdk/gettingstarted/mip2026R1_intro.html" rel="noopener noreferrer">MIP SDK 2026 R1 introduction</a> and <a href="https://doc.developer.milestonesys.com/mipsdk/tree_home.html" rel="noopener noreferrer">release tree</a>, dated lifecycle evidence.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS</a></li>
+<li><a href="../../../05-development-and-integration/language-guides/csharp/">C# integration guidance</a></li>
+<li><a href="../../../05-development-and-integration/patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../genetec-security-center-sdk-and-web-api/"><span>Previous in this section</span>Genetec Security Center SDK and Web API</a><a href="../motorola-avigilon-integration-surfaces/"><span>Next in this section</span>Motorola Solutions and Avigilon integration interfaces</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/milestone-mip-sdk-and-api-gateway.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/milestone-mip-sdk-and-api-gateway.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-capability-families">Capability families</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-choosing-an-integration-mode">Choosing an integration mode</a></li><li class="toc-level-2"><a href="#s-release-and-licence-contract">Release and licence contract</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

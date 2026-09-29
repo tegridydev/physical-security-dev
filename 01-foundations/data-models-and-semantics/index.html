@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Data models and semantics · Security Technician Wiki</title>
+<meta name="description" content="Agree on identity, state, timestamps and units before mapping data between systems. Record which system owns each field and how conflicting values are handled.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/data-models-and-semantics/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Data models and semantics · Security Technician Wiki">
+<meta property="og:description" content="Agree on identity, state, timestamps and units before mapping data between systems. Record which system owns each field and how conflicting values are handled.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/data-models-and-semantics/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="./" aria-current="page">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Data models and semantics</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-data-models-and-semantics">Data models and semantics</h1>
+<p>Agree on identity, state, timestamps and units before mapping data between systems. Record which system owns each field and how conflicting values are handled.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Technology neutral guidance; protocol specific schemas remain authoritative.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-model-the-source-before-normalising-it">Model the source before normalising it</a></li><li class="toc-level-2"><a href="#s-stable-identity">Stable identity</a></li><li class="toc-level-2"><a href="#s-types-and-units">Types and units</a></li><li class="toc-level-2"><a href="#s-provenance-envelope">Provenance envelope</a></li><li class="toc-level-2"><a href="#s-canonical-schemas">Canonical schemas</a></li><li class="toc-level-2"><a href="#s-semantic-mapping-record">Semantic mapping record</a></li><li class="toc-level-2"><a href="#s-validation-boundary">Validation boundary</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Most cross system defects aren't byte level problems. They are disagreements about identity, state, time, units, or authority hidden behind syntactically valid XML or JSON.</p>
+<h2 id="s-model-the-source-before-normalising-it">Model the source before normalising it<a class="heading-link" href="#s-model-the-source-before-normalising-it" aria-label="Link to Model the source before normalising it">#</a></h2>
+<p>Preserve three representations where feasible:</p>
+<ol>
+<li><strong>Raw source:</strong> immutable message or a privacy safe hash/reference plus transport metadata.</li>
+<li><strong>Parsed source model:</strong> fields retaining the publisher's names and types.</li>
+<li><strong>Canonical model:</strong> intentionally mapped entities and meanings used by consumers.</li>
+</ol>
+<p>This makes lossy mappings visible and allows reprocessing when the canonical schema evolves. Never discard unknown fields merely because the current consumer ignores them; retain them within bounded, privacy controlled storage when policy permits.</p>
+<h2 id="s-stable-identity">Stable identity<a class="heading-link" href="#s-stable-identity" aria-label="Link to Stable identity">#</a></h2>
+<p>Don't use a display name, IP address, array index, or mutable location as the primary identity. A useful identifier record can include:</p>
+<div class="code-block"><div class="code-toolbar"><span>yaml</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy yaml example">Copy</button></div><pre tabindex="0" aria-label="yaml example"><code id="code-1">source_system: pacs-a
+source_entity_type: door
+source_entity_id: &quot;8c18...&quot;
+canonical_entity_id: site-a/building-1/door-004
+observed_name: East Lobby
+mapping_version: 3
+</code></pre></div>
+<p>Distinguish person, identity record, credential, token instance, reader, access point, door, lock, input, controller, camera, stream, recording track, zone, and site. Their relationships change independently.</p>
+<h2 id="s-types-and-units">Types and units<a class="heading-link" href="#s-types-and-units" aria-label="Link to Types and units">#</a></h2>
+<ul>
+<li>Define integer width/sign and overflow behaviour for binary protocols.</li>
+<li>Treat identifiers that happen to contain digits as strings unless arithmetic is intended.</li>
+<li>Record unit, scale, precision, and valid range with numeric telemetry.</li>
+<li>Preserve <code>null</code>, absent, empty, zero, false, unknown, and unsupported as distinct where the source does.</li>
+<li>Define enum behaviour for new/unknown values; don't route an unknown alarm priority into the lowest class.</li>
+<li>Identify text encoding and normalisation; cap lengths before logging or rendering.</li>
+</ul>
+<p>JSON's grammar is standardised by <a href="https://www.rfc-editor.org/rfc/rfc8259" rel="noopener noreferrer">RFC 8259</a>, but it doesn't define application semantics, duplicate name handling across all implementations, numeric precision, or a schema. XML likewise needs the applicable namespace/schema and application rules; the W3C publishes the <a href="https://www.w3.org/TR/xml/" rel="noopener noreferrer">XML specifications</a>.</p>
+<h2 id="s-provenance-envelope">Provenance envelope<a class="heading-link" href="#s-provenance-envelope" aria-label="Link to Provenance envelope">#</a></h2>
+<p>For an observation, retain:</p>
+<ul>
+<li>source system and entity;</li>
+<li>source event/message identifier and sequence where available;</li>
+<li>source, receive, normalise, and publish times separately;</li>
+<li>source clock quality or uncertainty if known;</li>
+<li>protocol/profile/schema and product version;</li>
+<li>mapping version;</li>
+<li>authenticated peer/workload identity;</li>
+<li>trace/correlation identifiers;</li>
+<li>raw evidence reference and integrity metadata;</li>
+<li>privacy/security classification.</li>
+</ul>
+<h2 id="s-canonical-schemas">Canonical schemas<a class="heading-link" href="#s-canonical-schemas" aria-label="Link to Canonical schemas">#</a></h2>
+<p>Keep canonical fields small and stable; put source specific detail under a namespaced extension. Version the schema and mapping independently. Compatibility rules should state:</p>
+<ul>
+<li>whether consumers ignore unknown fields;</li>
+<li>which fields may become required;</li>
+<li>default versus absent behaviour;</li>
+<li>enum extension handling;</li>
+<li>timestamp and identifier format;</li>
+<li>retention and redaction requirements;</li>
+<li>how mapping corrections are replayed.</li>
+</ul>
+<h2 id="s-semantic-mapping-record">Semantic mapping record<a class="heading-link" href="#s-semantic-mapping-record" aria-label="Link to Semantic mapping record">#</a></h2>
+<p>Every non trivial mapping should document source value, target value, conditions, information loss, authority, and fallback. For example, don't map all of <code>forced-open</code>, <code>held-open</code>, <code>contact-open</code>, and <code>unlock-commanded</code> to <code>door_open</code> without preserving the distinction.</p>
+<h2 id="s-validation-boundary">Validation boundary<a class="heading-link" href="#s-validation-boundary" aria-label="Link to Validation boundary">#</a></h2>
+<p>Validate structure before allocating large objects; validate semantics before changing state; validate authorisation immediately before actuation. A schema valid command can still refer to the wrong site, stale entity, unsupported unit, or unauthorised operation.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../credentials-and-identity-media/"><span>Previous in this section</span>Credentials and identity media</a><a href="../dry-contacts-and-supervised-circuits/"><span>Next in this section</span>Dry contacts and supervised circuits</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/data-models-and-semantics.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/data-models-and-semantics.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-model-the-source-before-normalising-it">Model the source before normalising it</a></li><li class="toc-level-2"><a href="#s-stable-identity">Stable identity</a></li><li class="toc-level-2"><a href="#s-types-and-units">Types and units</a></li><li class="toc-level-2"><a href="#s-provenance-envelope">Provenance envelope</a></li><li class="toc-level-2"><a href="#s-canonical-schemas">Canonical schemas</a></li><li class="toc-level-2"><a href="#s-semantic-mapping-record">Semantic mapping record</a></li><li class="toc-level-2"><a href="#s-validation-boundary">Validation boundary</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

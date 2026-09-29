@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Adapters, gateways, and protocol translation · Security Technician Wiki</title>
+<meta name="description" content="Define whether the component forwards transport data, translates a protocol or maps application meaning. Document the fields and behaviour it changes or preserves.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/adapters-gateways-and-translation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Adapters, gateways, and protocol translation · Security Technician Wiki">
+<meta property="og:description" content="Define whether the component forwards transport data, translates a protocol or maps application meaning. Document the fields and behaviour it changes or preserves.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/adapters-gateways-and-translation/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../../examples/">Section overview</a></li><li><a href="../../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">Adapters, gateways, and protocol translation</a></li><li><a href="../event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Integration patterns</a><span aria-hidden="true">/</span><span aria-current="page">Adapters, gateways, and protocol translation</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-adapters-gateways-and-protocol-translation">Adapters, gateways, and protocol translation</h1>
+<p>Define whether the component forwards transport data, translates a protocol or maps application meaning. Document the fields and behaviour it changes or preserves.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Protocol neutral gateway architecture; exact translation semantics, security properties, capabilities, and failure behaviour come from selected standards and product profiles.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-design">Layered design</a></li><li class="toc-level-2"><a href="#s-canonical-capability-model">Canonical capability model</a></li><li class="toc-level-2"><a href="#s-translation-rules">Translation rules</a></li><li class="toc-level-2"><a href="#s-gateway-security">Gateway security</a></li><li class="toc-level-2"><a href="#s-failure-behaviour">Failure behaviour</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An adapter translates one implementation into a stable internal interface. A gateway additionally terminates trust, identity, sessions, policy, and failure behaviour between zones. Transparent forwarding isn't automatically simpler or safer.</p>
+<h2 id="s-layered-design">Layered design<a class="heading-link" href="#s-layered-design" aria-label="Link to Layered design">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Owns</th>
+  <th>Must not own</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Transport</td>
+  <td>Connection, TLS, serial/network framing, deadlines</td>
+  <td>Door/alarm/media business meaning</td>
+</tr>
+<tr>
+  <td>Protocol codec</td>
+  <td>Message framing, parsing, serialisation, version rules</td>
+  <td>Vendor independent authorisation policy</td>
+</tr>
+<tr>
+  <td>Session/state</td>
+  <td>Negotiation, sequence, subscriptions, retry and reconnect</td>
+  <td>UI specific representations</td>
+</tr>
+<tr>
+  <td>Vendor adapter</td>
+  <td>Product capability and version quirks</td>
+  <td>Canonical cross system state</td>
+</tr>
+<tr>
+  <td>Domain service</td>
+  <td>Cameras, doors, alarms, credentials, events and commands</td>
+  <td>Raw wire values without provenance</td>
+</tr>
+<tr>
+  <td>Policy/audit</td>
+  <td>Identity, authorisation, side effect gating, evidence</td>
+  <td>Silent fallback or protocol guessing</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-canonical-capability-model">Canonical capability model<a class="heading-link" href="#s-canonical-capability-model" aria-label="Link to Canonical capability model">#</a></h2>
+<p>Represent capabilities explicitly: supported, unsupported, conditionally supported, unknown, disabled by policy, or unavailable in current state. Don't infer a capability from the presence of an endpoint alone. Bind observations to model, firmware, profile/API revision and configuration.</p>
+<h2 id="s-translation-rules">Translation rules<a class="heading-link" href="#s-translation-rules" aria-label="Link to Translation rules">#</a></h2>
+<ul>
+<li>Preserve original source, identifiers, times, sequence, quality, units and raw status reference.</li>
+<li>Map only meanings supported by both sides; expose lossy translation as a first class limitation.</li>
+<li>Never invent success when a downstream protocol has only delivery acknowledgement.</li>
+<li>Normalise identifiers without discarding the vendor/native value needed for diagnostics.</li>
+<li>Separate unknown from false, closed, inactive or healthy.</li>
+<li>Define round trip behaviour before supporting configuration writes.</li>
+</ul>
+<h2 id="s-gateway-security">Gateway security<a class="heading-link" href="#s-gateway-security" aria-label="Link to Gateway security">#</a></h2>
+<p>Terminate and independently authenticate both sides. Apply per direction, per operation authorisation and schema/size validation. A secure upstream protocol doesn't make an unauthenticated downstream bus secure; document the trust breakpoint and compensating controls.</p>
+<h2 id="s-failure-behaviour">Failure behaviour<a class="heading-link" href="#s-failure-behaviour" aria-label="Link to Failure behaviour">#</a></h2>
+<p>Define startup discovery, partial inventory, downstream outage, upstream outage, stale cache, split brain, duplicate messages, upgrade/version mismatch, queue overflow, clock loss and gateway restart. Physical actuation must default to simulation in documentation examples.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, zones, conduits and OT gateway context, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../event-normalization-and-schema-evolution/">Event normalisation and schema evolution</a></li>
+<li><a href="../../../06-security-and-assurance/segmentation-and-conduits/">Segmentation and conduits</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Integration patterns</a><a href="../event-normalization-and-schema-evolution/"><span>Next in this section</span>Event API contracts, normalisation, and schema evolution</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/adapters-gateways-and-translation.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/adapters-gateways-and-translation.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-design">Layered design</a></li><li class="toc-level-2"><a href="#s-canonical-capability-model">Canonical capability model</a></li><li class="toc-level-2"><a href="#s-translation-rules">Translation rules</a></li><li class="toc-level-2"><a href="#s-gateway-security">Gateway security</a></li><li class="toc-level-2"><a href="#s-failure-behaviour">Failure behaviour</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

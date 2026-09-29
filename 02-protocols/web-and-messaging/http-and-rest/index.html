@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>HTTP and REST API engineering · Security Technician Wiki</title>
+<meta name="description" content="HTTP provides request and response behaviour for web APIs. Define the resources, permissions and physical effects associated with each operation.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/web-and-messaging/http-and-rest/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="HTTP and REST API engineering · Security Technician Wiki">
+<meta property="og:description" content="HTTP provides request and response behaviour for web APIs. Define the resources, permissions and physical effects associated with each operation.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/web-and-messaging/http-and-rest/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group" open><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="./" aria-current="page">HTTP and REST API engineering</a></li><li><a href="../mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Web and messaging protocols</a><span aria-hidden="true">/</span><span aria-current="page">HTTP and REST API engineering</span></nav><div class="page-kicker">Protocols <span>About 8 min read</span></div><div class="prose"><h1 id="s-http-and-rest-api-engineering">HTTP and REST API engineering</h1>
+<p>HTTP provides request and response behaviour for web APIs. Define the resources, permissions and physical effects associated with each operation.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>HTTP and API contract guidance only; no API, proxy, TLS endpoint, OAuth server, authorisation, parser differential, performance, or high impact request is validated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-protocol-bases">Current protocol bases</a></li><li class="toc-level-2"><a href="#s-resource-contract">Resource contract</a></li><li class="toc-level-2"><a href="#s-methods-safety-and-idempotency">Methods, safety, and idempotency</a></li><li class="toc-level-2"><a href="#s-concurrency-and-conditional-requests">Concurrency and conditional requests</a></li><li class="toc-level-2"><a href="#s-read-only-conditional-request-fixture">Read only conditional request fixture</a></li><li class="toc-level-2"><a href="#s-status-and-error-model">Status and error model</a></li><li class="toc-level-2"><a href="#s-pagination-filtering-and-time">Pagination, filtering, and time</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-3"><a href="#s-browser-based-oauth-clients">Browser based OAuth clients</a></li><li class="toc-level-2"><a href="#s-message-integrity-and-webhooks">Message integrity and webhooks</a></li><li class="toc-level-2"><a href="#s-parser-and-intermediary-safety">Parser and intermediary safety</a></li><li class="toc-level-2"><a href="#s-caching-and-sensitive-data">Caching and sensitive data</a></li><li class="toc-level-2"><a href="#s-client-reliability-contract">Client reliability contract</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>HTTP supplies message semantics and versioned transports. REST is an architectural style, not a separate wire protocol, schema language, authentication method, or guarantee of good resource design. A physical security API should document both the HTTP contract and the domain contract. <a href="https://datatracker.ietf.org/doc/rfc9110/" rel="noopener noreferrer">HTTP</a> <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm" rel="noopener noreferrer">FIELDING</a></p>
+<h2 id="s-current-protocol-bases">Current protocol bases<a class="heading-link" href="#s-current-protocol-bases" aria-label="Link to Current protocol bases">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Current base</th>
+  <th>Operational distinction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>HTTP semantics</td>
+  <td>RFC 9110 / STD 97 (2022)</td>
+  <td>Methods, fields, status codes, content, representation, intermediaries</td>
+</tr>
+<tr>
+  <td>Caching</td>
+  <td>RFC 9111 (2022)</td>
+  <td>Cache keys, freshness, validation, invalidation, shared/private behaviour</td>
+</tr>
+<tr>
+  <td>HTTP/1.1 framing</td>
+  <td>RFC 9112 / STD 99 (2022), updated by RFC 9931 (2026)</td>
+  <td>Text framing and strict message boundaries; parser disagreement creates smuggling risk</td>
+</tr>
+<tr>
+  <td>HTTP/2</td>
+  <td>RFC 9113 (2022)</td>
+  <td>Binary framing and multiplexed streams over one connection</td>
+</tr>
+<tr>
+  <td>HTTP/3</td>
+  <td>RFC 9114 (2022)</td>
+  <td>HTTP semantics over QUIC; independent streams reduce TCP head of line coupling</td>
+</tr>
+<tr>
+  <td>TLS</td>
+  <td>RFC 8446 (TLS 1.3)</td>
+  <td>Transport confidentiality, integrity, and endpoint authentication when trust is validated</td>
+</tr>
+</tbody>
+</table></div>
+<p>HTTP versions preserve common semantics but differ materially in framing, connection, prioritization, flow control, and failure behaviour. Gateways must translate without creating ambiguous lengths, pseudo header errors, authority confusion, or inconsistent normalisation. <a href="https://datatracker.ietf.org/doc/rfc9112/" rel="noopener noreferrer">HTTP1</a> <a href="https://datatracker.ietf.org/doc/rfc9113/" rel="noopener noreferrer">HTTP2</a> <a href="https://datatracker.ietf.org/doc/rfc9114/" rel="noopener noreferrer">HTTP3</a></p>
+<h2 id="s-resource-contract">Resource contract<a class="heading-link" href="#s-resource-contract" aria-label="Link to Resource contract">#</a></h2>
+<p>A durable API defines nouns and state transitions before routes:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Example contract question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Identity</td>
+  <td>Is a door identified by immutable system ID, controller local number, or human name?</td>
+</tr>
+<tr>
+  <td>Representation</td>
+  <td>Which fields are authoritative, derived, writable, nullable, or omitted by permission?</td>
+</tr>
+<tr>
+  <td>Lifecycle</td>
+  <td>Can a credential be pending, active, suspended, expired, revoked, or deleted?</td>
+</tr>
+<tr>
+  <td>Concurrency</td>
+  <td>What prevents one client from overwriting a newer change?</td>
+</tr>
+<tr>
+  <td>Time</td>
+  <td>Are timestamps UTC instants, device local readings, intervals, or uncertain observations?</td>
+</tr>
+<tr>
+  <td>Command</td>
+  <td>Is “unlock” a resource state change, bounded command, queued job, or policy override?</td>
+</tr>
+<tr>
+  <td>Completion</td>
+  <td>Does <code>2xx</code> mean accepted, persisted, delivered to a controller, or physically observed?</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't model high impact commands as harmless field updates without an explicit audit and completion model.</p>
+<h2 id="s-methods-safety-and-idempotency">Methods, safety, and idempotency<a class="heading-link" href="#s-methods-safety-and-idempotency" aria-label="Link to Methods, safety, and idempotency">#</a></h2>
+<p>Per RFC 9110, safe methods are read only by defined semantics; idempotent methods can be repeated with the same intended effect. Server logging or accounting doesn't make a safe method unsafe, but a <code>GET</code> endpoint that unlocks a door violates method semantics. <a href="https://datatracker.ietf.org/doc/rfc9110/" rel="noopener noreferrer">HTTP</a></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Method</th>
+  <th>Intended use</th>
+  <th>Retry guidance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>GET</td>
+  <td>Retrieve a representation</td>
+  <td>Retry only with bounds; account for cache and stale data</td>
+</tr>
+<tr>
+  <td>HEAD</td>
+  <td>GET metadata without response content</td>
+  <td>Same conditional/cache semantics as documented</td>
+</tr>
+<tr>
+  <td>POST</td>
+  <td>Submit/process/create under resource semantics</td>
+  <td>Not inherently idempotent; use a documented operation key or job ID when retries are needed</td>
+</tr>
+<tr>
+  <td>PUT</td>
+  <td>Replace/create the selected resource state</td>
+  <td>Idempotent semantics; still use preconditions to prevent lost updates</td>
+</tr>
+<tr>
+  <td>PATCH</td>
+  <td>Apply a patch format</td>
+  <td>Idempotency depends on patch and contract</td>
+</tr>
+<tr>
+  <td>DELETE</td>
+  <td>Remove the selected mapping/state</td>
+  <td>Idempotent semantics do not mean every response is identical</td>
+</tr>
+</tbody>
+</table></div>
+<p>An “idempotency key” is an application contract: define key scope, authenticated principal, target, canonical request fingerprint, retention window, concurrent duplicate behaviour, response replay, and conflict result. It can't make two semantically different requests equivalent.</p>
+<h2 id="s-concurrency-and-conditional-requests">Concurrency and conditional requests<a class="heading-link" href="#s-concurrency-and-conditional-requests" aria-label="Link to Concurrency and conditional requests">#</a></h2>
+<p>Use validators such as ETags with <code>If-Match</code> for changes and <code>If-None-Match</code> for cache validation or create if absent behaviour. Strong versus weak validators have different comparison rules. A typical optimistic update is:</p>
+<ol>
+<li><code>GET /credentials/{id}</code> and record the strong ETag.</li>
+<li>Validate intended transition locally.</li>
+<li><code>PUT</code> or <code>PATCH</code> with <code>If-Match: &quot;recorded-tag&quot;</code>.</li>
+<li>Treat <code>412 Precondition Failed</code> as a concurrency conflict, refetch, and reconsider, don't overwrite blindly.</li>
+</ol>
+<h2 id="s-read-only-conditional-request-fixture">Read only conditional request fixture<a class="heading-link" href="#s-read-only-conditional-request-fixture" aria-label="Link to Read only conditional request fixture">#</a></h2>
+<p>This synthetic protocol fragment illustrates cache validation for a read. <code>api.example</code>, the credential ID, token text, and ETag are documentation values; the fragment contains no client and shouldn't be adapted into a state changing credential operation.</p>
+<div class="code-block"><div class="code-toolbar"><span>http</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy http example">Copy</button></div><pre tabindex="0" aria-label="http example"><code id="code-1">GET /v1/credentials/cred_demo_001 HTTP/1.1
+Host: api.example
+Authorization: Bearer replace-with-short-lived-test-token
+Accept: application/json
+If-None-Match: &quot;demo-etag-7&quot;
+</code></pre></div>
+<p>The API must authorise the read for the exact tenant/resource. A matching current validator can produce <code>304 Not Modified</code>; otherwise the server can return the authorised representation and a current validator. Even a safe method needs request, response, rate, cache, privacy, and log bounds.</p>
+<h2 id="s-status-and-error-model">Status and error model<a class="heading-link" href="#s-status-and-error-model" aria-label="Link to Status and error model">#</a></h2>
+<p>Use status codes consistently, then return a stable machine readable error shape. RFC 9457 defines Problem Details for HTTP APIs. <a href="https://datatracker.ietf.org/doc/rfc9457/" rel="noopener noreferrer">PROBLEM</a></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Status family/example</th>
+  <th>Meaning to preserve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>200</code>, <code>201</code>, <code>202</code>, <code>204</code></td>
+  <td>Completed with representation; created; accepted asynchronously; completed without content</td>
+</tr>
+<tr>
+  <td><code>304</code></td>
+  <td>Conditional retrieval uses cached representation; not a generic success body</td>
+</tr>
+<tr>
+  <td><code>400</code></td>
+  <td>Syntactically/semantically invalid request when no more specific code applies</td>
+</tr>
+<tr>
+  <td><code>401</code></td>
+  <td>Authentication needed/failed and challenge semantics apply</td>
+</tr>
+<tr>
+  <td><code>403</code></td>
+  <td>Authenticated context lacks authorisation or policy refuses operation</td>
+</tr>
+<tr>
+  <td><code>404</code></td>
+  <td>Resource absent or deliberately concealed by policy</td>
+</tr>
+<tr>
+  <td><code>409</code></td>
+  <td>Conflict with current domain state</td>
+</tr>
+<tr>
+  <td><code>412</code></td>
+  <td>HTTP precondition failed</td>
+</tr>
+<tr>
+  <td><code>413</code>, <code>415</code>, <code>422</code>, <code>429</code></td>
+  <td>Content too large; unsupported media type; unprocessable content; rate limited</td>
+</tr>
+<tr>
+  <td><code>5xx</code></td>
+  <td>Server/intermediary failure; not automatically safe to retry</td>
+</tr>
+</tbody>
+</table></div>
+<p>For asynchronous physical actions, return a job/operation resource with correlation ID, state, timestamps, result source, and expiry. Distinguish “controller acknowledged” from “door sensor confirmed.”</p>
+<h2 id="s-pagination-filtering-and-time">Pagination, filtering, and time<a class="heading-link" href="#s-pagination-filtering-and-time" aria-label="Link to Pagination, filtering, and time">#</a></h2>
+<ul>
+<li>Prefer opaque cursors over mutable offset pagination for event streams.</li>
+<li>Bind a cursor to tenant, principal, query filters, sort order, snapshot/watermark, and expiry.</li>
+<li>Define inclusive/exclusive timestamp boundaries, ordering tie breakers, late events, and clock uncertainty.</li>
+<li>Cap page size, query complexity, expanded relationships, date range, and export volume.</li>
+<li>Allowlist filter/sort fields; parameterized storage queries don't replace authorisation.</li>
+</ul>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<ul>
+<li>Use HTTPS with certificate validation. Mutual TLS can provide client/workload identity but still needs resource authorisation.</li>
+<li>For OAuth 2.0 deployments follow RFC 9700, the current OAuth 2.0 Security Best Current Practice; use flows appropriate to public/confidential clients, sender constraint where needed, exact redirect validation, PKCE, scoped/audience bound short lived tokens, and refresh token controls. <a href="https://datatracker.ietf.org/doc/rfc9700/" rel="noopener noreferrer">OAUTH BCP</a></li>
+<li>Validate token issuer, audience, signature/algorithm policy, time bounds, token type, client/subject, and required scope/claims. Don't accept a token merely because it parses.</li>
+<li>Authorise object and action together; prevent cross tenant identifier substitution.</li>
+<li>Separate read video/events, enrol credentials, unlock/override, administer identities, export evidence, and manage devices.</li>
+<li>Recheck authorisation for long running exports, streams, and jobs.</li>
+</ul>
+<p>Browser sessions also require CSRF, CORS, origin, cookie, SameSite, and content security design. CORS is a browser read control mechanism, not API authentication.</p>
+<h3 id="s-browser-based-oauth-clients">Browser based OAuth clients<a class="heading-link" href="#s-browser-based-oauth-clients" aria-label="Link to Browser based OAuth clients">#</a></h3>
+<p>RFC 10017 is the current IETF Best Current Practice for OAuth 2.0 browser based applications. It evaluates architectural patterns and browser specific threats; apply it together with RFC 9700 and the authorisation server’s supported profile. <a href="https://www.rfc-editor.org/info/rfc10017/" rel="noopener noreferrer">BROWSER BCP</a></p>
+<ul>
+<li>A browser application is a public client and can't keep a distributed static client secret confidential.</li>
+<li>Use Authorisation Code flow with PKCE and exact redirect URI registration. Don't use the implicit grant for new applications.</li>
+<li>Bind <code>state</code> to the initiating browser session and intended return location; use OIDC nonce where the OIDC profile requires it.</li>
+<li>Prefer an architecture that keeps access/refresh tokens out of JavaScript, such as a backend for frontend, when consequence and deployment constraints support it.</li>
+<li>If tokens are exposed to browser code, keep their scope and lifetime minimal and account explicitly for XSS, malicious dependencies/extensions, storage, refresh, and multi tab/session behaviour.</li>
+<li>A backend for frontend session needs secure, HttpOnly cookies, CSRF protection, origin checks, session rotation, logout, and server side authorisation. Moving a token behind a cookie doesn't remove browser threats.</li>
+<li>Restrict third party scripts, use an effective Content Security Policy, avoid sensitive tokens/codes in URLs and telemetry, and prevent open redirects.</li>
+<li>Treat refresh token rotation or sender constraint as additional defenses under the chosen profile, not substitutes for preventing script compromise.</li>
+<li>Keep browser authentication/session success separate from authorisation for tenant, object, operation, and high impact physical actions.</li>
+</ul>
+<p>Cross device authorisation/authentication flows have additional transaction binding and phishing concerns; see <a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a>.</p>
+<h2 id="s-message-integrity-and-webhooks">Message integrity and webhooks<a class="heading-link" href="#s-message-integrity-and-webhooks" aria-label="Link to Message integrity and webhooks">#</a></h2>
+<p>RFC 9421 defines HTTP Message Signatures, but an application profile must still specify key discovery, algorithm policy, created/expiry time, nonce/replay behaviour, and the exact covered components. Always cover authority, method, target, content digest where applicable, and security critical fields according to the profile. A valid signature doesn't authorise the requested operation. <a href="https://datatracker.ietf.org/doc/rfc9421/" rel="noopener noreferrer">HTTP SIG</a></p>
+<h2 id="s-parser-and-intermediary-safety">Parser and intermediary safety<a class="heading-link" href="#s-parser-and-intermediary-safety" aria-label="Link to Parser and intermediary safety">#</a></h2>
+<ul>
+<li>Reject ambiguous HTTP/1.1 framing and conflicting length/transfer metadata; keep proxy/backend parsing aligned.</li>
+<li>Normalise a path once under a documented URI policy; avoid decoding or case rules that differ across authorisation and routing layers.</li>
+<li>Validate <code>Host</code>/authority against the selected tenant and endpoint.</li>
+<li>Bound header fields, trailers, body, decompressed body, multipart parts, streams, concurrent requests, and HPACK/QPACK state.</li>
+<li>Don't send untrusted post transition protocol bytes optimistically on HTTP/1.1. RFC 9931, published March 2026, adds requirements to prevent request smuggling/parser risks during rejected <code>Upgrade</code> or <code>CONNECT</code> transitions. <a href="https://datatracker.ietf.org/doc/rfc9931/" rel="noopener noreferrer">HTTP TRANSITION</a></li>
+<li>Treat redirects as new authorisation/egress decisions; never forward credentials across origin by default.</li>
+</ul>
+<h2 id="s-caching-and-sensitive-data">Caching and sensitive data<a class="heading-link" href="#s-caching-and-sensitive-data" aria-label="Link to Caching and sensitive data">#</a></h2>
+<p>Explicitly set cache policy. Credential records, live images, access events, configuration, and exports usually require private/no store semantics tailored to the application. Ensure shared cache keys include all representation varying dimensions and never depend on <code>Authorization</code> behaviour implicitly. Signed or expiring URLs need cache lifetimes no longer than authorisation.</p>
+<h2 id="s-client-reliability-contract">Client reliability contract<a class="heading-link" href="#s-client-reliability-contract" aria-label="Link to Client reliability contract">#</a></h2>
+<ul>
+<li>Set connect, TLS, header, body idle, and total deadlines.</li>
+<li>Cancel abandoned requests and bound response reads.</li>
+<li>Retry only documented transient failures, with exponential backoff, jitter, retry budget, and <code>Retry-After</code> handling.</li>
+<li>Never retry a mutating request solely because no response arrived; its effect may have occurred.</li>
+<li>Use circuit breaking/load shedding without converting an access outage into an unsafe fail open.</li>
+<li>Preserve a correlation ID but don't let clients choose trusted audit identity fields.</li>
+</ul>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact HTTP versions, TLS policy, ALPN, proxy chain, and timeout behaviour documented">Exact HTTP versions, TLS policy, ALPN, proxy chain, and timeout behaviour documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Resource identities, lifecycle states, command completion, and error model defined">Resource identities, lifecycle states, command completion, and error model defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Safe/idempotent method semantics respected">Safe/idempotent method semantics respected</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="ETag/precondition and duplicate request behaviour specified">ETag/precondition and duplicate request behaviour specified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Authentication plus per object/per action authorisation enforced">Authentication plus per object/per action authorisation enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="OAuth/token validation profile and credential rotation documented where used">OAuth/token validation profile and credential rotation documented where used</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Browser clients follow RFC 10017 architecture, PKCE, redirect, cookie/session, CSRF, XSS, and token storage guidance">Browser clients follow RFC 10017 architecture, PKCE, redirect, cookie/session, CSRF, XSS, and token storage guidance</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Parser, body, decompression, pagination, export, and concurrency limits enforced">Parser, body, decompression, pagination, export, and concurrency limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Request smuggling differentials tested manually by the system owner or qualified assessor">Request smuggling differentials tested manually by the system owner or qualified assessor</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sensitive caching, logs, traces, URLs, and error fields reviewed">Sensitive caching, logs, traces, URLs, and error fields reviewed</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>HTTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc9110/" rel="noopener noreferrer">RFC 9110 / STD 97: HTTP Semantics</a>, IETF, June 2022.</li>
+<li><strong>HTTP CACHE</strong>, <a href="https://datatracker.ietf.org/doc/rfc9111/" rel="noopener noreferrer">RFC 9111: HTTP Caching</a>, IETF, June 2022.</li>
+<li><strong>HTTP1</strong>, <a href="https://datatracker.ietf.org/doc/rfc9112/" rel="noopener noreferrer">RFC 9112 / STD 99: HTTP/1.1</a>, IETF, June 2022, updated by RFC 9931.</li>
+<li><strong>HTTP2</strong>, <a href="https://datatracker.ietf.org/doc/rfc9113/" rel="noopener noreferrer">RFC 9113: HTTP/2</a>, IETF, June 2022.</li>
+<li><strong>HTTP3</strong>, <a href="https://datatracker.ietf.org/doc/rfc9114/" rel="noopener noreferrer">RFC 9114: HTTP/3</a>, IETF, June 2022.</li>
+<li><strong>HTTP TRANSITION</strong>, <a href="https://datatracker.ietf.org/doc/rfc9931/" rel="noopener noreferrer">RFC 9931: Security Considerations for Optimistic Protocol Transitions in HTTP/1.1</a>, IETF, March 2026.</li>
+<li><strong>TLS13</strong>, <a href="https://datatracker.ietf.org/doc/rfc8446/" rel="noopener noreferrer">RFC 8446: TLS 1.3</a>, IETF, August 2018.</li>
+<li><strong>OAUTH BCP</strong>, <a href="https://datatracker.ietf.org/doc/rfc9700/" rel="noopener noreferrer">RFC 9700 / BCP 240: Best Current Practice for OAuth 2.0 Security</a>, IETF, January 2025.</li>
+<li><strong>BROWSER BCP</strong>, <a href="https://www.rfc-editor.org/info/rfc10017/" rel="noopener noreferrer">RFC 10017: OAuth 2.0 for Browser Based Applications</a>, IETF.</li>
+<li><strong>HTTP SIG</strong>, <a href="https://datatracker.ietf.org/doc/rfc9421/" rel="noopener noreferrer">RFC 9421: HTTP Message Signatures</a>, IETF, February 2024.</li>
+<li><strong>PROBLEM</strong>, <a href="https://datatracker.ietf.org/doc/rfc9457/" rel="noopener noreferrer">RFC 9457: Problem Details for HTTP APIs</a>, IETF, July 2023.</li>
+<li><strong>FIELDING</strong>, <a href="https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm" rel="noopener noreferrer">Architectural Styles and the Design of Network based Software Architectures, Chapter 5</a>, Roy Fielding, 2000.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../grpc-and-serialization/"><span>Previous in this section</span>gRPC and serialisation contracts</a><a href="../mqtt/"><span>Next in this section</span>MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/web-and-messaging/http-and-rest.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/web-and-messaging/http-and-rest.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-protocol-bases">Current protocol bases</a></li><li class="toc-level-2"><a href="#s-resource-contract">Resource contract</a></li><li class="toc-level-2"><a href="#s-methods-safety-and-idempotency">Methods, safety, and idempotency</a></li><li class="toc-level-2"><a href="#s-concurrency-and-conditional-requests">Concurrency and conditional requests</a></li><li class="toc-level-2"><a href="#s-read-only-conditional-request-fixture">Read only conditional request fixture</a></li><li class="toc-level-2"><a href="#s-status-and-error-model">Status and error model</a></li><li class="toc-level-2"><a href="#s-pagination-filtering-and-time">Pagination, filtering, and time</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-3"><a href="#s-browser-based-oauth-clients">Browser based OAuth clients</a></li><li class="toc-level-2"><a href="#s-message-integrity-and-webhooks">Message integrity and webhooks</a></li><li class="toc-level-2"><a href="#s-parser-and-intermediary-safety">Parser and intermediary safety</a></li><li class="toc-level-2"><a href="#s-caching-and-sensitive-data">Caching and sensitive data</a></li><li class="toc-level-2"><a href="#s-client-reliability-contract">Client reliability contract</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

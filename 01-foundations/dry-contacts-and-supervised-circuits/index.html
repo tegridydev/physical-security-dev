@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Dry contacts and supervised circuits · Security Technician Wiki</title>
+<meta name="description" content="A dry contact reports an electrical state. Its meaning depends on the wiring, configuration and system design, so record those details before interpreting it as a door event.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/dry-contacts-and-supervised-circuits/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Dry contacts and supervised circuits · Security Technician Wiki">
+<meta property="og:description" content="A dry contact reports an electrical state. Its meaning depends on the wiring, configuration and system design, so record those details before interpreting it as a door event.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/dry-contacts-and-supervised-circuits/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="./" aria-current="page">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Dry contacts and supervised circuits</span></nav><div class="page-kicker">Foundations <span>About 3 min read</span></div><div class="prose"><h1 id="s-dry-contacts-and-supervised-circuits">Dry contacts and supervised circuits</h1>
+<p>A dry contact reports an electrical state. Its meaning depends on the wiring, configuration and system design, so record those details before interpreting it as a door event.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>No wiring values or actuation instructions; follow approved drawings, product manuals, and jurisdictional electrical/life safety requirements.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-terms">Terms</a></li><li class="toc-level-2"><a href="#s-separate-electrical-and-semantic-state">Separate electrical and semantic state</a></li><li class="toc-level-2"><a href="#s-relay-isnt-confirmation">Relay isn&#x27;t confirmation</a></li><li class="toc-level-2"><a href="#s-safety-and-isolation">Safety and isolation</a></li><li class="toc-level-2"><a href="#s-integration-design">Integration design</a></li><li class="toc-level-2"><a href="#s-source-boundary">Source boundary</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A relay contact is one of the most interoperable physical security interfaces, but it carries almost no semantics by itself. “Closed” can mean alarm, normal, energised, bypassed, unlock, fault, or nothing, depending on the approved design.</p>
+<h2 id="s-terms">Terms<a class="heading-link" href="#s-terms" aria-label="Link to Terms">#</a></h2>
+<ul>
+<li><strong>Dry/volt free contact:</strong> switch contact that doesn't intentionally supply voltage. Verify ratings and isolation; never assume a terminal is dry from its label alone.</li>
+<li><strong>NO / NC / COM:</strong> normally open, normally closed, and common relative to the relay's defined normal/de energised state, not necessarily the system's normal condition.</li>
+<li><strong>Digital input:</strong> senses an electrical state; it may supply a wetting voltage and have polarity or threshold requirements.</li>
+<li><strong>End of line (EOL) supervision:</strong> components at the circuit end allow the receiver to distinguish more than open/closed states.</li>
+</ul>
+<h2 id="s-separate-electrical-and-semantic-state">Separate electrical and semantic state<a class="heading-link" href="#s-separate-electrical-and-semantic-state" aria-label="Link to Separate electrical and semantic state">#</a></h2>
+<p>Define a mapping table in the approved design:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Electrical observation</th>
+  <th>Interpreted state</th>
+  <th>Quality/action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Expected normal range</td>
+  <td>normal</td>
+  <td>valid</td>
+</tr>
+<tr>
+  <td>Expected alarm range</td>
+  <td>active</td>
+  <td>valid alarm/event</td>
+</tr>
+<tr>
+  <td>Open circuit range</td>
+  <td>trouble or state, per design</td>
+  <td>do not guess</td>
+</tr>
+<tr>
+  <td>Short circuit range</td>
+  <td>trouble or state, per design</td>
+  <td>do not guess</td>
+</tr>
+<tr>
+  <td>Out of range/unstable</td>
+  <td>unknown/fault</td>
+  <td>raise health condition</td>
+</tr>
+</tbody>
+</table></div>
+<p>Single EOL, double EOL, and product specific schemes differ. Resistor values, tolerances, topology, cable resistance, input thresholds, debounce, and tamper semantics must come from exact documentation and approved drawings.</p>
+<h2 id="s-relay-isnt-confirmation">Relay isn't confirmation<a class="heading-link" href="#s-relay-isnt-confirmation" aria-label="Link to Relay isn&#x27;t confirmation">#</a></h2>
+<p>An output energizing doesn't prove the physical operation. Use a separate, appropriately designed monitor where the outcome matters:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">unlock request -&gt; controller accepts -&gt; lock output changes
+               -&gt; lock monitor changes (if present)
+               -&gt; door contact changes (if opened)
+</code></pre></div>
+<p>Each arrow has separate timing and failure modes. A door contact indicates leaf position, not lock security; a gate limit indicates position, not a clear path.</p>
+<h2 id="s-safety-and-isolation">Safety and isolation<a class="heading-link" href="#s-safety-and-isolation" aria-label="Link to Safety and isolation">#</a></h2>
+<p>Don't connect, bridge, force, meter, or actuate live fire, egress, lift, gate, lockdown, alarm, or emergency circuits based on generic guidance. Use qualified people, approved drawings, isolation boundaries, contact ratings, surge/fault protection, test windows, manual override, and independent observation.</p>
+<p>Avoid driving an inductive load directly from an interface relay unless the product and electrical design explicitly support it. Suppression components and polarity can affect release timing and monitoring; this is an electrical engineering decision.</p>
+<h2 id="s-integration-design">Integration design<a class="heading-link" href="#s-integration-design" aria-label="Link to Integration design">#</a></h2>
+<ul>
+<li>Name signals by meaning and polarity, not <code>input1</code> or <code>relay2</code> alone.</li>
+<li>Record normal/degraded/unknown behaviour during power loss, controller restart, cable fault, and communication loss.</li>
+<li>Debounce without hiding rapid fault transitions; preserve raw transition count where useful.</li>
+<li>Rate limit automated outputs and require operation level authorisation.</li>
+<li>Keep observation inputs physically/logically separate from actuation outputs.</li>
+<li>Audit request, controller result, output state, independent sensed state, and time quality separately.</li>
+</ul>
+<p>Dry contacts are intentionally simple. Don't invent identity, encryption, message integrity, sequence, or supervision properties they don't provide.</p>
+<h2 id="s-source-boundary">Source boundary<a class="heading-link" href="#s-source-boundary" aria-label="Link to Source boundary">#</a></h2>
+<ul>
+<li><a href="https://webstore.iec.ch/en/publication/3662" rel="noopener noreferrer">IEC 60839-11-1:2013</a> supplies the official catalogue scope for electronic access control system and component requirements.</li>
+<li><a href="https://webstore.iec.ch/en/publication/7298" rel="noopener noreferrer">IEC 62642-1:2010</a> supplies the official catalogue scope for intrusion and hold up alarm system requirements.</li>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a> supplies the OT safety, reliability, segmentation, and operational framing used here.</li>
+</ul>
+<p>Catalogue scope doesn't supply wiring values or product acceptance criteria. Resistor values, circuit classes, terminals, ratings, release behaviour, and acceptance criteria must come from the applicable licensed normative text, approved design, and exact product documentation.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../data-models-and-semantics/"><span>Previous in this section</span>Data models and semantics</a><a href="../encoding-and-serialization/"><span>Next in this section</span>Encoding and serialisation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/dry-contacts-and-supervised-circuits.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/dry-contacts-and-supervised-circuits.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-terms">Terms</a></li><li class="toc-level-2"><a href="#s-separate-electrical-and-semantic-state">Separate electrical and semantic state</a></li><li class="toc-level-2"><a href="#s-relay-isnt-confirmation">Relay isn&#x27;t confirmation</a></li><li class="toc-level-2"><a href="#s-safety-and-isolation">Safety and isolation</a></li><li class="toc-level-2"><a href="#s-integration-design">Integration design</a></li><li class="toc-level-2"><a href="#s-source-boundary">Source boundary</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

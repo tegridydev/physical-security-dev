@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Events, state, commands, and time · Security Technician Wiki</title>
+<meta name="description" content="Events record changes, state describes the current view of a system, and commands request an action. Keep those records distinct when building an integration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/events-state-commands-and-time/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Events, state, commands, and time · Security Technician Wiki">
+<meta property="og:description" content="Events record changes, state describes the current view of a system, and commands request an action. Keep those records distinct when building an integration.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/events-state-commands-and-time/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="./" aria-current="page">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Events, state, commands, and time</span></nav><div class="page-kicker">Foundations <span>About 3 min read</span></div><div class="prose"><h1 id="s-events-state-commands-and-time">Events, state, commands, and time</h1>
+<p>Events record changes, state describes the current view of a system, and commands request an action. Keep those records distinct when building an integration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Generic semantic model; each protocol defines its own delivery and state machine.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-four-distinct-records">Four distinct records</a></li><li class="toc-level-2"><a href="#s-event-envelope">Event envelope</a></li><li class="toc-level-2"><a href="#s-ordering-and-duplicates">Ordering and duplicates</a></li><li class="toc-level-2"><a href="#s-reconstructing-state">Reconstructing state</a></li><li class="toc-level-2"><a href="#s-command-lifecycle">Command lifecycle</a></li><li class="toc-level-2"><a href="#s-time-fields">Time fields</a></li><li class="toc-level-2"><a href="#s-alarm-lifecycle">Alarm lifecycle</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Treating an event as current state, or an acknowledgement as physical completion, is one of the most dangerous integration errors.</p>
+<h2 id="s-four-distinct-records">Four distinct records<a class="heading-link" href="#s-four-distinct-records" aria-label="Link to Four distinct records">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Record</th>
+  <th>Meaning</th>
+  <th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Observation/event</td>
+  <td>Something was reported at a point in time</td>
+  <td>Door contact changed to open</td>
+</tr>
+<tr>
+  <td>State estimate</td>
+  <td>Best current model assembled from evidence</td>
+  <td>Door is believed open as of sequence 884</td>
+</tr>
+<tr>
+  <td>Command</td>
+  <td>Requested intent</td>
+  <td>Unlock door for five seconds</td>
+</tr>
+<tr>
+  <td>Outcome/confirmation</td>
+  <td>Evidence of acceptance or physical result</td>
+  <td>Controller accepted; lock monitor later reported unlocked</td>
+</tr>
+</tbody>
+</table></div>
+<p>An access granted event says a decision was granted, not necessarily that the door opened. A relay activated response says an output was driven, not that a lock moved. Confirmations should identify what was actually measured.</p>
+<h2 id="s-event-envelope">Event envelope<a class="heading-link" href="#s-event-envelope" aria-label="Link to Event envelope">#</a></h2>
+<p>A useful canonical event contains:</p>
+<div class="code-block"><div class="code-toolbar"><span>yaml</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy yaml example">Copy</button></div><pre tabindex="0" aria-label="yaml example"><code id="code-1">event_id: source-or-derived-unique-id
+event_type: access.door.contact.changed
+entity_id: site-a/building-1/door-004
+source_time: 2026-08-25T10:04:17.314+10:00
+received_time: 2026-08-25T10:04:17.402+10:00
+sequence: 884
+value: open
+quality: confirmed
+source: controller-2
+schema_version: 2
+</code></pre></div>
+<p>If the source doesn't provide a stable event ID, a derived ID is a local deduplication aid, not source truth. Hashing mutable serialisation can produce different IDs for the same semantic event.</p>
+<h2 id="s-ordering-and-duplicates">Ordering and duplicates<a class="heading-link" href="#s-ordering-and-duplicates" aria-label="Link to Ordering and duplicates">#</a></h2>
+<p>Across reconnects, queues, gateways, and redundant paths, expect:</p>
+<ul>
+<li>duplicate delivery;</li>
+<li>events arriving out of source order;</li>
+<li>gaps in sequence;</li>
+<li>reset or wrap of counters;</li>
+<li>same timestamp for multiple events;</li>
+<li>clock stepping backward or forward;</li>
+<li>late delivery after a newer snapshot;</li>
+<li>replay of retained or cached messages.</li>
+</ul>
+<p>Prefer source local sequence when documented. Don't impose a false global order by receive time. Track an ordering key such as <code>(source, boot/session epoch, sequence)</code> and define what happens when one component is missing.</p>
+<h2 id="s-reconstructing-state">Reconstructing state<a class="heading-link" href="#s-reconstructing-state" aria-label="Link to Reconstructing state">#</a></h2>
+<p>Use snapshots to establish a baseline and events to advance it:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">subscribe/buffer -&gt; fetch snapshot -&gt; reconcile boundary -&gt; apply later events
+</code></pre></div>
+<p>The exact safe ordering is protocol specific. If the API can't provide a sequence consistent boundary, mark the state uncertain during reconciliation. Periodic authoritative snapshots can detect silent event loss.</p>
+<p>State should include quality:</p>
+<ul>
+<li><code>confirmed</code>: direct recent authoritative evidence;</li>
+<li><code>derived</code>: calculated from other fields;</li>
+<li><code>stale</code>: age exceeds policy;</li>
+<li><code>unknown</code>: insufficient or contradictory evidence;</li>
+<li><code>unsupported</code>: source can't express the property.</li>
+</ul>
+<p>Unknown must not silently become a safe/normal value.</p>
+<h2 id="s-command-lifecycle">Command lifecycle<a class="heading-link" href="#s-command-lifecycle" aria-label="Link to Command lifecycle">#</a></h2>
+<p>Model at least:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-3" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-3">requested -&gt; authorized -&gt; accepted/rejected -&gt; dispatched
+          -&gt; physically-confirmed | timed-out | indeterminate | compensated
+</code></pre></div>
+<p>Use an idempotency or command ID where the protocol supports one. After a timeout, query authoritative state before retrying an actuation. Automatic compensation is itself an actuation and may be unsafe when the first result is unknown.</p>
+<h2 id="s-time-fields">Time fields<a class="heading-link" href="#s-time-fields" aria-label="Link to Time fields">#</a></h2>
+<p>Keep source occurrence time, device monotonic/order value, receipt time, normalisation time, and storage time separate. Use an unambiguous offset or <code>Z</code> following the Internet timestamp profile in <a href="https://www.rfc-editor.org/rfc/rfc3339" rel="noopener noreferrer">RFC 3339</a>. Also retain clock uncertainty, synchronisation status, or device reported quality when available.</p>
+<p>Wall clock time is for correlation; monotonic time is for local durations and timeouts. Don't calculate a five second unlock or retry interval from a clock that can step.</p>
+<h2 id="s-alarm-lifecycle">Alarm lifecycle<a class="heading-link" href="#s-alarm-lifecycle" aria-label="Link to Alarm lifecycle">#</a></h2>
+<p>An alarm, acknowledgement, restore, cancel, and operator closure are distinct events. “Restore” means the source condition cleared; it doesn't prove the alarm was handled. Preserve the original alarm and append lifecycle facts rather than overwriting history.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../ethernet-poe-and-power-budgets/"><span>Previous in this section</span>Ethernet, PoE, and power budgets</a><a href="../identity-authentication-and-authorization/"><span>Next in this section</span>Identity, authentication, and authorisation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/events-state-commands-and-time.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/events-state-commands-and-time.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-four-distinct-records">Four distinct records</a></li><li class="toc-level-2"><a href="#s-event-envelope">Event envelope</a></li><li class="toc-level-2"><a href="#s-ordering-and-duplicates">Ordering and duplicates</a></li><li class="toc-level-2"><a href="#s-reconstructing-state">Reconstructing state</a></li><li class="toc-level-2"><a href="#s-command-lifecycle">Command lifecycle</a></li><li class="toc-level-2"><a href="#s-time-fields">Time fields</a></li><li class="toc-level-2"><a href="#s-alarm-lifecycle">Alarm lifecycle</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

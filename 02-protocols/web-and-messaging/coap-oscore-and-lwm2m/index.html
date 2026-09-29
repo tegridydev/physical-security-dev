@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>CoAP, OSCORE, and Lightweight M2M · Security Technician Wiki</title>
+<meta name="description" content="CoAP, OSCORE and LwM2M provide different parts of a constrained device system. Document which combination handles transport, message protection and device management.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/web-and-messaging/coap-oscore-and-lwm2m/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CoAP, OSCORE, and Lightweight M2M · Security Technician Wiki">
+<meta property="og:description" content="CoAP, OSCORE and LwM2M provide different parts of a constrained device system. Document which combination handles transport, message protection and device management.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/web-and-messaging/coap-oscore-and-lwm2m/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group" open><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="./" aria-current="page">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Web and messaging protocols</a><span aria-hidden="true">/</span><span aria-current="page">CoAP, OSCORE, and Lightweight M2M</span></nav><div class="page-kicker">Protocols <span>About 9 min read</span></div><div class="prose"><h1 id="s-coap-oscore-and-lightweight-m2m">CoAP, OSCORE, and Lightweight M2M</h1>
+<p>CoAP, OSCORE and LwM2M provide different parts of a constrained device system. Document which combination handles transport, message protection and device management.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Protocol and defensive device management architecture only; product object models, bootstrap credentials, carrier transports, certification, interoperability, firmware behaviour, and physical outcomes require system specific evidence.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-coap-resource-and-exchange-model">CoAP resource and exchange model</a></li><li class="toc-level-3"><a href="#s-udp-message-types">UDP message types</a></li><li class="toc-level-3"><a href="#s-coap-over-reliable-transports">CoAP over reliable transports</a></li><li class="toc-level-2"><a href="#s-options-representations-and-parsers">Options, representations, and parsers</a></li><li class="toc-level-2"><a href="#s-observe-and-block-wise-transfer">Observe and block wise transfer</a></li><li class="toc-level-2"><a href="#s-intermediaries-caching-and-server-side-retrieval">Intermediaries, caching, and server side retrieval</a></li><li class="toc-level-2"><a href="#s-security-choices">Security choices</a></li><li class="toc-level-3"><a href="#s-oscore-context">OSCORE context</a></li><li class="toc-level-2"><a href="#s-lightweight-m2m-122">Lightweight M2M 1.2.2</a></li><li class="toc-level-3"><a href="#s-registration-and-reporting">Registration and reporting</a></li><li class="toc-level-3"><a href="#s-bootstrap-and-credential-lifecycle">Bootstrap and credential lifecycle</a></li><li class="toc-level-3"><a href="#s-firmware-and-high-impact-operations">Firmware and high impact operations</a></li><li class="toc-level-2"><a href="#s-safe-integration-pattern">Safe integration pattern</a></li><li class="toc-level-2"><a href="#s-design-and-evidence-checklist">Design and evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>The Constrained Application Protocol (CoAP) is a compact request/response protocol for constrained nodes and networks. It has HTTP like methods and response classes but different transport, retransmission, discovery, observation, caching, and security behaviour. Lightweight M2M (LwM2M) builds a standardised device management and service enablement model on CoAP. OSCORE protects CoAP exchanges at the message layer. <a href="https://www.rfc-editor.org/info/rfc7252/" rel="noopener noreferrer">COAP</a> <a href="https://www.openmobilealliance.org/specifications/lwm2m/releases/" rel="noopener noreferrer">LWM2M</a></p>
+<p>These technologies are composable, not interchangeable:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">application resource model       vendor model or LwM2M Objects/Resources
+CoAP semantics                   methods, options, codes, Observe, block transfer
+message protection               OSCORE where selected
+transport protection             DTLS / TLS where selected
+transport                        UDP / TCP / WebSocket profile
+network                          IP and the applicable constrained network
+</code></pre></div>
+<p>An implementation must state the exact stack and profile. “CoAP secure,” “LwM2M,” or a familiar UDP port isn't enough to determine transport, identity, message protection, bootstrap mode, or authorisation.</p>
+<h2 id="s-coap-resource-and-exchange-model">CoAP resource and exchange model<a class="heading-link" href="#s-coap-resource-and-exchange-model" aria-label="Link to CoAP resource and exchange model">#</a></h2>
+<p>CoAP identifies resources with URIs and uses <code>GET</code>, <code>POST</code>, <code>PUT</code>, and <code>DELETE</code> methods. Responses use code classes: <code>2.xx</code> success, <code>4.xx</code> client error, and <code>5.xx</code> server error. The meaning of a successful application response is resource specific; it doesn't prove a motor moved, a relay changed, an alarm was received by an operator, or a firmware update completed.</p>
+<h3 id="s-udp-message-types">UDP message types<a class="heading-link" href="#s-udp-message-types" aria-label="Link to UDP message types">#</a></h3>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Type</th>
+  <th>Purpose</th>
+  <th>Important boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Confirmable (<code>CON</code>)</td>
+  <td>Requests an acknowledgment and supports retransmission</td>
+  <td>Delivery exchange only; acknowledgment is not domain completion</td>
+</tr>
+<tr>
+  <td>Non confirmable (<code>NON</code>)</td>
+  <td>No CoAP acknowledgment requested</td>
+  <td>Loss and reordering remain possible</td>
+</tr>
+<tr>
+  <td>Acknowledgment (<code>ACK</code>)</td>
+  <td>Acknowledges a <code>CON</code>; may carry a piggybacked response</td>
+  <td>An empty or piggybacked ACK does not attest to physical outcome</td>
+</tr>
+<tr>
+  <td>Reset (<code>RST</code>)</td>
+  <td>Indicates that a message could not be processed in the expected context</td>
+  <td>Not a general application error response</td>
+</tr>
+</tbody>
+</table></div>
+<p>The <strong>Message ID</strong> supports duplicate detection and matching for the local message layer exchange. The <strong>Token</strong> correlates a request and response across message layer details, including a separate response. Neither is a permanent event ID, authorisation credential, or fleet wide idempotency key. Use a domain operation identifier and durable deduplication policy for side effecting work.</p>
+<p>A server can acknowledge a confirmable request and send the response separately later. Timeouts therefore need distinct budgets for message acknowledgment, application response, and authoritative device outcome. Avoid blind retry after an indeterminate result: the server may have committed an operation before the response was lost.</p>
+<h3 id="s-coap-over-reliable-transports">CoAP over reliable transports<a class="heading-link" href="#s-coap-over-reliable-transports" aria-label="Link to CoAP over reliable transports">#</a></h3>
+<p>RFC 8323 defines CoAP over TCP, TLS, and WebSockets. Reliable transports use length framing and signalling behaviour rather than copying the UDP message retransmission model unchanged. Don't assume UDP Message IDs, confirmable message timers, multicast, or intermediary behaviour apply to a TCP/TLS/WebSocket binding. <a href="https://www.rfc-editor.org/info/rfc8323/" rel="noopener noreferrer">COAP TCP</a></p>
+<p>IANA service names and ports such as <code>coap</code>/5683 and <code>coaps</code>/5684 are conventions, not protocol or security detection. A deployment should identify the negotiated stack from approved configuration and authenticated context. <a href="https://www.rfc-editor.org/info/rfc7252/" rel="noopener noreferrer">COAP</a></p>
+<h2 id="s-options-representations-and-parsers">Options, representations, and parsers<a class="heading-link" href="#s-options-representations-and-parsers" aria-label="Link to Options, representations, and parsers">#</a></h2>
+<p>CoAP options carry URI components, content negotiation, freshness, observation, proxying, and extensions. Option numbers encode critical/elective and safe to forward properties. A parser should:</p>
+<ul>
+<li>reject malformed option deltas/lengths, truncated values, and invalid message framing;</li>
+<li>implement the standard rules for unknown critical options instead of ignoring them;</li>
+<li>cap total message, option count/length, token length, URI length, payload, nesting, and decoded object size;</li>
+<li>allow only approved content formats and validate the representation independently;</li>
+<li>keep URI path and query normalisation consistent across routing, authorisation, caching, and logs;</li>
+<li>treat remote diagnostics, entity tags, location values, and all representation metadata as untrusted.</li>
+</ul>
+<p>Content Format identifies a representation format, not schema validity. CBOR, SenML, JSON, and vendor binary objects each need their own duplicate key, number range, depth, allocation, canonicalization, and extension policy.</p>
+<h2 id="s-observe-and-block-wise-transfer">Observe and block wise transfer<a class="heading-link" href="#s-observe-and-block-wise-transfer" aria-label="Link to Observe and block wise transfer">#</a></h2>
+<p>RFC 7641 lets a client observe a resource and receive notifications. Observation is a soft state relationship. Preserve sequence/freshness rules, <code>Max-Age</code>, registration/re registration behaviour, cancellation, authorisation expiry, and gaps. A recently received notification is still an observation, not proof of present physical state; record source time, receipt time, quality, and the point at which state becomes stale. <a href="https://www.rfc-editor.org/info/rfc7641/" rel="noopener noreferrer">OBSERVE</a></p>
+<p>RFC 7959 defines block wise transfer for representations too large for one message. Block1 and Block2 aren't generic file transfer transactions. Bound total reconstructed size, block number, block size, concurrent bodies, inactivity, out of order behaviour, and storage. Authenticate and authorise the completed logical operation consistently; don't let individually acceptable blocks bypass whole object validation. <a href="https://www.rfc-editor.org/info/rfc7959/" rel="noopener noreferrer">BLOCKWISE</a></p>
+<h2 id="s-intermediaries-caching-and-server-side-retrieval">Intermediaries, caching, and server side retrieval<a class="heading-link" href="#s-intermediaries-caching-and-server-side-retrieval" aria-label="Link to Intermediaries, caching, and server side retrieval">#</a></h2>
+<p>CoAP supports proxies and cacheable responses. <code>Proxy-Uri</code>, <code>Proxy-Scheme</code>, URI options, redirects at another protocol layer, and externally referenced content can turn a gateway into a server side request forgery path.</p>
+<ul>
+<li>Resolve only approved schemes and destinations; reject loopback, link local, metadata service, management, and unexpected private network targets.</li>
+<li>Revalidate after name resolution and every permitted redirection or proxy transition.</li>
+<li>Include method, effective URI, representation negotiation, OSCORE/security context, tenant, and authorisation policy in cache decisions.</li>
+<li>Never share a private representation merely because its URI and freshness metadata match.</li>
+<li>Bound cache entry size/count, negative caching, freshness, revalidation, and key cardinality.</li>
+<li>Keep proxy credentials and topology out of client visible errors and ordinary logs.</li>
+</ul>
+<h2 id="s-security-choices">Security choices<a class="heading-link" href="#s-security-choices" aria-label="Link to Security choices">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Mechanism</th>
+  <th>Protects</th>
+  <th>Does not by itself provide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>DTLS for CoAP/UDP</td>
+  <td>Transport channel between DTLS peers</td>
+  <td>End to end protection through a terminating proxy; application authorisation; physical outcome</td>
+</tr>
+<tr>
+  <td>TLS for CoAP/TCP or WebSocket</td>
+  <td>Reliable transport channel between TLS peers</td>
+  <td>Message protection beyond a terminating intermediary; resource policy</td>
+</tr>
+<tr>
+  <td>OSCORE</td>
+  <td>Selected CoAP code/options and payload between OSCORE endpoints, with integrity, confidentiality, and replay protection</td>
+  <td>Automatic credential provisioning, trust in the endpoint's role, or authorisation for a resource</td>
+</tr>
+<tr>
+  <td>Network segmentation</td>
+  <td>Reduced reachability and blast radius</td>
+  <td>Cryptographic peer identity or message integrity</td>
+</tr>
+</tbody>
+</table></div>
+<p>DTLS 1.3 is specified by RFC 9147, but constrained products can support older or restricted profiles. Record protocol versions, cipher/profile, credential type, peer identity, resumption behaviour, time dependence, and update path. Don't label an endpoint secure solely because it uses <code>coaps</code>. <a href="https://www.rfc-editor.org/info/rfc9147/" rel="noopener noreferrer">DTLS13</a></p>
+<h3 id="s-oscore-context">OSCORE context<a class="heading-link" href="#s-oscore-context" aria-label="Link to OSCORE context">#</a></h3>
+<p>RFC 8613 uses AEAD protection and an OSCORE security context to protect CoAP messages while allowing selected outer fields needed by intermediaries to remain visible. Engineering records should include:</p>
+<ul>
+<li>context establishment/provisioning method and authenticated peer identity;</li>
+<li>master secret/salt custody, sender and recipient IDs, ID Context use, and algorithm suite;</li>
+<li>sender sequence persistence and recovery rules that prevent nonce reuse;</li>
+<li>replay window size and behaviour after reboot, restore, failover, or cloned state;</li>
+<li>which options remain outer visible and what metadata they disclose;</li>
+<li>group versus pairwise design, since group security and authorisation require a separate applicable profile;</li>
+<li>rekey, decommissioning, loss recovery, and multi server ownership.</li>
+</ul>
+<p>OSCORE survives some proxy architectures because protection is bound to the CoAP message rather than each transport hop. A proxy can still observe or modify unprotected fields and availability, and an OSCORE authenticated peer can still lack permission for the requested physical resource. <a href="https://www.rfc-editor.org/info/rfc8613/" rel="noopener noreferrer">OSCORE</a></p>
+<p>RFC 9175 defines Echo and Request Tag options and updates Token processing. Echo can support freshness checks, while Request Tag distinguishes request bodies in relevant block wise/retransmission cases. These mechanisms must be implemented under their specified rules; they aren't substitutes for OSCORE/DTLS, a durable operation ID, or post condition confirmation. <a href="https://www.rfc-editor.org/info/rfc9175/" rel="noopener noreferrer">COAP 9175</a></p>
+<h2 id="s-lightweight-m2m-122">Lightweight M2M 1.2.2<a class="heading-link" href="#s-lightweight-m2m-122" aria-label="Link to Lightweight M2M 1.2.2">#</a></h2>
+<p>OMA Lightweight M2M 1.2.2 defines a device management architecture and object/resource model over CoAP. The principal roles are:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Role</th>
+  <th>Responsibility</th>
+  <th>Trust concern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>LwM2M Client</td>
+  <td>Exposes Object Instances and Resources on a device or gateway</td>
+  <td>Can expose sensitive identity, telemetry, configuration, and actuation</td>
+</tr>
+<tr>
+  <td>LwM2M Server</td>
+  <td>Registers clients and performs authorised management/service operations</td>
+  <td>High value fleet control plane</td>
+</tr>
+<tr>
+  <td>LwM2M Bootstrap Server</td>
+  <td>Provisions server and security information</td>
+  <td>Highest privilege enrollment path; compromise can redirect fleet trust</td>
+</tr>
+</tbody>
+</table></div>
+<p>Core interfaces cover bootstrap, registration, device management/service enablement, and information reporting. Resources are addressed by Object, Object Instance, Resource, and where applicable Resource Instance identifiers. Object IDs and resource types provide structure; a deployment still needs the exact object version, data type, access mode, units, range, optionality, and vendor extension contract. <a href="https://www.openmobilealliance.org/release/lightweightm2m/V1_2_2-20240613-A/HTML-Version/OMA-TS-LightweightM2M_Core-V1_2_2-20240613-A.html" rel="noopener noreferrer">LWM2M CORE</a></p>
+<h3 id="s-registration-and-reporting">Registration and reporting<a class="heading-link" href="#s-registration-and-reporting" aria-label="Link to Registration and reporting">#</a></h3>
+<p>Registration establishes the client's declared object capability and location at a server. Update, lifetime expiry, queue behaviour, network change, and re registration affect reachability. Registration success means that server/client protocol state exists, not that every sensor is fresh or every downstream physical function is healthy.</p>
+<p>Information reporting commonly uses CoAP Observe semantics. Define minimum/maximum reporting periods, thresholds, stale state rules, queue mode behaviour, clock quality, and reconnection reconciliation. Rate limits must account for fleet wide reconnect or threshold storms.</p>
+<h3 id="s-bootstrap-and-credential-lifecycle">Bootstrap and credential lifecycle<a class="heading-link" href="#s-bootstrap-and-credential-lifecycle" aria-label="Link to Bootstrap and credential lifecycle">#</a></h3>
+<p>Bootstrap can install or replace security sensitive server relationships. Use an explicit ownership model, unique per device credentials, authenticated bootstrap identity, destination allowlists, bounded retry, audit evidence, and a closed/bootstrap disabled normal state where the product supports it. Never experiment with live bootstrap discovery or server replacement to learn a device's behaviour.</p>
+<p>Protect LwM2M Security and Server Object data from ordinary read paths and logs. Plan manufacturing enrolment, ownership transfer, credential rotation, server migration, backup/restore, compromised device quarantine, and decommissioning. A copied device image must not clone operational identity or OSCORE sender state.</p>
+<h3 id="s-firmware-and-high-impact-operations">Firmware and high impact operations<a class="heading-link" href="#s-firmware-and-high-impact-operations" aria-label="Link to Firmware and high impact operations">#</a></h3>
+<p>Firmware Update and vendor management objects can alter code, reset devices, change networks, or affect outputs. Require signed update metadata/package validation, anti rollback policy, compatible hardware/version checks, staged rollout, power loss recovery, rate limits, and an independent health signal. A download response or execute request isn't update completion; preserve states for downloaded, verified, installing, rebooting, confirmed, rolled back, and failed.</p>
+<p>Treat reboot, factory reset, credential change, network reconfiguration, relay/output, lock, camera privacy, alarm, and local rule changes as high impact. Separate authorisation, approval, maintenance window, idempotency, and recovery controls from ordinary telemetry reads.</p>
+<h2 id="s-safe-integration-pattern">Safe integration pattern<a class="heading-link" href="#s-safe-integration-pattern" aria-label="Link to Safe integration pattern">#</a></h2>
+<p>A defensive gateway should begin with a declared resource allowlist and read only behaviour:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">authenticated peer
+      |
+      v
+transport / OSCORE validation
+      |
+      v
+method + URI + content-format + size policy
+      |
+      v
+schema and object-version validation
+      |
+      +----&gt; bounded read / observe ----&gt; normalized state with quality
+      |
+      +----&gt; high-impact method -------&gt; separate authorization and workflow
+</code></pre></div>
+<p>Don't perform live multicast discovery, bootstrap, observe registration, firmware transfer, resource writes, execute operations, or group actuation as a documentation validation technique. Static review can verify message field interpretation, URI/option limits, credential ownership, object version mapping, authorisation design, and synthetic fixture expectations without contacting a device.</p>
+<h2 id="s-design-and-evidence-checklist">Design and evidence checklist<a class="heading-link" href="#s-design-and-evidence-checklist" aria-label="Link to Design and evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="CoAP version, UDP/TCP/TLS/WebSocket binding, URI scheme, and security profile explicit">CoAP version, UDP/TCP/TLS/WebSocket binding, URI scheme, and security profile explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Message ID, Token, domain operation ID, retry, timeout, and completion semantics kept separate">Message ID, Token, domain operation ID, retry, timeout, and completion semantics kept separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Method, URI, options, content format, schema, size, depth, allocation, and rate limits defined">Method, URI, options, content format, schema, size, depth, allocation, and rate limits defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Observe freshness, sequence/gap, cancellation, authorisation renewal, and resubscription behaviour documented">Observe freshness, sequence/gap, cancellation, authorisation renewal, and resubscription behaviour documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Block wise total size, concurrency, inactivity, and whole object validation bounded">Block wise total size, concurrency, inactivity, and whole object validation bounded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Proxy, external reference, DNS, redirect, cache key, and tenant isolation policy reviewed">Proxy, external reference, DNS, redirect, cache key, and tenant isolation policy reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="DTLS/TLS identity and OSCORE context, sequence persistence, replay, rekey, and restore behaviour recorded">DTLS/TLS identity and OSCORE context, sequence persistence, replay, rekey, and restore behaviour recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="LwM2M object/resource versions and vendor extensions inventoried">LwM2M object/resource versions and vendor extensions inventoried</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Bootstrap server, LwM2M server, client identity, ownership transfer, and decommissioning controlled">Bootstrap server, LwM2M server, client identity, ownership transfer, and decommissioning controlled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Firmware, reset, credential, network, relay, lock, alarm, and other high impact operations separated from telemetry">Firmware, reset, credential, network, relay, lock, alarm, and other high impact operations separated from telemetry</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Protocol acknowledgment/success can&#x27;t masquerade as physical or operational completion">Protocol acknowledgment/success can't masquerade as physical or operational completion</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Audit evidence records trusted identity, resource, decision, operation ID, result stage, and authoritative post condition">Audit evidence records trusted identity, resource, decision, operation ID, result stage, and authoritative post condition</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>COAP</strong>, <a href="https://www.rfc-editor.org/info/rfc7252/" rel="noopener noreferrer">RFC 7252: The Constrained Application Protocol</a>, IETF, June 2014.</li>
+<li><strong>COAP TCP</strong>, <a href="https://www.rfc-editor.org/info/rfc8323/" rel="noopener noreferrer">RFC 8323: CoAP over TCP, TLS, and WebSockets</a>, IETF, February 2018.</li>
+<li><strong>OSCORE</strong>, <a href="https://www.rfc-editor.org/info/rfc8613/" rel="noopener noreferrer">RFC 8613: Object Security for Constrained RESTful Environments</a>, IETF, July 2019.</li>
+<li><strong>COAP 9175</strong>, <a href="https://www.rfc-editor.org/info/rfc9175/" rel="noopener noreferrer">RFC 9175: CoAP: Echo, Request Tag, and Token Processing</a>, IETF, March 2022.</li>
+<li><strong>OBSERVE</strong>, <a href="https://www.rfc-editor.org/info/rfc7641/" rel="noopener noreferrer">RFC 7641: Observing Resources in the Constrained Application Protocol</a>, IETF, September 2015.</li>
+<li><strong>BLOCKWISE</strong>, <a href="https://www.rfc-editor.org/info/rfc7959/" rel="noopener noreferrer">RFC 7959: Block Wise Transfers in the Constrained Application Protocol</a>, IETF, August 2016.</li>
+<li><strong>DTLS13</strong>, <a href="https://www.rfc-editor.org/info/rfc9147/" rel="noopener noreferrer">RFC 9147: The Datagram Transport Layer Security Protocol Version 1.3</a>, IETF, April 2022.</li>
+<li><strong>LWM2M</strong>, <a href="https://www.openmobilealliance.org/specifications/lwm2m/releases/" rel="noopener noreferrer">OMA Lightweight M2M releases</a>, Open Mobile Alliance, accessed 25 August 2026.</li>
+<li><strong>LWM2M CORE</strong>, <a href="https://www.openmobilealliance.org/release/lightweightm2m/V1_2_2-20240613-A/HTML-Version/OMA-TS-LightweightM2M_Core-V1_2_2-20240613-A.html" rel="noopener noreferrer">Lightweight M2M Core 1.2.2</a>, Open Mobile Alliance, approved 13 June 2024.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../cap-and-edxl-emergency-messaging/"><span>Previous in this section</span>CAP and EDXL emergency messaging</a><a href="../grpc-and-serialization/"><span>Next in this section</span>gRPC and serialisation contracts</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/web-and-messaging/coap-oscore-and-lwm2m.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/web-and-messaging/coap-oscore-and-lwm2m.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-coap-resource-and-exchange-model">CoAP resource and exchange model</a></li><li class="toc-level-3"><a href="#s-udp-message-types">UDP message types</a></li><li class="toc-level-3"><a href="#s-coap-over-reliable-transports">CoAP over reliable transports</a></li><li class="toc-level-2"><a href="#s-options-representations-and-parsers">Options, representations, and parsers</a></li><li class="toc-level-2"><a href="#s-observe-and-block-wise-transfer">Observe and block wise transfer</a></li><li class="toc-level-2"><a href="#s-intermediaries-caching-and-server-side-retrieval">Intermediaries, caching, and server side retrieval</a></li><li class="toc-level-2"><a href="#s-security-choices">Security choices</a></li><li class="toc-level-3"><a href="#s-oscore-context">OSCORE context</a></li><li class="toc-level-2"><a href="#s-lightweight-m2m-122">Lightweight M2M 1.2.2</a></li><li class="toc-level-3"><a href="#s-registration-and-reporting">Registration and reporting</a></li><li class="toc-level-3"><a href="#s-bootstrap-and-credential-lifecycle">Bootstrap and credential lifecycle</a></li><li class="toc-level-3"><a href="#s-firmware-and-high-impact-operations">Firmware and high impact operations</a></li><li class="toc-level-2"><a href="#s-safe-integration-pattern">Safe integration pattern</a></li><li class="toc-level-2"><a href="#s-design-and-evidence-checklist">Design and evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

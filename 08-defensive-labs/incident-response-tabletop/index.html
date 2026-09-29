@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Physical security incident response tabletop · Security Technician Wiki</title>
+<meta name="description" content="Use a fictional incident to practise evidence collection, approvals and service continuity decisions. Record the proposed response without making changes to live systems.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/incident-response-tabletop/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Physical security incident response tabletop · Security Technician Wiki">
+<meta property="og:description" content="Use a fictional incident to practise evidence collection, approvals and service continuity decisions. Record the proposed response without making changes to live systems.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/incident-response-tabletop/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="../modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="../mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="../onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="./" aria-current="page">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="../sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="../time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">Physical security incident response tabletop</span></nav><div class="page-kicker">Defensive labs <span>About 2 min read</span></div><div class="prose"><h1 id="s-physical-security-incident-response-tabletop">Physical security incident response tabletop</h1>
+<p>Use a fictional incident to practise evidence collection, approvals and service continuity decisions. Record the proposed response without making changes to live systems.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline research and planning only; product or deployment acceptance belongs to separately governed environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-scenario">Scenario</a></li><li class="toc-level-2"><a href="#s-injects">Injects</a></li><li class="toc-level-2"><a href="#s-decisions-to-record">Decisions to record</a></li><li class="toc-level-2"><a href="#s-success-criteria">Success criteria</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Tabletop</strong></p>
+<h2 id="s-scenario">Scenario<a class="heading-link" href="#s-scenario" aria-label="Link to Scenario">#</a></h2>
+<p>An operator reports intermittent camera loss and delayed door events. Monitoring then detects a newly used vendor support account, a management certificate change and outbound traffic from a gateway. Some controllers retain local operation; the team can't yet trust timestamps across systems.</p>
+<h2 id="s-injects">Injects<a class="heading-link" href="#s-injects" aria-label="Link to Injects">#</a></h2>
+<ol>
+<li>A critical entrance is affected during an occupied period.</li>
+<li>The vendor cloud status page reports no incident.</li>
+<li>A recorder contains relevant footage but is near capacity.</li>
+<li>A controller's audit disagrees with the central PACS timeline.</li>
+<li>The support account is shared by multiple contractors.</li>
+<li>The latest configuration backup postdates the suspected compromise.</li>
+<li>A proposal to reboot or factory reset affected devices would remove volatile evidence.</li>
+</ol>
+<h2 id="s-decisions-to-record">Decisions to record<a class="heading-link" href="#s-decisions-to-record" aria-label="Link to Decisions to record">#</a></h2>
+<ul>
+<li>human/physical safety authority and compensating coverage;</li>
+<li>incident scope and authoritative communication;</li>
+<li>narrow identity/network containment versus loss of function;</li>
+<li>evidence priorities, clock uncertainty and custody;</li>
+<li>vendor/monitoring centre engagement;</li>
+<li>trust/key/account revocation and replacement;</li>
+<li>known good build/configuration selection;</li>
+<li>controller/server/cloud state reconciliation;</li>
+<li>system owner acceptance required before return to service;</li>
+<li>disclosure, lessons and evergreen KB updates.</li>
+</ul>
+<h2 id="s-success-criteria">Success criteria<a class="heading-link" href="#s-success-criteria" aria-label="Link to Success criteria">#</a></h2>
+<p>The team avoids unsafe blanket shutdown, preserves evidence, revokes narrow compromised access, maintains approved physical coverage, records uncertainty, chooses a trusted recovery basis and assigns every follow up owner/date.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Safety, security, operations, privacy, legal, vendor, and communications roles assigned">Safety, security, operations, privacy, legal, vendor, and communications roles assigned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Incident scope, timestamp uncertainty, and authoritative communication path recorded">Incident scope, timestamp uncertainty, and authoritative communication path recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Containment options evaluated against continuing physical security and life safety needs">Containment options evaluated against continuing physical security and life safety needs</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Volatile, video, controller, identity, network, and configuration evidence priorities documented">Volatile, video, controller, identity, network, and configuration evidence priorities documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Shared support identity, certificate change, outbound traffic, and backup trust injects resolved">Shared support identity, certificate change, outbound traffic, and backup trust injects resolved</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Known good recovery basis, credential/key replacement, reconciliation, and rollback defined">Known good recovery basis, credential/key replacement, reconciliation, and rollback defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Return to service authority, evidence, residual risk, follow up owners, and dates assigned">Return to service authority, evidence, residual risk, follow up owners, and dates assigned</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" rel="noopener noreferrer">NIST SP 800-61 Rev. 3</a>, accessed 25 August 2026.</li>
+<li><a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../07-operations-and-lifecycle/incident-response-and-evidence/">Incident response and evidence</a></li>
+<li><a href="../../07-operations-and-lifecycle/runbooks/">Operational runbooks</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../osdp-and-wiegand-offline-decoding/"><span>Previous in this section</span>OSDP and Wiegand offline decoding</a><a href="../rtsp-rtp-sdp-trace-analysis/"><span>Next in this section</span>RTSP, RTP, RTCP, and SDP trace analysis</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/incident-response-tabletop.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/incident-response-tabletop.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-scenario">Scenario</a></li><li class="toc-level-2"><a href="#s-injects">Injects</a></li><li class="toc-level-2"><a href="#s-decisions-to-record">Decisions to record</a></li><li class="toc-level-2"><a href="#s-success-criteria">Success criteria</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

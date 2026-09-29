@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Defensive labs · Security Technician Wiki</title>
+<meta name="description" content="Practise using synthetic traces, sanitised configurations and tabletop scenarios. The exercises stay offline and separate from operational devices, real credentials and physical controls.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Defensive labs · Security Technician Wiki">
+<meta property="og:description" content="Practise using synthetic traces, sanitised configurations and tabletop scenarios. The exercises stay offline and separate from operational devices, real credentials and physical controls.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="./" aria-current=page><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="time-drift-and-event-correlation/">Time drift and event correlation</a></li><li><a href="tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Defensive labs</span></nav><div class="page-kicker">Defensive labs <span>About 2 min read</span></div><div class="prose"><h1 id="s-defensive-labs">Defensive labs</h1>
+<p>Practise using synthetic traces, sanitised configurations and tabletop scenarios. The exercises stay offline and separate from operational devices, real credentials and physical controls.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lab-classes">Lab classes</a></li><li class="toc-level-2"><a href="#s-labs">Labs</a></li><li class="toc-level-2"><a href="#s-prohibited-lab-actions">Prohibited lab actions</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>These labs are bounded research procedures based on synthetic fixtures, offline artefacts, calculations, or loopback simulation. They teach interpretation and evidence planning without requiring an operational system.</p>
+<blockquote>
+<p>Lab scope is limited to synthetic or sanitised offline artefacts, calculations, table tops, simulated topologies, and local loopback simulation. External networks, operational systems, physical devices, real credentials, dispatchable alarms, and physical actuation are excluded.</p>
+</blockquote>
+<h2 id="s-lab-classes">Lab classes<a class="heading-link" href="#s-lab-classes" aria-label="Link to Lab classes">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Class</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Offline fixture</td>
+  <td>Embedded synthetic text/bytes; preferred</td>
+</tr>
+<tr>
+  <td>Calculation</td>
+  <td>Synthetic inputs evaluated with documented units, assumptions, and uncertainty</td>
+</tr>
+<tr>
+  <td>Tabletop</td>
+  <td>A paper scenario used to reason about roles, decisions, evidence, and recovery</td>
+</tr>
+<tr>
+  <td>Loopback simulation</td>
+  <td>Synthetic local components bound exclusively to operating system loopback, with no route to an external network or device</td>
+</tr>
+<tr>
+  <td>Simulated topology</td>
+  <td>Invented components and flows documented without a network or device</td>
+</tr>
+</tbody>
+</table></div>
+<p>Physical hardware, field buses, devices, real brokers, monitoring receivers, service endpoints, and external networks aren't lab classes. Use the separate commissioning and acceptance process for them.</p>
+<h2 id="s-labs">Labs<a class="heading-link" href="#s-labs" aria-label="Link to Labs">#</a></h2>
+<ul>
+<li><a href="authorization-topology-and-safety/">Authorisation, topology, and safety</a></li>
+<li><a href="offline-packet-and-trace-reading/">Offline packet and trace reading</a></li>
+<li><a href="tls-certificate-chain-review/">TLS certificate chain review</a></li>
+<li><a href="onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li>
+<li><a href="rtsp-rtp-sdp-trace-analysis/">RTSP/RTP/SDP trace analysis</a></li>
+<li><a href="mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li>
+<li><a href="websocket-event-flow-review/">WebSocket event flow review</a></li>
+<li><a href="osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li>
+<li><a href="sia-dc09-validation-planning/">SIA DC09 validation planning</a></li>
+<li><a href="modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li>
+<li><a href="time-drift-and-event-correlation/">Time drift and event correlation</a></li>
+<li><a href="snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li>
+<li><a href="video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li>
+<li><a href="camera-and-controller-hardening-review/">Camera and controller hardening review</a></li>
+<li><a href="certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li>
+<li><a href="incident-response-tabletop/">Incident response tabletop</a></li>
+</ul>
+<h2 id="s-prohibited-lab-actions">Prohibited lab actions<a class="heading-link" href="#s-prohibited-lab-actions" aria-label="Link to Prohibited lab actions">#</a></h2>
+<ul>
+<li>Internet or production scanning; brute force; password lists; credential harvesting.</li>
+<li>Card/credential cloning, live replay, bypass, evasion or jamming.</li>
+<li>Denial of service, exploit delivery, undocumented privileged APIs or firmware tampering.</li>
+<li>Unlocking/locking doors, moving gates/elevators, disarming/silencing alarms, energizing relays or generating monitoring centre dispatch.</li>
+<li>Capturing or using traffic, media, credentials or personal data belonging to others.</li>
+<li>Connecting to physical devices, field wiring, real brokers, monitoring receivers, service endpoints, or any non loopback network.</li>
+</ul>
+<p>Owner authorised physical acceptance is a separate activity governed by the <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">environment validation checklist</a>, manufacturer instructions, site change control, and the responsible safety or operations authority. It isn't a defensive lab.</p>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../05-development-and-integration/examples/">Reference examples</a></li>
+<li><a href="../06-security-and-assurance/">Security and assurance</a></li>
+<li><a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">Environment validation checklist</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="camera-and-controller-hardening-review/"><span>Next in this section</span>Camera and controller hardening review</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lab-classes">Lab classes</a></li><li class="toc-level-2"><a href="#s-labs">Labs</a></li><li class="toc-level-2"><a href="#s-prohibited-lab-actions">Prohibited lab actions</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

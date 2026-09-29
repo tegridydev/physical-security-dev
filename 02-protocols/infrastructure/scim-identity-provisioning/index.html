@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>SCIM identity provisioning and reconciliation · Security Technician Wiki</title>
+<meta name="description" content="SCIM exchanges identity lifecycle information between systems. Track provisioning results and check whether changes have reached dependent credentials and access policies.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/infrastructure/scim-identity-provisioning/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SCIM identity provisioning and reconciliation · Security Technician Wiki">
+<meta property="og:description" content="SCIM exchanges identity lifecycle information between systems. Track provisioning results and check whether changes have reached dependent credentials and access policies.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/infrastructure/scim-identity-provisioning/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group" open><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../aaa-and-network-access/">AAA and network access</a></li><li><a href="../discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="./" aria-current="page">SCIM identity provisioning and reconciliation</a></li><li><a href="../serial-transports/">Serial transports</a></li><li><a href="../tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group"><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../../video-and-media/">Section overview</a></li><li><a href="../../video-and-media/codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../../video-and-media/gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../../video-and-media/onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../../video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../../video-and-media/sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../../video-and-media/srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../../video-and-media/webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group"><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../../web-and-messaging/">Section overview</a></li><li><a href="../../web-and-messaging/amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../../web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../../web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../../web-and-messaging/grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../../web-and-messaging/http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../../web-and-messaging/mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../../web-and-messaging/soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../../web-and-messaging/websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Protocol infrastructure</a><span aria-hidden="true">/</span><span aria-current="page">SCIM identity provisioning and reconciliation</span></nav><div class="page-kicker">Protocols <span>About 9 min read</span></div><div class="prose"><h1 id="s-scim-identity-provisioning-and-reconciliation">SCIM identity provisioning and reconciliation</h1>
+<p>SCIM exchanges identity lifecycle information between systems. Track provisioning results and check whether changes have reached dependent credentials and access policies.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>SCIM protocol and lifecycle architecture; product schemas, extension support, source of truth policy, physical credential issuance, access entitlements, and controller distribution remain deployment specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-roles-and-lifecycle-boundary">Roles and lifecycle boundary</a></li><li class="toc-level-2"><a href="#s-discovery-and-schema-contracts">Discovery and schema contracts</a></li><li class="toc-level-2"><a href="#s-resource-identity">Resource identity</a></li><li class="toc-level-2"><a href="#s-create-replace-patch-and-delete">Create, replace, patch, and delete</a></li><li class="toc-level-3"><a href="#s-create">Create</a></li><li class="toc-level-3"><a href="#s-replace">Replace</a></li><li class="toc-level-3"><a href="#s-patch">Patch</a></li><li class="toc-level-3"><a href="#s-delete-and-deactivate">Delete and deactivate</a></li><li class="toc-level-2"><a href="#s-groups-roles-and-entitlements">Groups, roles, and entitlements</a></li><li class="toc-level-2"><a href="#s-pagination-and-complete-enumeration">Pagination and complete enumeration</a></li><li class="toc-level-2"><a href="#s-bulk-operations">Bulk operations</a></li><li class="toc-level-2"><a href="#s-devices-and-modern-extensions">Devices and modern extensions</a></li><li class="toc-level-2"><a href="#s-asynchronous-events-and-reconciliation">Asynchronous events and reconciliation</a></li><li class="toc-level-2"><a href="#s-authentication-authorisation-and-transport">Authentication, authorisation, and transport</a></li><li class="toc-level-2"><a href="#s-reliability-and-loop-prevention">Reliability and loop prevention</a></li><li class="toc-level-2"><a href="#s-privacy-audit-and-evidence">Privacy, audit, and evidence</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>System for Cross domain Identity Management (SCIM) 2.0 defines common schemas and an HTTP protocol for managing identity resources across domains. RFC 7643 defines the core schema; RFC 7644 defines discovery, retrieval, search, create, replace, patch, delete, bulk, filtering, sorting, and pagination behaviour. <a href="https://www.rfc-editor.org/info/rfc7643/" rel="noopener noreferrer">SCIM SCHEMA</a> <a href="https://www.rfc-editor.org/info/rfc7644/" rel="noopener noreferrer">SCIM PROTOCOL</a></p>
+<p>SCIM is a lifecycle transport and schema framework. It doesn't authenticate an operator session, prove a person’s real world identity, issue a physical credential, define door permissions, or confirm that a controller received a change.</p>
+<h2 id="s-roles-and-lifecycle-boundary">Roles and lifecycle boundary<a class="heading-link" href="#s-roles-and-lifecycle-boundary" aria-label="Link to Roles and lifecycle boundary">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Role</th>
+  <th>Responsibility</th>
+  <th>Common failure to avoid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Authoritative source</td>
+  <td>Owns selected identity and lifecycle facts</td>
+  <td>Treating every source attribute as authoritative</td>
+</tr>
+<tr>
+  <td>SCIM client</td>
+  <td>Translates source changes into bounded protocol operations</td>
+  <td>Sending a mutable display value as the durable identity key</td>
+</tr>
+<tr>
+  <td>SCIM service provider</td>
+  <td>Exposes resources, schema, capabilities, and protocol behaviour</td>
+  <td>Claiming support without implementing advertised PATCH/filter semantics</td>
+</tr>
+<tr>
+  <td>Target application</td>
+  <td>Maps provisioned resources to local accounts and roles</td>
+  <td>Turning an external group name directly into unrestricted administration</td>
+</tr>
+<tr>
+  <td>PACS/credential workflow</td>
+  <td>Approves identity, access profile, credential, and controller distribution</td>
+  <td>Treating HTTP success as physical access revocation</td>
+</tr>
+</tbody>
+</table></div>
+<p>Track each stage independently:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">authoritative record changed
+  -&gt; SCIM request accepted
+  -&gt; target identity state committed
+  -&gt; target role/entitlement mapping reconciled
+  -&gt; approved PACS workflow updated
+  -&gt; credential/controller state distributed
+  -&gt; effective state verified from its authoritative source
+</code></pre></div>
+<h2 id="s-discovery-and-schema-contracts">Discovery and schema contracts<a class="heading-link" href="#s-discovery-and-schema-contracts" aria-label="Link to Discovery and schema contracts">#</a></h2>
+<p>SCIM provides discovery resources including <code>ServiceProviderConfig</code>, <code>ResourceTypes</code>, and <code>Schemas</code>. Cache them only for a controlled period and alert on incompatible change.</p>
+<p>Record for every integration:</p>
+<ul>
+<li>base URL and tenant/environment binding;</li>
+<li>advertised and actually supported authentication profile;</li>
+<li>core and extension schema URNs plus revision/change policy;</li>
+<li>supported resources and endpoint paths;</li>
+<li>filter operators/attributes, sort behaviour, and case sensitivity;</li>
+<li>pagination mode and maximum page size;</li>
+<li>PATCH, ETag/version, bulk, delete, and uniqueness semantics;</li>
+<li>rate, concurrency, payload, collection, and response limits;</li>
+<li>product specific error and retry behaviour.</li>
+</ul>
+<p>The core <code>User</code> and <code>Group</code> resources are starting points, not permission models. Enterprise user, device, or vendor extensions must use stable schema URNs and document required/mutability/returned/uniqueness properties. Reject an unknown critical extension; preserve or ignore optional unknown attributes only under the agreed schema policy.</p>
+<h2 id="s-resource-identity">Resource identity<a class="heading-link" href="#s-resource-identity" aria-label="Link to Resource identity">#</a></h2>
+<p>SCIM separates several identifiers:</p>
+<ul>
+<li><code>id</code> is the service provider’s stable resource identifier and shouldn't be reassigned.</li>
+<li><code>externalId</code> is a client provided identifier intended to help correlate a resource across domains; its scope and uniqueness are client/service agreements.</li>
+<li><code>userName</code>, display names, emails, employee numbers, and group names may change and may not be globally unique.</li>
+<li><code>meta.version</code> can support conditional requests when the service provider implements versioning/ETags.</li>
+</ul>
+<p>Use an explicit correlation table containing source system, source immutable ID, target tenant, SCIM resource type, target SCIM <code>id</code>, mapping version, and lifecycle state. Never merge two people or devices solely because a mutable human readable attribute matches.</p>
+<p>Define canonicalization before uniqueness checks. Case sensitivity, Unicode handling, whitespace, phone/email normalisation, and multi valued <code>type</code>/<code>primary</code> fields can otherwise create duplicates or update the wrong resource.</p>
+<h2 id="s-create-replace-patch-and-delete">Create, replace, patch, and delete<a class="heading-link" href="#s-create-replace-patch-and-delete" aria-label="Link to Create, replace, patch, and delete">#</a></h2>
+<h3 id="s-create">Create<a class="heading-link" href="#s-create" aria-label="Link to Create">#</a></h3>
+<p>Before <code>POST</code>, choose a deterministic duplicate policy. A timed out create can have succeeded. Search or reconcile by a scoped immutable <code>externalId</code>; don't blindly retry and create a second person, device, or account.</p>
+<h3 id="s-replace">Replace<a class="heading-link" href="#s-replace" aria-label="Link to Replace">#</a></h3>
+<p><code>PUT</code> is replacement under SCIM semantics. Define how omitted optional attributes are treated, which server managed attributes remain, and whether the product applies non standard merge behaviour. A language object serialized with default empty arrays can unintentionally remove memberships or contact values.</p>
+<h3 id="s-patch">Patch<a class="heading-link" href="#s-patch" aria-label="Link to Patch">#</a></h3>
+<p>SCIM PATCH has its own operations, paths, filters, and multi valued attribute rules. Validate:</p>
+<ul>
+<li><code>add</code>, <code>remove</code>, and <code>replace</code> support exactly as advertised;</li>
+<li>path grammar, schema prefixes, filter evaluation, and case sensitivity;</li>
+<li>missing path and no match behaviour;</li>
+<li>atomicity of the patch request;</li>
+<li>duplicate membership and multi valued primary value constraints;</li>
+<li>concurrent changes through <code>If-Match</code> where versioning is supported.</li>
+</ul>
+<p>Don't build patch paths through raw string concatenation from untrusted attribute names or values.</p>
+<h3 id="s-delete-and-deactivate">Delete and deactivate<a class="heading-link" href="#s-delete-and-deactivate" aria-label="Link to Delete and deactivate">#</a></h3>
+<p>Deletion, <code>active: false</code>, suspension, archival, and anonymization have different effects. Define the source of truth transition and downstream obligations. A target may retain audit evidence after deactivation or deletion; privacy and legal policy must govern retained identifiers.</p>
+<p>For physical security, deactivating a SCIM user doesn't prove revocation of cards, mobile credentials, PINs, cached offline rights, visitor passes, active sessions, or controller state. Drive and verify those through the approved credential and PACS lifecycle.</p>
+<h2 id="s-groups-roles-and-entitlements">Groups, roles, and entitlements<a class="heading-link" href="#s-groups-roles-and-entitlements" aria-label="Link to Groups, roles, and entitlements">#</a></h2>
+<p>SCIM Groups express membership; they don't establish what a local role may do.</p>
+<ul>
+<li>Map only allowlisted external groups to locally defined roles.</li>
+<li>Scope mapping by trusted source, tenant, site, and environment, not group display name alone.</li>
+<li>Define whether the source pushes membership, the target owns membership, or reconciliation merges selected fields.</li>
+<li>Bound group size, nesting depth, expansion work, and cycle handling.</li>
+<li>Detect truncated/over limit group claims and partial membership pages.</li>
+<li>Keep operator administration, video export, credential management, unlock/override, and platform configuration as separate permissions.</li>
+<li>Version and audit the mapping policy independently of SCIM resource changes.</li>
+</ul>
+<p>Use an approval workflow for physical access profiles. An upstream group named <code>Building-A-Access</code> is input to policy, not self authenticating authorisation to a building.</p>
+<h2 id="s-pagination-and-complete-enumeration">Pagination and complete enumeration<a class="heading-link" href="#s-pagination-and-complete-enumeration" aria-label="Link to Pagination and complete enumeration">#</a></h2>
+<p>RFC 7644 defines index based pagination using <code>startIndex</code> and <code>count</code>. A changing collection can shift while pages are read, causing duplicates or omissions. Always use stable tie breakers where the product supports them and reconcile by immutable ID.</p>
+<p>RFC 9865 adds cursor based pagination for SCIM. <a href="https://www.rfc-editor.org/info/rfc9865/" rel="noopener noreferrer">SCIM CURSOR</a></p>
+<ul>
+<li>Treat cursors as opaque, tenant and query bound, expiring server state.</li>
+<li>Don't parse, edit, log, or reuse a cursor with different filters/sort/attributes.</li>
+<li>Bound page size and total enumeration work.</li>
+<li>Detect cursor expiry and restart with a documented high watermark/reconciliation strategy.</li>
+<li>Don't infer a consistent snapshot unless the service contract explicitly promises one.</li>
+</ul>
+<p>Pagination completion establishes only what the service returned under that query. Compare it with the prior authoritative snapshot and investigate unexpected mass additions, removals, or omissions before applying high impact changes.</p>
+<h2 id="s-bulk-operations">Bulk operations<a class="heading-link" href="#s-bulk-operations" aria-label="Link to Bulk operations">#</a></h2>
+<p>SCIM bulk requests reduce round trips but increase blast radius. Check advertised <code>maxOperations</code> and <code>maxPayloadSize</code>, dependency handling through <code>bulkId</code>, error threshold, per operation status, and whether the product provides any atomicity. Don't assume one HTTP response means every sub operation committed.</p>
+<p>Split changes into bounded batches, preserve per resource correlation, stop on systemic schema/authentication failures, and reconcile the final target state. Protect against a malformed dependency graph, duplicate <code>bulkId</code>, excessive response body, and retry of an uncertain partially completed batch.</p>
+<h2 id="s-devices-and-modern-extensions">Devices and modern extensions<a class="heading-link" href="#s-devices-and-modern-extensions" aria-label="Link to Devices and modern extensions">#</a></h2>
+<p>RFC 9944 defines a SCIM schema for device resources, extending SCIM beyond users and groups. <a href="https://www.rfc-editor.org/info/rfc9944/" rel="noopener noreferrer">SCIM DEVICE</a></p>
+<p>Treat a provisioned device record as inventory/lifecycle information, not cryptographic device authentication. Enrollment, key generation, attestation, certificate issuance, secure boot, firmware state, network admission, and decommissioning require separate protocols and evidence. Map device identifiers only after establishing their issuer, uniqueness, replacement, and transfer rules.</p>
+<p>Extension support is independently negotiable: a service implementing RFC 7643/7644 doesn't automatically implement cursor pagination, the device schema, events, or vendor extensions.</p>
+<h2 id="s-asynchronous-events-and-reconciliation">Asynchronous events and reconciliation<a class="heading-link" href="#s-asynchronous-events-and-reconciliation" aria-label="Link to Asynchronous events and reconciliation">#</a></h2>
+<p>RFC 9967 defines SCIM event delivery using Security Event Tokens (SETs); RFC 8417 defines the SET format and processing framework. <a href="https://www.rfc-editor.org/info/rfc9967/" rel="noopener noreferrer">SCIM EVENTS</a> <a href="https://www.rfc-editor.org/info/rfc8417/" rel="noopener noreferrer">SET</a></p>
+<p>An event can reduce propagation delay, but it isn't a substitute for reconciliation:</p>
+<ul>
+<li>validate SET issuer, audience, signature/algorithm, time, event type, token ID/replay, and delivery channel authorisation;</li>
+<li>bind the event to the correct SCIM tenant and resource service;</li>
+<li>cap token/event size and reject conflicting or duplicate security critical members;</li>
+<li>store a durable event ID/high watermark under a bounded retention policy;</li>
+<li>handle duplicate, delayed, out of order, missing, and unsupported events;</li>
+<li>fetch authoritative current resource state rather than trusting an event to contain a complete record;</li>
+<li>periodically enumerate/reconcile to repair missed delivery and local drift.</li>
+</ul>
+<p>Receipt or acknowledgement of a SET proves only an event channel step. It doesn't prove the SCIM mutation, mapped role, physical credential, or controller state is effective.</p>
+<h2 id="s-authentication-authorisation-and-transport">Authentication, authorisation, and transport<a class="heading-link" href="#s-authentication-authorisation-and-transport" aria-label="Link to Authentication, authorisation, and transport">#</a></h2>
+<p>RFC 7644 requires TLS and describes bearer token and other authentication considerations, but deployments must define a current HTTP/OAuth profile. <a href="https://www.rfc-editor.org/info/rfc7644/" rel="noopener noreferrer">SCIM PROTOCOL</a></p>
+<ul>
+<li>Validate HTTPS endpoint identity; pin allowed hosts and redirect behaviour.</li>
+<li>Use a dedicated client/workload identity with short lived, audience bound credentials where supported.</li>
+<li>Separate read/search, create/update, group membership, bulk, device, event, and administrative permissions.</li>
+<li>Enforce tenant and resource type authorisation server side; filters aren't access controls.</li>
+<li>Don't place credentials or personal attributes in URLs or verbose error logs.</li>
+<li>Rotate credentials and keys with overlap and rollback; monitor stale credentials.</li>
+<li>Apply per client and per tenant rate, concurrency, enumeration, export, and mutation limits.</li>
+</ul>
+<h2 id="s-reliability-and-loop-prevention">Reliability and loop prevention<a class="heading-link" href="#s-reliability-and-loop-prevention" aria-label="Link to Reliability and loop prevention">#</a></h2>
+<ul>
+<li>Use connect, TLS, response header, body idle, and total operation deadlines.</li>
+<li>Retry bounded reads under policy; retry mutations only with correlation, conditional requests, and uncertainty handling.</li>
+<li>Classify <code>429</code>/<code>Retry-After</code>, authentication, authorisation, schema, conflict, server, and transport failures separately.</li>
+<li>Prevent bidirectional connectors from echoing the same update indefinitely. Record source, source revision, mapping version, and last writer.</li>
+<li>Quarantine poison records rather than blocking the whole lifecycle queue.</li>
+<li>Alert on backlog age and queue length. A small queue can contain an old high impact leaver event.</li>
+</ul>
+<h2 id="s-privacy-audit-and-evidence">Privacy, audit, and evidence<a class="heading-link" href="#s-privacy-audit-and-evidence" aria-label="Link to Privacy, audit, and evidence">#</a></h2>
+<p>Minimize attributes to the target purpose. Identity records may contain employment, contact, organization, location, manager, device, and access related data. Define field level ownership, retention, regional transfer, support access, export, correction, and deletion policy.</p>
+<p>Audit authenticated client, source/target tenant, resource type and stable IDs, operation, changed attribute names rather than secret values, prior/new lifecycle state, mapping version, conditional version, request/event correlation, result, and downstream reconciliation outcome. Keep bearer tokens and unnecessary full user/device records out of logs.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="ServiceProviderConfig, ResourceTypes, Schemas, extensions, limits, and product deviations recorded">ServiceProviderConfig, ResourceTypes, Schemas, extensions, limits, and product deviations recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Immutable source to target correlation used; mutable names never used as the sole identity key">Immutable source to target correlation used; mutable names never used as the sole identity key</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Attribute ownership, canonicalization, uniqueness, mutability, returned behaviour, and privacy defined">Attribute ownership, canonicalization, uniqueness, mutability, returned behaviour, and privacy defined</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="POST timeout/duplicate, PUT omission, PATCH path/filter, DELETE/deactivate, and concurrency semantics validated in a controlled environment under system owner approval">POST timeout/duplicate, PUT omission, PATCH path/filter, DELETE/deactivate, and concurrency semantics validated in a controlled environment under system owner approval</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Group to role mapping allowlisted, scoped, versioned, and separated from physical entitlements">Group to role mapping allowlisted, scoped, versioned, and separated from physical entitlements</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Index or cursor pagination handles change, expiry, duplication, omission, and bounded enumeration">Index or cursor pagination handles change, expiry, duplication, omission, and bounded enumeration</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Bulk partial completion tracked per operation and reconciled">Bulk partial completion tracked per operation and reconciled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Events authenticated, replay protected, treated as hints to authoritative state, and backed by reconciliation">Events authenticated, replay protected, treated as hints to authoritative state, and backed by reconciliation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Device records kept separate from device authentication and attestation">Device records kept separate from device authentication and attestation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="SCIM state kept separate from credentials, controller distribution, and effective physical access">SCIM state kept separate from credentials, controller distribution, and effective physical access</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Authentication, tenant authorisation, rate limits, loop prevention, quarantine, audit, and privacy enforced">Authentication, tenant authorisation, rate limits, loop prevention, quarantine, audit, and privacy enforced</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>SCIM SCHEMA</strong>, <a href="https://www.rfc-editor.org/info/rfc7643/" rel="noopener noreferrer">RFC 7643: System for Cross domain Identity Management: Core Schema</a>, IETF, September 2015.</li>
+<li><strong>SCIM PROTOCOL</strong>, <a href="https://www.rfc-editor.org/info/rfc7644/" rel="noopener noreferrer">RFC 7644: System for Cross domain Identity Management: Protocol</a>, IETF, September 2015.</li>
+<li><strong>SCIM CURSOR</strong>, <a href="https://www.rfc-editor.org/info/rfc9865/" rel="noopener noreferrer">RFC 9865: Cursor Based Pagination of System of Cross domain Identity Management (SCIM) Resources</a>, IETF, October 2025.</li>
+<li><strong>SCIM DEVICE</strong>, <a href="https://www.rfc-editor.org/info/rfc9944/" rel="noopener noreferrer">RFC 9944: Device Schema Extensions to the System for Cross Domain Identity Management (SCIM) Model</a>, IETF, May 2026.</li>
+<li><strong>SCIM EVENTS</strong>, <a href="https://www.rfc-editor.org/info/rfc9967/" rel="noopener noreferrer">RFC 9967: System for Cross Domain Identity Management (SCIM) Profile for Security Event Tokens (SETs)</a>, IETF, May 2026.</li>
+<li><strong>SET</strong>, <a href="https://www.rfc-editor.org/info/rfc8417/" rel="noopener noreferrer">RFC 8417: Security Event Token (SET)</a>, IETF, July 2018.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../power-usb-and-gpio/"><span>Previous in this section</span>Power, USB, and GPIO</a><a href="../serial-transports/"><span>Next in this section</span>Serial transports</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/infrastructure/scim-identity-provisioning.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/infrastructure/scim-identity-provisioning.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-roles-and-lifecycle-boundary">Roles and lifecycle boundary</a></li><li class="toc-level-2"><a href="#s-discovery-and-schema-contracts">Discovery and schema contracts</a></li><li class="toc-level-2"><a href="#s-resource-identity">Resource identity</a></li><li class="toc-level-2"><a href="#s-create-replace-patch-and-delete">Create, replace, patch, and delete</a></li><li class="toc-level-3"><a href="#s-create">Create</a></li><li class="toc-level-3"><a href="#s-replace">Replace</a></li><li class="toc-level-3"><a href="#s-patch">Patch</a></li><li class="toc-level-3"><a href="#s-delete-and-deactivate">Delete and deactivate</a></li><li class="toc-level-2"><a href="#s-groups-roles-and-entitlements">Groups, roles, and entitlements</a></li><li class="toc-level-2"><a href="#s-pagination-and-complete-enumeration">Pagination and complete enumeration</a></li><li class="toc-level-2"><a href="#s-bulk-operations">Bulk operations</a></li><li class="toc-level-2"><a href="#s-devices-and-modern-extensions">Devices and modern extensions</a></li><li class="toc-level-2"><a href="#s-asynchronous-events-and-reconciliation">Asynchronous events and reconciliation</a></li><li class="toc-level-2"><a href="#s-authentication-authorisation-and-transport">Authentication, authorisation, and transport</a></li><li class="toc-level-2"><a href="#s-reliability-and-loop-prevention">Reliability and loop prevention</a></li><li class="toc-level-2"><a href="#s-privacy-audit-and-evidence">Privacy, audit, and evidence</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Search · Security Technician Wiki</title>
+<meta name="description" content="Find a protocol, system, checklist or integration pattern in the wiki.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/search/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Search · Security Technician Wiki">
+<meta property="og:description" content="Find a protocol, system, checklist or integration pattern in the wiki.">
+<meta property="og:url" content="https://securitytechnician.wiki/search/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+<meta name="robots" content="noindex, follow">
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+<script defer src="../assets/search-core.js"></script>
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="./" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Search</span></nav><div class="page-kicker">Security Technician Wiki</div><div class="prose"><h1 id="s-search">Search the wiki</h1><p>Search for a protocol, system, error message or task.</p>
+<form id="search-form" action="./" method="get" role="search"><label for="search-query">What are you working on?</label><div class="search-input-row"><input id="search-query" type="search" name="q" placeholder="Try ONVIF, event timestamps or OSDP" maxlength="200" autocomplete="off"><button type="submit">Search</button></div><label for="search-section">Narrow the results</label><select id="search-section" name="section"><option value="">Every section</option><option value="00-start-here">Start here</option><option value="01-foundations">Foundations</option><option value="02-protocols">Protocols</option><option value="03-systems">Systems</option><option value="04-vendor-apis">Vendor APIs</option><option value="05-development-and-integration">Development</option><option value="06-security-and-assurance">Security</option><option value="07-operations-and-lifecycle">Operations</option><option value="08-defensive-labs">Defensive labs</option><option value="09-reference">Reference</option><option value="10-sources-and-maintenance">Sources and scope</option><option value="about">About the project</option></select></form>
+<p id="search-status" role="status" aria-live="polite">Search runs in your browser. No query is sent to a search service.</p><div id="search-results"></div><button id="search-more" type="button" hidden>Show more results</button><button id="search-retry" type="button" hidden>Try loading the index again</button>
+<noscript><p>Interactive search needs JavaScript. All articles and the directory below remain available without it.</p></noscript><div class="search-fallback"><h2>Prefer to browse?</h2><p><a href="../all-pages/">Open the complete page directory</a> or <a href="../00-start-here/learning-paths/">choose a reading path</a>.</p></div></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

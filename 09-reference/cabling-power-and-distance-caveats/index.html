@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Cabling, power, and distance caveats · Security Technician Wiki</title>
+<meta name="description" content="Check cable, equipment, distance and power requirements against the actual installation. Have the responsible qualified person confirm the design and applicable requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/cabling-power-and-distance-caveats/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cabling, power, and distance caveats · Security Technician Wiki">
+<meta property="og:description" content="Check cable, equipment, distance and power requirements against the actual installation. Have the responsible qualified person confirm the design and applicable requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/cabling-power-and-distance-caveats/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="./" aria-current="page">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Cabling, power, and distance caveats</span></nav><div class="page-kicker">Reference <span>About 6 min read</span></div><div class="prose"><h1 id="s-cabling-power-and-distance-caveats">Cabling, power, and distance caveats</h1>
+<p>Check cable, equipment, distance and power requirements against the actual installation. Have the responsible qualified person confirm the design and applicable requirements.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Engineering caveats and formulas only; no universal cable length, conductor size, PoE budget, termination, grounding, separation, fire rating, or electrical code conclusion is supplied.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-required-physical-layer-record">Required physical layer record</a></li><li class="toc-level-2"><a href="#s-technology-caveats">Technology caveats</a></li><li class="toc-level-2"><a href="#s-dc-voltage-drop-model">DC voltage drop model</a></li><li class="toc-level-2"><a href="#s-poe-budget-chain">PoE budget chain</a></li><li class="toc-level-2"><a href="#s-serial-multidrop-design-questions">Serial multidrop design questions</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-mandatory-deferral-and-stop-conditions">Mandatory deferral and stop conditions</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p>There is no safe universal “maximum distance” table. Distance is a property of an exact PHY, cable and connector channel, data rate/timing, topology, transceivers, loading, environment, installation, power requirement, standard edition, and product limits.</p>
+</blockquote>
+<p>This page doesn't approve electrical work. Follow the applicable standards, manufacturer instructions, qualified designer/installer, electrical and fire codes, accessibility rules, and authority having jurisdiction (AHJ). Life safety, egress, fire, lift, gate, lock, and mains decisions require the responsible qualified parties.</p>
+<h2 id="s-required-physical-layer-record">Required physical layer record<a class="heading-link" href="#s-required-physical-layer-record" aria-label="Link to Required physical layer record">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Category</th>
+  <th>Record before design or connection</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Standard/profile</td>
+  <td>Exact PHY/electrical/cabling standard edition, application profile, product conformance</td>
+</tr>
+<tr>
+  <td>Endpoints</td>
+  <td>Models, firmware, port/transceiver types, isolation, termination/bias responsibility</td>
+</tr>
+<tr>
+  <td>Topology</td>
+  <td>Point to point, multidrop bus, star through active switch/hub, ring, spur/stub, redundant path</td>
+</tr>
+<tr>
+  <td>Channel</td>
+  <td>Installed cable type/category, conductor material/gauge, pair/twist, shield/drain, connectors, patching, joints</td>
+</tr>
+<tr>
+  <td>Lengths</td>
+  <td>Permanent link/channel, every segment and stub, elevation/riser, service loop, not an estimate alone</td>
+</tr>
+<tr>
+  <td>Signaling</td>
+  <td>Data rate, encoding, duplex, timing, common mode range, impedance, loss/return loss/noise budget</td>
+</tr>
+<tr>
+  <td>Power</td>
+  <td>Source/PSE, load/PD min/max/peak, voltage range, class/negotiation, cable loss, conversion loss, UPS</td>
+</tr>
+<tr>
+  <td>Environment</td>
+  <td>Temperature, bundle size, enclosure, moisture, UV, lightning/surge, EMI, hazardous area, vibration</td>
+</tr>
+<tr>
+  <td>Grounding</td>
+  <td>Reference conductor, bonding, shield termination, isolation, earth potential difference, surge path</td>
+</tr>
+<tr>
+  <td>Compliance</td>
+  <td>Cable fire rating, segregation, pathway/fill, penetrations, regional code, AHJ/engineer approval</td>
+</tr>
+<tr>
+  <td>Evidence</td>
+  <td>Design calculation, standard clause, product manual, test instrument/method, owner acceptance date</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-technology-caveats">Technology caveats<a class="heading-link" href="#s-technology-caveats" aria-label="Link to Technology caveats">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Technology</th>
+  <th>Familiar shorthand to avoid</th>
+  <th>Correct decision boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Balanced copper Ethernet</td>
+  <td>“Ethernet is always 100 m”</td>
+  <td>Many common twisted pair Ethernet PHY/cabling channels use a 100 m channel design, but supported length depends on exact PHY, category/channel construction, connectors, temperature, PoE, and product; some PHYs differ materially</td>
+</tr>
+<tr>
+  <td>Fiber Ethernet</td>
+  <td>“Fiber goes X km”</td>
+  <td>Fiber type, wavelength, launch/receive budget, connector/splice loss, dispersion, transceiver class, FEC, temperature, and regulatory laser requirements determine reach</td>
+</tr>
+<tr>
+  <td>PoE</td>
+  <td>“The switch says 30/60/90 W, so the device gets that”</td>
+  <td>IEEE type/class, PSE/PD negotiation, pair set, cable/channel loss, LLDP, temperature/bundle, switch total budget, conversion and failover determine available input power</td>
+</tr>
+<tr>
+  <td>Passive/proprietary power</td>
+  <td>“It uses an RJ45, so it is PoE”</td>
+  <td>Connector does not identify powering; passive voltage on data pairs can damage equipment. Require exact pinout/voltage/polarity and approved pairing</td>
+</tr>
+<tr>
+  <td>TIA 485 / RS485</td>
+  <td>“RS485 is always 1200 m”</td>
+  <td>Standard defines an electrical interface, not one universal length; data rate, cable, loading, topology, termination, common mode, isolation, and application timing control reach</td>
+</tr>
+<tr>
+  <td>OSDP</td>
+  <td>“OSDP guarantees a long bus”</td>
+  <td>OSDP is an application/link profile over a suitable 2 wire RS485 channel; exact ACU/PD count, baud, cable, power, topology and manufacturer constraints require design and bench/site validation</td>
+</tr>
+<tr>
+  <td>BACnet MS/TP</td>
+  <td>“Any RS485 wiring works”</td>
+  <td>Token timing, MACs, baud, max master, router loading, cable/bias/termination and node electrical characteristics must all match</td>
+</tr>
+<tr>
+  <td>Modbus RTU</td>
+  <td>“Modbus defines the wire”</td>
+  <td>Modbus application/serial guide and chosen TIA 232/485 implementation are separate; product timing and framing matter</td>
+</tr>
+<tr>
+  <td>Wiegand / Clock and Data</td>
+  <td>“The format defines distance”</td>
+  <td>Bit format does not define electrical channel; reader/panel manuals, cable capacitance, supply loss, ground reference, pulse timing and environment own the limit</td>
+</tr>
+<tr>
+  <td>KNX TP</td>
+  <td>“Twisted pair is interchangeable”</td>
+  <td>Use KNX certified/approved medium, topology, segment, power supply/choke and product rules; ordinary generic bus assumptions are insufficient</td>
+</tr>
+<tr>
+  <td>CAN/CANopen/J1939</td>
+  <td>“CAN rate alone gives distance”</td>
+  <td>Bit timing, topology/stubs, cable, transceivers, termination, propagation and application profile define the network</td>
+</tr>
+<tr>
+  <td>USB</td>
+  <td>“The connector/version name gives cable reach and power”</td>
+  <td>USB data rate/generation, active/passive cable, cable assembly certification, Type C current negotiation/PD, hubs and product role all matter</td>
+</tr>
+<tr>
+  <td>Dry contact / supervised input</td>
+  <td>“It is only open or closed”</td>
+  <td>Voltage/current, wet/dry source, EOL topology/value/tolerance, line monitoring, isolation and connected function define semantics and safety</td>
+</tr>
+<tr>
+  <td>Radio</td>
+  <td>“Range is a specification constant”</td>
+  <td>Region, antenna, orientation, body/building attenuation, interference, power, data rate, coexistence, certification and threat model govern observed range</td>
+</tr>
+</tbody>
+</table></div>
+<p>Use <a href="../../01-foundations/serial-and-field-interfaces/">serial and field interfaces</a>, <a href="../../01-foundations/ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a>, <a href="../../01-foundations/dry-contacts-and-supervised-circuits/">dry contacts and supervised circuits</a>, and <a href="../../01-foundations/wireless-and-radio-fundamentals/">wireless and radio fundamentals</a>.</p>
+<h2 id="s-dc-voltage-drop-model">DC voltage drop model<a class="heading-link" href="#s-dc-voltage-drop-model" aria-label="Link to DC voltage drop model">#</a></h2>
+<p>For a simple two conductor DC circuit:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">R_loop = resistance_outbound + resistance_return
+V_drop = I_load × R_loop
+V_at_load = V_source_min - V_drop - other_series_losses
+P_at_load = V_at_load × I_load
+</code></pre></div>
+<p>This is an orientation formula, not a complete design. Account for:</p>
+<ul>
+<li>conductor resistance at maximum operating temperature and actual conductor material/gauge;</li>
+<li>connector, fuse, protection, distribution, and contact resistance;</li>
+<li>steady, boot, heater, IR illuminator, motor, audio, relay, lock and accessory peaks;</li>
+<li>shared return/common conductors and simultaneous loads;</li>
+<li>source tolerance, battery discharge, UPS/converter efficiency, and low temperature behaviour;</li>
+<li>device minimum input voltage at the required load and transient behaviour;</li>
+<li>code required overcurrent protection, voltage class, separation, derating, and fire performance.</li>
+</ul>
+<p>Never increase voltage, bypass protection, parallel outputs, or change conductor arrangements from a desk calculation. A qualified electrical design and approved product instructions own those decisions.</p>
+<h2 id="s-poe-budget-chain">PoE budget chain<a class="heading-link" href="#s-poe-budget-chain" aria-label="Link to PoE budget chain">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-2">utility / generator / UPS
+        ↓
+switch PSU capacity and redundancy
+        ↓
+PSE total budget and per-port negotiated state
+        ↓
+cable/channel loss and temperature
+        ↓
+PD input and conversion
+        ↓
+camera/reader/intercom plus heater, IR, motor, relay, USB
+</code></pre></div>
+<p>Record both normal and degraded/failover budgets. Common failure cases include:</p>
+<ul>
+<li>all heaters/illuminators/motors starting together;</li>
+<li>a redundant switch or PSU lacking equivalent PoE capacity;</li>
+<li>LLDP/class negotiation changing after firmware/configuration;</li>
+<li>a link remaining up while a high draw function browns out;</li>
+<li>simultaneous restoration causing boot surge and network/authentication load;</li>
+<li>UPS runtime based on nameplate load rather than measured full path and aged battery;</li>
+<li>a midspan, extender, surge protector, media converter, or patching element absent from the channel record.</li>
+</ul>
+<p>Remote PoE cycle is actuation: it can interrupt recording, door readers, intercom, sensors, or alarms. Gate it through the <a href="../safety-impact-checklist/">safety impact checklist</a>.</p>
+<h2 id="s-serial-multidrop-design-questions">Serial multidrop design questions<a class="heading-link" href="#s-serial-multidrop-design-questions" aria-label="Link to Serial multidrop design questions">#</a></h2>
+<ul>
+<li>Which node owns termination at each physical end, and are there exactly the intended terminations?</li>
+<li>Which device/network owns bias/failsafe state?</li>
+<li>What is the maximum stub length under the exact rate/topology/product, not a generic rule?</li>
+<li>Is a reference conductor required, and what common mode range applies?</li>
+<li>Where is galvanic isolation and surge protection required?</li>
+<li>Does any adapter or gateway transmit during boot, discovery, driver installation, reconnect, or configuration?</li>
+<li>How are duplicate addresses, simultaneous transmitters, token loss, turnaround, and retries detected?</li>
+<li>Does bus power share conductors or reference with signalling, and what is its worst case drop?</li>
+<li>How will passive observation avoid changing termination/bias/loading?</li>
+</ul>
+<p>See <a href="../../02-protocols/infrastructure/serial-transports/">serial transports</a>, <a href="../../02-protocols/access-control/osdp/">OSDP</a>, and <a href="../../02-protocols/building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a>.</p>
+<h2 id="s-acceptance-evidence">Acceptance evidence<a class="heading-link" href="#s-acceptance-evidence" aria-label="Link to Acceptance evidence">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Stage</th>
+  <th>Evidence, not assumption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Design</td>
+  <td>Standard/profile and product manual clauses; topology; signal/power/loss/thermal calculations; qualified approval</td>
+</tr>
+<tr>
+  <td>Installation</td>
+  <td>Cable/connector IDs, route, measured length, labeling, termination/bias/shield/ground record, inspection</td>
+</tr>
+<tr>
+  <td>Certification</td>
+  <td>Appropriate cable/optical/electrical test report for the specified channel and limits</td>
+</tr>
+<tr>
+  <td>Functional environment validation</td>
+  <td>Normal/peak/failure behaviour, errors, negotiated power/link state, restart and recovery</td>
+</tr>
+<tr>
+  <td>Operations</td>
+  <td>Baseline counters/telemetry, change record, spare compatibility, periodic inspection/test plan</td>
+</tr>
+</tbody>
+</table></div>
+<p>A continuity test alone doesn't certify a data channel. Link up doesn't prove error margin. A protocol reply doesn't prove power headroom or safe physical behaviour.</p>
+<h2 id="s-mandatory-deferral-and-stop-conditions">Mandatory deferral and stop conditions<a class="heading-link" href="#s-mandatory-deferral-and-stop-conditions" aria-label="Link to Mandatory deferral and stop conditions">#</a></h2>
+<p>Stop and defer to the manufacturer, qualified engineer/installer, AHJ, and responsible system owner when:</p>
+<ul>
+<li>voltage, pinout, polarity, wet/dry contact, signal standard, or power source is unknown;</li>
+<li>mains, batteries, fire rated pathways, lightning/surge, hazardous locations, or building penetrations are involved;</li>
+<li>work can interrupt egress, locks, gates, lifts, fire/emergency systems, alarms, dispatch, or recording obligations;</li>
+<li>grounding/bonding/earth potential difference is unresolved;</li>
+<li>the proposed distance exceeds an exact standard/product channel or depends on undocumented extenders;</li>
+<li>two products claim the same connector but not the same electrical/power profile;</li>
+<li>approval, rollback, isolation, and witnessed acceptance are absent.</li>
+</ul>
+<p>This reference supplies planning boundaries; connection, measurement, certification, and functional acceptance require qualified site procedures and retained environment evidence.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>IEEE8023</strong>, <a href="https://standards.ieee.org/ieee/802.3/10422/" rel="noopener noreferrer">IEEE 802.3-2022 Ethernet Standard</a>, IEEE Standards Association; amendments and current project status must be checked at use time.</li>
+<li><strong>IEEE POE</strong>, <a href="https://www.ieee802.org/3/bt/" rel="noopener noreferrer">IEEE 802.3 Power over Ethernet information</a>, IEEE 802.3 working group, accessed 25 August 2026.</li>
+<li><strong>TIA</strong>, <a href="https://tiaonline.org/products-and-services/buy-standards/" rel="noopener noreferrer">TIA standards catalogue and purchase path</a>, Telecommunications Industry Association, accessed 25 August 2026.</li>
+<li><strong>SIA OSDP</strong>, <a href="https://www.securityindustry.org/industry-standards/open-supervised-device-protocol/" rel="noopener noreferrer">Open Supervised Device Protocol</a>, Security Industry Association, accessed 25 August 2026.</li>
+<li><strong>SIA OSDP CHECK</strong>, <a href="https://www.securityindustry.org/2026/02/10/implementing-osdp-access-control-follow-this-simple-checklist/" rel="noopener noreferrer">Implementing OSDP Access Control? Follow This Simple Checklist</a>, Security Industry Association, 10 February 2026.</li>
+<li><strong>BACNET MSTP</strong>, <a href="https://bacnet.org/wp-content/uploads/sites/4/2022/06/STB-08-93.pdf" rel="noopener noreferrer">BACnet MS/TP technical bulletin</a>, ASHRAE BACnet Committee.</li>
+<li><strong>MODBUS SERIAL</strong>, <a href="https://www.modbus.org/file/secure/modbusoverserial.pdf" rel="noopener noreferrer">Modbus over Serial Line Specification and Implementation Guide V1.02</a>, Modbus Organization.</li>
+<li><strong>USB</strong>, <a href="https://www.usb.org/documents" rel="noopener noreferrer">USB IF specifications and compliance resources</a>, USB Implementers Forum, accessed 25 August 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../acronyms/"><span>Previous in this section</span>Acronyms and initialisms</a><a href="../code-example-index/"><span>Next in this section</span>Code example index</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/cabling-power-and-distance-caveats.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/cabling-power-and-distance-caveats.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-required-physical-layer-record">Required physical layer record</a></li><li class="toc-level-2"><a href="#s-technology-caveats">Technology caveats</a></li><li class="toc-level-2"><a href="#s-dc-voltage-drop-model">DC voltage drop model</a></li><li class="toc-level-2"><a href="#s-poe-budget-chain">PoE budget chain</a></li><li class="toc-level-2"><a href="#s-serial-multidrop-design-questions">Serial multidrop design questions</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-mandatory-deferral-and-stop-conditions">Mandatory deferral and stop conditions</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

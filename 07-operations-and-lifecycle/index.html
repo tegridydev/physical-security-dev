@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Operations and lifecycle · Security Technician Wiki</title>
+<meta name="description" content="These pages cover the work after development: inventory, commissioning, monitoring, updates, recovery and retirement. Assign an owner for each operating task.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Operations and lifecycle · Security Technician Wiki">
+<meta property="og:description" content="These pages cover the work after development: inventory, commissioning, monitoring, updates, recovery and retirement. Assign an owner for each operating task.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="./" aria-current=page><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="monitoring-and-health/">Monitoring and health</a></li><li><a href="runbooks/">Operational runbooks</a></li><li><a href="requirements-and-procurement/">Requirements and procurement</a></li><li><a href="site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">Operations and lifecycle</span></nav><div class="page-kicker">Operations <span>About 1 min read</span></div><div class="prose"><h1 id="s-operations-and-lifecycle">Operations and lifecycle</h1>
+<p>These pages cover the work after development: inventory, commissioning, monitoring, updates, recovery and retirement. Assign an owner for each operating task.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lifecycle-pages">Lifecycle pages</a></li><li class="toc-level-2"><a href="#s-operating-record">Operating record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Secure protocol engineering continues after integration code ships. Versions, certificates, time, storage, vendor services, permissions, network paths, physical dependencies, and support status change throughout the deployment.</p>
+<blockquote>
+<p>Procedures involving doors, gates, alarms, elevators, fire interfaces, emergency communications, relays, or occupied sites require product specific instructions, qualified personnel, system owner approval, and the applicable local authority.</p>
+</blockquote>
+<h2 id="s-lifecycle-pages">Lifecycle pages<a class="heading-link" href="#s-lifecycle-pages" aria-label="Link to Lifecycle pages">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Page</th>
+  <th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="requirements-and-procurement/">Requirements and procurement</a></td>
+  <td>Testable protocol, security, support, and evidence requirements</td>
+</tr>
+<tr>
+  <td><a href="site-survey-and-design-records/">Site survey and design records</a></td>
+  <td>Complete topology, dependency, capacity, and boundary inputs</td>
+</tr>
+<tr>
+  <td><a href="commissioning-and-acceptance/">Commissioning and acceptance</a></td>
+  <td>Controlled transition from delivery to service</td>
+</tr>
+<tr>
+  <td><a href="asset-and-configuration-inventory/">Asset and configuration inventory</a></td>
+  <td>Version specific source of operational truth</td>
+</tr>
+<tr>
+  <td><a href="change-firmware-and-patching/">Change, firmware, and patching</a></td>
+  <td>Risk aware change and recovery workflow</td>
+</tr>
+<tr>
+  <td><a href="certificate-and-account-lifecycle/">Certificate and account lifecycle</a></td>
+  <td>Prevent expiry, orphaning, and shared access</td>
+</tr>
+<tr>
+  <td><a href="monitoring-and-health/">Monitoring and health</a></td>
+  <td>Detect loss of security function and degraded evidence</td>
+</tr>
+<tr>
+  <td><a href="incident-response-and-evidence/">Incident response and evidence</a></td>
+  <td>Contain cyber risk without creating unsafe physical effects</td>
+</tr>
+<tr>
+  <td><a href="decommissioning-and-disposal/">Decommissioning and disposal</a></td>
+  <td>Remove trust, data, access, and vendor ownership</td>
+</tr>
+<tr>
+  <td><a href="runbooks/">Operational runbooks</a></td>
+  <td>Decision trees for common failures</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-operating-record">Operating record<a class="heading-link" href="#s-operating-record" aria-label="Link to Operating record">#</a></h2>
+<p>Every system should have named sources of truth for inventory, topology, approved flows, configuration baseline, account/role model, certificates and trust anchors, protocol/profile versions, vendor support, backup/recovery, monitoring, and unresolved risks. Those records must use exact model and version identifiers.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, operational technology lifecycle guidance, accessed 25 August 2026.</li>
+<li><strong>NIST CSF</strong>, <a href="https://www.nist.gov/cyberframework" rel="noopener noreferrer">NIST Cybersecurity Framework 2.0</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../06-security-and-assurance/">Security and assurance</a></li>
+<li><a href="../08-defensive-labs/">Defensive labs</a></li>
+<li><a href="../09-reference/">Reference</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="asset-and-configuration-inventory/"><span>Next in this section</span>Asset and configuration inventory</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/README.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/README.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-lifecycle-pages">Lifecycle pages</a></li><li class="toc-level-2"><a href="#s-operating-record">Operating record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

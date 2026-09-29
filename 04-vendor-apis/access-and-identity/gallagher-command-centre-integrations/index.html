@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Gallagher Command Centre integrations · Security Technician Wiki</title>
+<meta name="description" content="Choose the supported Command Centre interface for the task. Record licensing, product versions and operation permissions before implementing the integration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/gallagher-command-centre-integrations/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gallagher Command Centre integrations · Security Technician Wiki">
+<meta property="og:description" content="Choose the supported Command Centre interface for the task. Record licensing, product versions and operation permissions before implementing the integration.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/gallagher-command-centre-integrations/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="./" aria-current="page">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">Gallagher Command Centre integrations</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-gallagher-command-centre-integrations">Gallagher Command Centre integrations</h1>
+<p>Choose the supported Command Centre interface for the task. Record licensing, product versions and operation permissions before implementing the integration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Gallagher product, integration tool, and Technology Partner material; developer guides, sample code, endpoint contracts, authentication, tokens, API versions, licences, and exact Command Centre compatibility are partner/request gated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-partner-and-licence-workflow">Partner and licence workflow</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-state-and-event-engineering">State and event engineering</a></li><li class="toc-level-2"><a href="#s-high-impact-command-boundary">High impact command boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / Gallagher</p>
+<p>Gallagher exposes several separately licensed server and controller interfaces around Command Centre. The public Integration Tools data sheet is the authoritative catalogue level source; detailed developer guides, samples, tokens, demo licences and endorsement workflow are supplied through the Technology Partner programme.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Publicly documented capability</th>
+  <th>Access/licence boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>REST API View Events &amp; Alarms</td>
+  <td>Receives selected Command Centre event/alarm information</td>
+  <td>Server API/licence and partner guide required</td>
+</tr>
+<tr>
+  <td>REST API Create Events &amp; Alarms</td>
+  <td>Creates external events/alarms in Command Centre</td>
+  <td>Licensed per server; Cloud API Gateway is offered for remote connectivity</td>
+</tr>
+<tr>
+  <td>REST API Cardholders</td>
+  <td>Cardholder/credential oriented integration</td>
+  <td>Exact create/update/delete fields and authority require current guide/licence</td>
+</tr>
+<tr>
+  <td>REST API View Status</td>
+  <td>Obtains current state for supported Command Centre items</td>
+  <td>Remote access can use Cloud API Gateway; supported objects/version vary</td>
+</tr>
+<tr>
+  <td>REST API Overrides</td>
+  <td>Overrides doors, access/alarm/fence zones, macros and outputs</td>
+  <td>Licensed per server; high impact command surface</td>
+</tr>
+<tr>
+  <td>Cloud API Gateway</td>
+  <td>Cloud connection to an on premises Command Centre REST API</td>
+  <td>Subscription/connectivity, identity, tenant and API licence apply</td>
+</tr>
+<tr>
+  <td>Controller API and field interfaces</td>
+  <td>Controller side integration plus documented ASCII, BACnet, OPC and other interfaces</td>
+  <td>Distinct trust plane and protocol/licence contract</td>
+</tr>
+<tr>
+  <td>Video Viewer SDK</td>
+  <td>Embeds third party VMS video in Command Centre UI</td>
+  <td>Free for development according to product page; licensed per server for deployment</td>
+</tr>
+<tr>
+  <td>Mobile Connect SDK</td>
+  <td>Embeds Gallagher mobile credentials in iOS/Android applications</td>
+  <td>Technology Partner access; Cardholder REST API participates in provisioning</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-partner-and-licence-workflow">Partner and licence workflow<a class="heading-link" href="#s-partner-and-licence-workflow" aria-label="Link to Partner and licence workflow">#</a></h2>
+<p>Gallagher’s Technology Partner page describes agreement, API selection, portal access, Command Centre environment, development, an integration licensing review, API endpoint inventory, token/demo licence, technical review and endorsement. This isn't an anonymous public API onboarding model. Obtain written confirmation of:</p>
+<ul>
+<li>required REST/SDK/controller interface product codes;</li>
+<li>development and production server licences;</li>
+<li>Command Centre and independently upgradeable REST API versions;</li>
+<li>cloud gateway subscription/region and network route;</li>
+<li>endpoint inventory approved for the integration;</li>
+<li>token/credential lifecycle and partner redistribution terms.</li>
+</ul>
+<p>Command Centre v9.10 public material described its REST API as independently upgradeable from the Command Centre server. Treat that as a version specific architecture fact, not proof that every older/current deployment has the same API module or compatibility.</p>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>Public catalogue pages don't establish the complete current auth contract, so this page doesn't invent one. Follow the partner guide for direct on premises and Cloud API Gateway modes. Use unique integration identities/tokens, validated TLS, network allowlists where appropriate and least privilege by API family and object.</p>
+<p>Cardholder synchronisation, event ingestion, status reading and overrides shouldn't share one broad credential. Separate human approval from workload identity and record the Command Centre operator/role, partner token, site and object scope behind every command.</p>
+<h2 id="s-state-and-event-engineering">State and event engineering<a class="heading-link" href="#s-state-and-event-engineering" aria-label="Link to State and event engineering">#</a></h2>
+<ul>
+<li>Build an initial snapshot before applying event deltas.</li>
+<li>Persist stable Command Centre identifiers, source/ingest time and event identity.</li>
+<li>Detect server/API upgrade, reconnect, duplicates, gaps and changed object permissions.</li>
+<li>Reconcile cardholders, credentials and object status from authoritative reads.</li>
+<li>Don't equate access granted, door unlocked, door contact open and person passage.</li>
+<li>Bound page sizes, queues, webhook/gateway retries and client concurrency using the gated guide.</li>
+</ul>
+<p>For inbound alarms, preserve source provenance and prevent external systems from spoofing native Gallagher events. For status exported to a BMS, minimize personal/security detail.</p>
+<h2 id="s-high-impact-command-boundary">High impact command boundary<a class="heading-link" href="#s-high-impact-command-boundary" aria-label="Link to High impact command boundary">#</a></h2>
+<p>The Overrides API publicly names doors, zones, macros and outputs and gives lockdown and open door examples. These commands can affect life safety and site response. Require explicit approved use cases, narrow target allowlists, command preconditions, reason codes, dual control where appropriate, and immutable audit. Never blind retry after timeout; reconcile state and operator journal first.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://products.security.gallagher.com/security/medias/Integration-Tools-Datasheet?context=bWFzdGVyfGRvY3VtZW50c3wxOTE4ODkyfGFwcGxpY2F0aW9uL3BkZnxhRGcxTDJoaU5pOHhORFl5TnpVNU9EYzVORGM0TWk5SmJuUmxaM0poZEdsdmJsOVViMjlzYzE5RVlYUmhjMmhsWlhRfDMwNmFiZTA2MjRlOTJmZWM1MmU2MTY1MTJmZTk5M2FiNGJjNmM2NzQ3MGFjNWJkMWY1YzQxZDY4ZDBiZWUwNmY" rel="noopener noreferrer">Gallagher Integration Tools data sheet</a>, official surface catalogue.</li>
+<li><a href="https://security.gallagher.com/en-CA/Our-Partners/Our-Technology-Partners" rel="noopener noreferrer">Technology Partner programme</a>, gated resources, licence/token and endorsement workflow.</li>
+<li><a href="https://products.security.gallagher.com/security/us/en_US/products/software/rest-api-overrides/p/C12812" rel="noopener noreferrer">REST API Overrides</a>, supported high impact object classes and per server licence.</li>
+<li><a href="https://products.security.gallagher.com/security/us/en_US/products/software/rest-api-create-events-%26-alarms/p/C12820" rel="noopener noreferrer">REST API Create Events and Alarms</a> and <a href="https://products.security.gallagher.com/security/us/en_US/products/software/interfaces/rest-api-view-status/p/C12810" rel="noopener noreferrer">View Status</a>, event/status and Cloud API Gateway evidence.</li>
+<li><a href="https://products.security.gallagher.com/security/us/en_US/products/integrations/video-viewer-sdk/p/C12732" rel="noopener noreferrer">Video Viewer SDK</a>, development/deployment licence distinction.</li>
+<li><a href="https://products.security.gallagher.com/security/global/en/products/software/interfaces/mobile-connect-sdk/p/AAA105" rel="noopener noreferrer">Mobile Connect SDK</a>, partner and credential provisioning boundary.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/pacs-architecture/">PACS architecture</a></li>
+<li><a href="../../../06-security-and-assurance/api-and-event-security/">Alarm, event, and command security</a></li>
+<li><a href="../../../02-protocols/building-and-industrial/bacnet-family/">BACnet family</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../brivo-api/"><span>Previous in this section</span>Brivo Access API</a><a href="../hid-origo-and-mobile-access/"><span>Next in this section</span>HID Origo and Mobile Access APIs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/gallagher-command-centre-integrations.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/gallagher-command-centre-integrations.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-partner-and-licence-workflow">Partner and licence workflow</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-state-and-event-engineering">State and event engineering</a></li><li class="toc-level-2"><a href="#s-high-impact-command-boundary">High impact command boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Wireless and radio fundamentals · Security Technician Wiki</title>
+<meta name="description" content="Radio links depend on range, interference, obstructions and the surrounding environment. Check device authentication and recovery as well as signal quality.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/wireless-and-radio-fundamentals/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wireless and radio fundamentals · Security Technician Wiki">
+<meta property="og:description" content="Radio links depend on range, interference, obstructions and the surrounding environment. Check device authentication and recovery as well as signal quality.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/wireless-and-radio-fundamentals/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="./" aria-current="page">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Wireless and radio fundamentals</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-wireless-and-radio-fundamentals">Wireless and radio fundamentals</h1>
+<p>Radio links depend on range, interference, obstructions and the surrounding environment. Check device authentication and recovery as well as signal quality.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Technology overview only; spectrum rules, certification, profiles, and product implementations vary by region and version.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-technology-roles">Technology roles</a></li><li class="toc-level-2"><a href="#s-threat-model">Threat model</a></li><li class="toc-level-2"><a href="#s-ranging-and-presence">Ranging and presence</a></li><li class="toc-level-2"><a href="#s-availability">Availability</a></li><li class="toc-level-2"><a href="#s-privacy-and-lifecycle">Privacy and lifecycle</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Radio replaces a cable with a shared, observable, interference prone medium. Short nominal range isn't an access control boundary; directional antennas, relays, obstructions, reflections, and receiver sensitivity change what is reachable.</p>
+<h2 id="s-technology-roles">Technology roles<a class="heading-link" href="#s-technology-roles" aria-label="Link to Technology roles">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Common security use</th>
+  <th>Core design concern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>WiFi</td>
+  <td>cameras, intercoms, gateways, management</td>
+  <td>WLAN identity, roaming, airtime, interference, power</td>
+</tr>
+<tr>
+  <td>Cellular</td>
+  <td>remote alarms, temporary/mobile video, backup paths</td>
+  <td>carrier/APN, coverage, SIM/eSIM lifecycle, data limits, outage</td>
+</tr>
+<tr>
+  <td>Bluetooth Low Energy</td>
+  <td>mobile credentials, configuration, presence</td>
+  <td>pairing/bonding, application crypto, privacy addresses, relay/ranging assumptions</td>
+</tr>
+<tr>
+  <td>NFC/contactless</td>
+  <td>cards, mobile credentials, provisioning</td>
+  <td>application/card security, reader trust, key management, not distance alone</td>
+</tr>
+<tr>
+  <td>Ultra wideband</td>
+  <td>precise ranging/presence/vehicle access</td>
+  <td>secure ranging implementation, fallback paths, device support</td>
+</tr>
+<tr>
+  <td>LoRaWAN/low power sub GHz</td>
+  <td>sparse sensors and remote telemetry</td>
+  <td>low bandwidth/duty cycle, join/key lifecycle, gateway dependency</td>
+</tr>
+<tr>
+  <td>Zigbee/Thread/Z Wave</td>
+  <td>residential/light commercial sensors</td>
+  <td>ecosystem version, commissioning trust, mesh routing, key rotation</td>
+</tr>
+</tbody>
+</table></div>
+<p>The Bluetooth SIG publishes <a href="https://www.bluetooth.com/specifications/specs/" rel="noopener noreferrer">adopted specifications</a>; a core version claim alone doesn't say which Generic Attribute Profile (GATT), security, direction finding, or channel sounding features a product implements. The NFC Forum <a href="https://nfc-forum.org/build/specifications/" rel="noopener noreferrer">specification architecture</a> spans analog/digital, modes, data formats, and test specifications; “NFC” likewise doesn't identify credential security.</p>
+<h2 id="s-threat-model">Threat model<a class="heading-link" href="#s-threat-model" aria-label="Link to Threat model">#</a></h2>
+<p>Consider passive observation, traffic analysis, spoofing, replay, relay, downgrade, rogue enrolment, lost/stolen phones, cloned application data, tracking, interference/jamming, battery exhaustion, malicious advertisements, and compromised gateway/cloud accounts.</p>
+<p>Radio layer encryption may terminate before the application. Use application/device authentication and freshness/replay controls appropriate to the operation. For mobile access, bind the credential to secure device storage and a revocable lifecycle; don't base an unlock decision only on signal strength or “device nearby.”</p>
+<h2 id="s-ranging-and-presence">Ranging and presence<a class="heading-link" href="#s-ranging-and-presence" aria-label="Link to Ranging and presence">#</a></h2>
+<p>Received signal strength is affected by body position, walls, antennas, multipath, transmit power, and attackers; it isn't a reliable distance measurement. Time of flight/channel sounding technologies can improve ranging but only provide security when the complete protocol, hardware, key establishment, fallback, and decision policy resist manipulation.</p>
+<p>Distinguish:</p>
+<ul>
+<li>device detected;</li>
+<li>credential authenticated;</li>
+<li>distance estimate with uncertainty;</li>
+<li>user intent/presence policy;</li>
+<li>access authorisation;</li>
+<li>physical passage.</li>
+</ul>
+<h2 id="s-availability">Availability<a class="heading-link" href="#s-availability" aria-label="Link to Availability">#</a></h2>
+<p>Survey normal and degraded RF conditions, co channel use, roaming, coverage holes, shielding, antenna placement, and interference sources. Define what local controllers do during radio, gateway, WAN, carrier, cloud, GPS/time, or battery loss. Jamming can't be made impossible; detect degraded service and retain an approved alternative path.</p>
+<h2 id="s-privacy-and-lifecycle">Privacy and lifecycle<a class="heading-link" href="#s-privacy-and-lifecycle" aria-label="Link to Privacy and lifecycle">#</a></h2>
+<p>Wireless identifiers and probe/advertisement patterns can track people or devices. Minimize stable broadcast identifiers, rotate privacy addresses where the protocol supports it, restrict scan/telemetry retention, and document purpose and consent/legal basis.</p>
+<p>Inventory radio module, firmware, protocol/profile versions, regional configuration, certificates/keys, carrier/subscription, and update/end of support dates. Verify local radio and installation rules before deployment.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../trust-boundaries-and-segmentation/"><span>Previous in this section</span>Trust boundaries and segmentation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/wireless-and-radio-fundamentals.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/wireless-and-radio-fundamentals.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-technology-roles">Technology roles</a></li><li class="toc-level-2"><a href="#s-threat-model">Threat model</a></li><li class="toc-level-2"><a href="#s-ranging-and-presence">Ranging and presence</a></li><li class="toc-level-2"><a href="#s-availability">Availability</a></li><li class="toc-level-2"><a href="#s-privacy-and-lifecycle">Privacy and lifecycle</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

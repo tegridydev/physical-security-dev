@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Trust boundaries and segmentation · Security Technician Wiki</title>
+<meta name="description" content="Mark where ownership, identity, permissions and physical control change across the system. Use those boundaries to plan segmentation and access rules.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/trust-boundaries-and-segmentation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Trust boundaries and segmentation · Security Technician Wiki">
+<meta property="og:description" content="Mark where ownership, identity, permissions and physical control change across the system. Use those boundaries to plan segmentation and access rules.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/trust-boundaries-and-segmentation/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="./" aria-current="page">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Trust boundaries and segmentation</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-trust-boundaries-and-segmentation">Trust boundaries and segmentation</h1>
+<p>Mark where ownership, identity, permissions and physical control change across the system. Use those boundaries to plan segmentation and access rules.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Architecture guidance; exact controls depend on risk, product capabilities, and site safety requirements.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-common-boundaries">Common boundaries</a></li><li class="toc-level-2"><a href="#s-zone-by-consequence-and-authority">Zone by consequence and authority</a></li><li class="toc-level-2"><a href="#s-conduit-record">Conduit record</a></li><li class="toc-level-2"><a href="#s-identity-plus-segmentation">Identity plus segmentation</a></li><li class="toc-level-2"><a href="#s-cross-domain-gateway">Cross domain gateway</a></li><li class="toc-level-2"><a href="#s-availability-and-recovery">Availability and recovery</a></li><li class="toc-level-2"><a href="#s-validation-questions">Validation questions</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A trust boundary exists whenever administration, identity, exposure, physical access, assurance, tenancy, safety impact, or data sensitivity changes. VLANs and firewalls can enforce part of a boundary, but the boundary is an architectural fact, not a network feature.</p>
+<h2 id="s-common-boundaries">Common boundaries<a class="heading-link" href="#s-common-boundaries" aria-label="Link to Common boundaries">#</a></h2>
+<ul>
+<li>field wiring or radio to controller;</li>
+<li>device/edge network to site platform;</li>
+<li>video, access, alarm, intercom, BMS, and OT domains;</li>
+<li>control plane to observation/analytics plane;</li>
+<li>tenant/site to shared service;</li>
+<li>on premises to supplier or cloud service;</li>
+<li>production to commissioning/support tooling;</li>
+<li>human operator to automation/workload;</li>
+<li>supplier managed appliance to customer managed identity and logging.</li>
+</ul>
+<h2 id="s-zone-by-consequence-and-authority">Zone by consequence and authority<a class="heading-link" href="#s-zone-by-consequence-and-authority" aria-label="Link to Zone by consequence and authority">#</a></h2>
+<p>Group assets by their trust, ownership and failure requirements. Useful separations include:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">field devices
+local controllers
+recording and event services
+integration/broker boundary
+management and update services
+operator clients
+enterprise identity/SIEM
+external/cloud/vendor support
+</code></pre></div>
+<p>A camera analytics service that only needs events shouldn't share the same path/account as firmware administration. A BMS dashboard that consumes door occupancy shouldn't automatically inherit door control authority.</p>
+<h2 id="s-conduit-record">Conduit record<a class="heading-link" href="#s-conduit-record" aria-label="Link to Conduit record">#</a></h2>
+<p>For every permitted flow, record source/destination roles and zones, initiator, protocol/version, service identity, authentication, authorisation, data classification, rate, availability, logging, owner, and expiry/review date. Default deny everything not represented.</p>
+<p>When a legacy protocol lacks authentication or encryption:</p>
+<ul>
+<li>keep it within the smallest physical/network zone;</li>
+<li>restrict endpoints and direction at a protocol aware or tightly scoped gateway;</li>
+<li>prevent direct enterprise/cloud reachability;</li>
+<li>monitor expected operations and rates;</li>
+<li>protect commissioning ports and wiring;</li>
+<li>plan migration instead of describing isolation as equivalent security.</li>
+</ul>
+<h2 id="s-identity-plus-segmentation">Identity plus segmentation<a class="heading-link" href="#s-identity-plus-segmentation" aria-label="Link to Identity plus segmentation">#</a></h2>
+<p>NIST <a href="https://csrc.nist.gov/pubs/sp/800/207/final" rel="noopener noreferrer">SP 800-207</a> states that network location or ownership must not create implicit trust. Apply user, device, and workload identity and operation level authorisation even inside a zone. Segmentation remains valuable for reducing reachability, containing failures, and supporting simpler policy; it doesn't replace identity.</p>
+<h2 id="s-cross-domain-gateway">Cross domain gateway<a class="heading-link" href="#s-cross-domain-gateway" aria-label="Link to Cross domain gateway">#</a></h2>
+<p>A gateway should:</p>
+<ul>
+<li>terminate and authenticate both sides independently;</li>
+<li>expose only required operations and fields;</li>
+<li>normalise identities and enforce site/tenant scope;</li>
+<li>validate size, schema, semantic range, freshness, and authorisation;</li>
+<li>bound queues and rates;</li>
+<li>make loss, staleness, and partial failure visible;</li>
+<li>separate observation and actuation paths;</li>
+<li>produce tamper resistant audit with correlation IDs;</li>
+<li>fail to an explicitly designed state.</li>
+</ul>
+<p>Avoid transparent bidirectional bridges between security and OT/BMS networks. Prefer a narrow exported data product or broker namespace, with any reverse command path separately justified and approved.</p>
+<h2 id="s-availability-and-recovery">Availability and recovery<a class="heading-link" href="#s-availability-and-recovery" aria-label="Link to Availability and recovery">#</a></h2>
+<p>Segmentation controls can fail closed, fail open, or fail ambiguously. Define local autonomy, redundant dependencies, maintenance bypass governance, certificate/identity outage behaviour, and out of band recovery. NIST <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">SP 800-82 Rev. 3</a> emphasizes that OT safeguards must respect availability, reliability, and safety.</p>
+<h2 id="s-validation-questions">Validation questions<a class="heading-link" href="#s-validation-questions" aria-label="Link to Validation questions">#</a></h2>
+<ul>
+<li>Can a compromised viewing client reach device management?</li>
+<li>Can an analytics tenant publish a control message?</li>
+<li>Can a vendor support identity operate outside its window/site?</li>
+<li>Does DNS, time, certificate, or identity outage break local control?</li>
+<li>Can the gateway distinguish stale replay from a new alarm?</li>
+<li>Are denied and unexpected cross zone attempts observable?</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../tls-pki-and-certificates/"><span>Previous in this section</span>TLS, PKI, and certificates</a><a href="../wireless-and-radio-fundamentals/"><span>Next in this section</span>Wireless and radio fundamentals</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/trust-boundaries-and-segmentation.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/trust-boundaries-and-segmentation.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-common-boundaries">Common boundaries</a></li><li class="toc-level-2"><a href="#s-zone-by-consequence-and-authority">Zone by consequence and authority</a></li><li class="toc-level-2"><a href="#s-conduit-record">Conduit record</a></li><li class="toc-level-2"><a href="#s-identity-plus-segmentation">Identity plus segmentation</a></li><li class="toc-level-2"><a href="#s-cross-domain-gateway">Cross domain gateway</a></li><li class="toc-level-2"><a href="#s-availability-and-recovery">Availability and recovery</a></li><li class="toc-level-2"><a href="#s-validation-questions">Validation questions</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

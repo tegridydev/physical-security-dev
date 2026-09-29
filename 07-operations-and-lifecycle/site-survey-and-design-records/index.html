@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Site survey and design records · Security Technician Wiki</title>
+<meta name="description" content="Record layout, power, network routes, interfaces, ownership and dependencies during the survey. Mark uncertain assumptions for confirmation before implementation.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/site-survey-and-design-records/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Site survey and design records · Security Technician Wiki">
+<meta property="og:description" content="Record layout, power, network routes, interfaces, ownership and dependencies during the survey. Mark uncertain assumptions for confirmation before implementation.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/site-survey-and-design-records/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="../incident-response-and-evidence/">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="./" aria-current="page">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Site survey and design records</span></nav><div class="page-kicker">Operations <span>About 2 min read</span></div><div class="prose"><h1 id="s-site-survey-and-design-records">Site survey and design records</h1>
+<p>Record layout, power, network routes, interfaces, ownership and dependencies during the survey. Mark uncertain assumptions for confirmation before implementation.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-record-before-design">Record before design</a></li><li class="toc-level-3"><a href="#s-assets-and-topology">Assets and topology</a></li><li class="toc-level-3"><a href="#s-data-and-performance">Data and performance</a></li><li class="toc-level-3"><a href="#s-trust-and-operations">Trust and operations</a></li><li class="toc-level-2"><a href="#s-design-outputs">Design outputs</a></li><li class="toc-level-2"><a href="#s-common-omissions">Common omissions</a></li><li class="toc-level-2"><a href="#s-applying-the-checklist">Applying the checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>The survey captures physical and logical facts that determine whether a protocol design will work. It isn't a universal wiring or code prescription; qualified practitioners must assess electrical, radio, fire, egress, environmental and structural requirements locally.</p>
+<h2 id="s-record-before-design">Record before design<a class="heading-link" href="#s-record-before-design" aria-label="Link to Record before design">#</a></h2>
+<h3 id="s-assets-and-topology">Assets and topology<a class="heading-link" href="#s-assets-and-topology" aria-label="Link to Assets and topology">#</a></h3>
+<ul>
+<li>exact existing and proposed devices, firmware, interfaces and licences;</li>
+<li>controller, server, recorder, broker, gateway, directory, cloud and operator relationships;</li>
+<li>physical and logical network paths, VLANs/routes/firewalls, NAT, multicast and wireless/cellular paths;</li>
+<li>serial bus topology, cable type/length, termination, bias, grounding/isolation and addressing;</li>
+<li>power source, PoE class/budget, UPS, battery, surge/environment and reboot sequence;</li>
+<li>field inputs/outputs and safety interlocks, documented without assuming universal NO/NC behaviour.</li>
+</ul>
+<h3 id="s-data-and-performance">Data and performance<a class="heading-link" href="#s-data-and-performance" aria-label="Link to Data and performance">#</a></h3>
+<ul>
+<li>stream codecs, resolution, frame rate, bitrate mode, GOP, audio and metadata;</li>
+<li>event rates, burst patterns, queue capacity, alarm supervision and retry behaviour;</li>
+<li>storage retention, export, replication and failure capacity;</li>
+<li>time source path, required accuracy, drift tolerance and offline duration;</li>
+<li>directory/identity latency, controller offline cache and mobile credential dependencies.</li>
+</ul>
+<h3 id="s-trust-and-operations">Trust and operations<a class="heading-link" href="#s-trust-and-operations" aria-label="Link to Trust and operations">#</a></h3>
+<ul>
+<li>security zones and every intended conduit;</li>
+<li>administrative, operator, service, vendor and break glass identities;</li>
+<li>certificates/keys and enrolment dependencies;</li>
+<li>Internet/cloud data flows and tenant/data location assumptions;</li>
+<li>local maintenance, monitoring, backup and recovery access;</li>
+<li>privacy sensitive fields/areas and evidence handling.</li>
+</ul>
+<h2 id="s-design-outputs">Design outputs<a class="heading-link" href="#s-design-outputs" aria-label="Link to Design outputs">#</a></h2>
+<p>Produce a versioned architecture, asset schedule, addressing plan, protocol/profile matrix, data flow and firewall matrix, multicast/discovery plan, identity/role matrix, certificate plan, storage/bandwidth calculation, failure state matrix, monitoring plan, acceptance cases and migration/rollback plan.</p>
+<h2 id="s-common-omissions">Common omissions<a class="heading-link" href="#s-common-omissions" aria-label="Link to Common omissions">#</a></h2>
+<ul>
+<li>secondary network interfaces or undocumented vendor tunnels;</li>
+<li>dynamic media port ranges and connection direction;</li>
+<li>IPv6 when only IPv4 policy was designed;</li>
+<li>edge recording retrieval traffic and catch up bandwidth;</li>
+<li>controller/cloud split brain after outage;</li>
+<li>clock loss and certificate validation dependency;</li>
+<li>battery/PoE behaviour during heater, IR, lock or PTZ peak load;</li>
+<li>life safety authority and local certified functions.</li>
+</ul>
+<h2 id="s-applying-the-checklist">Applying the checklist<a class="heading-link" href="#s-applying-the-checklist" aria-label="Link to Applying the checklist">#</a></h2>
+<p>Tailor the checklist to the exact products, site conditions, and jurisdiction. Record responsible reviewers, unresolved assumptions, qualified practitioner findings, and the environment validation evidence used to approve the design.</p>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../01-foundations/">Foundations</a></li>
+<li><a href="../../06-security-and-assurance/segmentation-and-conduits/">Segmentation and conduits</a></li>
+<li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../requirements-and-procurement/"><span>Previous in this section</span>Requirements and procurement</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/site-survey-and-design-records.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/site-survey-and-design-records.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-record-before-design">Record before design</a></li><li class="toc-level-3"><a href="#s-assets-and-topology">Assets and topology</a></li><li class="toc-level-3"><a href="#s-data-and-performance">Data and performance</a></li><li class="toc-level-3"><a href="#s-trust-and-operations">Trust and operations</a></li><li class="toc-level-2"><a href="#s-design-outputs">Design outputs</a></li><li class="toc-level-2"><a href="#s-common-omissions">Common omissions</a></li><li class="toc-level-2"><a href="#s-applying-the-checklist">Applying the checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

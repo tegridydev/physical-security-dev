@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Alarm path supervision and verification · Security Technician Wiki</title>
+<meta name="description" content="Path supervision checks communication availability. Alarm verification gathers information about the reported condition. Record and monitor the results separately.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/intrusion-monitoring/path-supervision-and-alarm-verification/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Alarm path supervision and verification · Security Technician Wiki">
+<meta property="og:description" content="Path supervision checks communication availability. Alarm verification gathers information about the reported condition. Record and monitor the results separately.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/intrusion-monitoring/path-supervision-and-alarm-verification/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group" open><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="./" aria-current="page">Alarm path supervision and verification</a></li><li><a href="../duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Intrusion and monitoring systems</a><span aria-hidden="true">/</span><span aria-current="page">Alarm path supervision and verification</span></nav><div class="page-kicker">Systems <span>About 3 min read</span></div><div class="prose"><h1 id="s-alarm-path-supervision-and-verification">Alarm path supervision and verification</h1>
+<p>Path supervision checks communication availability. Alarm verification gathers information about the reported condition. Record and monitor the results separately.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Conceptual assurance model only; supervision periods, verification sequence, dispatch policy, evidence thresholds, and legal permissions are site/jurisdiction specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-supervision-model">Supervision model</a></li><li class="toc-level-2"><a href="#s-diversity-and-correlated-failure">Diversity and correlated failure</a></li><li class="toc-level-2"><a href="#s-verification-is-a-decision-process">Verification is a decision process</a></li><li class="toc-level-2"><a href="#s-false-alarm-reduction-without-unsafe-suppression">False alarm reduction without unsafe suppression</a></li><li class="toc-level-2"><a href="#s-assurance-questions">Assurance questions</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Path supervision asks whether a required communication relationship remains within its declared service condition. Alarm verification asks whether additional authorised evidence changes confidence or response. Neither proves that no intrusion exists.</p>
+<h2 id="s-supervision-model">Supervision model<a class="heading-link" href="#s-supervision-model" aria-label="Link to Supervision model">#</a></h2>
+<p>For every source to destination path, record:</p>
+<ul>
+<li>endpoints and their authenticated identities;</li>
+<li>periodic, continuous, transaction driven, or externally monitored supervision method;</li>
+<li>expected interval, allowed missed observations, declaration delay, recovery rule, and clock source;</li>
+<li>dependency graph across power, network, carrier, DNS, certificate/keys, cloud broker, receiver, and automation;</li>
+<li>local queueing and what happens when capacity or retention is exhausted;</li>
+<li>escalation route and the state exposed to operators.</li>
+</ul>
+<p>Report <code>unknown</code> where observation is unavailable. Don't turn absence of a fault event into <code>healthy</code>. A successful poll can prove a protocol response at that instant, not sensor performance, future delivery, carrier independence, or operator readiness.</p>
+<h2 id="s-diversity-and-correlated-failure">Diversity and correlated failure<a class="heading-link" href="#s-diversity-and-correlated-failure" aria-label="Link to Diversity and correlated failure">#</a></h2>
+<p>Nominally dual paths may share the panel, communicator, antenna location, local router, power, carrier core, cloud region, receiver, or monitoring automation. Maintain a dependency graph and state the common mode boundary. Diversity is an evidence backed property, not a count of interfaces.</p>
+<p>When a path fails, retain which events remain local, whether the alternate path is eligible, what identity and ordering survive failover, and how queued events reconcile. Test recovery for duplicates and out of order restore messages.</p>
+<h2 id="s-verification-is-a-decision-process">Verification is a decision process<a class="heading-link" href="#s-verification-is-a-decision-process" aria-label="Link to Verification is a decision process">#</a></h2>
+<p>Possible authorised inputs include sequential zone activations, entry/exit context, audio challenge, two way voice, operator call back, access control events, video, analytic metadata, and on site response. Each source has its own availability, privacy, spoofing, time, and interpretation limits.</p>
+<p>Use an explicit evidence record:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>initiating event</td>
+  <td>Preserve panel native source and sequence</td>
+</tr>
+<tr>
+  <td>associated evidence</td>
+  <td>Identify source, time window, retrieval result, and integrity status</td>
+</tr>
+<tr>
+  <td>contradictions/gaps</td>
+  <td>Make missing or conflicting signals visible</td>
+</tr>
+<tr>
+  <td>policy/version</td>
+  <td>Explain which approved decision rules applied</td>
+</tr>
+<tr>
+  <td>actor and action</td>
+  <td>Attribute human or automated decision</td>
+</tr>
+<tr>
+  <td>uncertainty</td>
+  <td>Prevent “verified” from becoming an absolute truth claim</td>
+</tr>
+</tbody>
+</table></div>
+<p>Video association must account for camera identity, view, clock uncertainty, recording gaps, privacy authorisation, and whether the displayed clip actually covers the event window. Analytics output is a probabilistic observation, not an alarm verdict.</p>
+<h2 id="s-false-alarm-reduction-without-unsafe-suppression">False alarm reduction without unsafe suppression<a class="heading-link" href="#s-false-alarm-reduction-without-unsafe-suppression" aria-label="Link to False alarm reduction without unsafe suppression">#</a></h2>
+<p>Configuration, user training, entry/exit behaviour, sensor suitability, maintenance, event sequencing, and monitoring workflow can reduce avoidable alarms. Suppression rules can also hide real events.</p>
+<ul>
+<li>Preserve raw events even when a workflow de emphasizes them.</li>
+<li>Make delay, abort, cancel, cross zone, and confirmation logic explicit and attributable.</li>
+<li>Bound all time windows and document behaviour under clock or communication failure.</li>
+<li>Keep hold up/panic and other high consequence event policy separate.</li>
+<li>Review repeat cancellation, chronic bypass, nuisance sensors, and path instability as safety signals.</li>
+</ul>
+<p>SIA lists <a href="https://www.securityindustry.org/industry-standards/cp-01-2019/" rel="noopener noreferrer">ANSI/SIA <code>CP-01-2019</code></a> as its current control panel standard addressing false alarm reduction. It doesn't replace local requirements, compatible equipment assessment, or an approved response plan.</p>
+<h2 id="s-assurance-questions">Assurance questions<a class="heading-link" href="#s-assurance-questions" aria-label="Link to Assurance questions">#</a></h2>
+<ul>
+<li>What exact state is declared after missed supervision, and by which clock?</li>
+<li>Which dependencies are shared between nominal paths?</li>
+<li>Can the receiver distinguish late, duplicate, replayed, or out of order events?</li>
+<li>Does verification preserve unavailable and contradictory evidence?</li>
+<li>Can an operator see path loss while evaluating an alarm?</li>
+<li>Are tests coordinated so they can't cause unintended dispatch or mask real events?</li>
+</ul>
+<p>See <a href="../">Intrusion and monitoring systems</a> and <a href="../duress-panic-and-fire-boundaries/">Duress, panic, and fire boundaries</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../communicators-receivers-and-monitoring/"><span>Previous in this section</span>Alarm communicators, receivers, and monitoring</a><a href="../duress-panic-and-fire-boundaries/"><span>Next in this section</span>Duress, panic, and fire system boundaries</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/intrusion-monitoring/path-supervision-and-alarm-verification.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/intrusion-monitoring/path-supervision-and-alarm-verification.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-supervision-model">Supervision model</a></li><li class="toc-level-2"><a href="#s-diversity-and-correlated-failure">Diversity and correlated failure</a></li><li class="toc-level-2"><a href="#s-verification-is-a-decision-process">Verification is a decision process</a></li><li class="toc-level-2"><a href="#s-false-alarm-reduction-without-unsafe-suppression">False alarm reduction without unsafe suppression</a></li><li class="toc-level-2"><a href="#s-assurance-questions">Assurance questions</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

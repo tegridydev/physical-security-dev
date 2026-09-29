@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Credential technology comparison · Security Technician Wiki</title>
+<meta name="description" content="Compare credential technologies across issue, authentication, storage, recovery and revocation. Include the reader and access control platform in the assessment.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/credential-technology-comparison/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Credential technology comparison · Security Technician Wiki">
+<meta property="og:description" content="Compare credential technologies across issue, authentication, storage, recovery and revocation. Include the reader and access control platform in the assessment.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/credential-technology-comparison/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="./" aria-current="page">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Credential technology comparison</span></nav><div class="page-kicker">Reference <span>About 7 min read</span></div><div class="prose"><h1 id="s-credential-technology-comparison">Credential technology comparison</h1>
+<p>Compare credential technologies across issue, authentication, storage, recovery and revocation. Include the reader and access control platform in the assessment.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Technology family comparison only; assurance depends on the exact credential application, keys, reader, controller transport, identity proofing, lifecycle, certification, site policy, and environment evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-the-complete-decision-chain">The complete decision chain</a></li><li class="toc-level-2"><a href="#s-technology-family-comparison">Technology family comparison</a></li><li class="toc-level-2"><a href="#s-identifiers-that-must-not-be-collapsed">Identifiers that must not be collapsed</a></li><li class="toc-level-2"><a href="#s-reader-controller-preservation">Reader controller preservation</a></li><li class="toc-level-2"><a href="#s-offline-and-failure-questions">Offline and failure questions</a></li><li class="toc-level-2"><a href="#s-privacy-and-human-factors">Privacy and human factors</a></li><li class="toc-level-2"><a href="#s-selection-and-evidence-checklist">Selection and evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p>A carrier or form factor isn't an assurance level. “Card,” “NFC,” “BLE,” “phone,” and “biometric” describe media or factors; the actual proof, cryptographic profile, issuer, reader validation, controller path, and lifecycle determine assurance.</p>
+</blockquote>
+<h2 id="s-the-complete-decision-chain">The complete decision chain<a class="heading-link" href="#s-the-complete-decision-chain" aria-label="Link to The complete decision chain">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Required question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Subject</td>
+  <td>Whose access is being decided, and how was that identity proofed?</td>
+</tr>
+<tr>
+  <td>Credential instance</td>
+  <td>What unique governed object was issued, to which subject/device, by which issuer?</td>
+</tr>
+<tr>
+  <td>Presentation</td>
+  <td>What medium and radio/electrical channel carried the exchange?</td>
+</tr>
+<tr>
+  <td>Proof</td>
+  <td>Static value, shared key challenge, public key signature, biometric match, PIN, or combination?</td>
+</tr>
+<tr>
+  <td>Reader validation</td>
+  <td>Which freshness, target, algorithm, key/certificate, revocation, and anti relay rules were checked?</td>
+</tr>
+<tr>
+  <td>Controller path</td>
+  <td>Is the proof preserved or reduced to a static number before the access decision?</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>Which opening, schedule, mode, antipassback, and policy apply now?</td>
+</tr>
+<tr>
+  <td>Actuation/confirmation</td>
+  <td>What commands the lock/gate, and what sensor proves the physical result?</td>
+</tr>
+</tbody>
+</table></div>
+<p>See <a href="../../01-foundations/credentials-and-identity-media/">credentials and identity media</a>, <a href="../../02-protocols/access-control/credential-formats-and-mobile-credentials/">credential formats and mobile credentials</a>, and <a href="../safety-impact-checklist/">safety impact checklist</a>.</p>
+<h2 id="s-technology-family-comparison">Technology family comparison<a class="heading-link" href="#s-technology-family-comparison" aria-label="Link to Technology family comparison">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>What may be presented</th>
+  <th>Proof model to record</th>
+  <th>Principal limitations</th>
+  <th>Lifecycle and integration questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Printed number / visual badge</td>
+  <td>Human readable identifier, photo, markings</td>
+  <td>Human inspection and/or lookup; no cryptographic proof in the print itself</td>
+  <td>Copying, transcription, stale photo/data, subjective inspection</td>
+  <td>Issuance authority, visual validation procedure, expiration, loss, accessibility, privacy</td>
+</tr>
+<tr>
+  <td>Barcode / QR</td>
+  <td>Encoded static or signed data; sometimes a short lived token</td>
+  <td>Exact payload and signature/freshness profile</td>
+  <td>A static image can be copied; camera/display path and offline clock affect policy</td>
+  <td>Token lifetime, audience/door binding, replay cache, revocation, screenshots, brightness/accessibility</td>
+</tr>
+<tr>
+  <td>PIN</td>
+  <td>Memorized secret</td>
+  <td>Knowledge factor verified by controller/service</td>
+  <td>Observation, sharing, guessing, coercion, lockout abuse</td>
+  <td>Retry/lockout policy, duress/legal handling, reset, accessibility, logging minimization</td>
+</tr>
+<tr>
+  <td>Magnetic stripe</td>
+  <td>Tracks containing identifiers/application data</td>
+  <td>Usually static data under a site/application format</td>
+  <td>Skimming/copying and wear; no general modern mutual authentication</td>
+  <td>Exact track format, reader interface, replacement, coexistence retirement plan</td>
+</tr>
+<tr>
+  <td>Identifier only LF proximity deployment</td>
+  <td>Fixed transmitted identifier under a product/site format</td>
+  <td>Possession of a readable static identifier</td>
+  <td>Observation/emulation/cloning risk; technology name alone cannot prove security</td>
+  <td>Frequency/product/format, issuer range, duplicate detection, reader controller transport, migration</td>
+</tr>
+<tr>
+  <td>HF/NFC UID only use</td>
+  <td>Public/anti collision identifier</td>
+  <td>Presence of identifier, not credential authentication</td>
+  <td>UID may be public, random, changeable, duplicated, or unsuitable as stable identity by technology/product</td>
+  <td>UID type/lifetime, normalisation, collision handling, explicit prohibition on treating UID as strong proof</td>
+</tr>
+<tr>
+  <td>Contactless shared key application</td>
+  <td>Challenge response or secure messaging using symmetric keys</td>
+  <td>Exact application, algorithm, diversified key, freshness, reader authentication</td>
+  <td>Fleet/master key exposure, weak/default keys, relay/downgrade, reader key custody</td>
+  <td>Key ceremony, diversification, HSM/SAM use, rotation, replacement, offline validation, certification</td>
+</tr>
+<tr>
+  <td>Contactless public key application</td>
+  <td>Credential signature/certificate proof with reader challenge/profile</td>
+  <td>Certificate/key ownership, issuer chain, freshness, policy identifiers</td>
+  <td>PKI complexity, certificate/profile mismatch, reader trust store lifecycle, relay if presence/range not protected</td>
+  <td>Issuance, non exportable key, trust rollover, revocation/offline status, algorithm agility</td>
+</tr>
+<tr>
+  <td>PIV credential</td>
+  <td>Governed identifiers, certificates, keys, and authentication mechanisms</td>
+  <td>FIPS 201-3 and selected SP 800-73/116 mechanism/profile</td>
+  <td>PIV conformance and card validity do not automatically authorise a door</td>
+  <td>Agency trust, CHUID/PIV Auth/Card Auth choice, certificate/path/revocation, PACS risk model</td>
+</tr>
+<tr>
+  <td>Aliro 1.0 mobile access</td>
+  <td>Standardized access control credential ecosystem/profile</td>
+  <td>Exact Aliro role, transport, credential, transaction, and certification</td>
+  <td>New ecosystem as of 2026; public announcement is not product support evidence</td>
+  <td>Role/certification, wallet/device security, BLE/NFC/UWB use, issuance/revocation, reader/controller support</td>
+</tr>
+<tr>
+  <td>PKOC 2.0.1</td>
+  <td>Public key open credential over defined NFC/BLE paths; OSDP binding is separately versioned</td>
+  <td>Exact Core/NFC/BLE version and proof/binding</td>
+  <td>Product/profile support must be verified; transport and controller link remain distinct</td>
+  <td>Issuer/trust model, key custody, offline/revocation, OSDP version, conformance evidence</td>
+</tr>
+<tr>
+  <td>Proprietary mobile credential</td>
+  <td>Vendor specific app/wallet, BLE/NFC/UWB, cloud/on prem services</td>
+  <td>Published vendor protocol and security evidence for exact product/version</td>
+  <td>Lock in, opaque protocol, phone/app lifecycle, cloud dependency, radio relay/range claims</td>
+  <td>Tenant/issuer, device binding, restore/migration, offline behaviour, telemetry/privacy, API/reader/controller matrix</td>
+</tr>
+<tr>
+  <td>Biometric verification/identification</td>
+  <td>Captured characteristic and comparison result/template reference</td>
+  <td>Sensor quality, liveness/presentation attack detection, matcher, threshold, supervised policy</td>
+  <td>Probabilistic error, demographic/performance variation, presentation attacks, irrevocability/privacy</td>
+  <td>Consent/legal basis, enrollment, template protection, threshold/version, fallback, accessibility, deletion/export</td>
+</tr>
+<tr>
+  <td>Multi factor / multi credential policy</td>
+  <td>Two or more independent proofs</td>
+  <td>Explicit independence, sequencing, freshness, transaction/door binding</td>
+  <td>Two weak values on one compromised path may not be independent; usability can cause bypass</td>
+  <td>Factor recovery, degraded mode, antipassback, timeout, operator override, evidence and accessibility</td>
+</tr>
+</tbody>
+</table></div>
+<p>The table intentionally avoids universal “low/medium/high” ratings. The same medium can carry a static identifier or a strong cryptographic application, and the strongest credential can be downgraded to a replayable number at the reader controller boundary.</p>
+<h2 id="s-identifiers-that-must-not-be-collapsed">Identifiers that must not be collapsed<a class="heading-link" href="#s-identifiers-that-must-not-be-collapsed" aria-label="Link to Identifiers that must not be collapsed">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Identifier</th>
+  <th>Allocation authority and lifetime</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Subject/person ID</td>
+  <td>Identity governance system; may outlive employments or sites</td>
+</tr>
+<tr>
+  <td>Credential record ID</td>
+  <td>PACS/issuer database object; lifecycle/audit key</td>
+</tr>
+<tr>
+  <td>Printed badge number</td>
+  <td>Human facing and potentially reissued</td>
+</tr>
+<tr>
+  <td>Facility/company code and card number</td>
+  <td>Site format namespace; uniqueness is not global</td>
+</tr>
+<tr>
+  <td>Card UID/CSN</td>
+  <td>Chip/technology field with technology specific stability and privacy rules</td>
+</tr>
+<tr>
+  <td>Application serial/account</td>
+  <td>Credential application namespace</td>
+</tr>
+<tr>
+  <td>Certificate subject/SAN/key ID</td>
+  <td>PKI/profile namespace and validity period</td>
+</tr>
+<tr>
+  <td>Mobile device/app/wallet instance</td>
+  <td>Platform/vendor lifecycle; replacement/restore changes are expected</td>
+</tr>
+<tr>
+  <td>Biometric template ID</td>
+  <td>Biometric system record, not the biometric data itself</td>
+</tr>
+<tr>
+  <td>OSDP peripheral address</td>
+  <td>Reader bus address, not credential identity</td>
+</tr>
+</tbody>
+</table></div>
+<p>Store the namespace, original representation, allocation authority, encoding, and lifecycle with every value. Don't strip leading zeroes, infer a bit format from length alone, or silently map duplicates.</p>
+<h2 id="s-reader-controller-preservation">Reader controller preservation<a class="heading-link" href="#s-reader-controller-preservation" aria-label="Link to Reader controller preservation">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Reader output</th>
+  <th>Assurance preserved at controller?</th>
+  <th>Required note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Wiegand bits / Clock and Data</td>
+  <td>Generally only the emitted static value; link has no modern native protection</td>
+  <td>Document format, weak link exposure, and migration</td>
+</tr>
+<tr>
+  <td>OSDP without Secure Channel</td>
+  <td>Richer supervised messages but no cryptographic link protection</td>
+  <td>Do not equate CRC with authenticity</td>
+</tr>
+<tr>
+  <td>OSDP Secure Channel</td>
+  <td>Protects the OSDP link when keys/state/fallback are correctly managed</td>
+  <td>Record whether cryptographic credential result/proof or only a number is conveyed</td>
+</tr>
+<tr>
+  <td>Vendor encrypted bus</td>
+  <td>Unknown until exact public/licensed specification and product evidence are reviewed</td>
+  <td>Do not infer from marketing term “encrypted”</td>
+</tr>
+<tr>
+  <td>Decision at reader</td>
+  <td>Reduces raw credential exposure but moves authorisation/state/lifecycle to the edge</td>
+  <td>Define offline policy, update authenticity, audit, revocation, and tamper response</td>
+</tr>
+</tbody>
+</table></div>
+<p>OSDP protection begins and ends at its peers. It can't repair a clonable credential, and a secure credential can't repair a cleartext/emulatable reader controller path. See <a href="../../02-protocols/access-control/osdp/">OSDP</a> and <a href="../../02-protocols/access-control/legacy-reader-interfaces/">legacy reader interfaces</a>.</p>
+<h2 id="s-offline-and-failure-questions">Offline and failure questions<a class="heading-link" href="#s-offline-and-failure-questions" aria-label="Link to Offline and failure questions">#</a></h2>
+<ul>
+<li>What time source and maximum clock error govern validity?</li>
+<li>Which revocations, schedule changes, key changes, and threat list updates are unavailable offline?</li>
+<li>How old may cached authorisation be, and which openings are excluded from cache?</li>
+<li>Does a phone restore or card replacement clone, invalidate, or reissue the credential?</li>
+<li>What happens after reader, controller, mobile, secure element, or PKI reset?</li>
+<li>Can a stale credential be accepted during network partition, and how is that event marked?</li>
+<li>How are duplicate identifiers, rollback, counter loss, and transaction replay detected?</li>
+<li>Does degraded mode change from cryptographic proof to UID/static identifier? It should never do so silently.</li>
+<li>What safe alternative exists for disability, dead battery, lost device, damaged card, or failed biometric?</li>
+</ul>
+<h2 id="s-privacy-and-human-factors">Privacy and human factors<a class="heading-link" href="#s-privacy-and-human-factors" aria-label="Link to Privacy and human factors">#</a></h2>
+<p>Credential systems reveal identity, location, routine, and sometimes biometric or device data. Minimize collection; separate operational access logs from analytics; protect issuer mappings; define retention/export/correction; and provide accessible alternatives. Don't log raw keys, PINs, biometric samples/templates, challenge material, wallet tokens, or full certificate/private data.</p>
+<p>Biometric deployment requires jurisdiction specific legal, labor, consent, equality, retention, and incident analysis. This page provides no legal conclusion. Mobile radios and wallets require regional/platform/product review and must not use RSSI or raw range as sole identity proof.</p>
+<h2 id="s-selection-and-evidence-checklist">Selection and evidence checklist<a class="heading-link" href="#s-selection-and-evidence-checklist" aria-label="Link to Selection and evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact medium, application/profile, revision, role, and certification recorded">Exact medium, application/profile, revision, role, and certification recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Identity proofing and credential issuance authority documented">Identity proofing and credential issuance authority documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Static identifiers distinguished from cryptographic authentication">Static identifiers distinguished from cryptographic authentication</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Challenge, target, reader, freshness, transaction, and optional ranging binding specified">Challenge, target, reader, freshness, transaction, and optional ranging binding specified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Key/certificate/trust lifecycle and hardware custody documented">Key/certificate/trust lifecycle and hardware custody documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Loss, restore, replacement, revocation, expiry, offline, and clock policy tested by owner">Loss, restore, replacement, revocation, expiry, offline, and clock policy tested by owner</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Reader controller hop preserves intended proof and blocks silent downgrade">Reader controller hop preserves intended proof and blocks silent downgrade</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Door authorisation, lock actuation, and physical confirmation remain separate decisions">Door authorisation, lock actuation, and physical confirmation remain separate decisions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Privacy, accessibility, coercion, help desk, and alternate path reviewed">Privacy, accessibility, coercion, help desk, and alternate path reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact product support, versions, and behaviour are backed by product declarations and environment evidence">Exact product support, versions, and behaviour are backed by product declarations and environment evidence</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>SIA GUIDE</strong>, <a href="https://www.securityindustry.org/wp-content/uploads/2026/03/SIA_CorporateCredentialDesignGuide.pdf" rel="noopener noreferrer">Corporate Credential Design Guide</a>, Security Industry Association, March 2026.</li>
+<li><strong>ISO14443</strong>, <a href="https://www.iso.org/standard/73596.html" rel="noopener noreferrer">ISO/IEC 14443-1:2018</a>, ISO, current series entry reviewed 25 August 2026.</li>
+<li><strong>ISO7816</strong>, <a href="https://www.iso.org/standard/77180.html" rel="noopener noreferrer">ISO/IEC 7816-4:2020</a>, ISO, confirmed 2025.</li>
+<li><strong>FIPS201</strong>, <a href="https://csrc.nist.gov/pubs/fips/201-3/final" rel="noopener noreferrer">FIPS 201-3: Personal Identity Verification</a>, NIST, January 2022.</li>
+<li><strong>PIV PACS</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/116/r1/final" rel="noopener noreferrer">NIST SP 800-116 Rev. 1: Guidelines for the Use of PIV Credentials in Facility Access</a>, NIST, June 2018.</li>
+<li><strong>ALIRO</strong>, <a href="https://csa-iot.org/newsroom/introducing-aliro-1-0-a-unified-standard-to-transform-the-access-control-ecosystem/" rel="noopener noreferrer">Introducing Aliro 1.0</a>, Connectivity Standards Alliance, 26 February 2026.</li>
+<li><strong>PKOC</strong>, <a href="https://psialliance.org/securecredentials/" rel="noopener noreferrer">Secure Credential Interoperability and PKOC</a>, Physical Security Interoperability Alliance, Core/NFC/BLE 2.0.1 status dated 13 August 2026.</li>
+<li><strong>OSDP</strong>, <a href="https://www.securityindustry.org/industry-standards/open-supervised-device-protocol/" rel="noopener noreferrer">Open Supervised Device Protocol</a>, Security Industry Association, OSDP 2.2.2 status reviewed 25 August 2026.</li>
+<li><strong>NIST BIO</strong>, <a href="https://pages.nist.gov/800-63-4/sp800-63b.html#biometrics" rel="noopener noreferrer">Digital Identity Guidelines: Authentication and Authenticator Management, biometric requirements</a>, NIST SP <code>800-63B-4</code>, July 2025.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../code-example-index/"><span>Previous in this section</span>Code example index</a><a href="../diagram-index/"><span>Next in this section</span>Diagram index</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/credential-technology-comparison.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/credential-technology-comparison.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-the-complete-decision-chain">The complete decision chain</a></li><li class="toc-level-2"><a href="#s-technology-family-comparison">Technology family comparison</a></li><li class="toc-level-2"><a href="#s-identifiers-that-must-not-be-collapsed">Identifiers that must not be collapsed</a></li><li class="toc-level-2"><a href="#s-reader-controller-preservation">Reader controller preservation</a></li><li class="toc-level-2"><a href="#s-offline-and-failure-questions">Offline and failure questions</a></li><li class="toc-level-2"><a href="#s-privacy-and-human-factors">Privacy and human factors</a></li><li class="toc-level-2"><a href="#s-selection-and-evidence-checklist">Selection and evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Pedestrian portals, turnstiles, and interlocked doors · Security Technician Wiki</title>
+<meta name="description" content="Pedestrian portals combine access decisions, movement control and local safety functions. Record the responsibilities and approvals for each part of the passage sequence.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Pedestrian portals, turnstiles, and interlocked doors · Security Technician Wiki">
+<meta property="og:description" content="Pedestrian portals combine access decisions, movement control and local safety functions. Record the responsibilities and approvals for each part of the passage sequence.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group" open><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../biometrics/">Biometric access control systems</a></li><li><a href="../credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../mobile-access/">Mobile access systems</a></li><li><a href="../offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../pacs-architecture/">PACS architecture</a></li><li><a href="../panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="./" aria-current="page">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group"><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../../integration-platforms/">Section overview</a></li><li><a href="../../integration-platforms/bms-and-scada-integration/">BMS and SCADA integration</a></li><li><a href="../../integration-platforms/cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../../integration-platforms/hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../../integration-platforms/psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../../integration-platforms/siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Physical access control systems</a><span aria-hidden="true">/</span><span aria-current="page">Pedestrian portals, turnstiles, and interlocked doors</span></nav><div class="page-kicker">Systems <span>About 7 min read</span></div><div class="prose"><h1 id="s-pedestrian-portals-turnstiles-and-interlocked-doors">Pedestrian portals, turnstiles, and interlocked doors</h1>
+<p>Pedestrian portals combine access decisions, movement control and local safety functions. Record the responsibilities and approvals for each part of the passage sequence.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Architecture and risk boundaries only; equipment selection, guarding, force/speed values, safety functions, egress, accessibility, fire integration, and acceptance criteria require the exact product, site risk assessment, adopted law, and qualified approval.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-equipment-families">Equipment families</a></li><li class="toc-level-2"><a href="#s-standards-and-authority-boundary">Standards and authority boundary</a></li><li class="toc-level-2"><a href="#s-system-boundaries">System boundaries</a></li><li class="toc-level-2"><a href="#s-passage-state-model">Passage state model</a></li><li class="toc-level-3"><a href="#s-ambiguous-outcomes">Ambiguous outcomes</a></li><li class="toc-level-2"><a href="#s-safety-and-risk-assessment">Safety and risk assessment</a></li><li class="toc-level-2"><a href="#s-egress-and-emergency-modes">Egress and emergency modes</a></li><li class="toc-level-2"><a href="#s-accessibility-and-equitable-use">Accessibility and equitable use</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-degraded-and-maintenance-behaviour">Degraded and maintenance behaviour</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Pedestrian access control equipment combines authorisation, moving machinery, presence sensing, passage detection, building circulation, accessibility, and emergency egress. The access control system can request a passage, but the portal's approved local control and safety functions must decide whether and how motion occurs.</p>
+<p>Use <strong>security vestibule</strong> or <strong>interlocked door system</strong> for the two door arrangement when that is the intended design. <strong>Mantrap</strong> is retained only as a legacy search term: it is imprecise, can obscure egress and accessibility duties, and shouldn't appear as the primary system or user interface label.</p>
+<h2 id="s-equipment-families">Equipment families<a class="heading-link" href="#s-equipment-families" aria-label="Link to Equipment families">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Typical purpose</th>
+  <th>Integration caveat</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Tripod or waist high turnstile</td>
+  <td>Metered pedestrian entry with a rotating barrier</td>
+  <td>Does not prevent climbing, bypass, or unsafe use; passage and rotation sensing vary</td>
+</tr>
+<tr>
+  <td>Full height turnstile</td>
+  <td>Higher physical resistance and one person sequencing</td>
+  <td>Egress, rescue access, entrapment, accessibility, and adjacent bypass routes require explicit design</td>
+</tr>
+<tr>
+  <td>Optical turnstile / speed lane</td>
+  <td>Sensor based passage detection with moving leaves or an open lane</td>
+  <td>Tailgating algorithms are probabilistic and sensitive to bags, mobility aids, groups, and sensor conditions</td>
+</tr>
+<tr>
+  <td>Powered pedestrian gate</td>
+  <td>Wider accessible or service passage</td>
+  <td>Must not become a lower assurance bypass; machinery and latch/lock states remain separate</td>
+</tr>
+<tr>
+  <td>Security revolving door</td>
+  <td>Controlled circulation through rotating compartments</td>
+  <td>Occupancy, anti piggybacking, emergency opening, and machinery safety are product specific</td>
+</tr>
+<tr>
+  <td>Security vestibule / interlocked doors</td>
+  <td>Sequentially controlled doors with an intermediate space</td>
+  <td>Presence or identity checks never remove required release, communication, rescue, and egress provisions</td>
+</tr>
+</tbody>
+</table></div>
+<p>These names are categories, not performance or conformity claims. Record the exact product type, intended users, throughput, operating modes, safety rated functions, and approvals.</p>
+<h2 id="s-standards-and-authority-boundary">Standards and authority boundary<a class="heading-link" href="#s-standards-and-authority-boundary" aria-label="Link to Standards and authority boundary">#</a></h2>
+<ul>
+<li><a href="https://webstore.iec.ch/en/publication/3662" rel="noopener noreferrer">IEC 60839-11-1:2013</a> provides electronic access control system and component requirements.</li>
+<li><a href="https://www.nen.nl/en/nen-en-17352-2022-en-294705" rel="noopener noreferrer">EN 17352:2022</a> addresses safety in use for power operated pedestrian entrance control equipment. Its published scope excludes some vulnerable user, special needs, and unsupervised young child cases, so it isn't a complete accessibility or inclusive use basis.</li>
+<li><a href="https://www.iso.org/standard/51528.html" rel="noopener noreferrer">ISO 12100:2010</a> supplies general machinery risk assessment and risk reduction principles.</li>
+</ul>
+<p>Those standards have different scope. Product standards, machinery rules, building/fire/egress/accessibility law, electrical requirements, workplace obligations, and the authority having jurisdiction may also apply. A PACS standards claim doesn't establish machinery safety or code compliant egress, and a machinery conformity claim doesn't establish secure identity or access authorisation.</p>
+<h2 id="s-system-boundaries">System boundaries<a class="heading-link" href="#s-system-boundaries" aria-label="Link to System boundaries">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">credential / visitor / operator policy
+                 │
+                 ▼
+PACS decision ── passage request ──&gt; portal controller
+                                       ├─ local motion sequence
+                                       ├─ safety sensors and protective functions
+                                       ├─ barrier/door/lock monitoring
+                                       └─ approved emergency and egress behavior
+                 ▲
+passage and fault events ──────────────┘
+</code></pre></div>
+<p>Keep at least these controllers and authorities explicit:</p>
+<ul>
+<li>PACS identity, access decision, schedules, antipassback, and audit;</li>
+<li>portal machinery sequence, motion control, and local safety functions;</li>
+<li>independent emergency/fire release where the approved design requires it;</li>
+<li>building management observation, which shouldn't silently own safety or authorisation;</li>
+<li>local staff, guards, facilities personnel, and emergency responders;</li>
+<li>vendor remote support and maintenance modes.</li>
+</ul>
+<p>The interface should expose named, bounded operations such as an authorised entry cycle or approved mode change. Avoid integrations that directly toggle motors, brakes, raw relays, safety inputs, or sensor bypasses.</p>
+<h2 id="s-passage-state-model">Passage state model<a class="heading-link" href="#s-passage-state-model" aria-label="Link to Passage state model">#</a></h2>
+<p>An access grant, a portal opening, and a person completing passage are different facts. A useful state model separates:</p>
+<ol>
+<li>credential or identity presentation;</li>
+<li>access decision and reason;</li>
+<li>direction and lane selected;</li>
+<li>passage request accepted or rejected by the portal controller;</li>
+<li>barrier/door movement and safe ready state;</li>
+<li>entry into the detection/vestibule zone;</li>
+<li>completed, reversed, timed out, or ambiguous passage;</li>
+<li>barrier/door returned to its secure and safe state;</li>
+<li>independent evidence such as door/leaf position, lock monitor, occupancy, or rotation count;</li>
+<li>tailgating, wrong way, obstruction, tamper, forced movement, or equipment fault.</li>
+</ol>
+<p>Use a correlation identifier that survives controller and PACS retries. Record occurrence and receive times separately. Don't invent a successful passage when only the access decision or command acknowledgement exists.</p>
+<h3 id="s-ambiguous-outcomes">Ambiguous outcomes<a class="heading-link" href="#s-ambiguous-outcomes" aria-label="Link to Ambiguous outcomes">#</a></h3>
+<p>People can stop, reverse, pass belongings, accompany another person, use a mobility aid, or enter side by side. A sensor can be obscured or incorrectly classify a passage. After an ambiguous outcome:</p>
+<ul>
+<li>preserve the original sensor/portal event and confidence or reason;</li>
+<li>avoid automatic punitive identity action based on a single ambiguous classification;</li>
+<li>reconcile antipassback and occupancy through an approved exception process;</li>
+<li>route safety, obstruction, or entrapment indications to the responsible local workflow;</li>
+<li>don't issue an automatic second movement request merely because an acknowledgement was lost.</li>
+</ul>
+<h2 id="s-safety-and-risk-assessment">Safety and risk assessment<a class="heading-link" href="#s-safety-and-risk-assessment" aria-label="Link to Safety and risk assessment">#</a></h2>
+<p>The site risk assessment should cover intended use and reasonably foreseeable misuse across normal, degraded, maintenance, emergency, and rescue modes. Relevant hazards can include impact, crushing, shearing, drawing in, entanglement, falls, entrapment, panic, crowd pressure, electrical energy, unexpected restart, and unsafe security behaviour.</p>
+<p>Risk controls belong in an engineered hierarchy: inherently safer design, guards/protective measures, safety related control functions, information, training, and operating procedure. Software logging or analytics doesn't replace a protective device or approved safety function.</p>
+<p>At minimum, account for:</p>
+<ul>
+<li>children, older people, pregnancy, mobility aids, assistance animals, luggage, deliveries, and accompanied users;</li>
+<li>single and multiple persons, wrong way approach, loitering, obstruction, and attempted bypass;</li>
+<li>sensor contamination, misalignment, blind zones, reflective clothing, lighting, and environmental conditions;</li>
+<li>loss and restoration of power, network, PACS, time, sensor, actuator, brake/lock, and controller;</li>
+<li>emergency release, evacuation flow, first responder entry, manual override, and rescue from the intermediate space;</li>
+<li>maintenance access, stored energy, inhibit/bypass control, and return to service;</li>
+<li>adjacent accessible and emergency routes, including their equivalent security monitoring.</li>
+</ul>
+<p>Exact force, speed, clearance, timing, safety performance level, and protective device placement are product and site specific. Use the current product standard, manufacturer instructions, approved design, and competent machinery/fire/accessibility review.</p>
+<h2 id="s-egress-and-emergency-modes">Egress and emergency modes<a class="heading-link" href="#s-egress-and-emergency-modes" aria-label="Link to Egress and emergency modes">#</a></h2>
+<p>Normal access denial must never be treated as authority to block required egress. Document the priority and ownership of:</p>
+<ul>
+<li>normal entry and exit;</li>
+<li>free or controlled egress as legally approved;</li>
+<li>fire alarm or emergency release;</li>
+<li>evacuation and crowd mode;</li>
+<li>lockdown/security emergency mode;</li>
+<li>power failure and depleted backup power;</li>
+<li>manual key, mechanical, or local override;</li>
+<li>rescue and emergency service access;</li>
+<li>return from emergency to normal service.</li>
+</ul>
+<p>The effective behaviour is the combination of portal mechanics, locks, release circuits, PACS logic, fire interfaces, power supplies, surrounding doors, barriers, and operating procedure. See <a href="../locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a>.</p>
+<h2 id="s-accessibility-and-equitable-use">Accessibility and equitable use<a class="heading-link" href="#s-accessibility-and-equitable-use" aria-label="Link to Accessibility and equitable use">#</a></h2>
+<p>Review accessibility across the full route and service, including the gate and its approaches. Review clear passage, approach/turning space, reach and presentation zones, operating force, timing, visual/audible/tactile feedback, contrast, signage, queuing, assistance, emergency use, and privacy.</p>
+<p>The accessible lane should offer equivalent security, dignity, availability, and response time. Don't require a person to disclose disability to receive ordinary access, and don't treat slower movement, an assistant, a mobility aid, or an assistance animal as a security anomaly by default.</p>
+<h2 id="s-security-and-privacy">Security and privacy<a class="heading-link" href="#s-security-and-privacy" aria-label="Link to Security and privacy">#</a></h2>
+<ul>
+<li>Bind each request to authenticated identity, site, lane, direction, time, and permitted operation.</li>
+<li>Separate ordinary passage, visitor/escort, delivery, accessibility, maintenance, emergency, hold open, and security override permissions.</li>
+<li>Protect controller management, firmware, safety configuration, sensor calibration, and remote support as privileged functions.</li>
+<li>Supervise communications and physical enclosures without allowing a network fault to defeat required local safety.</li>
+<li>Minimize and retain only the passage, image, biometric, occupancy, and exception data needed for an approved purpose.</li>
+<li>Inform users where camera or biometric classification is used and provide a lawful, accessible alternative.</li>
+<li>Measure tailgating performance across representative users and conditions; don't market an algorithm as proof of individual identity.</li>
+<li>Keep video/analytics correlation separate from PACS truth and preserve uncertainty.</li>
+</ul>
+<p>For credential and controller boundaries, see <a href="../pacs-architecture/">PACS architecture</a>, <a href="../panels-readers-and-door-io/">Panels, readers, and door I/O</a>, and <a href="../offline-operation-and-anti-passback/">Offline operation and antipassback</a>.</p>
+<h2 id="s-degraded-and-maintenance-behaviour">Degraded and maintenance behaviour<a class="heading-link" href="#s-degraded-and-maintenance-behaviour" aria-label="Link to Degraded and maintenance behaviour">#</a></h2>
+<p>Define behaviour for PACS unavailable, portal controller unavailable, network partition, stale authorisation cache, sensor failure, barrier obstruction, safety device trip, battery condition, emergency input fault, and unavailable staff response. Local required safety behaviour must not depend on cloud or enterprise availability.</p>
+<p>Maintenance mode needs named authorisation, physical control of the work area, energy isolation procedure where applicable, visible indication, time limit, event logging, and an independent return to service check. A remotely cleared fault shouldn't automatically restart motion when a person may still be in the hazard zone.</p>
+<h2 id="s-acceptance-evidence">Acceptance evidence<a class="heading-link" href="#s-acceptance-evidence" aria-label="Link to Acceptance evidence">#</a></h2>
+<p>The system record should include:</p>
+<ul>
+<li>adopted standards, local authority decisions, risk assessment, intended use, and approved operating modes;</li>
+<li>product declarations/listings, manuals, safety function design, drawings, firmware, and configuration baseline;</li>
+<li>interface contract between PACS, portal controller, emergency/fire functions, and monitoring;</li>
+<li>complete passage state mapping, timestamp/correlation behaviour, and ambiguous outcome handling;</li>
+<li>representative users, mobility aids, luggage, accompanied passage, wrong way travel, obstruction, and bypass scenarios;</li>
+<li>power, network, controller, sensor, lock/brake, emergency input, manual override, and restart behaviour;</li>
+<li>accessible route and equivalent security evidence;</li>
+<li>emergency release, evacuation, rescue, responder access, and restoration approvals;</li>
+<li>privacy assessment, retention, operator permissions, maintenance access, and incident response;</li>
+<li>independent distinction among authorisation, command acceptance, machinery state, and completed passage.</li>
+</ul>
+<p>Physical acceptance testing requires the system owner, machinery safety and building/fire/accessibility stakeholders, controlled occupancy, emergency stop/override arrangements, and a site specific method approved before movement.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li>IEC, <a href="https://webstore.iec.ch/en/publication/3662" rel="noopener noreferrer">IEC 60839-11-1:2013</a>, electronic access control system requirements.</li>
+<li>NEN, <a href="https://www.nen.nl/en/nen-en-17352-2022-en-294705" rel="noopener noreferrer">EN 17352:2022 catalogue record</a>, current status and public scope for power operated pedestrian entrance control equipment safety in use.</li>
+<li>ISO, <a href="https://www.iso.org/standard/51528.html" rel="noopener noreferrer">ISO 12100:2010</a>, machinery safety risk assessment and risk reduction.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../panels-readers-and-door-io/"><span>Previous in this section</span>Panels, readers, and door I/O</a><a href="../visitor-identity-and-elevator-integration/"><span>Next in this section</span>Visitor, identity, and elevator integration</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/access-control/pedestrian-portals-turnstiles-and-interlocked-doors.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/access-control/pedestrian-portals-turnstiles-and-interlocked-doors.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-equipment-families">Equipment families</a></li><li class="toc-level-2"><a href="#s-standards-and-authority-boundary">Standards and authority boundary</a></li><li class="toc-level-2"><a href="#s-system-boundaries">System boundaries</a></li><li class="toc-level-2"><a href="#s-passage-state-model">Passage state model</a></li><li class="toc-level-3"><a href="#s-ambiguous-outcomes">Ambiguous outcomes</a></li><li class="toc-level-2"><a href="#s-safety-and-risk-assessment">Safety and risk assessment</a></li><li class="toc-level-2"><a href="#s-egress-and-emergency-modes">Egress and emergency modes</a></li><li class="toc-level-2"><a href="#s-accessibility-and-equitable-use">Accessibility and equitable use</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-degraded-and-maintenance-behaviour">Degraded and maintenance behaviour</a></li><li class="toc-level-2"><a href="#s-acceptance-evidence">Acceptance evidence</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

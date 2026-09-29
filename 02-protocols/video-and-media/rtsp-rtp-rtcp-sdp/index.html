@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>RTSP, RTP, RTCP, and SDP · Security Technician Wiki</title>
+<meta name="description" content="RTSP controls a media session, SDP describes it, RTP carries the media packets and RTCP reports session information. Check each part when investigating a stream.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="RTSP, RTP, RTCP, and SDP · Security Technician Wiki">
+<meta property="og:description" content="RTSP controls a media session, SDP describes it, RTP carries the media packets and RTCP reports session information. Check each part when investigating a stream.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group" open><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../codecs-and-streaming/">Codecs, RTP payloads, and streaming design</a></li><li><a href="../gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="./" aria-current="page">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group"><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../../web-and-messaging/">Section overview</a></li><li><a href="../../web-and-messaging/amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../../web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../../web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../../web-and-messaging/grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../../web-and-messaging/http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../../web-and-messaging/mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../../web-and-messaging/soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../../web-and-messaging/websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Video and media protocols</a><span aria-hidden="true">/</span><span aria-current="page">RTSP, RTP, RTCP, and SDP</span></nav><div class="page-kicker">Protocols <span>About 6 min read</span></div><div class="prose"><h1 id="s-rtsp-rtp-rtcp-and-sdp">RTSP, RTP, RTCP, and SDP</h1>
+<p>RTSP controls a media session, SDP describes it, RTP carries the media packets and RTCP reports session information. Check each part when investigating a stream.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Base IETF protocols and defensive parsing only; no vendor extension, authentication profile, camera, recorder, NAT, multicast, or stream interoperability is validated.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-revision-and-deployment-status">Revision and deployment status</a></li><li class="toc-level-2"><a href="#s-typical-on-demand-session">Typical on demand session</a></li><li class="toc-level-2"><a href="#s-rtsp-message-and-session-rules">RTSP message and session rules</a></li><li class="toc-level-3"><a href="#s-resource-and-control-urls">Resource and control URLs</a></li><li class="toc-level-3"><a href="#s-request-correlation-and-state">Request correlation and state</a></li><li class="toc-level-3"><a href="#s-transport-negotiation">Transport negotiation</a></li><li class="toc-level-2"><a href="#s-safe-rtsp-transcript">Safe RTSP transcript</a></li><li class="toc-level-2"><a href="#s-sdp-anatomy">SDP anatomy</a></li><li class="toc-level-2"><a href="#s-rtp-data-model">RTP data model</a></li><li class="toc-level-2"><a href="#s-rtcp-behaviour">RTCP behaviour</a></li><li class="toc-level-2"><a href="#s-timing-and-synchronisation">Timing and synchronisation</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-implementation-checklist">Implementation checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>These protocols solve different problems:</p>
+<ul>
+<li><strong>RTSP</strong> controls a media resource or session.</li>
+<li><strong>SDP</strong> describes media, addresses, payload types, and codec parameters.</li>
+<li><strong>RTP</strong> carries time sensitive media packets.</li>
+<li><strong>RTCP</strong> reports reception quality, identifies sources, and supports synchronisation and session control.</li>
+</ul>
+<p>None of them, by itself, establishes user authorisation, reliable delivery, confidentiality, or a complete video surveillance application.</p>
+<h2 id="s-revision-and-deployment-status">Revision and deployment status<a class="heading-link" href="#s-revision-and-deployment-status" aria-label="Link to Revision and deployment status">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Protocol</th>
+  <th>Current base</th>
+  <th>Status and compatibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>RTSP 1.0</td>
+  <td>RFC 2326 (1998)</td>
+  <td>Obsoleted by RFC 7826, but still prevalent in cameras and recorders</td>
+</tr>
+<tr>
+  <td>RTSP 2.0</td>
+  <td>RFC 7826 (2016)</td>
+  <td>Standards Track; not backward compatible with 1.0 except for explicit version negotiation behaviour</td>
+</tr>
+<tr>
+  <td>RTP/RTCP</td>
+  <td>RFC 3550, STD 64 (2003)</td>
+  <td>Internet Standard base; payload formats and extensions are separate specifications</td>
+</tr>
+<tr>
+  <td>SDP</td>
+  <td>RFC 8866 (2021)</td>
+  <td>Standards Track revision that obsoletes RFC 4566; a description format, not a transport or negotiation protocol by itself</td>
+</tr>
+</tbody>
+</table></div>
+<p>RTSP 2.0 isn't “RTSP 1.0 plus features.” A client must implement the selected version's message, connection, session, and request behaviour rather than sending 1.0 assumptions with a <code>RTSP/2.0</code> version token. <a href="https://datatracker.ietf.org/doc/rfc2326/" rel="noopener noreferrer">RTSP1</a> <a href="https://datatracker.ietf.org/doc/rfc7826/" rel="noopener noreferrer">RTSP2</a></p>
+<h2 id="s-typical-on-demand-session">Typical on demand session<a class="heading-link" href="#s-typical-on-demand-session" aria-label="Link to Typical on demand session">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">client                         media server
+  |---- OPTIONS -------------------&gt;|  discover methods/features
+  |---- DESCRIBE ------------------&gt;|  retrieve SDP
+  |&lt;--- 200 + application/sdp ------|
+  |---- SETUP track 1 --------------|  negotiate RTP/RTCP transport
+  |&lt;--- 200 + Session/Transport -----|
+  |---- SETUP track 2 --------------|
+  |---- PLAY -----------------------&gt;|
+  |&lt;==== RTP media / RTCP =========&gt;|
+  |---- PAUSE or TEARDOWN ----------&gt;|
+</code></pre></div>
+<p>Common methods include <code>OPTIONS</code>, <code>DESCRIBE</code>, <code>SETUP</code>, <code>PLAY</code>, <code>PAUSE</code>, and <code>TEARDOWN</code>. Servers can implement additional methods and feature tags. Method support, aggregate versus per track control, range units, seek behaviour, and live versus recorded semantics must be discovered and documented.</p>
+<h2 id="s-rtsp-message-and-session-rules">RTSP message and session rules<a class="heading-link" href="#s-rtsp-message-and-session-rules" aria-label="Link to RTSP message and session rules">#</a></h2>
+<h3 id="s-resource-and-control-urls">Resource and control URLs<a class="heading-link" href="#s-resource-and-control-urls" aria-label="Link to Resource and control URLs">#</a></h3>
+<p>The presentation URL identifies the aggregate resource. SDP can provide per media control attributes that resolve relative to the content base. Resolve URLs using the RTSP version's rules and reject cross origin/cross trust boundary targets unless policy explicitly permits them.</p>
+<h3 id="s-request-correlation-and-state">Request correlation and state<a class="heading-link" href="#s-request-correlation-and-state" aria-label="Link to Request correlation and state">#</a></h3>
+<ul>
+<li>RTSP 1.0 commonly correlates requests with <code>CSeq</code> and identifies established state with <code>Session</code>.</li>
+<li>Preserve the full session identifier but don't log sensitive parameters.</li>
+<li>A TCP connection and an RTSP session aren't identical lifetimes.</li>
+<li>Model server timeout, keepalive behaviour, reconnect, and restart; a stale session identifier isn't recoverable state.</li>
+<li>Apply per method retry rules. <code>OPTIONS</code> and <code>DESCRIBE</code> are easier to retry safely than <code>PLAY</code>, recording, parameter mutation, or vendor extensions.</li>
+</ul>
+<h3 id="s-transport-negotiation">Transport negotiation<a class="heading-link" href="#s-transport-negotiation" aria-label="Link to Transport negotiation">#</a></h3>
+<p><code>SETUP</code> negotiates lower transport and delivery parameters. Common deployments use:</p>
+<ul>
+<li>RTP/RTCP over unicast UDP;</li>
+<li>RTP/RTCP over multicast UDP;</li>
+<li>RTP and RTCP interleaved over the RTSP TCP connection;</li>
+<li>protected variants where explicitly supported.</li>
+</ul>
+<p>Don't assume the old adjacent UDP port convention. Explicit RTCP ports, RTCP multiplexing, ICE, NAT traversal, and interleaving alter it. RFC 5761 defines RTP/RTCP multiplexing on one port. <a href="https://datatracker.ietf.org/doc/rfc5761/" rel="noopener noreferrer">RTCP MUX</a></p>
+<h2 id="s-safe-rtsp-transcript">Safe RTSP transcript<a class="heading-link" href="#s-safe-rtsp-transcript" aria-label="Link to Safe RTSP transcript">#</a></h2>
+<p><strong>Target:</strong> Synthetic RTSP 1.0 server at a documentation only hostname.</p>
+<p><strong>Inputs:</strong> No credentials; no production address.</p>
+<p><strong>Side effects:</strong> None; this transcript isn't a command script.</p>
+<div class="code-block"><div class="code-toolbar"><span>http</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy http example">Copy</button></div><pre tabindex="0" aria-label="http example"><code id="code-2">DESCRIBE rtsp://camera.example/media/main RTSP/1.0
+CSeq: 1
+Accept: application/sdp
+User-Agent: securitytechnician-example/1.0
+
+RTSP/1.0 200 OK
+CSeq: 1
+Content-Type: application/sdp
+Content-Length: 214
+
+...SDP body...
+</code></pre></div>
+<p>Implementations must read exactly the declared body length, enforce a configured maximum, handle partial reads, and keep RTSP parsing separate from interleaved binary frame parsing.</p>
+<h2 id="s-sdp-anatomy">SDP anatomy<a class="heading-link" href="#s-sdp-anatomy" aria-label="Link to SDP anatomy">#</a></h2>
+<p>SDP is line oriented. The single letter field name and ordering rules matter. A session commonly contains:</p>
+<div class="code-block"><div class="code-toolbar"><span>sdp</span><button type="button" class="copy-code" data-copy="code-3" hidden aria-label="Copy sdp example">Copy</button></div><pre tabindex="0" aria-label="sdp example"><code id="code-3">v=0
+o=- 424242 2 IN IP4 192.0.2.10
+s=Synthetic camera stream
+t=0 0
+a=control:*
+m=video 0 RTP/AVP 96
+c=IN IP4 192.0.2.10
+a=rtpmap:96 H264/90000
+a=fmtp:96 packetization-mode=1;profile-level-id=42e01f
+a=control:trackID=1
+</code></pre></div>
+<p><strong>Target:</strong> Parser/unit fixture design.</p>
+<p><strong>Inputs:</strong> RFC 5737 documentation address.</p>
+<p><strong>Side effects:</strong> None.</p>
+<p>Interpretation:</p>
+<ul>
+<li><code>v=</code> is the SDP protocol version, currently <code>0</code>.</li>
+<li><code>o=</code> identifies the origin and session version; it isn't an authenticated identity.</li>
+<li><code>t=</code> describes session time.</li>
+<li><code>m=</code> starts a media description and maps a dynamic payload type (<code>96</code>) to attributes.</li>
+<li><code>c=</code> supplies connection data.</li>
+<li><code>a=rtpmap</code> maps payload type to encoding and RTP clock rate.</li>
+<li><code>a=fmtp</code> carries codec format parameters whose grammar is payload format specific.</li>
+<li><code>a=control</code> is an RTSP convention and can be session or media level.</li>
+</ul>
+<p>Reject malformed lines, conflicting duplicate singleton fields, impossible payload mappings, control URLs outside policy, and unbounded attribute values. SDP doesn't safely carry secret key material unless the enclosing channel is private, authenticated, and the specific key management mechanism defines that use. RFC 8866 explicitly calls for care with sensitive session descriptions. <a href="https://datatracker.ietf.org/doc/rfc8866/" rel="noopener noreferrer">SDP</a></p>
+<h2 id="s-rtp-data-model">RTP data model<a class="heading-link" href="#s-rtp-data-model" aria-label="Link to RTP data model">#</a></h2>
+<p>The fixed RTP header supplies:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Field</th>
+  <th>Purpose</th>
+  <th>Common trap</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Version</td>
+  <td>RTP version, normally 2</td>
+  <td>Confusing unrelated UDP with RTP</td>
+</tr>
+<tr>
+  <td>Marker</td>
+  <td>Profile/payload defined boundary hint</td>
+  <td>Assuming it always means “keyframe”</td>
+</tr>
+<tr>
+  <td>Payload type</td>
+  <td>Mapping to a codec format in signaling</td>
+  <td>Treating dynamic numbers as globally assigned</td>
+</tr>
+<tr>
+  <td>Sequence number</td>
+  <td>Packet order/loss detection, modulo 2^16</td>
+  <td>Treating wraparound as reset</td>
+</tr>
+<tr>
+  <td>Timestamp</td>
+  <td>Sampling/encoding clock position</td>
+  <td>Treating it as wall clock UTC</td>
+</tr>
+<tr>
+  <td>SSRC</td>
+  <td>Synchronization source identifier</td>
+  <td>Treating it as durable device identity</td>
+</tr>
+<tr>
+  <td>CSRC list</td>
+  <td>Contributing sources</td>
+  <td>Ignoring bounds and count validation</td>
+</tr>
+<tr>
+  <td>Extension</td>
+  <td>Profile negotiated extension data</td>
+  <td>Parsing an unnegotiated extension as trusted metadata</td>
+</tr>
+</tbody>
+</table></div>
+<p>RTP offers sequence and timing information but doesn't guarantee delivery, ordering, latency, or quality of service. Receivers need a bounded jitter buffer, codec aware loss handling, sequence wrap/restart logic, SSRC collision handling, and resource limits. <a href="https://datatracker.ietf.org/doc/rfc3550/" rel="noopener noreferrer">RTP</a></p>
+<h2 id="s-rtcp-behaviour">RTCP behaviour<a class="heading-link" href="#s-rtcp-behaviour" aria-label="Link to RTCP behaviour">#</a></h2>
+<p>RTCP typically carries:</p>
+<ul>
+<li>Sender Reports (SR): sender counters plus RTP to NTP clock correlation;</li>
+<li>Receiver Reports (RR): loss, highest sequence, jitter, and timing feedback;</li>
+<li>Source Description (SDES), including canonical name data;</li>
+<li>BYE: source departure;</li>
+<li>profile specific feedback and extensions defined elsewhere.</li>
+</ul>
+<p>RTCP statistics are measurements, not proof of delivery or user experience. Validate report blocks and counts, cap compound packet processing, and regard CNAME or SDES text as untrusted. Avoid exposing personally identifying host/user information in CNAME construction.</p>
+<h2 id="s-timing-and-synchronisation">Timing and synchronisation<a class="heading-link" href="#s-timing-and-synchronisation" aria-label="Link to Timing and synchronisation">#</a></h2>
+<ul>
+<li>Each RTP stream has its own codec clock rate.</li>
+<li>Sequence numbers establish packet ordering; timestamps establish sampling time.</li>
+<li>RTCP SR pairs an RTP timestamp with an NTP format reference to align streams.</li>
+<li>Wall clock changes, unsynchronized devices, reboot, source switching, timestamp wrap, and capture pipeline discontinuity must be handled.</li>
+<li>Audio and video sync should use the negotiated timing model, not packet arrival time.</li>
+</ul>
+<h2 id="s-security-and-privacy">Security and privacy<a class="heading-link" href="#s-security-and-privacy" aria-label="Link to Security and privacy">#</a></h2>
+<ul>
+<li>Use RTSP over TLS or another explicitly protected control path where supported; authenticate the server and authorise each media resource.</li>
+<li>Keep passwords and bearer tokens out of RTSP URLs. URI user info leaks through logs, telemetry, history, and diagnostics.</li>
+<li>Plain RTP/RTCP provides no confidentiality, integrity, or replay protection; use SRTP/SRTCP or an equivalently protected transport where required.</li>
+<li>Constrain multicast by network design. A joinable multicast group isn't an authorisation boundary.</li>
+<li>Validate SDP derived addresses and ports to prevent SSRF, traffic reflection, or egress policy bypass.</li>
+<li>Rate limit session creation and cap concurrent sessions, tracks, UDP flows, interleaved channels, body sizes, and parser memory.</li>
+<li>Redact session IDs, authorisation data, URLs containing tokens, private addresses, and SDP fields that reveal topology.</li>
+</ul>
+<h2 id="s-implementation-checklist">Implementation checklist<a class="heading-link" href="#s-implementation-checklist" aria-label="Link to Implementation checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="RTSP 1.0 and 2.0 support represented as separate capabilities">RTSP 1.0 and 2.0 support represented as separate capabilities</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="TLS, server identity, authentication, and per resource authorisation specified">TLS, server identity, authentication, and per resource authorisation specified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="URL resolution and cross host redirects/control targets constrained">URL resolution and cross host redirects/control targets constrained</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Content-Length , header count/length, interleaved frame length, and SDP size bounded"><code>Content-Length</code>, header count/length, interleaved frame length, and SDP size bounded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Partial I/O, pipelining/version behaviour, timeout, and reconnect modeled">Partial I/O, pipelining/version behaviour, timeout, and reconnect modeled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Per track and aggregate control behaviour validated against target versions">Per track and aggregate control behaviour validated against target versions</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="RTP payload type and fmtp parsed only after negotiation">RTP payload type and <code>fmtp</code> parsed only after negotiation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sequence, timestamp, and SSRC wrap/restart/collision handled">Sequence, timestamp, and SSRC wrap/restart/collision handled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Jitter, loss, reordering, MTU, and keyframe recovery bounded">Jitter, loss, reordering, MTU, and keyframe recovery bounded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="RTCP reports consumed as telemetry, not delivery guarantees">RTCP reports consumed as telemetry, not delivery guarantees</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Plain media risks and multicast scope explicitly accepted or removed">Plain media risks and multicast scope explicitly accepted or removed</li>
+</ul>
+<span class="heading-alias" id="s-what-to-check-in-your-environment" aria-hidden="true"></span><h2 id="s-checks-for-your-system">Checks for your system<a class="heading-link" href="#s-checks-for-your-system" aria-label="Link to Checks for your system">#</a></h2>
+<p>Validate parser limits, authentication, vendor extensions, camera/recorder interoperability, NAT and multicast behaviour, loss/reordering, codec recovery, reconnect, clock discontinuity, and resource cleanup against exact target versions. Treat vendor documentation and captured acceptance evidence as implementation specific supplements to the RFC baseline.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>RTSP1</strong>, <a href="https://datatracker.ietf.org/doc/rfc2326/" rel="noopener noreferrer">RFC 2326: Real Time Streaming Protocol (RTSP)</a>, IETF, April 1998; obsoleted by RFC 7826.</li>
+<li><strong>RTSP2</strong>, <a href="https://datatracker.ietf.org/doc/rfc7826/" rel="noopener noreferrer">RFC 7826: Real Time Streaming Protocol Version 2.0</a>, IETF, December 2016.</li>
+<li><strong>RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc3550/" rel="noopener noreferrer">RFC 3550 / STD 64: RTP: A Transport Protocol for Real Time Applications</a>, IETF, July 2003.</li>
+<li><strong>SDP</strong>, <a href="https://datatracker.ietf.org/doc/rfc8866/" rel="noopener noreferrer">RFC 8866: SDP: Session Description Protocol</a>, IETF, January 2021.</li>
+<li><strong>RTCP MUX</strong>, <a href="https://datatracker.ietf.org/doc/rfc5761/" rel="noopener noreferrer">RFC 5761: Multiplexing RTP Data and Control Packets on a Single Port</a>, IETF, April 2010.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../onvif/"><span>Previous in this section</span>ONVIF services, profiles, conformance, and security</a><a href="../sip-and-srtp/"><span>Next in this section</span>SIP and SRTP for intercom and real time media</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/video-and-media/rtsp-rtp-rtcp-sdp.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/video-and-media/rtsp-rtp-rtcp-sdp.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-revision-and-deployment-status">Revision and deployment status</a></li><li class="toc-level-2"><a href="#s-typical-on-demand-session">Typical on demand session</a></li><li class="toc-level-2"><a href="#s-rtsp-message-and-session-rules">RTSP message and session rules</a></li><li class="toc-level-3"><a href="#s-resource-and-control-urls">Resource and control URLs</a></li><li class="toc-level-3"><a href="#s-request-correlation-and-state">Request correlation and state</a></li><li class="toc-level-3"><a href="#s-transport-negotiation">Transport negotiation</a></li><li class="toc-level-2"><a href="#s-safe-rtsp-transcript">Safe RTSP transcript</a></li><li class="toc-level-2"><a href="#s-sdp-anatomy">SDP anatomy</a></li><li class="toc-level-2"><a href="#s-rtp-data-model">RTP data model</a></li><li class="toc-level-2"><a href="#s-rtcp-behaviour">RTCP behaviour</a></li><li class="toc-level-2"><a href="#s-timing-and-synchronisation">Timing and synchronisation</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-implementation-checklist">Implementation checklist</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system">Checks for your system</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Media streaming fundamentals · Security Technician Wiki</title>
+<meta name="description" content="Follow the video through capture, encoding, session setup, transport, decoding and storage. Check each stage when investigating playback, quality or recording problems.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/media-streaming-fundamentals/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Media streaming fundamentals · Security Technician Wiki">
+<meta property="og:description" content="Follow the video through capture, encoding, session setup, transport, decoding and storage. Check each stage when investigating playback, quality or recording problems.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/media-streaming-fundamentals/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="./" aria-current="page">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Media streaming fundamentals</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-media-streaming-fundamentals">Media streaming fundamentals</h1>
+<p>Follow the video through capture, encoding, session setup, transport, decoding and storage. Check each stage when investigating playback, quality or recording problems.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Conceptual media pipeline; codec/profile/licensing and product specific behaviour require separate verification.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-components">Components</a></li><li class="toc-level-2"><a href="#s-timing-and-loss">Timing and loss</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-capacity">Capacity</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>“Video stream” hides several independent contracts:</p>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">capture -&gt; encode -&gt; describe/negotiate -&gt; control session
+        -&gt; packetize/transport -&gt; receive/jitter/decode -&gt; render/record
+        -&gt; index/export/verify
+</code></pre></div>
+<p>Authenticate and observe each relevant path. Protecting the management API doesn't necessarily protect media; supporting a codec doesn't imply the required profile, level, packetisation, resolution, or recording behaviour.</p>
+<h2 id="s-components">Components<a class="heading-link" href="#s-components" aria-label="Link to Components">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Concern</th>
+  <th>Common technologies</th>
+  <th>Key questions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Encoding</td>
+  <td>H.264/AVC, H.265/HEVC, JPEG, AAC, G.711, Opus</td>
+  <td>Profile/level, bitrate mode, keyframe cadence, licensing, decoder bounds</td>
+</tr>
+<tr>
+  <td>Description</td>
+  <td>SDP, ONVIF configuration, vendor JSON/XML</td>
+  <td>Codec parameters, media address/ports, direction, timing, security</td>
+</tr>
+<tr>
+  <td>Session control</td>
+  <td>RTSP, SIP, WebRTC signalling, vendor API</td>
+  <td>Authentication, setup state, teardown, keepalive, renegotiation</td>
+</tr>
+<tr>
+  <td>Media transport</td>
+  <td>RTP/RTCP, SRTP/SRTCP, interleaved RTP, WebRTC</td>
+  <td>Loss, jitter, sequence, timestamps, feedback, encryption</td>
+</tr>
+<tr>
+  <td>Recording</td>
+  <td>edge, NVR/VMS, cloud object storage</td>
+  <td>continuity, indexes, retention, encryption, evidence integrity</td>
+</tr>
+</tbody>
+</table></div>
+<p><a href="https://www.rfc-editor.org/info/rfc3550" rel="noopener noreferrer">RFC 3550</a> defines RTP and RTCP. RTP provides transport functions for real time data but does not guarantee delivery or reserve resources. RTCP carries control and reception information; it does not itself prove content integrity.</p>
+<p><a href="https://www.rfc-editor.org/rfc/rfc8866" rel="noopener noreferrer">RFC 8866</a> defines SDP as a description format. An SDP received over an unauthenticated/unprotected path must not be trusted to select safe media destinations or security parameters. <a href="https://www.rfc-editor.org/info/rfc7826" rel="noopener noreferrer">RFC 7826</a> defines RTSP 2.0, while many deployed products also implement RTSP 1.0 or product specific subsets; determine the actual version.</p>
+<p>WebRTC is a suite, not one wire protocol. Its media uses protected RTP profiles; <a href="https://www.rfc-editor.org/info/rfc8834" rel="noopener noreferrer">RFC 8834</a> requires WebRTC endpoints to use SRTP/SRTCP, and <a href="https://www.rfc-editor.org/rfc/rfc8827" rel="noopener noreferrer">RFC 8827</a> describes the security architecture. Application signalling and authorisation remain the product's responsibility.</p>
+<h2 id="s-timing-and-loss">Timing and loss<a class="heading-link" href="#s-timing-and-loss" aria-label="Link to Timing and loss">#</a></h2>
+<p>RTP timestamps represent media sampling time, not necessarily UTC. Sequence numbers help detect loss/reordering but can wrap and are scoped to a synchronisation source. Correlate media clocks to wall time using applicable RTCP or system metadata, preserving uncertainty.</p>
+<p>Design receivers for bounded jitter buffers, packet loss, reorder, duplicate, source restart/identifier change, keyframe acquisition, codec reconfiguration, and silent stall. Backpressure and latency policy must be explicit: dropping old live frames can be preferable to growing an unbounded queue, while recording has different requirements.</p>
+<h2 id="s-security-and-privacy">Security and privacy<a class="heading-link" href="#s-security-and-privacy" aria-label="Link to Security and privacy">#</a></h2>
+<ul>
+<li>Authenticate control/signalling peers and authorise each stream/resource.</li>
+<li>Protect media and metadata in transit where the threat model requires; record where legacy cleartext remains.</li>
+<li>Validate SDP, codec parameters, dimensions, rates, packet sizes, and decoder input.</li>
+<li>Restrict destinations to prevent a device being induced to send media to an attacker controlled address.</li>
+<li>Treat audio, analytics metadata, thumbnails, and exported clips as sensitive, not only primary video.</li>
+<li>Separate viewing, export, administration, and evidence deletion permissions.</li>
+</ul>
+<h2 id="s-capacity">Capacity<a class="heading-link" href="#s-capacity" aria-label="Link to Capacity">#</a></h2>
+<p>Plan peak rather than nameplate average: keyframe bursts, multiple profiles, multicast replication, live viewing, recording, playback, analytics, export, failover, and catch up. Measure end to end latency and recording gaps in the authorised target environment, and record the exact stream profiles, topology, load, failover cases, observations, and limitations.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../ip-addressing-routing-and-ports/"><span>Previous in this section</span>IP addressing, routing, and ports</a><a href="../multicast-discovery-and-nat/"><span>Next in this section</span>Multicast, discovery, and NAT</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/media-streaming-fundamentals.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/media-streaming-fundamentals.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-components">Components</a></li><li class="toc-level-2"><a href="#s-timing-and-loss">Timing and loss</a></li><li class="toc-level-2"><a href="#s-security-and-privacy">Security and privacy</a></li><li class="toc-level-2"><a href="#s-capacity">Capacity</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

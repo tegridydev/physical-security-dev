@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Incident response and evidence · Security Technician Wiki</title>
+<meta name="description" content="Assess the impact on physical security while investigating an incident. Preserve evidence and obtain approval before isolating equipment or changing a live service.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/07-operations-and-lifecycle/incident-response-and-evidence/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Incident response and evidence · Security Technician Wiki">
+<meta property="og:description" content="Assess the impact on physical security while investigating an incident. Preserve evidence and obtain approval before isolating equipment or changing a live service.">
+<meta property="og:url" content="https://securitytechnician.wiki/07-operations-and-lifecycle/incident-response-and-evidence/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">07</span>Operations</a><ul class="nav-pages"><li><a href="../asset-and-configuration-inventory/">Asset and configuration inventory</a></li><li><a href="../certificate-and-account-lifecycle/">Certificate and account lifecycle</a></li><li><a href="../change-firmware-and-patching/">Change, firmware, and patching</a></li><li><a href="../commissioning-and-acceptance/">Commissioning and acceptance</a></li><li><a href="../decommissioning-and-disposal/">Decommissioning and disposal</a></li><li><a href="./" aria-current="page">Incident response and evidence</a></li><li><a href="../monitoring-and-health/">Monitoring and health</a></li><li><a href="../runbooks/">Operational runbooks</a></li><li><a href="../requirements-and-procurement/">Requirements and procurement</a></li><li><a href="../site-survey-and-design-records/">Site survey and design records</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Operations</a><span aria-hidden="true">/</span><span aria-current="page">Incident response and evidence</span></nav><div class="page-kicker">Operations <span>About 2 min read</span></div><div class="prose"><h1 id="s-incident-response-and-evidence">Incident response and evidence</h1>
+<p>Assess the impact on physical security while investigating an incident. Preserve evidence and obtain approval before isolating equipment or changing a live service.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-first-decisions">First decisions</a></li><li class="toc-level-2"><a href="#s-evidence-collection-record">Evidence collection record</a></li><li class="toc-level-2"><a href="#s-containment-hierarchy">Containment hierarchy</a></li><li class="toc-level-2"><a href="#s-recovery">Recovery</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Responders must account for both cyber compromise and the continuing physical security mission. Unplugging a controller, recorder, alarm communicator, intercom, gateway or time service can destroy evidence, remove coverage, create unsafe states, or trigger failover and dispatch.</p>
+<h2 id="s-first-decisions">First decisions<a class="heading-link" href="#s-first-decisions" aria-label="Link to First decisions">#</a></h2>
+<ol>
+<li>Is any person, emergency function, egress path, gate/elevator movement, alarm signalling or critical facility state at immediate risk?</li>
+<li>Which local authority controls physical actions and safety decisions?</li>
+<li>Which functions can continue safely and which require compensating guards or procedures?</li>
+<li>Which evidence is volatile, which system is authoritative, and which clocks are trustworthy?</li>
+<li>Can containment be applied at identity, route, API, broker, service or device scope without broad shutdown?</li>
+<li>Is an attacker actively using vendor cloud, support access, certificates, service accounts or physical wiring?</li>
+</ol>
+<h2 id="s-evidence-collection-record">Evidence collection record<a class="heading-link" href="#s-evidence-collection-record" aria-label="Link to Evidence collection record">#</a></h2>
+<p>Record collector and authority, time and time source quality, asset/model/firmware, interface and command used, original output location, hash where appropriate, access controls, transformations, gaps and limitations. Preserve original logs, exports and configuration before normalising them.</p>
+<p>Relevant sources include device/controller logs, VMS/PACS/alarm audit, video/audio and export verification, identity and authorisation decisions, API/broker logs, DNS/DHCP/NTP, network/firewall/NAC, remote support, cloud audit, configuration history, update records and physical access/tamper evidence.</p>
+<h2 id="s-containment-hierarchy">Containment hierarchy<a class="heading-link" href="#s-containment-hierarchy" aria-label="Link to Containment hierarchy">#</a></h2>
+<p>Prefer narrow revocation of a token, account, certificate, topic permission, API role, route or destination before broad isolation. If a whole device/zone must be isolated, coordinate the resulting coverage and safe state consequence. Don't erase, factory reset or update suspected systems until evidence and recovery decisions are made unless immediate safety requires it.</p>
+<h2 id="s-recovery">Recovery<a class="heading-link" href="#s-recovery" aria-label="Link to Recovery">#</a></h2>
+<p>Re establish trusted identity, firmware/software, configuration, certificates/keys, time, and network policy from known good sources. Reconcile controller/server/cloud state and queued events. The system owner and responsible safety authority must approve validation of denied, normal, degraded, and recovery behaviour before return to service.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 61</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/61/r3/final" rel="noopener noreferrer">NIST SP 800-61 Rev. 3: Incident Response Recommendations and Considerations for Cybersecurity Risk Management</a>, final April 2025, accessed 25 August 2026.</li>
+<li><strong>NIST 800 86</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/86/final" rel="noopener noreferrer">NIST SP 800-86: Integrating Forensic Techniques into Incident Response</a>, accessed 25 August 2026.</li>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, OT safety and response context, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../06-security-and-assurance/logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li>
+<li><a href="../../06-security-and-assurance/resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li>
+<li><a href="../runbooks/">Operational runbooks</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../decommissioning-and-disposal/"><span>Previous in this section</span>Decommissioning and disposal</a><a href="../monitoring-and-health/"><span>Next in this section</span>Monitoring and health</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/07-operations-and-lifecycle/incident-response-and-evidence.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/07-operations-and-lifecycle/incident-response-and-evidence.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-first-decisions">First decisions</a></li><li class="toc-level-2"><a href="#s-evidence-collection-record">Evidence collection record</a></li><li class="toc-level-2"><a href="#s-containment-hierarchy">Containment hierarchy</a></li><li class="toc-level-2"><a href="#s-recovery">Recovery</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

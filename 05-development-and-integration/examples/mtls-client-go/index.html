@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Mutual TLS health client · Security Technician Wiki</title>
+<meta name="description" content="Read a health endpoint using a validated server certificate and your own client certificate.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/mtls-client-go/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mutual TLS health client · Security Technician Wiki">
+<meta property="og:description" content="Read a health endpoint using a validated server certificate and your own client certificate.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/mtls-client-go/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="./" aria-current="page">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">Mutual TLS health client</span></nav><div class="page-kicker">Development <span>About 4 min read</span></div><div class="prose"><h1 id="s-mutual-tls-health-client">Mutual TLS health client</h1>
+<p>Read a health endpoint using a validated server certificate and your own client certificate.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">go run examples/go/mtls_health.go --demo
+</code></pre></div>
+<p>The demo validates a built in JSON response and prints <code>{&quot;status&quot;:&quot;healthy&quot;}</code>.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Use <code>--url</code>, <code>--cert</code> and <code>--key</code> for an authorised endpoint. Use <code>--ca</code> to add a private CA to the system trust store. The client certificate and private key are PEM files that you supply locally. No certificates or private keys are included in the example archive.</p>
+<p>The client has a 15 second overall HTTP timeout, limits headers and body size, rejects redirects and does not inherit proxy settings. It checks the server hostname and requires TLS 1.2 or later. It accepts exactly one <code>status</code> field with <code>healthy</code> or <code>degraded</code>.</p>
+<p>A certificate accepted by the server establishes only the identity and permissions configured there. This is a sample health contract, not a universal equipment API. Protect private key files using your operating system's access controls.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/go/mtls_health.go">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>go</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy go example">Copy</button></div><pre tabindex="0" aria-label="go example"><code id="code-2">// Read one health endpoint using mutual TLS and an explicit client certificate.
+package main
+
+import (
+	&quot;bytes&quot;
+	&quot;crypto/tls&quot;
+	&quot;crypto/x509&quot;
+	&quot;encoding/json&quot;
+	&quot;errors&quot;
+	&quot;flag&quot;
+	&quot;fmt&quot;
+	&quot;io&quot;
+	&quot;mime&quot;
+	&quot;net/http&quot;
+	&quot;net/url&quot;
+	&quot;os&quot;
+	&quot;strings&quot;
+	&quot;time&quot;
+)
+
+const maxBytes = 65536
+
+type Health struct {
+	Status string `json:&quot;status&quot;`
+}
+
+func parseHealth(data []byte) (Health, error) {
+	if len(data) &gt; maxBytes {
+		return Health{}, errors.New(&quot;response exceeds 64 KiB&quot;)
+	}
+	decoder := json.NewDecoder(bytes.NewReader(data))
+	token, err := decoder.Token()
+	if err != nil || token != json.Delim(&#x27;{&#x27;) {
+		return Health{}, errors.New(&quot;expected an object&quot;)
+	}
+	seen := false
+	result := Health{}
+	for decoder.More() {
+		key, err := decoder.Token()
+		if err != nil || key != &quot;status&quot; || seen {
+			return Health{}, errors.New(&quot;unknown or duplicate field&quot;)
+		}
+		seen = true
+		if err := decoder.Decode(&amp;result.Status); err != nil {
+			return Health{}, err
+		}
+	}
+	if _, err := decoder.Token(); err != nil {
+		return Health{}, err
+	}
+	if _, err := decoder.Token(); err != io.EOF {
+		return Health{}, errors.New(&quot;trailing JSON data&quot;)
+	}
+	if !seen || (result.Status != &quot;healthy&quot; &amp;&amp; result.Status != &quot;degraded&quot;) {
+		return Health{}, errors.New(&quot;expected status healthy or degraded&quot;)
+	}
+	return result, nil
+}
+
+func readHealth(endpoint, caFile, certFile, keyFile string) (Health, error) {
+	target, err := url.Parse(endpoint)
+	if err != nil || target.Scheme != &quot;https&quot; || target.Hostname() == &quot;&quot; || target.User != nil || target.Fragment != &quot;&quot; {
+		return Health{}, errors.New(&quot;use an HTTPS URL without embedded credentials&quot;)
+	}
+	if certFile == &quot;&quot; || keyFile == &quot;&quot; {
+		return Health{}, errors.New(&quot;client certificate and key are required&quot;)
+	}
+	certificate, err := tls.LoadX509KeyPair(certFile, keyFile)
+	if err != nil {
+		return Health{}, errors.New(&quot;cannot load the client certificate and key&quot;)
+	}
+	roots, err := x509.SystemCertPool()
+	if err != nil || roots == nil {
+		roots = x509.NewCertPool()
+	}
+	if caFile != &quot;&quot; {
+		pem, err := os.ReadFile(caFile)
+		if err != nil || !roots.AppendCertsFromPEM(pem) {
+			return Health{}, errors.New(&quot;cannot load the CA bundle&quot;)
+		}
+	}
+	transport := &amp;http.Transport{
+		Proxy: nil,
+		TLSClientConfig: &amp;tls.Config{MinVersion: tls.VersionTLS12, RootCAs: roots,
+			Certificates: []tls.Certificate{certificate}},
+		TLSHandshakeTimeout:    5 * time.Second,
+		ResponseHeaderTimeout:  5 * time.Second,
+		MaxResponseHeaderBytes: 16384,
+		DisableCompression:     true,
+	}
+	defer transport.CloseIdleConnections()
+	client := &amp;http.Client{Transport: transport, Timeout: 15 * time.Second,
+		CheckRedirect: func(req *http.Request, via []*http.Request) error { return http.ErrUseLastResponse }}
+	request, err := http.NewRequest(http.MethodGet, target.String(), nil)
+	if err != nil {
+		return Health{}, err
+	}
+	request.Header.Set(&quot;Accept&quot;, &quot;application/json&quot;)
+	request.Header.Set(&quot;Accept-Encoding&quot;, &quot;identity&quot;)
+	response, err := client.Do(request)
+	if err != nil {
+		return Health{}, errors.New(&quot;connection or certificate validation failed&quot;)
+	}
+	defer response.Body.Close()
+	if response.StatusCode != http.StatusOK {
+		return Health{}, fmt.Errorf(&quot;unexpected HTTP status %d&quot;, response.StatusCode)
+	}
+	media, _, err := mime.ParseMediaType(response.Header.Get(&quot;Content-Type&quot;))
+	if err != nil || media != &quot;application/json&quot; {
+		return Health{}, errors.New(&quot;expected application/json&quot;)
+	}
+	encoding := strings.ToLower(response.Header.Get(&quot;Content-Encoding&quot;))
+	if encoding != &quot;&quot; &amp;&amp; encoding != &quot;identity&quot; {
+		return Health{}, errors.New(&quot;compressed responses are not accepted&quot;)
+	}
+	data, err := io.ReadAll(io.LimitReader(response.Body, maxBytes+1))
+	if err != nil {
+		return Health{}, err
+	}
+	return parseHealth(data)
+}
+
+func main() {
+	demo := flag.Bool(&quot;demo&quot;, false, &quot;validate a built in response without networking&quot;)
+	endpoint := flag.String(&quot;url&quot;, &quot;&quot;, &quot;exact HTTPS health endpoint&quot;)
+	ca := flag.String(&quot;ca&quot;, &quot;&quot;, &quot;optional private CA PEM file&quot;)
+	cert := flag.String(&quot;cert&quot;, &quot;&quot;, &quot;client certificate PEM file&quot;)
+	key := flag.String(&quot;key&quot;, &quot;&quot;, &quot;client private key PEM file&quot;)
+	flag.Parse()
+	var result Health
+	var err error
+	if flag.NArg() != 0 || (*demo &amp;&amp; *endpoint != &quot;&quot;) || (!*demo &amp;&amp; *endpoint == &quot;&quot;) {
+		fmt.Fprintln(os.Stderr, &quot;Use --demo or --url with --cert and --key&quot;)
+		os.Exit(2)
+	}
+	if *demo {
+		result, err = parseHealth([]byte(`{&quot;status&quot;:&quot;healthy&quot;}`))
+	} else {
+		result, err = readHealth(*endpoint, *ca, *cert, *key)
+	}
+	if err != nil {
+		fmt.Fprintln(os.Stderr, &quot;Error:&quot;, err)
+		os.Exit(1)
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(result); err != nil {
+		os.Exit(1)
+	}
+}
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://pkg.go.dev/net/http" rel="noopener noreferrer">Go HTTP client</a></p>
+<p><a href="https://pkg.go.dev/crypto/tls" rel="noopener noreferrer">Go TLS</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../mqtt-event-contract/"><span>Previous in this section</span>MQTT event validation</a><a href="../onvif-soap-request/"><span>Next in this section</span>ONVIF device information</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/mtls-client-go.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/mtls-client-go.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

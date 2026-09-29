@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>API and event security · Security Technician Wiki</title>
+<meta name="description" content="Check who can publish an event and what the consumer may do with it. Validate the message, its source and its authority before acting.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/api-and-event-security/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="API and event security · Security Technician Wiki">
+<meta property="og:description" content="Check who can publish an event and what the consumer may do with it. Validate the message, its source and its authority before acting.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/api-and-event-security/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="./" aria-current="page">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">API and event security</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-api-and-event-security">API and event security</h1>
+<p>Check who can publish an event and what the consumer may do with it. Validate the message, its source and its authority before acting.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-command-contract">Command contract</a></li><li class="toc-level-2"><a href="#s-event-contract">Event contract</a></li><li class="toc-level-2"><a href="#s-broker-and-topic-security">Broker and topic security</a></li><li class="toc-level-2"><a href="#s-webhooks-and-callbacks">Webhooks and callbacks</a></li><li class="toc-level-2"><a href="#s-data-minimisation">Data minimisation</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security integrations commonly mix commands, snapshots, configuration, telemetry, alarms, audit events, and identity data on one platform. Treat each as a separate capability with independent authorisation, sensitivity, integrity, ordering, retention, and side effect rules.</p>
+<h2 id="s-command-contract">Command contract<a class="heading-link" href="#s-command-contract" aria-label="Link to Command contract">#</a></h2>
+<p>A state changing API should define:</p>
+<ul>
+<li>authenticated subject and workload identity;</li>
+<li>explicit action and resource scope;</li>
+<li>preconditions and current state/version;</li>
+<li>request identifier and idempotency behaviour;</li>
+<li>authorisation decision and policy version;</li>
+<li>bounded timeout, retry rules, and uncertain outcome handling;</li>
+<li>physical side effect and safe failure state;</li>
+<li>immutable audit correlation from request through device outcome;</li>
+<li>denial and partial failure semantics.</li>
+</ul>
+<p>Never retry a high impact command blindly after timeout: the first request may have succeeded even if its response was lost. Query authoritative state or use a protocol supported idempotency key before deciding.</p>
+<h2 id="s-event-contract">Event contract<a class="heading-link" href="#s-event-contract" aria-label="Link to Event contract">#</a></h2>
+<p>An event envelope should carry stable type/version, source identity, event identity, occurrence time, observation/ingestion time, sequence where meaningful, site/tenant scope, subject/object identifiers, data classification, integrity context, and correlation/causation identifiers.</p>
+<p>Consumers must define behaviour for duplicate, delayed, missing, reordered, malformed, unauthorised, unknown version, and replayed events. Delivery acknowledgement means the broker or receiver accepted a message; it doesn't prove the physical event occurred or that an operator acted on it.</p>
+<h2 id="s-broker-and-topic-security">Broker and topic security<a class="heading-link" href="#s-broker-and-topic-security" aria-label="Link to Broker and topic security">#</a></h2>
+<ul>
+<li>Authenticate clients uniquely and authorise publish and subscribe separately.</li>
+<li>Keep tenant/site/device identifiers server derived when possible.</li>
+<li>Prevent wildcard subscriptions from escaping the caller's authorised hierarchy.</li>
+<li>Review retained messages, durable sessions, shared subscriptions, dead letter queues, and replay stores as data repositories.</li>
+<li>Bound payload size, inflight messages, session lifetime, queue depth, retry rate, and reconnect behaviour.</li>
+<li>Encrypt the connection, validate peer identity, and avoid plaintext fallback.</li>
+</ul>
+<h2 id="s-webhooks-and-callbacks">Webhooks and callbacks<a class="heading-link" href="#s-webhooks-and-callbacks" aria-label="Link to Webhooks and callbacks">#</a></h2>
+<p>Authenticate the sender with mTLS or a well designed signature/token mechanism; validate timestamp/freshness and replay identifier; acknowledge only after durable acceptance; separate delivery retries from business processing; and don't follow arbitrary callback redirects. Apply outbound allowlists to prevent server side request forgery.</p>
+<h2 id="s-data-minimisation">Data minimisation<a class="heading-link" href="#s-data-minimisation" aria-label="Link to Data minimisation">#</a></h2>
+<p>Avoid placing full card numbers, biometric data, faces, tokens, passwords, internal URLs, or unnecessary location context in events and logs. Use opaque stable identifiers with separately controlled lookup when the integration doesn't require raw sensitive data.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>RFC 9700</strong>, <a href="https://www.rfc-editor.org/rfc/rfc9700" rel="noopener noreferrer">RFC 9700: Best Current Practice for OAuth 2.0 Security</a>, accessed 25 August 2026.</li>
+<li><strong>OWASP API</strong>, <a href="https://owasp.org/API-Security/editions/2023/en/0x11-t10/" rel="noopener noreferrer">OWASP API Security Top 10 2023</a>, implementation risk reference, accessed 25 August 2026.</li>
+<li><strong>NIST 800 92</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/92/final" rel="noopener noreferrer">NIST SP 800-92: Guide to Computer Security Log Management</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li>
+<li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li>
+<li><a href="../../02-protocols/web-and-messaging/">Web and messaging protocols</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Security and assurance</a><a href="../firmware-updates-and-supply-chain/"><span>Next in this section</span>Firmware updates and software supply chain</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/api-and-event-security.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/api-and-event-security.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-command-contract">Command contract</a></li><li class="toc-level-2"><a href="#s-event-contract">Event contract</a></li><li class="toc-level-2"><a href="#s-broker-and-topic-security">Broker and topic security</a></li><li class="toc-level-2"><a href="#s-webhooks-and-callbacks">Webhooks and callbacks</a></li><li class="toc-level-2"><a href="#s-data-minimisation">Data minimisation</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

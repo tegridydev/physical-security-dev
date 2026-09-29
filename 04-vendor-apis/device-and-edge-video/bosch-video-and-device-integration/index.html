@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Bosch video and device integration · Security Technician Wiki</title>
+<meta name="description" content="Identify the Bosch product and supported integration method. Check media, device control, events and platform functions against the relevant documentation.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/bosch-video-and-device-integration/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bosch video and device integration · Security Technician Wiki">
+<meta property="og:description" content="Identify the Bosch product and supported integration method. Check media, device control, events and platform functions against the relevant documentation.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/bosch-video-and-device-integration/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="./" aria-current="page">Bosch video and device integration</a></li><li><a href="../dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Bosch video and device integration</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-bosch-video-and-device-integration">Bosch video and device integration</h1>
+<p>Identify the Bosch product and supported integration method. Check media, device control, events and platform functions against the relevant documentation.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Bosch Security and Keenfinity catalogue, download, release, and partner material; SDK packages, exact APIs, current version claims, licences, product/build compatibility, and partner only content are excluded.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-evidence">Version evidence</a></li><li class="toc-level-2"><a href="#s-integration-decision">Integration decision</a></li><li class="toc-level-2"><a href="#s-authentication-and-privilege">Authentication and privilege</a></li><li class="toc-level-2"><a href="#s-native-sdk-handling">Native SDK handling</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-support">Lifecycle and support</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / Bosch and Keenfinity</p>
+<p>Bosch Security video integration material is distributed across the Bosch Download Store, product documentation and current <strong>Keenfinity</strong> integration tools pages. The ownership/branding transition makes source identity and date especially important. Use the current portal linked from the target product and retain the exact package/release letter used for a build.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Publicly evidenced purpose</th>
+  <th>Access boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Video SDK</td>
+  <td>Native video/device integration used by Bosch tools and partner solutions</td>
+  <td>SDK/version appears in product release artefacts; package, runtime, licence and compatibility require current download/partner material</td>
+</tr>
+<tr>
+  <td>Device/firmware integration support</td>
+  <td>Device configuration, firmware and plugin support delivered with Bosch tooling</td>
+  <td>Product and Configuration Manager release letters govern exact support</td>
+</tr>
+<tr>
+  <td>BVMS/integration SDK surfaces</td>
+  <td>VMS extensions and integrations</td>
+  <td>Distinct from device Video SDK; verify BVMS edition/build and developer entitlement</td>
+</tr>
+<tr>
+  <td>Integration tools</td>
+  <td>Access, intrusion, video and partner APIs/SDKs catalogued by Keenfinity</td>
+  <td>Some packages and high impact command capabilities are partner only or licensed</td>
+</tr>
+<tr>
+  <td>Bosch Security API portal</td>
+  <td>Public catalogue for selected web service/API initiatives</td>
+  <td>Individual API maturity and product scope apply; landing text is not an endpoint contract</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-version-evidence">Version evidence<a class="heading-link" href="#s-version-evidence" aria-label="Link to Version evidence">#</a></h2>
+<p>A Bosch Configuration Manager 7.76 release letter dated 15 September 2025 listed <strong>Video SDK 6.3</strong> within that release context. This page doesn't claim Video SDK 6.3 is current for every product on 25 August 2026. The proper compatibility unit is the target device firmware, Configuration Manager/BVMS build, SDK package, architecture/runtime and any device support package named by their release notes.</p>
+<h2 id="s-integration-decision">Integration decision<a class="heading-link" href="#s-integration-decision" aria-label="Link to Integration decision">#</a></h2>
+<ol>
+<li>Start with a standards based interface such as declared ONVIF support when it satisfies the workflow.</li>
+<li>Select a native device or Video SDK only when the required function and compatibility are explicitly supported.</li>
+<li>Use a BVMS specific extension only for BVMS hosted workflows; don't assume its object model is a general device API.</li>
+<li>Use a web service API only when its official page identifies the target product, maturity, identity flow and lifecycle.</li>
+</ol>
+<p>Avoid coupling an integration directly to an internal database, private DLL, browser call or reverse engineered protocol because an official tool happens to use it.</p>
+<h2 id="s-authentication-and-privilege">Authentication and privilege<a class="heading-link" href="#s-authentication-and-privilege" aria-label="Link to Authentication and privilege">#</a></h2>
+<p>Obtain the exact current hardening and API/SDK guide. Use TLS with validated device/server identity, unique workload accounts and least privilege. Keep live/playback/export, configuration, firmware, user administration, PTZ/audio and physical output permissions separate where the product allows.</p>
+<p>Some Bosch/Keenfinity integration SDKs outside video expose intrusion arm/disarm, silence and output control. Their official data sheets describe them as integration partner and licensed capabilities. This catalogue doesn't transplant those privileges into the Video SDK; it flags why a generic “Bosch SDK account” must never be broadly authorised.</p>
+<h2 id="s-native-sdk-handling">Native SDK handling<a class="heading-link" href="#s-native-sdk-handling" aria-label="Link to Native SDK handling">#</a></h2>
+<ul>
+<li>Verify publisher/signature and package origin.</li>
+<li>Pin architecture, runtime, redistribution and codec dependencies.</li>
+<li>Follow the documented object ownership, threading and callback lifetime rules.</li>
+<li>Bound media buffers, connections, event queues and reconnect work.</li>
+<li>Isolate native SDK failure from the application’s durable event and command state where practical.</li>
+<li>Log package and target build identifiers without recording credentials or media URLs.</li>
+<li>Re test static compatibility on every device firmware, SDK and BVMS/Configuration Manager change.</li>
+</ul>
+<h2 id="s-lifecycle-and-support">Lifecycle and support<a class="heading-link" href="#s-lifecycle-and-support" aria-label="Link to Lifecycle and support">#</a></h2>
+<p>Don't interpret a file’s presence in the Download Store as active support. Read its release letter and lifecycle/support statement. During the Bosch to Keenfinity documentation transition, prefer the current link supplied by the target product and note redirects or superseded branding in the project source record.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://www.keenfinity-group.com/gb/en/partners/technology-partners/integration-tools/" rel="noopener noreferrer">Keenfinity integration tools</a>, current official partner tool catalogue.</li>
+<li><a href="https://downloadstore.boschsecurity.com/" rel="noopener noreferrer">Bosch Security Download Store</a> and <a href="https://downloadstore.boschsecurity.com/?type=FW" rel="noopener noreferrer">firmware catalogue</a>, package and release document route.</li>
+<li><a href="https://downloadstore.boschsecurity.com/FILES/Bosch_Releaseletter_ConfigManager_7.76.0050-bugfix.pdf" rel="noopener noreferrer">Configuration Manager 7.76 release letter</a>, dated evidence for one tool/Video SDK relationship.</li>
+<li><a href="https://api-dev.boschsecurity.com/" rel="noopener noreferrer">Bosch Security API portal</a>, official selected API catalogue; inspect each API’s maturity and scope.</li>
+<li><a href="https://media.boschsecurity.com/fs/media/pb/media/partners_1/integration_tools_1/developer/INT-SDK_Intrusion_Integration_SDK_Datasheet.pdf" rel="noopener noreferrer">Intrusion Integration SDK data sheet</a>, official evidence of partner/licence and high impact privilege boundaries outside the video scope.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/video-and-media/onvif/">ONVIF</a></li>
+<li><a href="../../../05-development-and-integration/language-guides/cpp/">Native library security guidance</a></li>
+<li><a href="../../../07-operations-and-lifecycle/asset-and-configuration-inventory/">Asset and configuration inventory</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../axis-vapix-and-acap/"><span>Previous in this section</span>Axis VAPIX and ACAP</a><a href="../dahua-cgi-and-netsdk/"><span>Next in this section</span>Dahua CGI and NetSDK</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/bosch-video-and-device-integration.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/bosch-video-and-device-integration.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-version-evidence">Version evidence</a></li><li class="toc-level-2"><a href="#s-integration-decision">Integration decision</a></li><li class="toc-level-2"><a href="#s-authentication-and-privilege">Authentication and privilege</a></li><li class="toc-level-2"><a href="#s-native-sdk-handling">Native SDK handling</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-support">Lifecycle and support</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

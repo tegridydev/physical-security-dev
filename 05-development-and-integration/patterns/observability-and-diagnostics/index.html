@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Observability and diagnostics · Security Technician Wiki</title>
+<meta name="description" content="Design logs and metrics around the faults you&#x27;ll need to investigate. Trace events across the integration while protecting credentials and retaining source context.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/patterns/observability-and-diagnostics/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Observability and diagnostics · Security Technician Wiki">
+<meta property="og:description" content="Design logs and metrics around the faults you&#x27;ll need to investigate. Trace events across the integration while protecting credentials and retaining source context.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/patterns/observability-and-diagnostics/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group"><summary>Code examples</summary><ul class="nav-pages"><li><a href="../../examples/">Section overview</a></li><li><a href="../../examples/offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../../examples/safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../../examples/modbus-read-response/">Modbus register read</a></li><li><a href="../../examples/binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../../examples/mqtt-event-contract/">MQTT event validation</a></li><li><a href="../../examples/mtls-client-go/">Mutual TLS health client</a></li><li><a href="../../examples/onvif-soap-request/">ONVIF device information</a></li><li><a href="../../examples/rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../../examples/event-store-python/">SQLite event deduplication</a></li><li><a href="../../examples/timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../../examples/tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../../examples/video-storage-python/">Video storage calculator</a></li><li><a href="../../examples/webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../../examples/websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group" open><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="./" aria-current="page">Observability and diagnostics</a></li><li><a href="../polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Integration patterns</a><span aria-hidden="true">/</span><span aria-current="page">Observability and diagnostics</span></nav><div class="page-kicker">Development <span>About 6 min read</span></div><div class="prose"><h1 id="s-observability-and-diagnostics">Observability and diagnostics</h1>
+<p>Design logs and metrics around the faults you'll need to investigate. Trace events across the integration while protecting credentials and retaining source context.</p><details class="evidence"><summary>Sources and scope<span>Checked 29 September 2026</span></summary><p>OpenTelemetry and OTLP index version labels only</p><p><a href="../../../10-sources-and-maintenance/source-review-2026-09-29/">Source check record</a></p><p>Observability architecture and data governance guidance; exact semantic conventions, collector topology, sampling, storage, product telemetry, and evidential requirements remain deployment specific.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-interoperability-baseline">Current interoperability baseline</a></li><li class="toc-level-2"><a href="#s-telemetry-model">Telemetry model</a></li><li class="toc-level-3"><a href="#s-logs">Logs</a></li><li class="toc-level-3"><a href="#s-metrics">Metrics</a></li><li class="toc-level-3"><a href="#s-traces">Traces</a></li><li class="toc-level-3"><a href="#s-trace-context-handling">Trace context handling</a></li><li class="toc-level-2"><a href="#s-opentelemetry-data-design">OpenTelemetry data design</a></li><li class="toc-level-3"><a href="#s-resources-and-attributes">Resources and attributes</a></li><li class="toc-level-3"><a href="#s-events-and-links">Events and links</a></li><li class="toc-level-3"><a href="#s-status-and-errors">Status and errors</a></li><li class="toc-level-2"><a href="#s-otlp-export-and-collector-boundaries">OTLP export and collector boundaries</a></li><li class="toc-level-2"><a href="#s-sampling-and-loss">Sampling and loss</a></li><li class="toc-level-2"><a href="#s-error-taxonomy">Error taxonomy</a></li><li class="toc-level-2"><a href="#s-support-bundles">Support bundles</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An integration should answer: which source and version produced the data, which identity was used, what was requested, what was authorised, what reached the downstream system, what result was observed, and where uncertainty remains. Telemetry supports diagnosis and service management; it doesn't automatically become a complete security audit trail or admissible evidence.</p>
+<h2 id="s-current-interoperability-baseline">Current interoperability baseline<a class="heading-link" href="#s-current-interoperability-baseline" aria-label="Link to Current interoperability baseline">#</a></h2>
+<p>This page uses <a href="https://opentelemetry.io/docs/specs/otel/" rel="noopener noreferrer">OpenTelemetry Specification 1.61.0</a> and <a href="https://opentelemetry.io/docs/specs/otlp/" rel="noopener noreferrer">OTLP Specification 1.11.0</a> as the project snapshot checked on 29 September 2026. OpenTelemetry evolves frequently, and its specification, protocol, API/SDK, semantic conventions, collector, and language implementations have independent versions and stability labels. Pin every component actually relied upon.</p>
+<p>W3C Trace Context defines the interoperable <code>traceparent</code> and <code>tracestate</code> HTTP fields. It propagates correlation context, not authenticated identity, authorisation, tenant membership, or data integrity proof. <a href="https://www.w3.org/TR/trace-context/" rel="noopener noreferrer">TRACE CONTEXT</a></p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Layer</th>
+  <th>Useful standard concept</th>
+  <th>Deployment decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Resource</td>
+  <td>Entity producing telemetry, described by resource attributes</td>
+  <td>Stable service/device/gateway identity and tenant safe attribute policy</td>
+</tr>
+<tr>
+  <td>Instrumentation scope</td>
+  <td>Library/component that produced a signal</td>
+  <td>Name/version governance and collision handling</td>
+</tr>
+<tr>
+  <td>Trace/span</td>
+  <td>Causal and timing relationship</td>
+  <td>Sampling, parent trust, links, sensitive attributes, and status policy</td>
+</tr>
+<tr>
+  <td>Metric</td>
+  <td>Aggregated measurement</td>
+  <td>Instrument type, unit, temporality, aggregation, and cardinality budget</td>
+</tr>
+<tr>
+  <td>Log record</td>
+  <td>Timestamped structured record with optional trace correlation</td>
+  <td>Severity mapping, body/attribute schema, redaction, and retention</td>
+</tr>
+<tr>
+  <td>OTLP</td>
+  <td>Telemetry export protocol/data model</td>
+  <td>gRPC or HTTP transport, endpoint identity, authentication, compression, queue, and retry profile</td>
+</tr>
+</tbody>
+</table></div>
+<p>OpenTelemetry compatibility doesn't mean two products use the same semantic conventions or preserve the same fields. Document translation and loss explicitly.</p>
+<h2 id="s-telemetry-model">Telemetry model<a class="heading-link" href="#s-telemetry-model" aria-label="Link to Telemetry model">#</a></h2>
+<h3 id="s-logs">Logs<a class="heading-link" href="#s-logs" aria-label="Link to Logs">#</a></h3>
+<p>Use structured event name/version, severity, observed timestamp plus source timestamp and clock context, service/device/site identifiers, correlation/causation, operation, layer specific outcome, error class, retry count, and configuration/build/mapping version. Redact secrets, credentials, biometric/media data, personal/location data, and sensitive topology.</p>
+<p>Log bodies and attributes need explicit byte, depth, collection, and cardinality limits. A structured log is still untrusted input when a device, connector, or upstream service can set its fields. Prevent newline/control character injection in text renderings and keep display strings separate from trusted identity fields.</p>
+<h3 id="s-metrics">Metrics<a class="heading-link" href="#s-metrics" aria-label="Link to Metrics">#</a></h3>
+<p>Track connection/authentication success, latency, timeouts, retries, reconnects, input rejection by reason, queue count/bytes/age, dropped/coalesced items, subscription lease, event gaps/duplicates, clock drift, certificate expiry, storage/capacity, and downstream state freshness. Avoid unbounded labels such as raw device, event, credential, plate, camera, user, URL, exception, or correlation identifiers.</p>
+<p>Define a cardinality budget per instrument and aggregation point. A backend limit that drops new series can conceal precisely the failing tenant or device fleet. Preserve a bounded diagnostic path without turning identifiers into global metric labels.</p>
+<h3 id="s-traces">Traces<a class="heading-link" href="#s-traces" aria-label="Link to Traces">#</a></h3>
+<p>Trace cross service flows only when sampling and data policy protect sensitive commands, token headers, URLs, query strings, images, card values, plate data, and personal identifiers. Link to a separately protected audit record rather than duplicating full content.</p>
+<p>Use spans to distinguish stages such as request validation, authorisation decision, broker publication, adapter processing, downstream dispatch, target acknowledgement, and observed physical state. Don't collapse all stages into one <code>OK</code> status. A span ending successfully means that instrumented operation ended according to its code path; it doesn't prove a door, gate, alarm, camera, or notification reached the intended real world state.</p>
+<h3 id="s-trace-context-handling">Trace context handling<a class="heading-link" href="#s-trace-context-handling" aria-label="Link to Trace context handling">#</a></h3>
+<ul>
+<li>Parse <code>traceparent</code> strictly and reject malformed values according to the receiving profile.</li>
+<li>Start a new trace or link to untrusted incoming context at trust boundaries when accepting it as a parent could mislead investigation.</li>
+<li>Never use trace/span IDs as authentication, authorisation, idempotency, or audit event IDs.</li>
+<li>Bound and filter <code>tracestate</code>; downstream vendors can otherwise receive sensitive tenancy/routing context.</li>
+<li>Regenerate response correlation identifiers under local policy rather than reflecting arbitrary attacker controlled strings into trusted logs.</li>
+<li>Preserve causation links for asynchronous work; ordinary parent/child timing doesn't always model queues, fan out, retries, or replay.</li>
+</ul>
+<h2 id="s-opentelemetry-data-design">OpenTelemetry data design<a class="heading-link" href="#s-opentelemetry-data-design" aria-label="Link to OpenTelemetry data design">#</a></h2>
+<h3 id="s-resources-and-attributes">Resources and attributes<a class="heading-link" href="#s-resources-and-attributes" aria-label="Link to Resources and attributes">#</a></h3>
+<p>Use stable low cardinality resource attributes for service name/namespace/instance where appropriate, deployment environment, software version, and a privacy reviewed device/gateway classification. Don't put a raw bearer token, credential number, person name, camera URL, or precise protected location into a Resource: it is copied to many records and backends.</p>
+<p>Semantic convention attribute names and stability can change independently of the core specification. Pin the convention version, prefer standard attributes where semantics match, namespace custom attributes, and never reuse an existing attribute with a different physical security meaning.</p>
+<h3 id="s-events-and-links">Events and links<a class="heading-link" href="#s-events-and-links" aria-label="Link to Events and links">#</a></h3>
+<p>Span events are useful for bounded milestones; span links model causal relationships that aren't a single parent/child chain. Neither replaces a durable domain event. Keep source native event ID, schema/mapping version, and evidence reference in the domain record, and propagate only minimal correlation into telemetry.</p>
+<h3 id="s-status-and-errors">Status and errors<a class="heading-link" href="#s-status-and-errors" aria-label="Link to Status and errors">#</a></h3>
+<p>Record machine readable error class plus the layer that failed: DNS/connect, TLS/trust, authentication, authorisation, protocol, schema, unsupported capability, stale/uncertain state, rate/capacity, downstream rejection, timeout, or internal fault. Avoid high cardinality exception messages as metric attributes. Scrub stack traces and attach them only to access controlled diagnostic storage.</p>
+<h2 id="s-otlp-export-and-collector-boundaries">OTLP export and collector boundaries<a class="heading-link" href="#s-otlp-export-and-collector-boundaries" aria-label="Link to OTLP export and collector boundaries">#</a></h2>
+<p>OTLP defines telemetry request/response and partial success concepts over its supported transports. A successful export establishes collector acceptance under that contract, not durable storage, alert evaluation, case creation, or evidence retention.</p>
+<ul>
+<li>Validate exporter and collector endpoint identity; use workload authentication and least privilege.</li>
+<li>Separate tenants/environments before a shared collector can mix or route records incorrectly.</li>
+<li>Bound request and decompressed bytes, record/attribute counts, string lengths, concurrent exports, queue count/bytes/age, and retry lifetime.</li>
+<li>Treat partial success, rejection counts, timeouts, and uncertain exports as visible outcomes.</li>
+<li>Apply backoff, jitter, retry budgets, and bounded disk queues; never let telemetry exhaust resources needed for the controlled system.</li>
+<li>Encrypt local queues when they contain sensitive operations or identity/location information, and define secure expiry.</li>
+<li>Govern collector processors as code/configuration: redaction, sampling, enrichment, filtering, routing, and attribute transformation can change evidence meaning.</li>
+<li>Don't expose unauthenticated collector receivers or diagnostic interfaces to device networks.</li>
+</ul>
+<p>Use separate pipelines or independently retained records when audit/evidence requirements exceed ordinary observability sampling and retention.</p>
+<h2 id="s-sampling-and-loss">Sampling and loss<a class="heading-link" href="#s-sampling-and-loss" aria-label="Link to Sampling and loss">#</a></h2>
+<p>Head and tail sampling affect what can be reconstructed. Tail sampling requires buffering and can concentrate sensitive data. Define which security/audit events must never depend solely on trace sampling.</p>
+<p>Telemetry can be lost through SDK limits, exporter queues, collector rejection, network interruption, backend ingestion limits, sampling, retention, or clock disorder. Monitor the monitoring path with independent health signals and synthetic canaries that contain no sensitive production data.</p>
+<p>Record configuration revision and counters for dropped spans/logs/metric points, rejected OTLP items, queue overflow, sampling decisions, and backend throttling. “No alert” isn't evidence that no event occurred when pipeline completeness is unknown.</p>
+<h2 id="s-error-taxonomy">Error taxonomy<a class="heading-link" href="#s-error-taxonomy" aria-label="Link to Error taxonomy">#</a></h2>
+<p>Keep transport, trust/authentication, authorisation, protocol/version, validation, unsupported capability, stale state, downstream rejection, timeout/uncertain outcome, resource exhaustion and internal fault distinct. Operators need a safe next action; developers need structured context.</p>
+<p>Map errors to stable classes while retaining a protected source native code/reference. Don't retry based on a human readable message substring. A timeout after a mutating request is an uncertain outcome, not proof of failure.</p>
+<h2 id="s-support-bundles">Support bundles<a class="heading-link" href="#s-support-bundles" aria-label="Link to Support bundles">#</a></h2>
+<p>Generate from an allowlist, redact before packaging, encrypt for the intended recipient, expire access, and log collection/export. Include versions, effective redacted configuration, health and relevant bounded logs; exclude private keys, reusable tokens, raw credentials and unrelated surveillance data.</p>
+<p>Support bundles should state collection window, source clock quality, collector/tool version, redaction policy/version, missing sources, truncation, and integrity manifest. Review every new diagnostic artifact before adding it to the allowlist.</p>
+<h2 id="s-review-checklist">Review checklist<a class="heading-link" href="#s-review-checklist" aria-label="Link to Review checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="OpenTelemetry, OTLP, semantic convention, collector, and language component versions pinned">OpenTelemetry, OTLP, semantic convention, collector, and language component versions pinned</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Resources, scopes, logs, metrics, traces, domain events, audit records, and evidence have distinct purposes">Resources, scopes, logs, metrics, traces, domain events, audit records, and evidence have distinct purposes</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Encoded/decoded size, attribute, cardinality, queue, concurrency, retry, and retention limits enforced">Encoded/decoded size, attribute, cardinality, queue, concurrency, retry, and retention limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Trace context treated as untrusted correlation, never identity, authorisation, idempotency, or audit proof">Trace context treated as untrusted correlation, never identity, authorisation, idempotency, or audit proof</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sensitive commands, tokens, credentials, people, location, video, biometrics, and topology redacted/minimized">Sensitive commands, tokens, credentials, people, location, video, biometrics, and topology redacted/minimized</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="OTLP authentication, tenant isolation, partial success, uncertain export, and backpressure handled">OTLP authentication, tenant isolation, partial success, uncertain export, and backpressure handled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sampling and every telemetry loss point documented and independently monitored">Sampling and every telemetry loss point documented and independently monitored</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Transport, authorisation, downstream acknowledgement, and observed physical outcome remain separate">Transport, authorisation, downstream acknowledgement, and observed physical outcome remain separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Audit/evidence records remain available when ordinary telemetry is sampled or transformed">Audit/evidence records remain available when ordinary telemetry is sampled or transformed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Support bundles are allowlisted, bounded, redacted, encrypted, expiring, and audited">Support bundles are allowlisted, bounded, redacted, encrypted, expiring, and audited</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../06-security-and-assurance/logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li>
+<li><a href="../reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li>
+<li><a href="../../../07-operations-and-lifecycle/monitoring-and-health/">Monitoring and health</a></li>
+<li><a href="../event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>OTEL</strong>, <a href="https://opentelemetry.io/docs/specs/otel/" rel="noopener noreferrer">OpenTelemetry Specification 1.61.0</a>, OpenTelemetry project.</li>
+<li><strong>OTLP</strong>, <a href="https://opentelemetry.io/docs/specs/otlp/" rel="noopener noreferrer">OpenTelemetry Protocol Specification 1.11.0</a>, OpenTelemetry project.</li>
+<li><strong>TRACE CONTEXT</strong>, <a href="https://www.w3.org/TR/trace-context/" rel="noopener noreferrer">W3C Trace Context</a>, W3C Recommendation.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../event-normalization-and-schema-evolution/"><span>Previous in this section</span>Event API contracts, normalisation, and schema evolution</a><a href="../polling-subscriptions-and-state-reconciliation/"><span>Next in this section</span>Polling, subscriptions, and state reconciliation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/patterns/observability-and-diagnostics.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/patterns/observability-and-diagnostics.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-current-interoperability-baseline">Current interoperability baseline</a></li><li class="toc-level-2"><a href="#s-telemetry-model">Telemetry model</a></li><li class="toc-level-3"><a href="#s-logs">Logs</a></li><li class="toc-level-3"><a href="#s-metrics">Metrics</a></li><li class="toc-level-3"><a href="#s-traces">Traces</a></li><li class="toc-level-3"><a href="#s-trace-context-handling">Trace context handling</a></li><li class="toc-level-2"><a href="#s-opentelemetry-data-design">OpenTelemetry data design</a></li><li class="toc-level-3"><a href="#s-resources-and-attributes">Resources and attributes</a></li><li class="toc-level-3"><a href="#s-events-and-links">Events and links</a></li><li class="toc-level-3"><a href="#s-status-and-errors">Status and errors</a></li><li class="toc-level-2"><a href="#s-otlp-export-and-collector-boundaries">OTLP export and collector boundaries</a></li><li class="toc-level-2"><a href="#s-sampling-and-loss">Sampling and loss</a></li><li class="toc-level-2"><a href="#s-error-taxonomy">Error taxonomy</a></li><li class="toc-level-2"><a href="#s-support-bundles">Support bundles</a></li><li class="toc-level-2"><a href="#s-review-checklist">Review checklist</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

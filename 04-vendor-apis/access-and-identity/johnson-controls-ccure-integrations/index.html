@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Johnson Controls C•CURE integrations · Security Technician Wiki</title>
+<meta name="description" content="Confirm the C•CURE product version, supported interface and access requirements. Check event behaviour and compatibility against the documentation for that release.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/johnson-controls-ccure-integrations/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Johnson Controls C•CURE integrations · Security Technician Wiki">
+<meta property="og:description" content="Confirm the C•CURE product version, supported interface and access requirements. Check event behaviour and compatibility against the documentation for that release.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/johnson-controls-ccure-integrations/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../brivo-api/">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="./" aria-current="page">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">Johnson Controls C•CURE integrations</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-johnson-controls-ccure-integrations">Johnson Controls C•CURE integrations</h1>
+<p>Confirm the C•CURE product version, supported interface and access requirements. Check event behaviour and compatibility against the documentation for that release.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Johnson Controls and Software House product/integration documentation establishes SDK and web service routes; current developer contracts, methods, authentication, package versions, licences, compatibility, and partner only material are excluded.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-compatibility-is-the-unit-of-support">Compatibility is the unit of support</a></li><li class="toc-level-2"><a href="#s-authentication-and-privilege">Authentication and privilege</a></li><li class="toc-level-2"><a href="#s-state-events-and-high-impact-commands">State, events, and high impact commands</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / Johnson Controls C•CURE</p>
+<p>C•CURE 9000 integrations are delivered through a full platform SDK, selected web service APIs, product specific drivers and the Software House Connected Partner programme. Public Johnson Controls documentation is rich for named integrations but doesn't expose one current general developer reference. Use each public artefact to establish a surface, then obtain the exact supported package and licence.</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Public evidence</th>
+  <th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>C•CURE 9000 SDK</td>
+  <td>Official product/accessibility documents describe a full SDK exposing platform objects</td>
+  <td>Current package, runtime, object model, auth, redistribution and licence require Connected Partner/vendor access</td>
+</tr>
+<tr>
+  <td>Web service API</td>
+  <td>Software House Connected material names web service APIs; victor integration uses a victor Web Service API with C•CURE operator/client connections</td>
+  <td>Do not generalize the victor specific topology to all integrations</td>
+</tr>
+<tr>
+  <td>Connected Partner kits/drivers</td>
+  <td>Named integrations ship with release notes, compatibility table and C•CURE licence option</td>
+  <td>Every driver is versioned and licensed independently</td>
+</tr>
+<tr>
+  <td>victor C•CURE integration</td>
+  <td>Synchronizes/operates C•CURE objects through the documented victor integration</td>
+  <td>victor and C•CURE builds, Web Service client connections and driver licence apply</td>
+</tr>
+<tr>
+  <td>BACnet/BMS integration</td>
+  <td>Maps supported BMS/C•CURE objects using a licensed BACnet/IP integration</td>
+  <td>Separate protocol/driver trust boundary; not the general C•CURE SDK</td>
+</tr>
+<tr>
+  <td>C•CURE Cloud</td>
+  <td>Single tenant hosted C•CURE offering</td>
+  <td>Cloud deployment does not imply an Internet public API or unchanged network/auth contract</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-compatibility-is-the-unit-of-support">Compatibility is the unit of support<a class="heading-link" href="#s-compatibility-is-the-unit-of-support" aria-label="Link to Compatibility is the unit of support">#</a></h2>
+<p>Official C•CURE integration release notes publish a matrix containing C•CURE version, partner product/version, driver version, licence option, redundancy certification, operating system and database context. Require an equivalent matrix for every integration. A driver that works on a standalone server may not be enterprise/redundancy certified.</p>
+<p>The Johnson Controls third party software page listed C•CURE 9000 3.20 artefacts during review, while many public integration guides target 3.00 or older. Don't label 3.20 as the correct target or load an older integration into it without a support statement.</p>
+<h2 id="s-authentication-and-privilege">Authentication and privilege<a class="heading-link" href="#s-authentication-and-privilege" aria-label="Link to Authentication and privilege">#</a></h2>
+<p>Use the exact SDK/Web Service/driver guide for operator identity, client connections, TLS, certificate, service account and permission configuration. Public victor documentation shows that one integration requires a C•CURE operator and sufficient licensed client connections; this is a planning example, not a universal count.</p>
+<p>Separate personnel/credential administration, device/configuration reads, alarms/events, acknowledgement, door/output commands, intrusion arm/disarm and BMS control. The Connected ecosystem includes emergency and automation workflows, so an integration service must receive only its named object classes and actions.</p>
+<h2 id="s-state-events-and-high-impact-commands">State, events, and high impact commands<a class="heading-link" href="#s-state-events-and-high-impact-commands" aria-label="Link to State, events, and high impact commands">#</a></h2>
+<p>Establish initial object state, journal/event subscription behaviour, filters, reconnection and failover semantics. Preserve C•CURE object identity, event time, ingest time and source. Reconcile after service/driver restart and enterprise failover.</p>
+<p>Never treat a database row or SDK object update as proof that controllers received configuration. Never blind retry unlock, lockdown, arm/disarm, alarm silence or output commands after timeout. Query current platform/controller state and journal or require operator resolution.</p>
+<p>Don't access C•CURE database tables directly unless a current vendor integration contract explicitly authorises and specifies it. Public product integrations that connect to a database aren't a general extension pattern.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>Track C•CURE, SDK/web service, partner driver, victor/IQ, operating system/database, controller firmware and licence together. Obtain current hardening and upgrade guides and rehearse rollback.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://www.swhouse.com/Products/web-mobile-apps" rel="noopener noreferrer">Software House product/options page</a>, current C•CURE 9000, Cloud and Connected Partner positioning.</li>
+<li><a href="https://www.johnsoncontrols.com/legal/digital/third-party-software-information" rel="noopener noreferrer">Johnson Controls C•CURE third party software information</a>, dated product artefact inventory.</li>
+<li><a href="https://docs.johnsoncontrols.com/softwarehouse/api/khub/documents/YF2w33Yr4tdcnePS54aCzA/content" rel="noopener noreferrer">C•CURE 9000 SDK evidence</a>, official statement that platform objects are available through a full SDK.</li>
+<li><a href="https://docs.johnsoncontrols.com/americandynamics/api/khub/documents/J_GcvIrg0Na3qxyYfE9yRg/content" rel="noopener noreferrer">victor C•CURE integration guide</a>, product specific Web Service, operator, client and licence boundary.</li>
+<li><a href="https://docs.johnsoncontrols.com/softwarehouse/r/Software-House/en-US/DSC-integration-for-C-CURE-9000-v3.0-Release-Notes/A/3.00/Compatibility-information" rel="noopener noreferrer">C•CURE 3.00 integration compatibility example</a>, official driver compatibility matrix pattern.</li>
+<li><a href="https://docs.johnsoncontrols.com/softwarehouse/r/Software-House/en-US/Building-Management-System-Integration-Software-for-C-CURE-9000-v3.00-User-Guide/A/3.00/Integration-software-overview" rel="noopener noreferrer">C•CURE BMS integration overview</a>, licensed product specific BACnet boundary.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/pacs-architecture/">PACS architecture</a></li>
+<li><a href="../../../02-protocols/building-and-industrial/bacnet-ip/">BACnet/IP</a></li>
+<li><a href="../../../06-security-and-assurance/threat-modeling-and-trust-boundaries/">Threat modeling and trust boundaries</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../hid-origo-and-mobile-access/"><span>Previous in this section</span>HID Origo and Mobile Access APIs</a><a href="../kisi-api/"><span>Next in this section</span>Kisi API and mobile SDKs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/johnson-controls-ccure-integrations.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/johnson-controls-ccure-integrations.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-compatibility-is-the-unit-of-support">Compatibility is the unit of support</a></li><li class="toc-level-2"><a href="#s-authentication-and-privilege">Authentication and privilege</a></li><li class="toc-level-2"><a href="#s-state-events-and-high-impact-commands">State, events, and high impact commands</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

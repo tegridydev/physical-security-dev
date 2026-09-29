@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Axis VAPIX and ACAP · Security Technician Wiki</title>
+<meta name="description" content="VAPIX provides device interfaces while ACAP supports applications on Axis devices. Check the model, firmware and capabilities required by the chosen approach.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/axis-vapix-and-acap/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Axis VAPIX and ACAP · Security Technician Wiki">
+<meta property="og:description" content="VAPIX provides device interfaces while ACAP supports applications on Axis devices. Check the model, firmware and capabilities required by the chosen approach.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/axis-vapix-and-acap/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="./" aria-current="page">Axis VAPIX and ACAP</a></li><li><a href="../bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Axis VAPIX and ACAP</span></nav><div class="page-kicker">Vendor APIs <span>About 4 min read</span></div><div class="prose"><h1 id="s-axis-vapix-and-acap">Axis VAPIX and ACAP</h1>
+<p>VAPIX provides device interfaces while ACAP supports applications on Axis devices. Check the model, firmware and capabilities required by the chosen approach.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Axis developer documentation reviewed on 25 August 2026; exact VAPIX category, API maturity, device model, AXIS OS, ACAP SDK, architecture, licence, and resource compatibility are not asserted.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-version-and-capability-contract">Version and capability contract</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-data-events-media-and-commands">Data, events, media, and commands</a></li><li class="toc-level-2"><a href="#s-acap-security-and-operations">ACAP security and operations</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / Axis</p>
+<p>Axis exposes two related but distinct integration planes. <strong>VAPIX</strong> is the device facing API family; <strong>ACAP</strong> is the supported framework for applications that execute on compatible Axis devices. A third distinction matters inside VAPIX: long established category APIs and newer model driven Device Configuration APIs don't share one universal version or maturity level.</p>
+<h2 id="s-documented-scope-and-access">Documented scope and access<a class="heading-link" href="#s-documented-scope-and-access" aria-label="Link to Documented scope and access">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Purpose</th>
+  <th>Public evidence</th>
+  <th>Access and compatibility boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>VAPIX</td>
+  <td>Open device API family organized by video, audio, analytics, events, I/O, security, system and configuration categories</td>
+  <td>Public reference</td>
+  <td>Each API publishes its own product/AXIS OS properties; presence must be discovered or checked</td>
+</tr>
+<tr>
+  <td>API Discovery Service</td>
+  <td>Enumerates public APIs and versions exposed by a device</td>
+  <td>Public reference; introduced with AXIS OS 8.50</td>
+  <td>Older products/OS can differ; discovery itself does not grant authorisation</td>
+</tr>
+<tr>
+  <td>Device Configuration APIs</td>
+  <td>Model driven JSON/OpenAPI configuration services</td>
+  <td>Public reference; framework released in AXIS OS 12.3</td>
+  <td>Individual APIs have independent alpha, beta, or released maturity and OS support</td>
+</tr>
+<tr>
+  <td>VAPIX Application API</td>
+  <td>Uploads, controls and manages ACAP applications and licences</td>
+  <td>Public reference</td>
+  <td>Administrative privilege and device/OS capability apply</td>
+</tr>
+<tr>
+  <td>ACAP</td>
+  <td>SDK and toolchain for supported on device applications</td>
+  <td>Public portal and compatibility guide</td>
+  <td>Target device, architecture, AXIS OS/ACAP SDK, signing, resources and API support must align</td>
+</tr>
+</tbody>
+</table></div>
+<p>Core documentation is publicly readable without a developer portal login. Device ownership, accounts, certificates, application packages, licences, and operational permissions remain separate.</p>
+<h2 id="s-version-and-capability-contract">Version and capability contract<a class="heading-link" href="#s-version-and-capability-contract" aria-label="Link to Version and capability contract">#</a></h2>
+<p>Don't use a model name alone as capability detection. Record:</p>
+<ul>
+<li>exact device model and hardware revision;</li>
+<li>installed AXIS OS and its support track;</li>
+<li>API Discovery Service output where available;</li>
+<li>VAPIX API name and reported version;</li>
+<li>property/capability gates named by the individual API;</li>
+<li>ACAP SDK version, target architecture and supported API set;</li>
+<li>edge application package/signature and any application licence.</li>
+</ul>
+<p>Axis states that, from AXIS OS 12, the ACAP version aligns with AXIS OS: AXIS OS 12.x and the 2026 LTS line use ACAP 12, while AXIS OS 11.x and the 2024 LTS line use ACAP 4. This is a compatibility naming rule, not permission to assume an application built for one target runs on every device in that line.</p>
+<p>The supported APIs reference is the boundary for ACAP. APIs inherited from the underlying operating system but not documented as supported can change without notice. Axis also says beta APIs aren't for production. Treat alpha/beta configuration APIs as evaluation only and pin their maturity in the design record.</p>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>Prefer HTTPS, validate the device certificate against the deployment trust policy, and provision a unique least privileged integration identity. Don't normalise old examples using cleartext HTTP or broad administrator accounts into a current design.</p>
+<p>The Application API contains administrative operations and requires an Administrator role for the documented management functions. Some Application API operations can return HTTP success while expressing an application level error in the body; therefore, HTTP status alone isn't a completion decision. Parse the documented result contract and then reconcile application state.</p>
+<p>For an ACAP application calling local VAPIX services, Axis documents a virtual host credential service from AXIS OS 11.6, reaching general availability in 11.9. Its credentials are held in memory and removed at reboot; the documented service has a finite account limit. Use only the supported D Bus interface and design renewal after restart. Never scrape device files or rely on undocumented local credentials.</p>
+<h2 id="s-data-events-media-and-commands">Data, events, media, and commands<a class="heading-link" href="#s-data-events-media-and-commands" aria-label="Link to Data, events, media, and commands">#</a></h2>
+<p>VAPIX is a family, not one schema. Media, event, analytics, I/O and configuration services can use different request, response and delivery models. For every selected API, capture:</p>
+<ul>
+<li>media profile, codec, transport and authorisation lifetime;</li>
+<li>event namespace/schema, subscription renewal, source time and reconnect behaviour;</li>
+<li>configuration read/write preconditions and post write state verification;</li>
+<li>PTZ, audio, relay, door/intercom or application management side effects;</li>
+<li>documented payload, connection and concurrency limits.</li>
+</ul>
+<p>Don't assume a successful configuration response means a downstream sensor, application, stream consumer, or relay reached the intended physical state. Query authoritative state and preserve device originated evidence.</p>
+<h2 id="s-acap-security-and-operations">ACAP security and operations<a class="heading-link" href="#s-acap-security-and-operations" aria-label="Link to ACAP security and operations">#</a></h2>
+<p>Treat an edge application as privileged supply chain software:</p>
+<ul>
+<li>minimize requested device APIs and filesystem/network access;</li>
+<li>pin SDK and base environment digests supplied by the supported toolchain;</li>
+<li>verify package origin and signing requirements;</li>
+<li>bound CPU, memory, storage, sockets, queue depth and log volume;</li>
+<li>handle camera reboot, application restart, time correction and network partition;</li>
+<li>keep secrets outside package source and logs;</li>
+<li>stage upgrade and rollback against the exact device/OS matrix.</li>
+</ul>
+<p>Container tooling used to build or distribute ACAP environments doesn't itself create an isolation guarantee on the device. Use only the security and sandbox contract published for the target ACAP release.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>The Device Configuration framework was described as released at AXIS OS 12.3, but each member API retains its own maturity. ACAP 12 was the current documentation line observed on 25 August 2026. Recheck the supported API table and AXIS OS lifecycle before every release.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://developer.axis.com/vapix/" rel="noopener noreferrer">VAPIX Library</a>, public API catalogue, accessed 25 August 2026.</li>
+<li><a href="https://developer.axis.com/vapix/network-video/api-discovery-service/" rel="noopener noreferrer">API Discovery Service</a>, discovery and version boundary.</li>
+<li><a href="https://developer.axis.com/vapix/device-configuration/" rel="noopener noreferrer">Device Configuration APIs</a> and <a href="https://developer.axis.com/vapix/device-configuration/device-configuration-apis/" rel="noopener noreferrer">framework overview</a>, maturity and AXIS OS boundary.</li>
+<li><a href="https://developer.axis.com/vapix/applications/application-api/" rel="noopener noreferrer">VAPIX Application API</a>, ACAP application management contract.</li>
+<li><a href="https://developer.axis.com/acap/" rel="noopener noreferrer">ACAP documentation</a> and <a href="https://developer.axis.com/acap/reference/supported-apis/" rel="noopener noreferrer">supported APIs</a>, current framework and compatibility policy.</li>
+<li><a href="https://developer.axis.com/acap/3/develop-applications/vapix-access-for-acap-applications/" rel="noopener noreferrer">VAPIX access for ACAP applications</a>, supported local credential mechanism.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/video-and-media/onvif/">ONVIF</a></li>
+<li><a href="../../../06-security-and-assurance/secure-commissioning-and-onboarding/">Secure commissioning</a></li>
+<li><a href="../../../06-security-and-assurance/firmware-updates-and-supply-chain/">Firmware and supply chain</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../2n-http-and-platform-apis/"><span>Previous in this section</span>2N HTTP and platform APIs</a><a href="../bosch-video-and-device-integration/"><span>Next in this section</span>Bosch video and device integration</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/axis-vapix-and-acap.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/axis-vapix-and-acap.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-version-and-capability-contract">Version and capability contract</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-data-events-media-and-commands">Data, events, media, and commands</a></li><li class="toc-level-2"><a href="#s-acap-security-and-operations">ACAP security and operations</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

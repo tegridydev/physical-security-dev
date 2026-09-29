@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Brivo Access API · Security Technician Wiki</title>
+<meta name="description" content="Check the Brivo API workflow, access requirements and supported resources. Map identities, credentials, events and permissions to the needs of your integration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/brivo-api/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Brivo Access API · Security Technician Wiki">
+<meta property="og:description" content="Check the Brivo API workflow, access requirements and supported resources. Map identities, credentials, events and permissions to the needs of your integration.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/access-and-identity/brivo-api/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group" open><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">Brivo Access API</a></li><li><a href="../gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../salto-apis/">SALTO APIs</a></li><li><a href="../suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Access and identity APIs</a><span aria-hidden="true">/</span><span aria-current="page">Brivo Access API</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-brivo-access-api">Brivo Access API</h1>
+<p>Check the Brivo API workflow, access requirements and supported resources. Map identities, credentials, events and permissions to the needs of your integration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Brivo Access documentation and programme material reviewed on 25 August 2026; customer editions, production approval, service to service flow, quotas, endpoint schemas, devices, credentials, and feature licences require the developer portal and authorised account.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-authentication-and-application-design">Authentication and application design</a></li><li class="toc-level-2"><a href="#s-domain-and-state-model">Domain and state model</a></li><li class="toc-level-2"><a href="#s-pagination-limits-and-events">Pagination, limits, and events</a></li><li class="toc-level-2"><a href="#s-high-impact-safety-boundary">High impact safety boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Access and identity</a> / Brivo</p>
+<p>Brivo now publishes separate Access and Video developer documentation. This page covers the <strong>Brivo Access API</strong>, sites, users, credentials, groups, doors, events and associated access control operations, not the Brivo/Eagle Eye video API.</p>
+<h2 id="s-documented-scope-and-access">Documented scope and access<a class="heading-link" href="#s-documented-scope-and-access" aria-label="Link to Documented scope and access">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Element</th>
+  <th>Publicly documented model</th>
+  <th>Boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Documentation</td>
+  <td>Public Access API reference, auth guides and endpoint material</td>
+  <td>Documentation host is not the runtime API</td>
+</tr>
+<tr>
+  <td>Developer portal</td>
+  <td>Registers applications and requests production API keys</td>
+  <td>Portal approval and application/customer configuration required</td>
+</tr>
+<tr>
+  <td>Three legged application</td>
+  <td>OAuth 2.0 Authorisation Code plus Brivo application credentials/API key</td>
+  <td>Customer administrator/user authorises access; exact redirect URI registered per app</td>
+</tr>
+<tr>
+  <td>Service integration</td>
+  <td>Alternative server to server flow available by contacting API support</td>
+  <td>Do not invent or repurpose a password flow; obtain the approved contract</td>
+</tr>
+<tr>
+  <td>Brivo Access edition</td>
+  <td>API integrations depend on commercial edition/addon</td>
+  <td>Product sheet observed API integrations as an addon in Standard and included in higher editions; recheck at purchase time</td>
+</tr>
+</tbody>
+</table></div>
+<p>The official documentation router generated 5 August 2026 says all documentation files are public and clearly separates Access from Video. Follow only the Access branch for access control work.</p>
+<h2 id="s-authentication-and-application-design">Authentication and application design<a class="heading-link" href="#s-authentication-and-application-design" aria-label="Link to Authentication and application design">#</a></h2>
+<p>Brivo’s official Access integration guidance uses an API key plus OAuth client credentials and the Authorisation Code flow for customer delegated access. Protect all confidential material in a backend. Validate state, exact redirect URI and TLS; never expose client secret or API key in a browser bundle or mobile binary.</p>
+<p>The official example prompt page explicitly labels its local Vite/loopback patterns as development harnesses, not production architecture. It warns about localhost proxy relay, browser token theft, development only HTTP redirects, missing server side revocation and sensitive raw errors. A production application should use a hardened backend, secure HTTP only sessions, per request authorisation and HTTPS redirects.</p>
+<p>Create a distinct application/API key per integration and customer model as Brivo requires. Use a dedicated service administrator/role where the current programme guide permits, so audit and permissions aren't tied to a person who may leave. Rotate secrets and revoke unused applications.</p>
+<h2 id="s-domain-and-state-model">Domain and state model<a class="heading-link" href="#s-domain-and-state-model" aria-label="Link to Domain and state model">#</a></h2>
+<p>Keep these workflows independent:</p>
+<ul>
+<li>user/person creation and authoritative identity matching;</li>
+<li>physical and mobile credential issue, invitation, assignment and revoke;</li>
+<li>group/access assignment and schedule/effective time policy;</li>
+<li>site, panel, reader and door inventory/status;</li>
+<li>access events and audit retrieval;</li>
+<li>unlock and emergency scenario operations.</li>
+</ul>
+<p>Cache lookup data only with revision/expiry. Use stable IDs rather than names for groups, formats, sites or doors. Validate bulk input completely before mutation and design compensation for a partial user/credential/group transaction.</p>
+<p>An invitation or credential created response doesn't prove mobile delivery or controller propagation. An unlock response doesn't prove lock state or passage. Preserve controller/door event evidence and reconcile.</p>
+<h2 id="s-pagination-limits-and-events">Pagination, limits, and events<a class="heading-link" href="#s-pagination-limits-and-events" aria-label="Link to Pagination, limits, and events">#</a></h2>
+<p>Use the current Access reference’s endpoint specific pagination and filters. A numeric global rate limit was not independently established from the reviewed public overview, so this page makes none. Implement bounded concurrency, <code>429</code>/transient backoff and customer visible quota diagnostics, then record the quota supplied by Brivo for the application.</p>
+<p>For events, store stable event ID, site/door, subject identifier, source and ingest time, and pagination/checkpoint state. Minimize names, e mail, card values and other personal data. Reconcile gaps rather than treating a polling window as complete by assumption.</p>
+<h2 id="s-high-impact-safety-boundary">High impact safety boundary<a class="heading-link" href="#s-high-impact-safety-boundary" aria-label="Link to High impact safety boundary">#</a></h2>
+<p>Door unlock and emergency scenario operations need independent explicit privileges, allowlisted targets, operator confirmation, reason, idempotency/uncertain outcome behaviour and immutable audit. Never expose them through a generic proxy or execute them as part of API exploration. Preserve fire/egress and local controller authority.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://apidocs.brivo.com/" rel="noopener noreferrer">Brivo API Documentation and Resources</a>, official Access/Video separation and portal routes.</li>
+<li><a href="https://apidocs.brivo.com/llms.txt" rel="noopener noreferrer">Brivo documentation router</a>, generated public documentation map and runtime host warning.</li>
+<li><a href="https://apidocs.brivo.com/prompts/access.html" rel="noopener noreferrer">Official Access development prompts and production warnings</a>, auth/application requirements and explicit dev harness limitations.</li>
+<li><a href="https://resources.brivo.com/wp-content/uploads/securepdfs/2024/08/technology-partner-program-overview.pdf" rel="noopener noreferrer">Brivo Technology Partner programme overview</a>, OAuth and API key integration guidance; confirm current terms.</li>
+<li><a href="https://resources.brivo.com/sales-sheets/brivo-access-editions-sale-sheet" rel="noopener noreferrer">Brivo Access editions</a>, mutable API integration commercial boundary.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../03-systems/access-control/credential-lifecycle/">Credential lifecycle</a></li>
+<li><a href="../../../05-development-and-integration/patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li>
+<li><a href="../../../06-security-and-assurance/api-and-event-security/">API and event security</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Access and identity APIs</a><a href="../gallagher-command-centre-integrations/"><span>Next in this section</span>Gallagher Command Centre integrations</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/access-and-identity/brivo-api.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/access-and-identity/brivo-api.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-authentication-and-application-design">Authentication and application design</a></li><li class="toc-level-2"><a href="#s-domain-and-state-model">Domain and state model</a></li><li class="toc-level-2"><a href="#s-pagination-limits-and-events">Pagination, limits, and events</a></li><li class="toc-level-2"><a href="#s-high-impact-safety-boundary">High impact safety boundary</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

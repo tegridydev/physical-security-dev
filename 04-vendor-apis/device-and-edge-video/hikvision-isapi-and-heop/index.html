@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Hikvision ISAPI and HEOP · Security Technician Wiki</title>
+<meta name="description" content="Choose the appropriate ISAPI or HEOP integration approach. Confirm device and firmware support, API permissions, event handling and application lifecycle requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/hikvision-isapi-and-heop/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hikvision ISAPI and HEOP · Security Technician Wiki">
+<meta property="og:description" content="Choose the appropriate ISAPI or HEOP integration approach. Confirm device and firmware support, API permissions, event handling and application lifecycle requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/device-and-edge-video/hikvision-isapi-and-heop/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group" open><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="./" aria-current="page">Hikvision ISAPI and HEOP</a></li><li><a href="../zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../../vms-and-cloud-video/">Section overview</a></li><li><a href="../../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">Device and edge video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Hikvision ISAPI and HEOP</span></nav><div class="page-kicker">Vendor APIs <span>About 4 min read</span></div><div class="prose"><h1 id="s-hikvision-isapi-and-heop">Hikvision ISAPI and HEOP</h1>
+<p>Choose the appropriate ISAPI or HEOP integration approach. Confirm device and firmware support, API permissions, event handling and application lifecycle requirements.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Public Hikvision TPP and product material establishes ISAPI and HEOP; normative guides, packages, exact operations, versions, models, regions, licences, and compatibility are restricted or login gated and are not reproduced.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-access-status-as-of-25-august-2026">Access status as of 25 August 2026</a></li><li class="toc-level-2"><a href="#s-product-and-version-record">Product and version record</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport">Authentication and transport</a></li><li class="toc-level-2"><a href="#s-events-media-configuration-and-commands">Events, media, configuration, and commands</a></li><li class="toc-level-2"><a href="#s-heop-application-boundary">HEOP application boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">Device and edge video</a> / Hikvision</p>
+<p><strong>ISAPI</strong> is Hikvision’s HTTP based device integration protocol. <strong>HEOP</strong> is its embedded open platform route for running supported third party applications on eligible products. They solve different problems and their materials are controlled through the Hikvision Technology Partner Program (TPP).</p>
+<h2 id="s-documented-interface-map">Documented interface map<a class="heading-link" href="#s-documented-interface-map" aria-label="Link to Documented interface map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Surface</th>
+  <th>Verified public purpose</th>
+  <th>Evidence/access status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>ISAPI</td>
+  <td>REST style HTTP application layer integration across Hikvision product families, including video and access related products</td>
+  <td>TPP publicly describes the surface; the current developer guide is restricted and obtained after account approval/login</td>
+</tr>
+<tr>
+  <td>HEOP</td>
+  <td>Deploys supported third party applications on compatible Hikvision hardware</td>
+  <td>Public landing page names HEOP 2.0; manager, SDK, guide, package and hardware qualification are TPP/account controlled</td>
+</tr>
+<tr>
+  <td>HikCentral OpenAPI</td>
+  <td>Platform level integration for HikCentral products</td>
+  <td>Listed by TPP as a distinct integration interface</td>
+</tr>
+<tr>
+  <td>Device/network SDKs</td>
+  <td>Native SDK route for selected products and workflows</td>
+  <td>Distinct from ISAPI; package and compatibility must come from the partner portal</td>
+</tr>
+</tbody>
+</table></div>
+<p>Don't mix an ISAPI device integration, HikCentral OpenAPI integration, native SDK integration, and HEOP application in one generic “Hikvision API” assumption.</p>
+<span class="heading-alias" id="s-access-status-as-of-2026-08-25" aria-hidden="true"></span><h2 id="s-access-status-as-of-25-august-2026">Access status as of 25 August 2026<a class="heading-link" href="#s-access-status-as-of-25-august-2026" aria-label="Link to Access status as of 25 August 2026">#</a></h2>
+<p>The TPP Getting Started Guide dated March 2025 identifies ISAPI, OTAP and HEOP developer material as restricted. Registration approval is described by the portal as normally taking one to three business days, but approval, contractual terms, export controls, region, programme level and access can vary. The official current package obtained through the approved account is the normative source.</p>
+<p>The China open platform site publishes additional method and security material. Treat it as regional official evidence, not as a replacement for the contracted global TPP guide or proof that the same product, firmware, operation or service is available elsewhere.</p>
+<h2 id="s-product-and-version-record">Product and version record<a class="heading-link" href="#s-product-and-version-record" aria-label="Link to Product and version record">#</a></h2>
+<p>Before implementation, obtain and retain:</p>
+<ul>
+<li>product family, model, hardware revision and firmware;</li>
+<li>region and distribution channel;</li>
+<li>ISAPI guide revision and feature/module chapter;</li>
+<li>device capability response required by that guide;</li>
+<li>HEOP generation, hardware eligibility, SDK/toolchain, package format and resource limits;</li>
+<li>HikCentral or SDK version if the integration isn't direct to device;</li>
+<li>required feature licence and Technology Partner entitlement.</li>
+</ul>
+<p>The label “HEOP 2.0” was present on the public TPP page on the verification date. This page doesn't claim that it is supported on a particular model or is the latest package delivered to every partner.</p>
+<h2 id="s-authentication-and-transport">Authentication and transport<a class="heading-link" href="#s-authentication-and-transport" aria-label="Link to Authentication and transport">#</a></h2>
+<p>Authentication modes, TLS behaviour, certificate management, account roles and session rules must be taken from the exact current ISAPI/HEOP guide and target firmware. Public regional capability documentation demonstrates that supported network/security options vary. Therefore:</p>
+<ul>
+<li>require HTTPS where the target contract supports it and reject silent downgrade;</li>
+<li>validate device identity rather than accepting any self signed certificate indefinitely;</li>
+<li>create a unique least privileged integration user;</li>
+<li>disable anonymous or unused services;</li>
+<li>never embed device credentials in an HEOP package, mobile client, URL or log;</li>
+<li>rate limit authentication failure and command retries;</li>
+<li>record the exact firmware behaviour for password rotation and certificate replacement.</li>
+</ul>
+<p>This page intentionally doesn't publish an authentication recipe or endpoint because the normative material is restricted and product specific.</p>
+<h2 id="s-events-media-configuration-and-commands">Events, media, configuration, and commands<a class="heading-link" href="#s-events-media-configuration-and-commands" aria-label="Link to Events, media, configuration, and commands">#</a></h2>
+<p>Treat each ISAPI module as an independent contract. Verify the documented capability and version before using event subscriptions, stream/profile configuration, searches, snapshots, PTZ, access control objects, audio, alarm I/O, firmware, or user administration. Product families can reuse names without identical schemas or permissions.</p>
+<p>For event ingestion, design for reconnect, duplicates, gaps, malformed XML/JSON, device reboot, clock correction and changed event types. For configuration or actuation, require explicit operator authorisation and reconcile device state after timeout. An HTTP response can't prove a door, relay, camera, recorder, alarm input or edge application reached the intended real world state.</p>
+<h2 id="s-heop-application-boundary">HEOP application boundary<a class="heading-link" href="#s-heop-application-boundary" aria-label="Link to HEOP application boundary">#</a></h2>
+<p>An HEOP application becomes part of the device trust boundary. Obtain the official guidance for signing, packaging, process isolation, privileges, supported APIs, storage, network access, update and uninstall. Pin the toolchain and hardware/firmware matrix. Bound CPU, memory, disk and log output, and provide rollback if an application affects video availability or device stability.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>Track TPP release notices, product firmware release notes, security advisories, application compatibility and restricted guide revisions. Don't preserve a partner SDK or guide outside its licence/contract terms.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://tpp.hikvision.com/tpp/IntegrationCenter" rel="noopener noreferrer">Hikvision TPP Integration Center</a>, official integration surface catalogue.</li>
+<li><a href="https://tpp.hikvision.com/tpp/AboutTPP/" rel="noopener noreferrer">About the Technology Partner Program</a>, ISAPI public description.</li>
+<li><a href="https://tpp.hikvision.com/tpp/GettingStartedCenter" rel="noopener noreferrer">TPP Getting Started Center</a> and <a href="https://tpp.hikvision.com/pd/GettingStartedGuide.pdf" rel="noopener noreferrer">Getting Started Guide</a>, registration and restricted material status.</li>
+<li><a href="https://tpp.hikvision.com/download/ISAPI_OTAP" rel="noopener noreferrer">ISAPI and OTAP landing page</a>, official download route.</li>
+<li><a href="https://tpp.hikvision.com/tpp/HEOP" rel="noopener noreferrer">HEOP landing page</a>, HEOP 2.0 and manager access route.</li>
+<li><a href="https://open.hikvision.com/osp" rel="noopener noreferrer">Hikvision Open Platform</a>, official regional surface map; use only within its stated scope.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/web-and-messaging/http-and-rest/">HTTP and REST</a></li>
+<li><a href="../../../06-security-and-assurance/threat-modeling-and-trust-boundaries/">Threat boundaries</a></li>
+<li><a href="../../../06-security-and-assurance/firmware-updates-and-supply-chain/">Firmware and supply chain</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../hanwha-sunapi-and-open-platform/"><span>Previous in this section</span>Hanwha Vision SUNAPI and Open Platform</a><a href="../zenitel-apis-and-sdks/"><span>Next in this section</span>Zenitel APIs and SDKs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/device-and-edge-video/hikvision-isapi-and-heop.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/device-and-edge-video/hikvision-isapi-and-heop.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-interface-map">Documented interface map</a></li><li class="toc-level-2"><a href="#s-access-status-as-of-25-august-2026">Access status as of 25 August 2026</a></li><li class="toc-level-2"><a href="#s-product-and-version-record">Product and version record</a></li><li class="toc-level-2"><a href="#s-authentication-and-transport">Authentication and transport</a></li><li class="toc-level-2"><a href="#s-events-media-configuration-and-commands">Events, media, configuration, and commands</a></li><li class="toc-level-2"><a href="#s-heop-application-boundary">HEOP application boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>PKI, certificates, keys, and secrets · Security Technician Wiki</title>
+<meta name="description" content="Plan how certificates, keys and secrets are issued, stored, renewed and removed. Assign ownership and recovery procedures for each part of the lifecycle.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/pki-certificates-keys-and-secrets/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="PKI, certificates, keys, and secrets · Security Technician Wiki">
+<meta property="og:description" content="Plan how certificates, keys and secrets are issued, stored, renewed and removed. Assign ownership and recovery procedures for each part of the lifecycle.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/pki-certificates-keys-and-secrets/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="./" aria-current="page">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">PKI, certificates, keys, and secrets</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-pki-certificates-keys-and-secrets">PKI, certificates, keys, and secrets</h1>
+<p>Plan how certificates, keys and secrets are issued, stored, renewed and removed. Assign ownership and recovery procedures for each part of the lifecycle.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-trust-inventory">Trust inventory</a></li><li class="toc-level-2"><a href="#s-tls-endpoint-validation">TLS endpoint validation</a></li><li class="toc-level-2"><a href="#s-key-storage-and-handling">Key storage and handling</a></li><li class="toc-level-2"><a href="#s-renewal-and-failure">Renewal and failure</a></li><li class="toc-level-2"><a href="#s-legacy-shared-key-protocols">Legacy shared key protocols</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>PKI is an operating system for trust, not a certificate generation task. A secure design defines issuance, identity proofing, trust distribution, storage, renewal, revocation, algorithm transition, backup, incident response, and decommissioning.</p>
+<h2 id="s-trust-inventory">Trust inventory<a class="heading-link" href="#s-trust-inventory" aria-label="Link to Trust inventory">#</a></h2>
+<p>For every protected flow, record:</p>
+<ul>
+<li>certificate or key purpose: TLS server, TLS client, code signing, firmware signing, media/evidence signing, OSDP secure channel, API token signing, or data encryption;</li>
+<li>subject identity and uniqueness boundary;</li>
+<li>issuing authority and trust anchors;</li>
+<li>private key generation and storage location;</li>
+<li>supported algorithms, protocol versions, key usage, and name constraints;</li>
+<li>enrolment and renewal mechanism;</li>
+<li>revocation or distrust mechanism and offline behaviour;</li>
+<li>overlap window and rollback plan;</li>
+<li>evidence showing the active certificate/key on each endpoint.</li>
+</ul>
+<h2 id="s-tls-endpoint-validation">TLS endpoint validation<a class="heading-link" href="#s-tls-endpoint-validation" aria-label="Link to TLS endpoint validation">#</a></h2>
+<p>A client must validate the certificate chain, validity interval, intended key usage, and expected DNS/IP service identity. An encrypted session with an unverified peer protects only against passive observation; it doesn't establish whom the client reached. Never solve a deployment problem by installing a permanent accept all callback or disabling hostname verification.</p>
+<p>TLS 1.3 is specified by RFC 8446; exact protocol and cipher policy still depends on device support, ecosystem requirements, and current organizational cryptographic guidance <a href="https://www.rfc-editor.org/rfc/rfc8446" rel="noopener noreferrer">RFC 8446</a>. Record when a legacy device forces weaker choices and isolate it rather than silently lowering the whole system baseline.</p>
+<h2 id="s-key-storage-and-handling">Key storage and handling<a class="heading-link" href="#s-key-storage-and-handling" aria-label="Link to Key storage and handling">#</a></h2>
+<ul>
+<li>Generate private keys at the strongest practical boundary and mark them non exportable where supported.</li>
+<li>Use unique device and workload keys; shared fleet keys turn one compromise into systemic impersonation.</li>
+<li>Keep secrets out of source, Markdown, URLs, logs, screenshots, packet captures, support bundles, and command history.</li>
+<li>Give services access only to the specific secret version they require.</li>
+<li>Zero or release sensitive buffers according to the language/runtime and threat model.</li>
+<li>Separate encryption, signing, authentication, and key encryption purposes.</li>
+</ul>
+<h2 id="s-renewal-and-failure">Renewal and failure<a class="heading-link" href="#s-renewal-and-failure" aria-label="Link to Renewal and failure">#</a></h2>
+<p>Track certificate expiry as an operational signal with enough lead time for approval, rollout, and rollback. Test overlap of old and new trust anchors before removing the old one. Define behaviour when revocation information, enrolment services, or time sources are unavailable; insecure bypass must never be the automatic recovery mode.</p>
+<h2 id="s-legacy-shared-key-protocols">Legacy shared key protocols<a class="heading-link" href="#s-legacy-shared-key-protocols" aria-label="Link to Legacy shared key protocols">#</a></h2>
+<p>Where a protocol uses pre shared keys, document provisioning, uniqueness, storage, rotation, loss, replacement, and downgrade behaviour. A label such as secure channel is incomplete without knowing which base key is installed, whether an installation/default key remains accepted, and how the peer is authenticated.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>RFC 5280</strong>, <a href="https://www.rfc-editor.org/rfc/rfc5280" rel="noopener noreferrer">RFC 5280: Internet X.509 Public Key Infrastructure Certificate and CRL Profile</a>, accessed 25 August 2026.</li>
+<li><strong>RFC 8446</strong>, <a href="https://www.rfc-editor.org/rfc/rfc8446" rel="noopener noreferrer">RFC 8446: The Transport Layer Security Protocol Version 1.3</a>, accessed 25 August 2026.</li>
+<li><strong>NIST TLS</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/52/r2/final" rel="noopener noreferrer">NIST SP 800-52 Rev. 2: Guidelines for TLS Implementations</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li>
+<li><a href="../remote-access/">Remote access</a></li>
+<li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../logging-time-and-evidence-integrity/"><span>Previous in this section</span>Logging, time, and evidence integrity</a><a href="../privacy-and-sensitive-data/"><span>Next in this section</span>Privacy and sensitive data</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/pki-certificates-keys-and-secrets.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/pki-certificates-keys-and-secrets.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-trust-inventory">Trust inventory</a></li><li class="toc-level-2"><a href="#s-tls-endpoint-validation">TLS endpoint validation</a></li><li class="toc-level-2"><a href="#s-key-storage-and-handling">Key storage and handling</a></li><li class="toc-level-2"><a href="#s-renewal-and-failure">Renewal and failure</a></li><li class="toc-level-2"><a href="#s-legacy-shared-key-protocols">Legacy shared key protocols</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

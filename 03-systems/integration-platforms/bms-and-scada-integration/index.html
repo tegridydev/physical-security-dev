@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>BMS and SCADA integration · Security Technician Wiki</title>
+<meta name="description" content="Define the data exchanged with building or industrial systems. Check ownership and approval for any controls exposed through the integration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/03-systems/integration-platforms/bms-and-scada-integration/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="BMS and SCADA integration · Security Technician Wiki">
+<meta property="og:description" content="Define the data exchanged with building or industrial systems. Check ownership and approval for any controls exposed through the integration.">
+<meta property="og:url" content="https://securitytechnician.wiki/03-systems/integration-platforms/bms-and-scada-integration/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">03</span>Systems</a><details class="nav-group"><summary>Physical access control systems</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/biometrics/">Biometric access control systems</a></li><li><a href="../../access-control/credential-lifecycle/">Credential lifecycle systems</a></li><li><a href="../../access-control/locks-egress-and-life-safety/">Locks, egress, and life safety boundaries</a></li><li><a href="../../access-control/mobile-access/">Mobile access systems</a></li><li><a href="../../access-control/offline-operation-and-anti-passback/">Offline operation and antipassback</a></li><li><a href="../../access-control/pacs-architecture/">PACS architecture</a></li><li><a href="../../access-control/panels-readers-and-door-io/">Panels, readers, and door I/O</a></li><li><a href="../../access-control/pedestrian-portals-turnstiles-and-interlocked-doors/">Pedestrian portals, turnstiles, and interlocked doors</a></li><li><a href="../../access-control/visitor-identity-and-elevator-integration/">Visitor, identity, and elevator integration</a></li></ul></details><details class="nav-group" open><summary>Integration platforms</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">BMS and SCADA integration</a></li><li><a href="../cloud-mobile-and-multi-tenant-platforms/">Cloud, mobile, and multi tenant security platforms</a></li><li><a href="../hr-identity-and-visitor-integration/">HR, identity, and visitor integration</a></li><li><a href="../psim-and-command-platforms/">PSIM and command platforms</a></li><li><a href="../siem-soar-and-case-management/">SIEM, SOAR, and case management</a></li></ul></details><details class="nav-group"><summary>Intercom and emergency communication systems</summary><ul class="nav-pages"><li><a href="../../intercom-and-emergency-communications/">Section overview</a></li><li><a href="../../intercom-and-emergency-communications/emergency-phones-mass-notification-and-pa/">Emergency phones, mass notification, and public address</a></li><li><a href="../../intercom-and-emergency-communications/call-routing-media-and-door-control/">Intercom call routing, media, and door control</a></li><li><a href="../../intercom-and-emergency-communications/intercom-system-architecture/">Intercom system architecture</a></li></ul></details><details class="nav-group"><summary>Intrusion and monitoring systems</summary><ul class="nav-pages"><li><a href="../../intrusion-monitoring/">Section overview</a></li><li><a href="../../intrusion-monitoring/communicators-receivers-and-monitoring/">Alarm communicators, receivers, and monitoring</a></li><li><a href="../../intrusion-monitoring/path-supervision-and-alarm-verification/">Alarm path supervision and verification</a></li><li><a href="../../intrusion-monitoring/duress-panic-and-fire-boundaries/">Duress, panic, and fire system boundaries</a></li><li><a href="../../intrusion-monitoring/panels-zones-and-sensors/">Intrusion panels, zones, and sensors</a></li></ul></details><details class="nav-group"><summary>Perimeter and detection systems</summary><ul class="nav-pages"><li><a href="../../perimeter-and-detection/">Section overview</a></li><li><a href="../../perimeter-and-detection/anpr-lpr-systems/">ANPR and LPR systems</a></li><li><a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a></li><li><a href="../../perimeter-and-detection/perimeter-security-architecture/">Perimeter security architecture</a></li><li><a href="../../perimeter-and-detection/radar-fence-and-buried-detection/">Radar, fence, and buried perimeter detection</a></li></ul></details><details class="nav-group"><summary>Video surveillance systems</summary><ul class="nav-pages"><li><a href="../../video-surveillance/">Section overview</a></li><li><a href="../../video-surveillance/cameras-and-encoders/">Cameras and video encoders</a></li><li><a href="../../video-surveillance/ptz-and-device-io/">PTZ and camera device I/O</a></li><li><a href="../../video-surveillance/recording-storage-and-retention/">Recording, storage, and retention</a></li><li><a href="../../video-surveillance/analytics-and-metadata/">Video analytics and metadata systems</a></li><li><a href="../../video-surveillance/evidence-export-and-integrity/">Video evidence export and integrity</a></li><li><a href="../../video-surveillance/health-and-service-monitoring/">Video system health and service monitoring</a></li><li><a href="../../video-surveillance/vms-nvr-and-vsaas/">VMS, NVR, and VSaaS platforms</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Systems</a><span aria-hidden="true">/</span><a href="../">Integration platforms</a><span aria-hidden="true">/</span><span aria-current="page">BMS and SCADA integration</span></nav><div class="page-kicker">Systems <span>About 3 min read</span></div><div class="prose"><h1 id="s-bms-and-scada-integration">BMS and SCADA integration</h1>
+<p>Define the data exchanged with building or industrial systems. Check ownership and approval for any controls exposed through the integration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Defensive architecture only; no register/object writes, live commands, controller logic, safety function, process setting, commissioning procedure, or site specific cause and effect.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-boundary-architecture">Boundary architecture</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-point-and-event-semantics">Point and event semantics</a></li><li class="toc-level-2"><a href="#s-approved-use-patterns">Approved use patterns</a></li><li class="toc-level-2"><a href="#s-cybersecurity-and-resilience">Cybersecurity and resilience</a></li><li class="toc-level-2"><a href="#s-change-and-validation-boundary">Change and validation boundary</a></li><li class="toc-level-2"><a href="#s-questions-before-connection">Questions before connection</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Building management and industrial control systems affect real processes: HVAC, power, water, smoke control, lifts, machinery, environmental conditions, and other services. Security integration should default to constrained, observable exchange. A common dashboard never becomes engineering or safety authority by presentation alone.</p>
+<h2 id="s-boundary-architecture">Boundary architecture<a class="heading-link" href="#s-boundary-architecture" aria-label="Link to Boundary architecture">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">native controller/process &lt;-&gt; native supervisory system and approved safety logic
+              |
+        bounded gateway/DMZ or broker
+              |
+     read-only events/state/trends -&gt; security correlation
+     separately approved semantic request &lt;- constrained workflow
+</code></pre></div>
+<p>Prefer native, supported integration interfaces and a broker/gateway over direct controller access. Keep management and control networks separated according to risk and necessary flows. Avoid dual homed general purpose hosts that bypass the boundary design.</p>
+<h2 id="s-authority-map">Authority map<a class="heading-link" href="#s-authority-map" aria-label="Link to Authority map">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Information/action</th>
+  <th>Authority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>process value and quality</td>
+  <td>field/controller/native supervisory path</td>
+</tr>
+<tr>
+  <td>safety interlock and protective action</td>
+  <td>approved native safety/control design</td>
+</tr>
+<tr>
+  <td>engineering units, scaling, alarms, limits</td>
+  <td>native engineering configuration</td>
+</tr>
+<tr>
+  <td>security event/case</td>
+  <td>source security system and operations workflow</td>
+</tr>
+<tr>
+  <td>cross domain correlation</td>
+  <td>integration platform, clearly marked derived</td>
+</tr>
+<tr>
+  <td>command or set point change</td>
+  <td>separately authorised control workflow; never inferred from dashboard access</td>
+</tr>
+</tbody>
+</table></div>
+<p>Security staff visibility doesn't imply permission or competence to operate plant. OT staff visibility of a security event doesn't grant access control, alarm reset, or surveillance authority.</p>
+<h2 id="s-point-and-event-semantics">Point and event semantics<a class="heading-link" href="#s-point-and-event-semantics" aria-label="Link to Point and event semantics">#</a></h2>
+<p>For every exchanged point retain native object/address reference, human meaning, source, units, scale, range, enumerations, read/write capability, quality/status, sample/update mode, source time, receive time, maximum age, deadband, alarm semantics, and mapping version.</p>
+<p>Distinguish commanded value, controller accepted value, feedback/process value, alarm state, acknowledgement, inhibit/override, maintenance, and communication failure. A successful protocol response or write acknowledgement doesn't prove plant movement or desired physical outcome.</p>
+<p>When mapping BACnet, Modbus, OPC UA, KNX, DNP3, or other protocols, use their own security and semantic limits. See <a href="../../../02-protocols/building-and-industrial/">Building and industrial protocols</a>. Protocol normalisation must not discard native quality, type, units, or security context.</p>
+<h2 id="s-approved-use-patterns">Approved use patterns<a class="heading-link" href="#s-approved-use-patterns" aria-label="Link to Approved use patterns">#</a></h2>
+<p>Lower risk examples include receiving equipment fault, environmental, power, or room condition observations for correlation; publishing a constrained security status to an authorised native consumer; and associating incidents with approved trend data.</p>
+<p>Higher risk patterns requiring explicit engineering, safety, and operational approval include changing set points or modes, suppressing alarms, starting/stopping equipment, smoke control interaction, lift commands, door/gate release, power switching, and automated cross domain cause and effect. This page provides no implementation procedure for them.</p>
+<h2 id="s-cybersecurity-and-resilience">Cybersecurity and resilience<a class="heading-link" href="#s-cybersecurity-and-resilience" aria-label="Link to Cybersecurity and resilience">#</a></h2>
+<ul>
+<li>Inventory assets, firmware/software, protocols, data flows, owners, remote access, and unsupported dependencies.</li>
+<li>Authenticate users and workloads; restrict service identities to exact objects/operations.</li>
+<li>Make read only technically enforced where only observation is intended.</li>
+<li>Use controlled remote access with approval, monitoring, time bounds, and revocation.</li>
+<li>Protect engineering configuration, logic, backups, keys/certificates, and update paths.</li>
+<li>Monitor gateway health, stale points, rejected/unauthorised requests, configuration drift, time error, and unexpected write capability.</li>
+<li>Design for safe native operation if the security platform, gateway, identity service, WAN/cloud, or time source fails.</li>
+</ul>
+<p>NIST <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">SP 800-82 Rev. 3</a> describes OT security while recognizing performance, reliability, and safety requirements; its scope includes building automation and physical access systems. Apply it with the site's engineering and safety obligations.</p>
+<h2 id="s-change-and-validation-boundary">Change and validation boundary<a class="heading-link" href="#s-change-and-validation-boundary" aria-label="Link to Change and validation boundary">#</a></h2>
+<p>Maintain a signed off data flow and point list; owner for every mapping; approved direction; configuration/version evidence; rollback; maintenance window; and post change review. Validate in an authorised environment and coordinated site process, including stale data, loss, partial failure, recovery, and native fallback.</p>
+<p>Keep exploratory validation disconnected from live controllers, plant, fire/smoke control, lifts, locks, gates, relays, and safety functions. Coordinate any physical acceptance activity through the site change and safety process.</p>
+<h2 id="s-questions-before-connection">Questions before connection<a class="heading-link" href="#s-questions-before-connection" aria-label="Link to Questions before connection">#</a></h2>
+<ul>
+<li>Is the business purpose achievable with one way/read only data?</li>
+<li>Which system is authoritative for each value and decision?</li>
+<li>Are units, quality, source time, stale state, and override visible end to end?</li>
+<li>What common dependencies or new remote paths does the gateway create?</li>
+<li>Can either side continue safely and securely when the integration is wrong or unavailable?</li>
+<li>Who approves, observes, reverses, and investigates every privileged change?</li>
+</ul>
+<p>See <a href="../">Integration platforms</a> and <a href="../../perimeter-and-detection/gates-barriers-and-vehicle-access/">Gates, barriers, and vehicle access</a>.</p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Integration platforms</a><a href="../cloud-mobile-and-multi-tenant-platforms/"><span>Next in this section</span>Cloud, mobile, and multi tenant security platforms</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/03-systems/integration-platforms/bms-and-scada-integration.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/03-systems/integration-platforms/bms-and-scada-integration.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-boundary-architecture">Boundary architecture</a></li><li class="toc-level-2"><a href="#s-authority-map">Authority map</a></li><li class="toc-level-2"><a href="#s-point-and-event-semantics">Point and event semantics</a></li><li class="toc-level-2"><a href="#s-approved-use-patterns">Approved use patterns</a></li><li class="toc-level-2"><a href="#s-cybersecurity-and-resilience">Cybersecurity and resilience</a></li><li class="toc-level-2"><a href="#s-change-and-validation-boundary">Change and validation boundary</a></li><li class="toc-level-2"><a href="#s-questions-before-connection">Questions before connection</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

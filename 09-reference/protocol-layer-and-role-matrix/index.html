@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Protocol layer and role matrix · Security Technician Wiki</title>
+<meta name="description" content="Look up a technology&#x27;s layer and role before comparing interfaces. Use the linked pages for the relevant protocol, codec, profile or system details.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/protocol-layer-and-role-matrix/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Protocol layer and role matrix · Security Technician Wiki">
+<meta property="og:description" content="Look up a technology&#x27;s layer and role before comparing interfaces. Use the linked pages for the relevant protocol, codec, profile or system details.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/protocol-layer-and-role-matrix/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="./" aria-current="page">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="../safety-impact-checklist/">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Protocol layer and role matrix</span></nav><div class="page-kicker">Reference <span>About 4 min read</span></div><div class="prose"><h1 id="s-protocol-layer-and-role-matrix">Protocol layer and role matrix</h1>
+<p>Look up a technology's layer and role before comparing interfaces. Use the linked pages for the relevant protocol, codec, profile or system details.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Architectural mapping only; editions, options, security modes, transports, and product roles require exact verification.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-questions-the-matrix-cant-answer">Questions the matrix can&#x27;t answer</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A single solution typically uses several rows. “Over IP” isn't a complete protocol description, and technologies at different layers aren't alternatives.</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Primary layer/model</th>
+  <th>Typical roles</th>
+  <th>Direction/model</th>
+  <th>Common companions</th>
+  <th>Canonical page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>ONVIF</td>
+  <td>Application profiles and web services</td>
+  <td>Device, client, media service, recording/search, access roles</td>
+  <td>Request/response plus events/media</td>
+  <td>HTTP(S), SOAP/XML, WS Discovery, RTSP/RTP, MQTT conditionally</td>
+  <td><a href="../../02-protocols/video-and-media/onvif/">ONVIF</a></td>
+</tr>
+<tr>
+  <td>GB/T 28181</td>
+  <td>Video surveillance application/domain protocol</td>
+  <td>SIP domain, device, platform, catalogue/event/media roles</td>
+  <td>Registration, catalogue/events, SIP session control, RTP media</td>
+  <td>SIP, SDP, RTP/RTCP, XML, GB 35114 security</td>
+  <td><a href="../../02-protocols/video-and-media/gbt-28181/">GB/T 28181</a></td>
+</tr>
+<tr>
+  <td>RTSP</td>
+  <td>Media session control</td>
+  <td>Client and media server</td>
+  <td>Stateful request/response</td>
+  <td>SDP, RTP/RTCP, authentication, TLS in supported profiles</td>
+  <td><a href="../../02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">RTSP/RTP/SDP</a></td>
+</tr>
+<tr>
+  <td>RTP/RTCP</td>
+  <td>Real time media/data transport and control</td>
+  <td>Sender, receiver, mixer/translator</td>
+  <td>Usually datagram flows plus reports</td>
+  <td>SDP, RTSP/SIP/WebRTC, SRTP</td>
+  <td><a href="../../02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">RTSP/RTP/SDP</a></td>
+</tr>
+<tr>
+  <td>WebRTC</td>
+  <td>Secure real time communications suite</td>
+  <td>Browser/native peers and signaling/relay services</td>
+  <td>Peer media/data with application defined signaling</td>
+  <td>ICE, STUN, TURN, DTLS SRTP, SDP</td>
+  <td><a href="../../02-protocols/video-and-media/webrtc/">WebRTC</a></td>
+</tr>
+<tr>
+  <td>SIP</td>
+  <td>Session signaling</td>
+  <td>User agents, proxies, registrars, B2BUAs</td>
+  <td>Request/response and dialogs</td>
+  <td>SDP, RTP/SRTP, TLS, digest or deployment identity</td>
+  <td><a href="../../02-protocols/video-and-media/sip-and-srtp/">SIP and SRTP</a></td>
+</tr>
+<tr>
+  <td>SRT / RIST</td>
+  <td>Media contribution transport families</td>
+  <td>Sender/caller/listener or RIST sender/receiver roles</td>
+  <td>Long lived contribution media flow with retransmission/recovery profile</td>
+  <td>Encoded media, encryption/profile, network QoS, application authorisation</td>
+  <td><a href="../../02-protocols/video-and-media/srt-and-rist/">SRT and RIST</a></td>
+</tr>
+<tr>
+  <td>OSDP</td>
+  <td>Access peripheral application protocol</td>
+  <td>Control panel and peripheral device</td>
+  <td>Addressed bidirectional bus; poll/reply model</td>
+  <td>Commonly RS485; Secure Channel</td>
+  <td><a href="../../02-protocols/access-control/osdp/">OSDP</a></td>
+</tr>
+<tr>
+  <td>Wiegand interface</td>
+  <td>Legacy electrical/data interface</td>
+  <td>Reader to controller</td>
+  <td>Primarily one way pulses</td>
+  <td>Credential formats and vendor wiring</td>
+  <td><a href="../../02-protocols/access-control/legacy-reader-interfaces/">Legacy reader interfaces</a></td>
+</tr>
+<tr>
+  <td>SIA DC09</td>
+  <td>Alarm transport/application framing</td>
+  <td>Premises transmitter and central station receiver</td>
+  <td>Supervised event delivery and acknowledgement</td>
+  <td>IP transport; underlying SIA/contact formats as applicable</td>
+  <td><a href="../../02-protocols/alarm-monitoring/sia-dc-09/">DC09</a></td>
+</tr>
+<tr>
+  <td>SIA DC03 / DC05</td>
+  <td>Alarm message formats</td>
+  <td>Alarm panel/transmitter and receiver</td>
+  <td>Event records</td>
+  <td>DC09, dial/receiver product transport</td>
+  <td><a href="../../02-protocols/alarm-monitoring/">Alarm protocols</a></td>
+</tr>
+<tr>
+  <td>IEC 60839-5</td>
+  <td>Alarm transmission system/equipment/network family</td>
+  <td>Supervised premises, transmission network, receiving centre roles</td>
+  <td>Requirements split across independently versioned parts</td>
+  <td>National adoption, product profile, monitoring procedure</td>
+  <td><a href="../../02-protocols/alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission</a></td>
+</tr>
+<tr>
+  <td>HTTP/REST style APIs</td>
+  <td>Web transport/application convention</td>
+  <td>Client and server/resource service</td>
+  <td>Request/response</td>
+  <td>TLS, OAuth/OIDC, mTLS, JSON/XML, webhook</td>
+  <td><a href="../../02-protocols/web-and-messaging/http-and-rest/">HTTP and REST</a></td>
+</tr>
+<tr>
+  <td>SOAP/XML</td>
+  <td>Contracted web services/serialisation</td>
+  <td>Service client and server</td>
+  <td>Request/response and extension frameworks</td>
+  <td>HTTP(S), WSDL, WS-*</td>
+  <td><a href="../../02-protocols/web-and-messaging/soap-and-xml/">SOAP and XML</a></td>
+</tr>
+<tr>
+  <td>MQTT</td>
+  <td>Brokered application messaging</td>
+  <td>Publisher, subscriber, broker</td>
+  <td>Publish/subscribe with session/QoS semantics</td>
+  <td>TCP, TLS, client identity, topic ACL, payload schema</td>
+  <td><a href="../../02-protocols/web-and-messaging/mqtt/">MQTT</a></td>
+</tr>
+<tr>
+  <td>AMQP 1.0</td>
+  <td>Message oriented application protocol</td>
+  <td>Container, connection/session/link endpoints; sender and receiver</td>
+  <td>Credit based links and settlement</td>
+  <td>TCP, TLS, SASL, broker/router policy, application schema</td>
+  <td><a href="../../02-protocols/web-and-messaging/amqp-1-0/">AMQP 1.0</a></td>
+</tr>
+<tr>
+  <td>CoAP / OSCORE / LwM2M</td>
+  <td>Constrained REST like exchange, object security, and management profile</td>
+  <td>Client/server; origin/proxy; LwM2M client/server/bootstrap roles</td>
+  <td>Request/response, observe, block wise, managed objects</td>
+  <td>UDP/TCP/WebSocket, DTLS/TLS, OSCORE, object model</td>
+  <td><a href="../../02-protocols/web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and LwM2M</a></td>
+</tr>
+<tr>
+  <td>CAP / EDXL DE</td>
+  <td>Emergency message and distribution envelope formats</td>
+  <td>Alert issuer, aggregator, distributor, consumer</td>
+  <td>Alert/update/cancel lifecycle and routed XML messages</td>
+  <td>HTTPS/message transport, regional profile, XML signatures under explicit profile</td>
+  <td><a href="../../02-protocols/web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL</a></td>
+</tr>
+<tr>
+  <td>WebSocket</td>
+  <td>Full duplex application channel</td>
+  <td>Client and server</td>
+  <td>Long lived bidirectional messages</td>
+  <td>HTTP upgrade, TLS, application authentication/schema</td>
+  <td><a href="../../02-protocols/web-and-messaging/websocket-sse-and-webhooks/">WebSocket/SSE/webhook</a></td>
+</tr>
+<tr>
+  <td>Modbus RTU</td>
+  <td>Industrial application protocol over serial framing</td>
+  <td>Client/master and server/slave devices</td>
+  <td>Request/reply</td>
+  <td>Serial line, vendor register map</td>
+  <td><a href="../../02-protocols/building-and-industrial/modbus-rtu/">Modbus RTU</a></td>
+</tr>
+<tr>
+  <td>Modbus/TCP</td>
+  <td>Industrial application protocol over TCP</td>
+  <td>Client and server</td>
+  <td>Request/reply with transaction identifiers</td>
+  <td>TCP/IP, segmentation; Modbus Security where supported</td>
+  <td><a href="../../02-protocols/building-and-industrial/modbus-tcp/">Modbus/TCP</a></td>
+</tr>
+<tr>
+  <td>BACnet</td>
+  <td>Building automation objects/services</td>
+  <td>BACnet devices and clients; routers; management systems</td>
+  <td>Request/reply, notifications, discovery</td>
+  <td>BACnet/IP, MS/TP, or BACnet/SC data links</td>
+  <td><a href="../../02-protocols/building-and-industrial/bacnet-family/">BACnet family</a></td>
+</tr>
+<tr>
+  <td>BACnet/SC</td>
+  <td>Secure BACnet data link</td>
+  <td>Nodes and hubs</td>
+  <td>TLS protected WebSocket connections</td>
+  <td>BACnet application/network layers, PKI</td>
+  <td><a href="../../02-protocols/building-and-industrial/bacnet-secure-connect/">BACnet/SC</a></td>
+</tr>
+<tr>
+  <td>KNX</td>
+  <td>Building control application/system family</td>
+  <td>Sensors, actuators, controllers, management tools</td>
+  <td>Group communication and configuration</td>
+  <td>TP/RF/IP/IPv6 media; Data/IP Secure where applicable</td>
+  <td><a href="../../02-protocols/building-and-industrial/knx/">KNX</a></td>
+</tr>
+<tr>
+  <td>OPC UA</td>
+  <td>Information modeling and service framework</td>
+  <td>Clients, servers, publishers/subscribers</td>
+  <td>Services and PubSub models</td>
+  <td>UA Secure Conversation, application certs, user identity</td>
+  <td><a href="../../02-protocols/building-and-industrial/opc-ua/">OPC UA</a></td>
+</tr>
+<tr>
+  <td>IEC 60870-5-101/-104</td>
+  <td>Telecontrol application companion profiles</td>
+  <td>Controlling station, controlled station, gateway</td>
+  <td>ASDUs over serial or TCP profile</td>
+  <td>IEC 62351 security, time/quality/address model</td>
+  <td><a href="../../02-protocols/building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and -104</a></td>
+</tr>
+<tr>
+  <td>IEC 61850</td>
+  <td>Utility information model and communication mappings</td>
+  <td>IEDs, clients/servers, publishers/subscribers, engineering tools</td>
+  <td>MMS services plus GOOSE/SV multicast and SCL engineering</td>
+  <td>Ethernet, time, IEC 62351, conformance/profile</td>
+  <td><a href="../../02-protocols/building-and-industrial/iec-61850/">IEC 61850</a></td>
+</tr>
+<tr>
+  <td>Matter</td>
+  <td>Fabric based IP application protocol</td>
+  <td>Commissioner, controller, administrator, node, bridge</td>
+  <td>Commissioning, cluster commands/attributes/events</td>
+  <td>IPv6, Thread/WiFi/Ethernet, certificates, attestation, ACLs</td>
+  <td><a href="../../02-protocols/building-and-industrial/matter/">Matter</a></td>
+</tr>
+<tr>
+  <td>SAML / OIDC</td>
+  <td>Enterprise federation protocols</td>
+  <td>Identity provider/openid provider, service/relying party, client</td>
+  <td>Assertions or authorisation code/token/user info flows</td>
+  <td>HTTPS, metadata/JWKs, OAuth security profile, local role mapping</td>
+  <td><a href="../../02-protocols/infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation</a></td>
+</tr>
+<tr>
+  <td>SCIM</td>
+  <td>Identity provisioning protocol/schema</td>
+  <td>Provisioning client and service provider</td>
+  <td>Resource CRUD, bulk/filter, cursor and event assisted reconciliation</td>
+  <td>HTTPS, OAuth/mTLS profile, authoritative identity lifecycle</td>
+  <td><a href="../../02-protocols/infrastructure/scim-identity-provisioning/">SCIM</a></td>
+</tr>
+<tr>
+  <td>WebAuthn / CTAP</td>
+  <td>Web authentication and authenticator protocol</td>
+  <td>Relying party, client/browser, authenticator</td>
+  <td>Challenge/response registration and authentication ceremonies</td>
+  <td>HTTPS origin, FIDO credentials, CTAP transports, recovery policy</td>
+  <td><a href="../../02-protocols/infrastructure/webauthn-fido-and-passkeys/">WebAuthn and FIDO</a></td>
+</tr>
+<tr>
+  <td>SNMP</td>
+  <td>Network/device management</td>
+  <td>Manager and agent</td>
+  <td>Polling plus notifications</td>
+  <td>UDP/TCP profiles; SNMPv3 security</td>
+  <td><a href="../../02-protocols/infrastructure/monitoring-and-secure-administration/">Monitoring/admin</a></td>
+</tr>
+<tr>
+  <td>Syslog</td>
+  <td>Event/log transport and message format family</td>
+  <td>Originator, relay, collector</td>
+  <td>Push/event stream</td>
+  <td>UDP/TCP/TLS profiles, time and integrity pipeline</td>
+  <td><a href="../../02-protocols/infrastructure/monitoring-and-secure-administration/">Monitoring/admin</a></td>
+</tr>
+<tr>
+  <td>NTP/NTS/PTP</td>
+  <td>Time distribution</td>
+  <td>Clients/servers or clock hierarchy</td>
+  <td>Request/response or precision time messages</td>
+  <td>DNS, PKI/keys, network timing design</td>
+  <td><a href="../../02-protocols/infrastructure/time-synchronisation/">Time</a></td>
+</tr>
+<tr>
+  <td>TLS</td>
+  <td>Secure transport/session</td>
+  <td>Client and server peers</td>
+  <td>Authenticated protected channel</td>
+  <td>TCP/application protocol, X.509/PKI, sometimes PSK</td>
+  <td><a href="../../02-protocols/infrastructure/tls-pki-and-secure-transport/">TLS</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-questions-the-matrix-cant-answer">Questions the matrix can't answer<a class="heading-link" href="#s-questions-the-matrix-cant-answer" aria-label="Link to Questions the matrix can&#x27;t answer">#</a></h2>
+<ul>
+<li>Which product role and optional features are actually supported?</li>
+<li>Is the secure mode enabled with an acceptable key lifecycle?</li>
+<li>What semantics and safety consequence does a field or command carry?</li>
+<li>Can an event be replayed, duplicated, reordered, or lost?</li>
+<li>Which component remains authoritative during partitions?</li>
+<li>Is a product licensed and conformant for the exact firmware version?</li>
+</ul>
+<p>Resolve those questions in the linked family page, applicable system page, product documentation, and an approved environment validation record.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../ports-transports-and-protection/"><span>Previous in this section</span>Ports, transports, and protection</a><a href="../protocol-security-comparison/"><span>Next in this section</span>Protocol security comparison</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/protocol-layer-and-role-matrix.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/protocol-layer-and-role-matrix.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-questions-the-matrix-cant-answer">Questions the matrix can&#x27;t answer</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

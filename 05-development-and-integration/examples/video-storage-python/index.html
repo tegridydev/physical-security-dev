@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Video storage calculator · Security Technician Wiki</title>
+<meta name="description" content="Estimate continuous recording capacity from measured bitrate, retention and free space requirements.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/video-storage-python/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Video storage calculator · Security Technician Wiki">
+<meta property="og:description" content="Estimate continuous recording capacity from measured bitrate, retention and free space requirements.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/video-storage-python/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="./" aria-current="page">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">Video storage calculator</span></nav><div class="page-kicker">Development <span>About 2 min read</span></div><div class="prose"><h1 id="s-video-storage-calculator">Video storage calculator</h1>
+<p>Estimate continuous recording capacity from measured bitrate, retention and free space requirements.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">python examples/python/video_storage.py --demo
+</code></pre></div>
+<p>Eight cameras at 4 Mbps for 30 days produce 10.368 TB of video. With 10 percent storage overhead and 20 percent of usable capacity kept free, the estimate is 14.256 TB.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Supply <code>--cameras 8 --mbps 4 --days 30 --overhead 10 --reserve 20</code> to reproduce the demo. Mbps means decimal megabits per second. TB and TiB are shown separately.</p>
+<p>Overhead is additional stored data. Reserve is the proportion of usable capacity kept free, so required capacity is divided by the remaining fraction. A 20 percent reserve is not the same as adding 20 percent to the video size.</p>
+<p>The calculation assumes continuous recording and the same average bitrate per camera. Use measured averages and calculate different groups separately. The result is usable recording capacity before mapping to physical drives, RAID, replicas, spares, filesystem behaviour or vendor limits. Peak network load requires a separate calculation.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/python/video_storage.py">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy python example">Copy</button></div><pre tabindex="0" aria-label="python example"><code id="code-2">#!/usr/bin/env python3
+&quot;&quot;&quot;Estimate continuous video storage from measured average bitrate.&quot;&quot;&quot;
+from __future__ import annotations
+import argparse
+from decimal import Decimal, InvalidOperation
+import json
+import sys
+
+def estimate(cameras: int, mbps: Decimal, days: Decimal,
+             overhead: Decimal = Decimal(&#x27;0&#x27;), reserve: Decimal = Decimal(&#x27;0&#x27;)) -&gt; dict[str, str]:
+    if type(cameras) is not int or not 1 &lt;= cameras &lt;= 100_000:
+        raise ValueError(&#x27;Camera count must be 1 to 100000&#x27;)
+    if any(not x.is_finite() for x in (mbps, days, overhead, reserve)):
+        raise ValueError(&#x27;Inputs must be finite&#x27;)
+    if not 0 &lt; mbps &lt;= 10_000 or not 0 &lt; days &lt;= 3650:
+        raise ValueError(&#x27;Use positive bitrate up to 10000 Mbps and retention up to 3650 days&#x27;)
+    if not 0 &lt;= overhead &lt;= 100 or not 0 &lt;= reserve &lt; 100:
+        raise ValueError(&#x27;Overhead must be 0 to 100 percent; reserve must be less than 100 percent&#x27;)
+    bits_per_second = Decimal(cameras) * mbps * 1_000_000
+    recording = bits_per_second * 86400 * days / 8
+    stored = recording * (1 + overhead / 100)
+    usable = stored / (1 - reserve / 100)
+    return {&#x27;aggregate_mbps&#x27;: str(Decimal(cameras) * mbps),
+            &#x27;recording_tb&#x27;: format(recording / 10**12, &#x27;.3f&#x27;),
+            &#x27;required_usable_tb&#x27;: format(usable / 10**12, &#x27;.3f&#x27;),
+            &#x27;required_usable_tib&#x27;: format(usable / 2**40, &#x27;.3f&#x27;)}
+
+def decimal_input(value: str) -&gt; Decimal:
+    try:
+        result = Decimal(value)
+        if not result.is_finite():
+            raise InvalidOperation
+        return result
+    except InvalidOperation as exc:
+        raise argparse.ArgumentTypeError(&#x27;Use a finite decimal number&#x27;) from exc
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(&#x27;--demo&#x27;, action=&#x27;store_true&#x27;)
+    parser.add_argument(&#x27;--cameras&#x27;, type=int)
+    parser.add_argument(&#x27;--mbps&#x27;, type=decimal_input, help=&#x27;Measured average megabits per second for each camera&#x27;)
+    parser.add_argument(&#x27;--days&#x27;, type=decimal_input)
+    parser.add_argument(&#x27;--overhead&#x27;, type=decimal_input, default=Decimal(&#x27;0&#x27;), help=&#x27;Additional stored data as a percentage&#x27;)
+    parser.add_argument(&#x27;--reserve&#x27;, type=decimal_input, default=Decimal(&#x27;0&#x27;), help=&#x27;Percentage of usable capacity kept free&#x27;)
+    args = parser.parse_args()
+    if not args.demo and None in (args.cameras, args.mbps, args.days):
+        parser.error(&#x27;Supply --cameras, --mbps and --days, or use --demo&#x27;)
+    try:
+        result = estimate(8, Decimal(&#x27;4&#x27;), Decimal(&#x27;30&#x27;), Decimal(&#x27;10&#x27;), Decimal(&#x27;20&#x27;)) if args.demo else estimate(
+            args.cameras, args.mbps, args.days, args.overhead, args.reserve)
+        print(json.dumps(result, indent=2))
+        return 0
+    except (ValueError, InvalidOperation) as exc:
+        print(f&#x27;Error: {exc}&#x27;, file=sys.stderr)
+        return 1
+
+if __name__ == &#x27;__main__&#x27;:
+    raise SystemExit(main())
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://physics.nist.gov/cuu/Units/binary.html" rel="noopener noreferrer">NIST binary prefixes</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../tls-expiry-python/"><span>Previous in this section</span>TLS certificate expiry check</a><a href="../webhook-hmac-python/"><span>Next in this section</span>Webhook signature verification</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/video-storage-python.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/video-storage-python.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

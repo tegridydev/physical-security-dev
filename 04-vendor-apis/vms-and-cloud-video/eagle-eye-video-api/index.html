@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Eagle Eye Video API · Security Technician Wiki</title>
+<meta name="description" content="Check the Eagle Eye API and authentication flow for the required customer scope. Review media access, event retrieval and retention before implementation.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/eagle-eye-video-api/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Eagle Eye Video API · Security Technician Wiki">
+<meta property="og:description" content="Check the Eagle Eye API and authentication flow for the required customer scope. Review media access, event retrieval and retention before implementation.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/vms-and-cloud-video/eagle-eye-video-api/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="../../selection-and-capability-matrix/">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../../access-and-identity/">Section overview</a></li><li><a href="../../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../../device-and-edge-video/">Section overview</a></li><li><a href="../../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group" open><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">Eagle Eye Video API</a></li><li><a href="../genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Vendor APIs</a><span aria-hidden="true">/</span><a href="../">VMS and cloud video APIs</a><span aria-hidden="true">/</span><span aria-current="page">Eagle Eye Video API</span></nav><div class="page-kicker">Vendor APIs <span>About 3 min read</span></div><div class="prose"><h1 id="s-eagle-eye-video-api">Eagle Eye Video API</h1>
+<p>Check the Eagle Eye API and authentication flow for the required customer scope. Review media access, event retrieval and retention before implementation.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Inherited check dated 10 September 2026. Supporting evidence for this inherited check has not been independently confirmed.</p><p>Recorded scope: The Eagle Eye API v3 getting started page was checked for OAuth authorisation code onboarding, application registration and redirect requirements. No cloud account operations were performed.</p><p>Public Eagle Eye developer documentation reviewed on 25 August 2026; exact account entitlements, service hosts, rate limits, media codecs, retention, device support, and endpoint schemas require the live v3 reference and authorised tenant.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-cameras-pagination-and-reconciliation">Cameras, pagination, and reconciliation</a></li><li class="toc-level-2"><a href="#s-events-sse-and-webhooks">Events, SSE, and webhooks</a></li><li class="toc-level-2"><a href="#s-media-boundary">Media boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../../">Vendor APIs</a> / <a href="../">VMS and cloud video</a> / Eagle Eye Networks</p>
+<p>Eagle Eye Networks publishes a <strong>Video API v3</strong> for cloud video integrations. The current documentation covers OAuth based authorisation, camera/resources, live and recorded media, events and alerts, Server Sent Events (SSE), webhooks, and list pagination. V3 identity is materially different from older V2 API key patterns; new work should follow the current v3 contract.</p>
+<h2 id="s-documented-scope-and-access">Documented scope and access<a class="heading-link" href="#s-documented-scope-and-access" aria-label="Link to Documented scope and access">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Area</th>
+  <th>Publicly documented contract</th>
+  <th>Access boundary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Developer application</td>
+  <td>Client registration and credentials through the developer programme</td>
+  <td>Account/approval and secret custody required</td>
+</tr>
+<tr>
+  <td>User delegated authorisation</td>
+  <td>OAuth 2.0 Authorisation Code flow and user consent</td>
+  <td>Application acts only within granted customer/user authority</td>
+</tr>
+<tr>
+  <td>Service integration</td>
+  <td>A vendor enabled machine to machine option can issue a non rotating refresh token after a user completes authorisation</td>
+  <td>This is not OAuth client credentials; eligibility, authorisation, token custody, revocation, and scope remain account controlled</td>
+</tr>
+<tr>
+  <td>Camera/resources</td>
+  <td>Enumerate authorised cameras and related resources</td>
+  <td>Customer account, permissions and pagination apply</td>
+</tr>
+<tr>
+  <td>Media</td>
+  <td>Live and recorded viewing modes with documented media/session workflows</td>
+  <td>Codec, time range, entitlement, concurrency and token lifetime apply</td>
+</tr>
+<tr>
+  <td>Events</td>
+  <td>Query/event model plus SSE and webhook subscription approaches</td>
+  <td>Delivery/replay behaviour must be designed from the selected guide</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-authentication-and-authorisation">Authentication and authorisation<a class="heading-link" href="#s-authentication-and-authorisation" aria-label="Link to Authentication and authorisation">#</a></h2>
+<p>Use V3 OAuth; don't copy a V2 key example into a V3 application. For user facing integrations, use Authorisation Code with state validation and the exact registered redirect URI. Keep the client secret and token exchange in a confidential backend, not browser JavaScript or a mobile package. Store access/refresh credentials in an approved secret store and never log them.</p>
+<p>The documented machine to machine path is still established through user authorisation and, when enabled by Eagle Eye, returns a non rotating refresh token for the service. It isn't the OAuth client credentials grant. Treat that refresh token as a long lived high value secret, define explicit revocation/offboarding, and don't describe it as automatic workload identity.</p>
+<p>The account supplies region/service routing information. Don't hard code a host copied from another customer or geography. Bind authorisation to the customer account and validate that returned resources remain within the expected tenant.</p>
+<p>Use the narrowest scopes/permissions and separate media playback/export from administration or camera control. User consent isn't a substitute for the application’s own role and purpose checks.</p>
+<h2 id="s-cameras-pagination-and-reconciliation">Cameras, pagination, and reconciliation<a class="heading-link" href="#s-cameras-pagination-and-reconciliation" aria-label="Link to Cameras, pagination, and reconciliation">#</a></h2>
+<p>The camera list reference documents pagination. Follow response links/cursors and the endpoint’s declared limit semantics rather than inventing page arithmetic. Treat identifiers as opaque. Cache only with an expiry and re enumerate after authorisation, site or camera changes.</p>
+<p>No stable public global request rate number was verified for this page. Obtain current limits from the developer account/reference and implement <code>429</code> and transient error backoff without hiding sustained quota or authorisation failures.</p>
+<h2 id="s-events-sse-and-webhooks">Events, SSE, and webhooks<a class="heading-link" href="#s-events-sse-and-webhooks" aria-label="Link to Events, SSE, and webhooks">#</a></h2>
+<p>Choose SSE for a managed long lived client connection and webhooks when Eagle Eye should deliver to a controlled HTTPS receiver. For either:</p>
+<ul>
+<li>establish event types and filters from the current schema;</li>
+<li>persist event ID, source time, ingest time, camera/account and correlation;</li>
+<li>expect reconnect and duplicate delivery unless the contract explicitly says otherwise;</li>
+<li>detect gaps and reconcile using query APIs within the documented retention window;</li>
+<li>authenticate webhook origin using the vendor documented mechanism;</li>
+<li>acknowledge only after durable acceptance;</li>
+<li>bound payload, retries, queue depth and processing time.</li>
+</ul>
+<p>Never infer “person present” or “alarm handled” solely from event delivery.</p>
+<h2 id="s-media-boundary">Media boundary<a class="heading-link" href="#s-media-boundary" aria-label="Link to Media boundary">#</a></h2>
+<p>Use the documented live/recorded media workflow and session lifetime. Don't construct media URLs, share session tokens, disable TLS validation or make a private stream publicly cacheable. Bound requested time ranges, concurrent sessions and local buffers. Preserve original evidence through the platform’s supported export path; a decoded frame or browser recording isn't equivalent.</p>
+<h2 id="s-lifecycle-and-compatibility">Lifecycle and compatibility<a class="heading-link" href="#s-lifecycle-and-compatibility" aria-label="Link to Lifecycle and compatibility">#</a></h2>
+<p>Monitor the developer portal for V3 changes and V2 retirement guidance. Record client type, consent/scopes, account/region, API documentation revision, media mode and event delivery contract. Treat mutable limits and hosts as configuration discovered from the authorised environment.</p>
+<h2 id="s-primary-sources">Primary sources<a class="heading-link" href="#s-primary-sources" aria-label="Link to Primary sources">#</a></h2>
+<ul>
+<li><a href="https://developer.eagleeyenetworks.com/docs/getting-started" rel="noopener noreferrer">Video API v3 getting started</a>, current API generation and onboarding.</li>
+<li><a href="https://developer.eagleeyenetworks.com/reference/using-the-api" rel="noopener noreferrer">Using the API</a>, authentication and application access model.</li>
+<li><a href="https://developer.eagleeyenetworks.com/docs/event-subscriptions" rel="noopener noreferrer">Event subscriptions</a>, SSE and webhook approaches.</li>
+<li><a href="https://developer.eagleeyenetworks.com/docs/events-alerts-notifications-introduction" rel="noopener noreferrer">Events, alerts, and notifications</a>, event domain entry point.</li>
+<li><a href="https://developer.eagleeyenetworks.com/docs/watch-live-video" rel="noopener noreferrer">Watch live video</a>, documented media workflows.</li>
+<li><a href="https://developer.eagleeyenetworks.com/reference/listcameras" rel="noopener noreferrer">List cameras</a>, resource and pagination reference.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../../02-protocols/web-and-messaging/websocket-sse-and-webhooks/">WebSocket, SSE, and webhooks</a></li>
+<li><a href="../../../01-foundations/media-streaming-fundamentals/">Media streaming fundamentals</a></li>
+<li><a href="../../../05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and reconciliation</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>VMS and cloud video APIs</a><a href="../genetec-security-center-sdk-and-web-api/"><span>Next in this section</span>Genetec Security Center SDK and Web API</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/vms-and-cloud-video/eagle-eye-video-api.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/vms-and-cloud-video/eagle-eye-video-api.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-documented-scope-and-access">Documented scope and access</a></li><li class="toc-level-2"><a href="#s-authentication-and-authorisation">Authentication and authorisation</a></li><li class="toc-level-2"><a href="#s-cameras-pagination-and-reconciliation">Cameras, pagination, and reconciliation</a></li><li class="toc-level-2"><a href="#s-events-sse-and-webhooks">Events, SSE, and webhooks</a></li><li class="toc-level-2"><a href="#s-media-boundary">Media boundary</a></li><li class="toc-level-2"><a href="#s-lifecycle-and-compatibility">Lifecycle and compatibility</a></li><li class="toc-level-2"><a href="#s-primary-sources">Primary sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

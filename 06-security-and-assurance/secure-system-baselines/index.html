@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Secure system baselines · Security Technician Wiki</title>
+<meta name="description" content="Use the relevant product guidance to establish security settings. Record the intended outcome, implemented controls, exceptions and evidence for the deployed configuration.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/secure-system-baselines/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Secure system baselines · Security Technician Wiki">
+<meta property="og:description" content="Use the relevant product guidance to establish security settings. Record the intended outcome, implemented controls, exceptions and evidence for the deployed configuration.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/secure-system-baselines/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="./" aria-current="page">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Secure system baselines</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-secure-system-baselines">Secure system baselines</h1>
+<p>Use the relevant product guidance to establish security settings. Record the intended outcome, implemented controls, exceptions and evidence for the deployed configuration.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-universal-baseline">Universal baseline</a></li><li class="toc-level-2"><a href="#s-component-additions">Component additions</a></li><li class="toc-level-2"><a href="#s-legacy-exception-record">Legacy exception record</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system-record">Checks for your system record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>These are minimum engineering outcomes, not universal vendor configuration commands. Apply exact manufacturer guidance, model/firmware capabilities, operational risk, and local safety requirements. Record every unsupported control and compensating measure.</p>
+<h2 id="s-universal-baseline">Universal baseline<a class="heading-link" href="#s-universal-baseline" aria-label="Link to Universal baseline">#</a></h2>
+<ul>
+<li>Inventory exact hardware, firmware/software, enabled protocols, interfaces, licences and support status.</li>
+<li>Remove or change default/shared credentials; issue unique device/workload identity.</li>
+<li>Enable the strongest supported authenticated encrypted mode and validate peer identity.</li>
+<li>Disable unused services, discovery after commissioning where feasible, legacy fallback, unused accounts and unmanaged cloud access.</li>
+<li>Enforce role and object scoped authorisation for viewing, administration, export, credential management and actuation.</li>
+<li>Segment device, management, integration, operator, monitoring and support paths.</li>
+<li>Configure trustworthy time, centralized health/security logging, bounded storage and alerting.</li>
+<li>Verify signed update provenance and maintain a recovery/rollback path.</li>
+<li>Back up configuration and trust dependencies under separate protection.</li>
+<li>Document safe degraded behaviour, physical tamper controls, privacy/retention and decommissioning.</li>
+</ul>
+<h2 id="s-component-additions">Component additions<a class="heading-link" href="#s-component-additions" aria-label="Link to Component additions">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Component</th>
+  <th>Additional minimum outcomes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Camera/encoder</td>
+  <td>Separate media view from configuration; protect RTSP/media credentials; constrain multicast; disable anonymous snapshots; mask sensitive areas; monitor stream/config/tamper/time changes</td>
+</tr>
+<tr>
+  <td>NVR/VMS/VSaaS</td>
+  <td>Separate operator/admin/export roles; protect recording and signing keys; constrain device onboarding; audit search/export/delete; capacity and retention alarms; secure failover</td>
+</tr>
+<tr>
+  <td>Reader/controller/PACS</td>
+  <td>Prefer authenticated supervised reader links; remove installation/default keys; protect credential lifecycle; authorise outputs separately; preserve certified egress/fire dependencies</td>
+</tr>
+<tr>
+  <td>Alarm/intercom</td>
+  <td>Protect receiver accounts and event origin; use dual path supervision appropriately; secure audio/video and call control; never allow integrations to suppress certified behaviour</td>
+</tr>
+<tr>
+  <td>Gateway/broker</td>
+  <td>Unique workload identities; per direction/topic/API policy; schema and size limits; bounded queues/retries; no transparent insecure transit; full command/event correlation</td>
+</tr>
+<tr>
+  <td>Management server</td>
+  <td>Harden host/database; separate service accounts; protect admin interface, backups and API secrets; control plugins/SDKs; monitor privilege and policy changes</td>
+</tr>
+<tr>
+  <td>Operator workstation</td>
+  <td>Managed endpoint, strong login, least privilege, controlled export/removable media, screen/privacy protection, no direct device administration by default</td>
+</tr>
+<tr>
+  <td>Cloud connector</td>
+  <td>Explicit tenancy and data flow; mTLS/workload identity; constrained outbound destinations; token/key rotation; offline behaviour; vendor support and deletion/export boundaries</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-legacy-exception-record">Legacy exception record<a class="heading-link" href="#s-legacy-exception-record" aria-label="Link to Legacy exception record">#</a></h2>
+<p>When a device can't meet the baseline, record the missing property, exact affected interface, exploit/precondition, business and physical impact, isolation, upstream control, monitoring, replacement target, accountable risk owner, and expiry/review date. Avoid vague entries such as accepted because legacy.</p>
+<span class="heading-alias" id="s-what-to-check-in-your-environment-record" aria-hidden="true"></span><h2 id="s-checks-for-your-system-record">Checks for your system record<a class="heading-link" href="#s-checks-for-your-system-record" aria-label="Link to Checks for your system record">#</a></h2>
+<p>Validate the resulting configuration in a representative non production environment against the applicable manufacturer documentation. Capture the exact version, commands/settings, expected and observed result, rollback path, accountable reviewer, and limitations in the environment validation record.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 82</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3</a>, OT security controls and architecture, accessed 25 August 2026.</li>
+<li><strong>NISTIR 8259A</strong>, <a href="https://csrc.nist.gov/pubs/ir/8259/a/final" rel="noopener noreferrer">NISTIR 8259A IoT Device Cybersecurity Capability Core Baseline</a>, accessed 25 August 2026.</li>
+<li><strong>CISA SBD</strong>, <a href="https://www.cisa.gov/securebydesign" rel="noopener noreferrer">CISA Secure by Design</a>, manufacturer principles and guidance, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li>
+<li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li>
+<li><a href="../../03-systems/">System architectures</a></li>
+</ul>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../secure-protocol-parsing/"><span>Previous in this section</span>Secure protocol parsing</a><a href="../segmentation-and-conduits/"><span>Next in this section</span>Segmentation and conduits</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/secure-system-baselines.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/secure-system-baselines.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-universal-baseline">Universal baseline</a></li><li class="toc-level-2"><a href="#s-component-additions">Component additions</a></li><li class="toc-level-2"><a href="#s-legacy-exception-record">Legacy exception record</a></li><li class="toc-level-2"><a href="#s-checks-for-your-system-record">Checks for your system record</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

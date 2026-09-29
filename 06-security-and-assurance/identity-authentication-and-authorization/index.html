@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Identity, authentication, and authorisation controls · Security Technician Wiki</title>
+<meta name="description" content="Review identities, authentication methods and permissions across devices, operators and services. Include credential changes, denied operations and account removal in the checks.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/identity-authentication-and-authorization/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Identity, authentication, and authorisation controls · Security Technician Wiki">
+<meta property="og:description" content="Review identities, authentication methods and permissions across devices, operators and services. Include credential changes, denied operations and account removal in the checks.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/identity-authentication-and-authorization/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="./" aria-current="page">Identity, authentication, and authorisation controls</a></li><li><a href="../logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Identity, authentication, and authorisation controls</span></nav><div class="page-kicker">Security <span>About 3 min read</span></div><div class="prose"><h1 id="s-identity-authentication-and-authorisation-controls">Identity, authentication, and authorisation controls</h1>
+<p>Review identities, authentication methods and permissions across devices, operators and services. Include credential changes, denied operations and account removal in the checks.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-separate-the-decisions">Separate the decisions</a></li><li class="toc-level-2"><a href="#s-identity-classes">Identity classes</a></li><li class="toc-level-2"><a href="#s-authorisation-model">Authorisation model</a></li><li class="toc-level-2"><a href="#s-token-and-session-guidance">Token and session guidance</a></li><li class="toc-level-2"><a href="#s-service-and-broker-permissions">Service and broker permissions</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security systems contain several identity types that must not be collapsed into one account model: people, presented credentials, doors and devices, services, workloads, operators, administrators, installers, tenants, sites, and vendors.</p>
+<p>The foundation page <a href="../../01-foundations/identity-authentication-and-authorization/">Identity, authentication, and authorisation</a> defines the canonical conceptual model. The assurance controls here cover identity classes, token/session handling, command permissions, broker/API policy, and audit.</p>
+<h2 id="s-separate-the-decisions">Separate the decisions<a class="heading-link" href="#s-separate-the-decisions" aria-label="Link to Separate the decisions">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Decision</th>
+  <th>Question</th>
+  <th>Common failure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Identification</td>
+  <td>Which subject or component is making the request?</td>
+  <td>Treating a card number, IP address, topic, or serial address as proof of identity</td>
+</tr>
+<tr>
+  <td>Authentication</td>
+  <td>What evidence binds the claimant to that identity now?</td>
+  <td>Shared defaults, unvalidated certificates, reusable bearer material</td>
+</tr>
+<tr>
+  <td>Authorisation</td>
+  <td>May this identity perform this action on this object in this state?</td>
+  <td>Equating successful login or network reachability with permission</td>
+</tr>
+<tr>
+  <td>Accounting</td>
+  <td>Can the decision and outcome be reconstructed?</td>
+  <td>Shared accounts, missing correlation IDs, mutable or unsynchronized logs</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-identity-classes">Identity classes<a class="heading-link" href="#s-identity-classes" aria-label="Link to Identity classes">#</a></h2>
+<ul>
+<li>Human workforce identity: managed through an authoritative joiner mover leaver process.</li>
+<li>Physical credential: a token or mobile credential linked to a person or role; the identifier alone may not be secret or authentic.</li>
+<li>Device identity: preferably a unique key and certificate bound to a device lifecycle, not a shared fleet password.</li>
+<li>Workload identity: unique per service or integration instance, with narrowly scoped API/broker permissions.</li>
+<li>Administrative identity: separate from day to day operator identity, with stronger authentication and audit.</li>
+<li>Break glass identity: controlled, monitored, periodically verified, and designed around safe loss of upstream identity services.</li>
+</ul>
+<span class="heading-alias" id="s-authorization-model" aria-hidden="true"></span><h2 id="s-authorisation-model">Authorisation model<a class="heading-link" href="#s-authorisation-model" aria-label="Link to Authorisation model">#</a></h2>
+<p>Model an authorisation as subject, action, resource, context, and policy version. Context may include site, tenant, door group, alarm partition, device class, time schedule, incident state, dual approval, and command origin. A transport session doesn't make subsequent actions safe automatically.</p>
+<p>High impact actions require explicit verbs and audit semantics. Avoid generic write or execute permissions that silently include unlock, disarm, relay activation, configuration reset, firmware change, evidence deletion, or credential issuance.</p>
+<h2 id="s-token-and-session-guidance">Token and session guidance<a class="heading-link" href="#s-token-and-session-guidance" aria-label="Link to Token and session guidance">#</a></h2>
+<ul>
+<li>Validate issuer, audience, signature, time bounds, intended token type, and required claims.</li>
+<li>Use short lived access tokens and narrowly scoped service credentials; rotate without service wide outages.</li>
+<li>Prevent bearer tokens from entering URLs, logs, trace exports, crash reports, or browser history.</li>
+<li>Bind sessions to appropriate client/device evidence where the supported protocol permits it.</li>
+<li>Reject ambiguous subject or tenant identifiers and stale authorisation caches.</li>
+<li>Define revocation and offline behaviour before relying on cloud issued credentials.</li>
+</ul>
+<p>OAuth 2.0 is an authorisation framework; it isn't by itself user authentication. Use OpenID Connect when the application needs standardised identity assertions, and follow the current OAuth security best current practice for flow selection and token handling <a href="https://www.rfc-editor.org/rfc/rfc9700" rel="noopener noreferrer">RFC 9700</a>.</p>
+<h2 id="s-service-and-broker-permissions">Service and broker permissions<a class="heading-link" href="#s-service-and-broker-permissions" aria-label="Link to Service and broker permissions">#</a></h2>
+<p>For MQTT or event brokers, constrain publish and subscribe independently by exact topic hierarchy and tenant/site identity. For web APIs, authorise each object and command server side; never trust a client supplied site, role, or ownership field. For device APIs, distinguish media view, event subscription, health, configuration, firmware, user management, and output control.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST 800 63</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/63/4/final" rel="noopener noreferrer">NIST SP 800-63-4 Digital Identity Guidelines</a>, final July 2025, accessed 25 August 2026.</li>
+<li><strong>RFC 9700</strong>, <a href="https://www.rfc-editor.org/rfc/rfc9700" rel="noopener noreferrer">RFC 9700: Best Current Practice for OAuth 2.0 Security</a>, January 2025, accessed 25 August 2026.</li>
+<li><strong>OIDC CORE</strong>, <a href="https://openid.net/specs/openid-connect-core-1_0.html" rel="noopener noreferrer">OpenID Connect Core 1.0 incorporating errata set 2</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li>
+<li><a href="../api-and-event-security/">API and event security</a></li>
+<li><a href="../../03-systems/access-control/credential-lifecycle/">Credential lifecycle</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../firmware-updates-and-supply-chain/"><span>Previous in this section</span>Firmware updates and software supply chain</a><a href="../logging-time-and-evidence-integrity/"><span>Next in this section</span>Logging, time, and evidence integrity</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/identity-authentication-and-authorization.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/identity-authentication-and-authorization.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-separate-the-decisions">Separate the decisions</a></li><li class="toc-level-2"><a href="#s-identity-classes">Identity classes</a></li><li class="toc-level-2"><a href="#s-authorisation-model">Authorisation model</a></li><li class="toc-level-2"><a href="#s-token-and-session-guidance">Token and session guidance</a></li><li class="toc-level-2"><a href="#s-service-and-broker-permissions">Service and broker permissions</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

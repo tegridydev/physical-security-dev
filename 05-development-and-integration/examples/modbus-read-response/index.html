@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Modbus register read · Security Technician Wiki</title>
+<meta name="description" content="Read holding or input registers from one authorised Modbus TCP endpoint.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/modbus-read-response/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modbus register read · Security Technician Wiki">
+<meta property="og:description" content="Read holding or input registers from one authorised Modbus TCP endpoint.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/modbus-read-response/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="./" aria-current="page">Modbus register read</a></li><li><a href="../binary-frame-crc-c/">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">Modbus register read</span></nav><div class="page-kicker">Development <span>About 3 min read</span></div><div class="prose"><h1 id="s-modbus-register-read">Modbus register read</h1>
+<p>Read holding or input registers from one authorised Modbus TCP endpoint.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">python examples/python/modbus_read.py --demo
+</code></pre></div>
+<p>The demo parses a complete response and prints two register values: <code>10</code> and <code>20</code>.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Supply <code>--host</code>, <code>--port</code>, <code>--unit</code>, <code>--address</code> and <code>--count</code> for a device or local simulator. Function <code>3</code> reads holding registers and function <code>4</code> reads input registers. The default port is <code>502</code>.</p>
+<p>Addresses are zero based wire addresses. Do not enter a manual's <code>40001</code> notation without checking its mapping. The example conservatively accepts unit identifiers from 1 to 247 and reads up to 125 registers. Some direct TCP devices use other unit identifiers; follow their documentation instead of guessing.</p>
+<p>The client checks the transaction identifier, protocol identifier, unit, function, byte count and frame length. It handles segmented TCP reads and Modbus exception responses. It sends no write functions and does not retry.</p>
+<p>Ordinary Modbus TCP is not authenticated or encrypted. This program does not implement Modbus Security on port 802. Use an isolated, authorised environment. Register scaling, signed values and word order come from the product's register map.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/python/modbus_read.py">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>python</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy python example">Copy</button></div><pre tabindex="0" aria-label="python example"><code id="code-2">#!/usr/bin/env python3
+&quot;&quot;&quot;Read holding or input registers from one explicitly supplied Modbus TCP endpoint.&quot;&quot;&quot;
+from __future__ import annotations
+import argparse
+import json
+import secrets
+import socket
+import struct
+import sys
+import time
+
+class ModbusException(ValueError):
+    &quot;&quot;&quot;The server returned a Modbus exception response.&quot;&quot;&quot;
+
+def request(transaction: int, unit: int, function: int, address: int, count: int) -&gt; bytes:
+    values = (transaction, unit, function, address, count)
+    if any(type(v) is not int for v in values):
+        raise ValueError(&#x27;Request fields must be integers&#x27;)
+    if not 0 &lt;= transaction &lt;= 65535 or not 1 &lt;= unit &lt;= 247:
+        raise ValueError(&#x27;Transaction must be 0 to 65535 and unit must be 1 to 247&#x27;)
+    if function not in (3, 4) or not 0 &lt;= address &lt;= 65535 or not 1 &lt;= count &lt;= 125 or address + count &gt; 65536:
+        raise ValueError(&#x27;Use function 3 or 4 and a valid register span of at most 125&#x27;)
+    return struct.pack(&#x27;&gt;HHHBBHH&#x27;, transaction, 0, 6, unit, function, address, count)
+
+def parse_response(data: bytes, transaction: int, unit: int, function: int, count: int) -&gt; list[int]:
+    if len(data) &lt; 9 or len(data) &gt; 260:
+        raise ValueError(&#x27;Invalid Modbus TCP frame size&#x27;)
+    tid, protocol, length, returned_unit = struct.unpack(&#x27;&gt;HHHB&#x27;, data[:7])
+    if tid != transaction or protocol != 0 or returned_unit != unit or length != len(data) - 6:
+        raise ValueError(&#x27;Response header does not match the request&#x27;)
+    pdu = data[7:]
+    if pdu[0] == function | 0x80:
+        if len(pdu) != 2:
+            raise ValueError(&#x27;Malformed exception response&#x27;)
+        raise ModbusException(f&#x27;Modbus exception code {pdu[1]}&#x27;)
+    if pdu[0] != function or pdu[1] != count * 2 or len(pdu) != count * 2 + 2:
+        raise ValueError(&#x27;Unexpected function or register byte count&#x27;)
+    return list(struct.unpack(&#x27;&gt;&#x27; + &#x27;H&#x27; * count, pdu[2:]))
+
+def receive_exact(sock: socket.socket, size: int, deadline: float) -&gt; bytes:
+    result = bytearray()
+    while len(result) &lt; size:
+        remaining = deadline - time.monotonic()
+        if remaining &lt;= 0:
+            raise TimeoutError(&#x27;Modbus response deadline exceeded&#x27;)
+        sock.settimeout(remaining)
+        chunk = sock.recv(size - len(result))
+        if not chunk:
+            raise ValueError(&#x27;Connection closed during response&#x27;)
+        result.extend(chunk)
+    return bytes(result)
+
+def read_registers(host: str, port: int, unit: int, function: int, address: int, count: int) -&gt; list[int]:
+    if not host or not 1 &lt;= port &lt;= 65535:
+        raise ValueError(&#x27;Supply a host and a valid TCP port&#x27;)
+    transaction = secrets.randbelow(65536)
+    frame = request(transaction, unit, function, address, count)
+    with socket.create_connection((host, port), timeout=5) as sock:
+        sock.sendall(frame)
+        deadline = time.monotonic() + 5
+        header = receive_exact(sock, 7, deadline)
+        length = struct.unpack(&#x27;&gt;H&#x27;, header[4:6])[0]
+        if not 3 &lt;= length &lt;= 254:
+            raise ValueError(&#x27;Invalid MBAP length&#x27;)
+        data = header + receive_exact(sock, length - 1, deadline)
+    return parse_response(data, transaction, unit, function, count)
+
+def main() -&gt; int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    mode = parser.add_mutually_exclusive_group(required=True)
+    mode.add_argument(&#x27;--demo&#x27;, action=&#x27;store_true&#x27;)
+    mode.add_argument(&#x27;--host&#x27;, help=&#x27;Authorised device or loopback simulator; never a subnet&#x27;)
+    parser.add_argument(&#x27;--port&#x27;, type=int, default=502)
+    parser.add_argument(&#x27;--unit&#x27;, type=int, default=1)
+    parser.add_argument(&#x27;--function&#x27;, type=int, choices=(3, 4), default=3)
+    parser.add_argument(&#x27;--address&#x27;, type=int, default=0, help=&#x27;Zero based register address&#x27;)
+    parser.add_argument(&#x27;--count&#x27;, type=int, default=2)
+    args = parser.parse_args()
+    try:
+        values = parse_response(bytes.fromhex(&#x27;000100000007010304000a0014&#x27;), 1, 1, 3, 2) if args.demo else read_registers(
+            args.host, args.port, args.unit, args.function, args.address, args.count)
+        print(json.dumps({&#x27;registers&#x27;: values}))
+        return 0
+    except (OSError, ValueError) as exc:
+        print(f&#x27;Error: {exc}&#x27;, file=sys.stderr)
+        return 1
+
+if __name__ == &#x27;__main__&#x27;:
+    raise SystemExit(main())
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://www.modbus.org/modbus-specifications" rel="noopener noreferrer">Modbus specifications</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../safe-https-json-python/"><span>Previous in this section</span>HTTPS JSON read</a><a href="../binary-frame-crc-c/"><span>Next in this section</span>Modbus RTU frame and CRC</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/modbus-read-response.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/modbus-read-response.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

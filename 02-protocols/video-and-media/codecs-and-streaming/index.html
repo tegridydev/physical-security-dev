@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Codecs, RTP payloads, and streaming design · Security Technician Wiki</title>
+<meta name="description" content="Match the codec profile, level and packetisation to the decoder and recording system. Include playback and export when checking compatibility.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/02-protocols/video-and-media/codecs-and-streaming/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Codecs, RTP payloads, and streaming design · Security Technician Wiki">
+<meta property="og:description" content="Match the codec profile, level and packetisation to the decoder and recording system. Include playback and export when checking compatibility.">
+<meta property="og:url" content="https://securitytechnician.wiki/02-protocols/video-and-media/codecs-and-streaming/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">02</span>Protocols</a><details class="nav-group"><summary>Access control protocols and credentials</summary><ul class="nav-pages"><li><a href="../../access-control/">Section overview</a></li><li><a href="../../access-control/contactless-and-smart-card-standards/">Contactless and smart card standards</a></li><li><a href="../../access-control/credential-formats-and-mobile-credentials/">Credential formats, smart credentials, and mobile credentials</a></li><li><a href="../../access-control/legacy-reader-interfaces/">Legacy reader interfaces: Wiegand and Clock and Data</a></li><li><a href="../../access-control/nfc-ble-and-uwb/">NFC, Bluetooth Low Energy, and UWB for access control</a></li><li><a href="../../access-control/osdp/">OSDP reader and controller protocol</a></li></ul></details><details class="nav-group"><summary>Alarm monitoring protocols</summary><ul class="nav-pages"><li><a href="../../alarm-monitoring/">Section overview</a></li><li><a href="../../alarm-monitoring/contact-id-sia-dc-05/">Ademco Contact ID and SIA DC05</a></li><li><a href="../../alarm-monitoring/iec-60839-alarm-transmission/">IEC 60839 alarm transmission systems and IP messaging</a></li><li><a href="../../alarm-monitoring/sia-av-01/">SIA AV01 audio verification and two way voice commands</a></li><li><a href="../../alarm-monitoring/sia-dc-03/">SIA DC03 alarm event format</a></li><li><a href="../../alarm-monitoring/sia-dc-07/">SIA DC07 receiver to automation interface</a></li><li><a href="../../alarm-monitoring/sia-dc-09/">SIA DC09 IP event reporting</a></li></ul></details><details class="nav-group"><summary>Building and industrial protocols</summary><ul class="nav-pages"><li><a href="../../building-and-industrial/">Section overview</a></li><li><a href="../../building-and-industrial/bacnet-family/">BACnet family</a></li><li><a href="../../building-and-industrial/bacnet-ms-tp/">BACnet MS/TP</a></li><li><a href="../../building-and-industrial/bacnet-secure-connect/">BACnet Secure Connect</a></li><li><a href="../../building-and-industrial/bacnet-ip/">BACnet/IP</a></li><li><a href="../../building-and-industrial/can-canopen-j1939/">CAN, CANopen, and SAE J1939</a></li><li><a href="../../building-and-industrial/dnp3/">DNP3</a></li><li><a href="../../building-and-industrial/ethernet-ip-and-cip/">EtherNet/IP and CIP</a></li><li><a href="../../building-and-industrial/iec-60870-5-101-and-104/">IEC 60870-5-101 and IEC 60870-5-104</a></li><li><a href="../../building-and-industrial/iec-61850/">IEC 61850</a></li><li><a href="../../building-and-industrial/knx/">KNX</a></li><li><a href="../../building-and-industrial/knx-secure/">KNX Secure</a></li><li><a href="../../building-and-industrial/matter/">Matter</a></li><li><a href="../../building-and-industrial/modbus-family/">Modbus family</a></li><li><a href="../../building-and-industrial/modbus-rtu/">Modbus RTU</a></li><li><a href="../../building-and-industrial/modbus-security/">Modbus Security</a></li><li><a href="../../building-and-industrial/modbus-tcp/">Modbus TCP</a></li><li><a href="../../building-and-industrial/opc-ua/">OPC Unified Architecture</a></li><li><a href="../../building-and-industrial/profinet/">PROFINET</a></li></ul></details><details class="nav-group"><summary>Protocol infrastructure</summary><ul class="nav-pages"><li><a href="../../infrastructure/">Section overview</a></li><li><a href="../../infrastructure/aaa-and-network-access/">AAA and network access</a></li><li><a href="../../infrastructure/discovery-and-addressing/">Discovery and addressing</a></li><li><a href="../../infrastructure/enterprise-federation-saml-and-oidc/">Enterprise federation with SAML and OpenID Connect</a></li><li><a href="../../infrastructure/ip-transport-and-segmentation/">IP transport and segmentation</a></li><li><a href="../../infrastructure/monitoring-and-secure-administration/">Monitoring and secure administration</a></li><li><a href="../../infrastructure/time-synchronisation/">NTP, NTS and PTP time synchronisation</a></li><li><a href="../../infrastructure/power-usb-and-gpio/">Power, USB, and GPIO</a></li><li><a href="../../infrastructure/scim-identity-provisioning/">SCIM identity provisioning and reconciliation</a></li><li><a href="../../infrastructure/serial-transports/">Serial transports</a></li><li><a href="../../infrastructure/tls-pki-and-secure-transport/">TLS, PKI, and secure transport</a></li><li><a href="../../infrastructure/webauthn-fido-and-passkeys/">WebAuthn, FIDO, and passkeys</a></li><li><a href="../../infrastructure/wireless-and-low-power/">Wireless and low power links</a></li></ul></details><details class="nav-group"><summary>Interoperability and legacy protocols</summary><ul class="nav-pages"><li><a href="../../interoperability-and-legacy/">Section overview</a></li><li><a href="../../interoperability-and-legacy/pelco-d-and-p/">Pelco D and Pelco P</a></li><li><a href="../../interoperability-and-legacy/psia-plai/">PSIA Physical Logical Access Interoperability</a></li><li><a href="../../interoperability-and-legacy/psia/">PSIA specification family</a></li><li><a href="../../interoperability-and-legacy/visca/">Sony VISCA and VISCA over IP</a></li></ul></details><details class="nav-group" open><summary>Video and media protocols</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="./" aria-current="page">Codecs, RTP payloads, and streaming design</a></li><li><a href="../gbt-28181/">GB/T 28181 video surveillance networking</a></li><li><a href="../onvif/">ONVIF services, profiles, conformance, and security</a></li><li><a href="../rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP, and SDP</a></li><li><a href="../sip-and-srtp/">SIP and SRTP for intercom and real time media</a></li><li><a href="../srt-and-rist/">SRT and RIST contribution streaming</a></li><li><a href="../webrtc/">WebRTC for physical security media</a></li></ul></details><details class="nav-group"><summary>Web and messaging protocols</summary><ul class="nav-pages"><li><a href="../../web-and-messaging/">Section overview</a></li><li><a href="../../web-and-messaging/amqp-1-0/">AMQP 1.0 messaging</a></li><li><a href="../../web-and-messaging/cap-and-edxl-emergency-messaging/">CAP and EDXL emergency messaging</a></li><li><a href="../../web-and-messaging/coap-oscore-and-lwm2m/">CoAP, OSCORE, and Lightweight M2M</a></li><li><a href="../../web-and-messaging/grpc-and-serialization/">gRPC and serialisation contracts</a></li><li><a href="../../web-and-messaging/http-and-rest/">HTTP and REST API engineering</a></li><li><a href="../../web-and-messaging/mqtt/">MQTT 5.0, MQTT 3.1.1, and Sparkplug 3.0</a></li><li><a href="../../web-and-messaging/soap-and-xml/">SOAP, WSDL, XML Schema, and secure XML processing</a></li><li><a href="../../web-and-messaging/websocket-sse-and-webhooks/">WebSocket, Server Sent Events, and webhooks</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Protocols</a><span aria-hidden="true">/</span><a href="../">Video and media protocols</a><span aria-hidden="true">/</span><span aria-current="page">Codecs, RTP payloads, and streaming design</span></nav><div class="page-kicker">Protocols <span>About 9 min read</span></div><div class="prose"><h1 id="s-codecs-rtp-payloads-and-streaming-design">Codecs, RTP payloads, and streaming design</h1>
+<p>Match the codec profile, level and packetisation to the decoder and recording system. Include playback and export when checking compatibility.</p><details class="evidence"><summary>Sources and scope<span>Checked 29 September 2026</span></summary><p>AV1 RTP specification identity and publication date only</p><p><a href="../../../10-sources-and-maintenance/source-review-2026-09-29/">Source check record</a></p><p>Codec, RTP payload, and streaming design only; product interoperability, encoder/decoder behaviour, browser support, camera/recorder performance, licensing, and patent position require separate evidence.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-common-physical-security-media-formats">Common physical security media formats</a></li><li class="toc-level-2"><a href="#s-onvif-and-webrtc-compatibility">ONVIF and WebRTC compatibility</a></li><li class="toc-level-2"><a href="#s-h264-payload-essentials">H.264 payload essentials</a></li><li class="toc-level-2"><a href="#s-h265-payload-essentials">H.265 payload essentials</a></li><li class="toc-level-2"><a href="#s-audio-payload-essentials">Audio payload essentials</a></li><li class="toc-level-2"><a href="#s-keyframes-and-group-of-pictures-design">Keyframes and group of pictures design</a></li><li class="toc-level-2"><a href="#s-bitrate-and-rate-control">Bitrate and rate control</a></li><li class="toc-level-2"><a href="#s-rtp-packetisation-mtu-and-loss">RTP packetisation, MTU, and loss</a></li><li class="toc-level-2"><a href="#s-streaming-families">Streaming families</a></li><li class="toc-level-2"><a href="#s-hls-implementation-contract">HLS implementation contract</a></li><li class="toc-level-2"><a href="#s-mpeg-dash-implementation-contract">MPEG DASH implementation contract</a></li><li class="toc-level-3"><a href="#s-manifest-and-segment-security">Manifest and segment security</a></li><li class="toc-level-3"><a href="#s-hls-dash-and-shared-media">HLS, DASH, and shared media</a></li><li class="toc-level-2"><a href="#s-metadata-privacy-and-evidence">Metadata, privacy, and evidence</a></li><li class="toc-level-2"><a href="#s-safe-negotiation-fixture">Safe negotiation fixture</a></li><li class="toc-level-2"><a href="#s-engineering-checklist">Engineering checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>A <strong>codec</strong> compresses media. A <strong>payload format</strong> maps codec units into RTP. A <strong>container</strong> stores or segments tracks. A <strong>session/control protocol</strong> describes or controls delivery. A <strong>transport</strong> moves bytes. Supporting H.264, for example, doesn't imply support for every H.264 profile/level, RTP packetisation mode, container, transport, resolution, or bitrate.</p>
+<h2 id="s-common-physical-security-media-formats">Common physical security media formats<a class="heading-link" href="#s-common-physical-security-media-formats" aria-label="Link to Common physical security media formats">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Format</th>
+  <th>Typical use</th>
+  <th>Developer notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>H.264/AVC</td>
+  <td>Broad camera, recorder, browser/gateway compatibility</td>
+  <td>RTP payload is RFC 6184; negotiate profile level and packetisation mode</td>
+</tr>
+<tr>
+  <td>H.265/HEVC</td>
+  <td>Higher compression efficiency in modern cameras/recorders</td>
+  <td>RTP payload is RFC 7798; browser support is not universal; record VPS/SPS/PPS and decoder constraints</td>
+</tr>
+<tr>
+  <td>AV1</td>
+  <td>Emerging browser/cloud and software media paths</td>
+  <td>RTP payload is specified by AOMedia; check encoder cost, hardware availability, latency, and decoder limits</td>
+</tr>
+<tr>
+  <td>Motion JPEG / JPEG</td>
+  <td>Simple independent images, snapshots, some low frame rate streams</td>
+  <td>RTP JPEG is RFC 2435; high bandwidth for continuous video but easy frame recovery</td>
+</tr>
+<tr>
+  <td>Opus</td>
+  <td>Interactive voice/intercom and WebRTC</td>
+  <td>RTP payload is RFC 7587; flexible rates, packet durations, FEC/DTX behaviour</td>
+</tr>
+<tr>
+  <td>AAC</td>
+  <td>Recorded/streamed audio and MP4 family containers</td>
+  <td>Generic MPEG 4 RTP payload is RFC 3640; object type and configuration must match</td>
+</tr>
+<tr>
+  <td>G.711</td>
+  <td>Legacy telephony/intercom</td>
+  <td>Static RTP payload types exist for common clock/channel forms; high bitrate but simple and low compute</td>
+</tr>
+</tbody>
+</table></div>
+<p>Codec licensing and patent obligations are jurisdiction, use, distribution, and implementation dependent. This page isn't legal advice.</p>
+<h2 id="s-onvif-and-webrtc-compatibility">ONVIF and WebRTC compatibility<a class="heading-link" href="#s-onvif-and-webrtc-compatibility" aria-label="Link to ONVIF and WebRTC compatibility">#</a></h2>
+<p>ONVIF Profile T covers advanced video and includes H.264 and H.265 capabilities. ONVIF Profile V was still a release candidate on 25 August 2026 and requires H.264 for its WebRTC oriented video capability. These statements don't mean every Profile T product exposes every encoder combination or that every browser decodes H.265. Query device and client capabilities and negotiate an intersection. <a href="https://www.onvif.org/profiles/profile-t/" rel="noopener noreferrer">ONVIF T</a> <a href="https://www.onvif.org/profiles/profile-v/" rel="noopener noreferrer">ONVIF V</a></p>
+<p>WebRTC's protocol profile and codec requirements are defined across RFCs 8834, 7742, and 7874. Browser implementations evolve, so a deployment must verify the exact client matrix rather than infer support from the WebRTC label. <a href="https://datatracker.ietf.org/doc/rfc8834/" rel="noopener noreferrer">WEBRTC MEDIA</a> <a href="https://datatracker.ietf.org/doc/rfc7742/" rel="noopener noreferrer">WEBRTC VIDEO</a> <a href="https://datatracker.ietf.org/doc/rfc7874/" rel="noopener noreferrer">WEBRTC AUDIO</a></p>
+<h2 id="s-h264-payload-essentials">H.264 payload essentials<a class="heading-link" href="#s-h264-payload-essentials" aria-label="Link to H.264 payload essentials">#</a></h2>
+<p>H.264 video is composed of Network Abstraction Layer (NAL) units. RFC 6184 defines transport forms including single NAL units, aggregation packets, and fragmentation units. Practical considerations:</p>
+<ul>
+<li>negotiate <code>packetization-mode</code>; mode 0 and mode 1 have different packetisation capabilities;</li>
+<li>treat <code>profile-level-id</code> as a constraint, not decorative metadata;</li>
+<li>obtain and refresh sequence/picture parameter sets (SPS/PPS) according to the negotiated mechanism;</li>
+<li>request or wait for an independently decodable picture after join, loss, or decoder reset;</li>
+<li>don't assume RTP marker means “this packet is a keyframe”; its meaning is payload format specific and related to access unit boundaries;</li>
+<li>bound reconstructed NAL and access unit size before allocation.</li>
+</ul>
+<h2 id="s-h265-payload-essentials">H.265 payload essentials<a class="heading-link" href="#s-h265-payload-essentials" aria-label="Link to H.265 payload essentials">#</a></h2>
+<p>HEVC adds Video Parameter Sets (VPS) and different NAL/aggregation/fragmentation rules. RFC 7798 also supports temporal scalability concepts. Record the exact profile, tier, level, bit depth, chroma format, VPS/SPS/PPS strategy, and decoder maximums. A gateway that merely forwards RTP still needs to validate packetisation and size; a transcoder must also handle codec state and timestamps safely. <a href="https://datatracker.ietf.org/doc/rfc7798/" rel="noopener noreferrer">H265 RTP</a></p>
+<h2 id="s-audio-payload-essentials">Audio payload essentials<a class="heading-link" href="#s-audio-payload-essentials" aria-label="Link to Audio payload essentials">#</a></h2>
+<p>Opus uses a 48 kHz RTP timestamp clock even when internal audio bandwidth differs. Packet duration, in band FEC, discontinuous transmission, stereo/channel mapping, and maximum playback rate affect intercom quality and latency. <a href="https://datatracker.ietf.org/doc/rfc7587/" rel="noopener noreferrer">OPUS RTP</a></p>
+<p>AAC/RTP has multiple modes and configuration data. Don't derive decoder setup from the codec name alone. For telephony codecs, distinguish sample rate, RTP clock rate, channels, packetisation interval, and DTMF transport.</p>
+<h2 id="s-keyframes-and-group-of-pictures-design">Keyframes and group of pictures design<a class="heading-link" href="#s-keyframes-and-group-of-pictures-design" aria-label="Link to Keyframes and group of pictures design">#</a></h2>
+<p>Longer GOPs reduce bitrate but increase random access and recovery delay. Shorter GOPs increase bitrate/storage and encoder work but improve join, seek, failover, and loss recovery. Document:</p>
+<ul>
+<li>keyframe/IDR or random access interval;</li>
+<li>whether scene change keyframes are enabled;</li>
+<li>B frame/reordering depth and decoder delay;</li>
+<li>what feedback requests a recovery picture;</li>
+<li>rate limit for picture loss/full intra requests;</li>
+<li>recorder segment boundaries and whether each segment begins with a usable random access point.</li>
+</ul>
+<p>Don't let unauthenticated or unbounded keyframe requests amplify encoder load or bandwidth.</p>
+<h2 id="s-bitrate-and-rate-control">Bitrate and rate control<a class="heading-link" href="#s-bitrate-and-rate-control" aria-label="Link to Bitrate and rate control">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Mode</th>
+  <th>Useful property</th>
+  <th>Risk to model</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Constant bitrate target</td>
+  <td>Predictable network/storage planning</td>
+  <td>Quality varies; short term bursts can still exceed target</td>
+</tr>
+<tr>
+  <td>Variable bitrate</td>
+  <td>Better quality/efficiency allocation by scene</td>
+  <td>Peaks can overflow constrained links or buffers</td>
+</tr>
+<tr>
+  <td>Constrained VBR</td>
+  <td>Balances average efficiency and peak budget</td>
+  <td>Vendor definitions and enforcement differ</td>
+</tr>
+</tbody>
+</table></div>
+<p>Plan using measured peak bitrate, audio, RTP/transport/container overhead, retransmission/FEC, metadata, TLS/QUIC overhead, concurrency, and failover, not the configured average video number alone.</p>
+<span class="heading-alias" id="s-rtp-packetization-mtu-and-loss" aria-hidden="true"></span><h2 id="s-rtp-packetisation-mtu-and-loss">RTP packetisation, MTU, and loss<a class="heading-link" href="#s-rtp-packetisation-mtu-and-loss" aria-label="Link to RTP packetisation, MTU, and loss">#</a></h2>
+<ul>
+<li>Keep packet size below the effective path MTU after IP, UDP, RTP, SRTP, and tunnel overhead.</li>
+<li>Avoid IP fragmentation; loss of one fragment discards the complete IP packet.</li>
+<li>One lost fragmented NAL packet can invalidate a large access unit.</li>
+<li>Reordering and jitter buffers must be bounded by time and memory.</li>
+<li>Retransmission, forward error correction, and feedback are profile negotiated; don't assume they exist.</li>
+<li>Apply decoder and parser limits before reassembly and decompression.</li>
+<li>Treat codec dimensions, cropping, stride, color format, and frame rate as untrusted until checked against resource limits.</li>
+</ul>
+<h2 id="s-streaming-families">Streaming families<a class="heading-link" href="#s-streaming-families" aria-label="Link to Streaming families">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Family</th>
+  <th>Latency shape</th>
+  <th>Strengths</th>
+  <th>Costs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>RTSP/RTP</td>
+  <td>Low to moderate</td>
+  <td>Direct camera/recorder control; multicast possible</td>
+  <td>NAT/firewall complexity; security varies; broad legacy behaviour</td>
+</tr>
+<tr>
+  <td>WebRTC</td>
+  <td>Low</td>
+  <td>Encrypted interactive media, NAT traversal, feedback, browser API</td>
+  <td>Signaling/SFU/TURN operations and codec intersection</td>
+</tr>
+<tr>
+  <td>HLS</td>
+  <td>Segment oriented; conventional deployments add multiple seconds, though low latency extensions can reduce it</td>
+  <td>HTTP/CDN/cache friendliness, adaptive variants</td>
+  <td>Segment/playlist delay, authorisation and cache controls</td>
+</tr>
+<tr>
+  <td>MPEG DASH</td>
+  <td>Segment oriented; latency depends on segment/chunk/profile and player behaviour</td>
+  <td>Standards based adaptive presentations, multiple representations, HTTP/CDN distribution</td>
+  <td>MPD/segment complexity, client/profile intersection, authorisation and cache controls</td>
+</tr>
+<tr>
+  <td>File/export</td>
+  <td>Not live</td>
+  <td>Evidence integrity, deterministic review, offline transfer</td>
+  <td>Export format, signing, provenance, and player compatibility</td>
+</tr>
+</tbody>
+</table></div>
+<p>RFC 8216 defines the published IETF HLS base. Apple continues work on a second edition Internet Draft; an Internet Draft must not be represented as a final RFC. Pin the exact HLS feature set used by a product. <a href="https://datatracker.ietf.org/doc/rfc8216/" rel="noopener noreferrer">HLS</a> <a href="https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/" rel="noopener noreferrer">HLS BIS</a></p>
+<h2 id="s-hls-implementation-contract">HLS implementation contract<a class="heading-link" href="#s-hls-implementation-contract" aria-label="Link to HLS implementation contract">#</a></h2>
+<ul>
+<li>Authenticate both playlists and segments; use short lived, scoped URLs where appropriate.</li>
+<li>Prevent cache sharing across tenants/users by setting correct cache keys and response controls.</li>
+<li>Validate every URI obtained from a playlist before server side retrieval.</li>
+<li>Bound playlist size, variant count, segment duration, discontinuities, and live window history.</li>
+<li>Define behaviour for key rotation, expired authorisation, sequence wrap, discontinuity, missing segment, and clock shift.</li>
+<li>Don't place long lived secrets in playlist URLs or logs.</li>
+<li>Treat encryption key delivery and DRM as separate security designs; TLS alone protects only in transit to its endpoint.</li>
+</ul>
+<h2 id="s-mpeg-dash-implementation-contract">MPEG DASH implementation contract<a class="heading-link" href="#s-mpeg-dash-implementation-contract" aria-label="Link to MPEG DASH implementation contract">#</a></h2>
+<p>ISO/IEC 23009-1:2026 is the sixth edition of MPEG DASH Part 1, covering the Media Presentation Description (MPD) and segment formats. An MPD can organize a presentation into periods, adaptation sets, representations, initialisation information, and media segments. It can describe multiple codecs, bitrates, languages, resolutions, roles, timelines, and URL derivation rules; it doesn't guarantee that a particular player supports the resulting profile or media combination. <a href="https://www.iso.org/standard/23009-1" rel="noopener noreferrer">MPEG DASH</a></p>
+<p>Pin the applicable DASH profile and the exact interpretation of:</p>
+<ul>
+<li>static versus dynamic MPD behaviour and its update cadence;</li>
+<li>Period, AdaptationSet, Representation, and dependency relationships;</li>
+<li><code>BaseURL</code>, <code>SegmentTemplate</code>, <code>SegmentTimeline</code>, <code>SegmentList</code>, and <code>SegmentBase</code> use;</li>
+<li>initialisation segments, indexes, media segment numbering/time, discontinuities, and end of presentation behaviour;</li>
+<li><code>UTCTiming</code>, availability windows, suggested delay, clock source, and uncertainty for live content;</li>
+<li>codec strings, MIME types, dimensions, frame/audio rates, bandwidth declarations, and decoder limits;</li>
+<li>EventStream/InbandEventStream or other timed metadata used by the application;</li>
+<li>ContentProtection descriptors and the separately selected key/licence system.</li>
+</ul>
+<h3 id="s-manifest-and-segment-security">Manifest and segment security<a class="heading-link" href="#s-manifest-and-segment-security" aria-label="Link to Manifest and segment security">#</a></h3>
+<p>An authorised MPD response doesn't authorise every URL that it references. Apply authorisation to the MPD, initialisation segments, indexes, media segments, keys/licences, timed metadata, thumbnails, and alternate representations. Bind entitlement to tenant, user/workload, camera/resource, purpose, time window, and representation policy.</p>
+<ul>
+<li>Resolve <code>BaseURL</code> and every enabled external reference under an approved scheme/host/path allowlist.</li>
+<li>For server side retrieval, revalidate DNS results and every permitted redirect; reject loopback, link local, metadata service, management, and unexpected private network destinations.</li>
+<li>Cap MPD bytes, XML depth, Period/AdaptationSet/Representation counts, timeline entries, URL length/expansion, segment duration/count, and update rate before allocation or fan out.</li>
+<li>Use secure XML processing with external entity resolution disabled and no implicit network retrieval.</li>
+<li>Prevent one tenant's MPD or segment from satisfying another tenant's cache request. Include authenticated resource/tenant/entitlement dimensions in cache design or use correctly scoped unguessable URLs with bounded lifetime.</li>
+<li>Keep bearer tokens, signatures, licence challenges, device identifiers, and personal data out of cache keys, analytics URLs, referrers, and ordinary logs where possible.</li>
+<li>Define behaviour when MPD authorisation remains valid but a segment or licence expires, and when revoked viewers retain cached bytes.</li>
+</ul>
+<p><code>ContentProtection</code> and DRM descriptors signal protection system information; they aren't proof that media is encrypted correctly, that a licence was issued to the intended principal, or that screen/output controls meet policy. Review media encryption, key derivation/rotation, licence authorisation, client robustness, offline use, revocation, and failure behaviour as a separate design.</p>
+<h3 id="s-hls-dash-and-shared-media">HLS, DASH, and shared media<a class="heading-link" href="#s-hls-dash-and-shared-media" aria-label="Link to HLS, DASH, and shared media">#</a></h3>
+<p>HLS and DASH can reuse related fragmented MP4/CMAF media assets in some deployments, but shared segments don't make playlist and MPD semantics interchangeable. Authentication, sequence/timeline interpretation, codec/profile signalling, low latency behaviour, encryption metadata, and player feature support remain manifest family specific.</p>
+<p>For recordings or evidence derived from adaptive streaming, preserve the exact manifest snapshot and response metadata, selected representation, initialisation and media segment identities/hashes, gaps and discontinuities, clock evidence, decryption/licence context where policy permits, and every remux/transcode transformation. A mutable live MPD or CDN cache isn't a chain of custody record.</p>
+<h2 id="s-metadata-privacy-and-evidence">Metadata, privacy, and evidence<a class="heading-link" href="#s-metadata-privacy-and-evidence" aria-label="Link to Metadata, privacy, and evidence">#</a></h2>
+<p>Video/audio can contain faces, voices, locations, access events, and behavioral data. Codec metadata may reveal device models, timestamps, encoder configuration, or topology. Define minimisation, retention, export authorisation, watermark/signature verification, chain of custody, and redaction independently of stream delivery.</p>
+<p>For evidentiary export, preserve original bytes where policy requires, record hashes and provenance, use a documented time source, and retain the decoder/player requirements. Transcoding changes the bitstream and can remove metadata; record that transformation explicitly.</p>
+<h2 id="s-safe-negotiation-fixture">Safe negotiation fixture<a class="heading-link" href="#s-safe-negotiation-fixture" aria-label="Link to Safe negotiation fixture">#</a></h2>
+<p>The following synthetic SDP fragment is suitable as an offline parser/negotiation fixture. It contains no endpoint or credential:</p>
+<div class="code-block"><div class="code-toolbar"><span>sdp</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sdp example">Copy</button></div><pre tabindex="0" aria-label="sdp example"><code id="code-1">m=video 0 RTP/AVP 96 97
+a=rtpmap:96 H264/90000
+a=fmtp:96 packetization-mode=1;profile-level-id=42e01f
+a=rtpmap:97 JPEG/90000
+a=sendonly
+</code></pre></div>
+<p>A parser must not choose the first payload blindly. Intersect the offered payload, direction, format parameters, decoder limits, security profile, and application policy.</p>
+<h2 id="s-engineering-checklist">Engineering checklist<a class="heading-link" href="#s-engineering-checklist" aria-label="Link to Engineering checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Codec, profile/tier/level, bit depth, chroma, resolution, frame rate, and payload format explicit">Codec, profile/tier/level, bit depth, chroma, resolution, frame rate, and payload format explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Parameter set/configuration delivery and changes handled">Parameter set/configuration delivery and changes handled</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Keyframe interval and post loss/join recovery measured in the target environment">Keyframe interval and post loss/join recovery measured in the target environment</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Peak bitrate, overhead, concurrency, and failover capacity budgeted">Peak bitrate, overhead, concurrency, and failover capacity budgeted</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="MTU, fragmentation, reordering, jitter, feedback, and packet loss behaviour bounded">MTU, fragmentation, reordering, jitter, feedback, and packet loss behaviour bounded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Decoder dimensions, allocation, CPU/GPU, queue depth, and decompression limits enforced">Decoder dimensions, allocation, CPU/GPU, queue depth, and decompression limits enforced</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Client/browser/hardware codec matrix verified for the supported deployment baseline">Client/browser/hardware codec matrix verified for the supported deployment baseline</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Transcoding latency, quality loss, failure, and trust boundary documented">Transcoding latency, quality loss, failure, and trust boundary documented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="HLS playlist or DASH MPD profile, limits, URL resolution, authorisation, and update behaviour explicit where used">HLS playlist or DASH MPD profile, limits, URL resolution, authorisation, and update behaviour explicit where used</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Manifest, initialisation, segment, key/licence, CDN cache, redirect, SSRF, and tenant boundaries reviewed">Manifest, initialisation, segment, key/licence, CDN cache, redirect, SSRF, and tenant boundaries reviewed</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Privacy, retention, evidence export, and redaction requirements mapped">Privacy, retention, evidence export, and redaction requirements mapped</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>H264 RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc6184/" rel="noopener noreferrer">RFC 6184: RTP Payload Format for H.264 Video</a>, IETF, May 2011.</li>
+<li><strong>H265 RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc7798/" rel="noopener noreferrer">RFC 7798: RTP Payload Format for High Efficiency Video Coding</a>, IETF, March 2016.</li>
+<li><strong>AV1 RTP</strong>, <a href="https://aomediacodec.github.io/av1-rtp-spec/v1.0.0.html" rel="noopener noreferrer">RTP Payload Format for AV1 v1.0.0</a>, Alliance for Open Media, final deliverable, 15 December 2024.</li>
+<li><strong>JPEG RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc2435/" rel="noopener noreferrer">RFC 2435: RTP Payload Format for JPEG compressed Video</a>, IETF, October 1998.</li>
+<li><strong>OPUS RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc7587/" rel="noopener noreferrer">RFC 7587: RTP Payload Format for the Opus Codec</a>, IETF, June 2015.</li>
+<li><strong>MPEG4 RTP</strong>, <a href="https://datatracker.ietf.org/doc/rfc3640/" rel="noopener noreferrer">RFC 3640: RTP Payload Format for Transport of MPEG 4 Elementary Streams</a>, IETF, November 2003.</li>
+<li><strong>WEBRTC MEDIA</strong>, <a href="https://datatracker.ietf.org/doc/rfc8834/" rel="noopener noreferrer">RFC 8834: Media Transport and Use of RTP in WebRTC</a>, IETF, January 2021.</li>
+<li><strong>WEBRTC VIDEO</strong>, <a href="https://datatracker.ietf.org/doc/rfc7742/" rel="noopener noreferrer">RFC 7742: WebRTC Video Processing and Codec Requirements</a>, IETF, March 2016.</li>
+<li><strong>WEBRTC AUDIO</strong>, <a href="https://datatracker.ietf.org/doc/rfc7874/" rel="noopener noreferrer">RFC 7874: WebRTC Audio Codec and Processing Requirements</a>, IETF, May 2016.</li>
+<li><strong>HLS</strong>, <a href="https://datatracker.ietf.org/doc/rfc8216/" rel="noopener noreferrer">RFC 8216: HTTP Live Streaming</a>, IETF, August 2017.</li>
+<li><strong>HLS BIS</strong>, <a href="https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/" rel="noopener noreferrer">HTTP Live Streaming 2nd Edition Internet Draft</a>, IETF Datatracker, work in progress, accessed 25 August 2026.</li>
+<li><strong>MPEG DASH</strong>, <a href="https://www.iso.org/standard/23009-1" rel="noopener noreferrer">ISO/IEC 23009-1:2026, sixth edition</a>, ISO/IEC, Dynamic adaptive streaming over HTTP (DASH), Part 1: Media presentation description and segment formats.</li>
+<li><strong>ONVIF T</strong>, <a href="https://www.onvif.org/profiles/profile-t/" rel="noopener noreferrer">Profile T</a>, ONVIF, accessed 25 August 2026.</li>
+<li><strong>ONVIF V</strong>, <a href="https://www.onvif.org/profiles/profile-v/" rel="noopener noreferrer">Profile V</a>, ONVIF, release candidate dated 9 July 2026.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Video and media protocols</a><a href="../gbt-28181/"><span>Next in this section</span>GB/T 28181 video surveillance networking</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/02-protocols/video-and-media/codecs-and-streaming.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/02-protocols/video-and-media/codecs-and-streaming.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-common-physical-security-media-formats">Common physical security media formats</a></li><li class="toc-level-2"><a href="#s-onvif-and-webrtc-compatibility">ONVIF and WebRTC compatibility</a></li><li class="toc-level-2"><a href="#s-h264-payload-essentials">H.264 payload essentials</a></li><li class="toc-level-2"><a href="#s-h265-payload-essentials">H.265 payload essentials</a></li><li class="toc-level-2"><a href="#s-audio-payload-essentials">Audio payload essentials</a></li><li class="toc-level-2"><a href="#s-keyframes-and-group-of-pictures-design">Keyframes and group of pictures design</a></li><li class="toc-level-2"><a href="#s-bitrate-and-rate-control">Bitrate and rate control</a></li><li class="toc-level-2"><a href="#s-rtp-packetisation-mtu-and-loss">RTP packetisation, MTU, and loss</a></li><li class="toc-level-2"><a href="#s-streaming-families">Streaming families</a></li><li class="toc-level-2"><a href="#s-hls-implementation-contract">HLS implementation contract</a></li><li class="toc-level-2"><a href="#s-mpeg-dash-implementation-contract">MPEG DASH implementation contract</a></li><li class="toc-level-3"><a href="#s-manifest-and-segment-security">Manifest and segment security</a></li><li class="toc-level-3"><a href="#s-hls-dash-and-shared-media">HLS, DASH, and shared media</a></li><li class="toc-level-2"><a href="#s-metadata-privacy-and-evidence">Metadata, privacy, and evidence</a></li><li class="toc-level-2"><a href="#s-safe-negotiation-fixture">Safe negotiation fixture</a></li><li class="toc-level-2"><a href="#s-engineering-checklist">Engineering checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

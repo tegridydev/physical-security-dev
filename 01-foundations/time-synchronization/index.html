@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Time synchronisation for security systems · Security Technician Wiki</title>
+<meta name="description" content="Keep device time and receipt time with each event. Use both when investigating delay, clock drift and events that arrive out of order.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/time-synchronization/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time synchronisation for security systems · Security Technician Wiki">
+<meta property="og:description" content="Keep device time and receipt time with each event. Use both when investigating delay, clock drift and events that arrive out of order.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/time-synchronization/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="../networking-fundamentals/">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="./" aria-current="page">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Time synchronisation for security systems</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-time-synchronisation">Time synchronisation</h1>
+<p>Keep device time and receipt time with each event. Use both when investigating delay, clock drift and events that arrive out of order.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>General timing design; accuracy and profile requirements are use case and product specific.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-define-the-requirement">Define the requirement</a></li><li class="toc-level-2"><a href="#s-ntp-and-nts">NTP and NTS</a></li><li class="toc-level-2"><a href="#s-ptp">PTP</a></li><li class="toc-level-2"><a href="#s-clock-types">Clock types</a></li><li class="toc-level-2"><a href="#s-failure-handling">Failure handling</a></li><li class="toc-level-2"><a href="#s-evidence-record">Evidence record</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Time is both an operational dependency and evidence. Incorrect clocks can break certificate validation, event ordering, recording search, access schedules, alarm correlation, token validity, and forensic reconstruction.</p>
+<h2 id="s-define-the-requirement">Define the requirement<a class="heading-link" href="#s-define-the-requirement" aria-label="Link to Define the requirement">#</a></h2>
+<p>“Use NTP” isn't a requirement. Specify:</p>
+<ul>
+<li>maximum offset and uncertainty at each device class;</li>
+<li>recovery time after boot or network outage;</li>
+<li>holdover behaviour and oscillator limits;</li>
+<li>authoritative source and upstream traceability;</li>
+<li>authentication and allowed servers;</li>
+<li>time zone/display policy versus UTC storage;</li>
+<li>leap second and daylight saving handling;</li>
+<li>monitoring, alarm threshold, and evidence retention;</li>
+<li>behaviour when time becomes untrusted.</li>
+</ul>
+<p>Video frame alignment, intercom audio/video, access event sequencing, and legal evidence may have different tolerance. Precision without authenticated provenance isn't trustworthy time.</p>
+<h2 id="s-ntp-and-nts">NTP and NTS<a class="heading-link" href="#s-ntp-and-nts" aria-label="Link to NTP and NTS">#</a></h2>
+<p>NTP version 4 is specified by <a href="https://www.rfc-editor.org/info/rfc5905" rel="noopener noreferrer">RFC 5905</a>, with subsequent updates listed by the RFC Editor. Use multiple approved upstream sources and monitor offset, delay, stratum/source selection, reachability, and clock steps.</p>
+<p>NTP isn't automatically authenticated. <a href="https://www.rfc-editor.org/info/rfc8915" rel="noopener noreferrer">RFC 8915</a> defines Network Time Security (NTS) for NTP client server mode using TLS for key establishment and authenticated NTP extension fields. Product support varies; where unavailable, constrain time paths and protect the time infrastructure while recording the limitation.</p>
+<h2 id="s-ptp">PTP<a class="heading-link" href="#s-ptp" aria-label="Link to PTP">#</a></h2>
+<p>Precision Time Protocol (PTP) is specified by active <a href="https://sagroups.ieee.org/1588/public-documents/" rel="noopener noreferrer">IEEE 1588-2019</a> (PTP v2.1) and amendments. It can achieve much tighter synchronisation on a properly engineered network, but depends on the selected profile, grandmaster selection, boundary/transparent clock support, path asymmetry, multicast/unicast mode, and security architecture.</p>
+<p>Don't mix PTP profiles or assume any switch carrying PTP is timing aware. Protect grandmaster selection and management, monitor identity changes, and document whether the source is traceable to UTC.</p>
+<h2 id="s-clock-types">Clock types<a class="heading-link" href="#s-clock-types" aria-label="Link to Clock types">#</a></h2>
+<ul>
+<li><strong>Wall clock:</strong> calendar time; can step, slew, change zone representation, or be corrected.</li>
+<li><strong>Monotonic clock:</strong> never intentionally goes backward during a boot; use for timeouts and durations.</li>
+<li><strong>Media clock:</strong> codec/RTP sampling timeline; correlation to wall clock needs RTCP or protocol specific mapping.</li>
+<li><strong>Source timestamp:</strong> time asserted by the originating device/application.</li>
+<li><strong>Receipt timestamp:</strong> time recorded by an intermediary; useful but not a substitute for occurrence time.</li>
+</ul>
+<p>Keep these separate in schemas.</p>
+<h2 id="s-failure-handling">Failure handling<a class="heading-link" href="#s-failure-handling" aria-label="Link to Failure handling">#</a></h2>
+<p>When a clock jumps backward, don't reuse sequence/nonce/idempotency values derived only from time. When it jumps forward, guard against expiring all sessions, recordings, or certificates without a recovery route. A device without synchronised time should mark event time quality rather than emit apparently precise timestamps.</p>
+<h2 id="s-evidence-record">Evidence record<a class="heading-link" href="#s-evidence-record" aria-label="Link to Evidence record">#</a></h2>
+<p>For significant events preserve source timestamp and offset, receipt time, device/clock identity, sync status, estimated uncertainty, sequence/order evidence, timezone conversion rules, and any later correction. Don't “fix” historical raw timestamps in place; append a corrected interpretation with provenance.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../serial-and-field-interfaces/"><span>Previous in this section</span>Serial and field interfaces</a><a href="../tls-pki-and-certificates/"><span>Next in this section</span>TLS, PKI, and certificates</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/time-synchronization.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/time-synchronization.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-define-the-requirement">Define the requirement</a></li><li class="toc-level-2"><a href="#s-ntp-and-nts">NTP and NTS</a></li><li class="toc-level-2"><a href="#s-ptp">PTP</a></li><li class="toc-level-2"><a href="#s-clock-types">Clock types</a></li><li class="toc-level-2"><a href="#s-failure-handling">Failure handling</a></li><li class="toc-level-2"><a href="#s-evidence-record">Evidence record</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

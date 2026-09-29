@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Networking fundamentals · Security Technician Wiki</title>
+<meta name="description" content="Video, voice, management and alarm traffic have different network requirements. Plan for each flow&#x27;s capacity, timing, packet loss and recovery needs.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/01-foundations/networking-fundamentals/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Networking fundamentals · Security Technician Wiki">
+<meta property="og:description" content="Video, voice, management and alarm traffic have different network requirements. Plan for each flow&#x27;s capacity, timing, packet loss and recovery needs.">
+<meta property="og:url" content="https://securitytechnician.wiki/01-foundations/networking-fundamentals/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">01</span>Foundations</a><ul class="nav-pages"><li><a href="../architecture-and-layering/">Architecture and layering</a></li><li><a href="../credentials-and-identity-media/">Credentials and identity media</a></li><li><a href="../data-models-and-semantics/">Data models and semantics</a></li><li><a href="../dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li><li><a href="../encoding-and-serialization/">Encoding and serialisation</a></li><li><a href="../ethernet-poe-and-power-budgets/">Ethernet, PoE, and power budgets</a></li><li><a href="../events-state-commands-and-time/">Events, state, commands, and time</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation</a></li><li><a href="../interoperability-conformance-and-profiles/">Interoperability, conformance, and profiles</a></li><li><a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a></li><li><a href="../media-streaming-fundamentals/">Media streaming fundamentals</a></li><li><a href="../multicast-discovery-and-nat/">Multicast, discovery, and NAT</a></li><li><a href="./" aria-current="page">Networking fundamentals</a></li><li><a href="../observability-and-evidence/">Observability and evidence</a></li><li><a href="../physical-security-system-architecture/">Physical security system architecture</a></li><li><a href="../reliability-and-failure-semantics/">Reliability and failure semantics</a></li><li><a href="../secure-integration-lifecycle/">Secure integration lifecycle</a></li><li><a href="../serial-and-field-interfaces/">Serial and field interfaces</a></li><li><a href="../time-synchronization/">Time synchronisation for security systems</a></li><li><a href="../tls-pki-and-certificates/">TLS, PKI, and certificates</a></li><li><a href="../trust-boundaries-and-segmentation/">Trust boundaries and segmentation</a></li><li><a href="../wireless-and-radio-fundamentals/">Wireless and radio fundamentals</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Foundations</a><span aria-hidden="true">/</span><span aria-current="page">Networking fundamentals</span></nav><div class="page-kicker">Foundations <span>About 2 min read</span></div><div class="prose"><h1 id="s-networking-fundamentals">Networking fundamentals</h1>
+<p>Video, voice, management and alarm traffic have different network requirements. Plan for each flow's capacity, timing, packet loss and recovery needs.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Engineering primer, not a substitute for network design and packet level specifications.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-path">Layered path</a></li><li class="toc-level-2"><a href="#s-tcp-and-udp">TCP and UDP</a></li><li class="toc-level-2"><a href="#s-mtu-and-fragmentation">MTU and fragmentation</a></li><li class="toc-level-2"><a href="#s-bandwidth-isnt-enough">Bandwidth isn&#x27;t enough</a></li><li class="toc-level-2"><a href="#s-address-family-and-naming">Address family and naming</a></li><li class="toc-level-2"><a href="#s-network-controls">Network controls</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security traffic combines bursty events, management operations, time sensitive voice/video, discovery multicast, firmware transfer, and sometimes control. Design for their different properties rather than placing all “security devices” into one undifferentiated network.</p>
+<h2 id="s-layered-path">Layered path<a class="heading-link" href="#s-layered-path" aria-label="Link to Layered path">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">application message
+  -&gt; optional TLS/DTLS/security framing
+  -&gt; TCP stream or UDP datagrams
+  -&gt; IPv4/IPv6 packets
+  -&gt; Ethernet/Wi-Fi/VPN/link
+  -&gt; switches, routers, firewalls, NAT, WAN
+</code></pre></div>
+<p>Capture both endpoints, direction, DNS name, address family, transport, port, connection initiator, authentication, expected rate/size, and failure behaviour in an interface inventory.</p>
+<h2 id="s-tcp-and-udp">TCP and UDP<a class="heading-link" href="#s-tcp-and-udp" aria-label="Link to TCP and UDP">#</a></h2>
+<p>TCP is a reliable ordered <strong>byte stream</strong>, standardised by <a href="https://www.rfc-editor.org/rfc/rfc9293" rel="noopener noreferrer">RFC 9293</a>. Applications still need message framing, deadlines, cancellation, keepalive/health semantics, reconnect, and protection against stalled peers. A successful write only means bytes entered the local stack.</p>
+<p>UDP, specified by <a href="https://www.rfc-editor.org/rfc/rfc768" rel="noopener noreferrer">RFC 768</a>, preserves datagram boundaries but doesn't guarantee delivery, order, duplicate suppression, congestion handling, or peer identity. It is common for discovery, multicast, RTP, and constrained/field protocols. The application or enclosing protocol must provide required reliability and security.</p>
+<h2 id="s-mtu-and-fragmentation">MTU and fragmentation<a class="heading-link" href="#s-mtu-and-fragmentation" aria-label="Link to MTU and fragmentation">#</a></h2>
+<p>Paths have a maximum transmission unit (MTU). Tunnels, VPNs, IPv6, and WAN services can reduce effective payload size. Fragment loss can discard a whole datagram; middleboxes may mishandle fragments. Prefer protocol defined packetisation and path MTU aware libraries over arbitrary large UDP messages. Never assume a payload that worked on one LAN works across a routed or tunneled path.</p>
+<h2 id="s-bandwidth-isnt-enough">Bandwidth isn't enough<a class="heading-link" href="#s-bandwidth-isnt-enough" aria-label="Link to Bandwidth isn&#x27;t enough">#</a></h2>
+<p>For video and voice, plan:</p>
+<ul>
+<li>average and peak bitrate, including I frame bursts;</li>
+<li>simultaneous live views, recording streams, playback, export, and analytics;</li>
+<li>packet loss, jitter, latency, and retransmission effects;</li>
+<li>multicast replication points and receiver joins;</li>
+<li>storage/WAN catch up after outage;</li>
+<li>encrypted tunnel and protocol overhead;</li>
+<li>failure of one link or recorder.</li>
+</ul>
+<p>Quality of Service (QoS) markings don't create capacity. Trust and remarking policy must be consistent end to end, and control/management traffic must not be starved by video.</p>
+<h2 id="s-address-family-and-naming">Address family and naming<a class="heading-link" href="#s-address-family-and-naming" aria-label="Link to Address family and naming">#</a></h2>
+<p>Support IPv4 and IPv6 intentionally. <a href="https://www.rfc-editor.org/rfc/rfc8200" rel="noopener noreferrer">RFC 8200</a> defines IPv6; IPv6 link local addresses, neighbour discovery, multicast, extension headers, and firewall policy differ from IPv4. Avoid disabling IPv6 while leaving it unmonitored.</p>
+<p>Use DNS names for services where certificates, migration, or redundancy require stable naming, but design for DNS outage and cache behaviour. Device identity must not equal IP address.</p>
+<h2 id="s-network-controls">Network controls<a class="heading-link" href="#s-network-controls" aria-label="Link to Network controls">#</a></h2>
+<ul>
+<li>Default deny inter zone policy based on documented flows.</li>
+<li>Separate observation, control, management, and guest/user paths where practical.</li>
+<li>Restrict device egress to named services and required destinations.</li>
+<li>Protect and monitor DHCP, DNS, time, certificate, update, and identity dependencies.</li>
+<li>Use network access control as one signal, not proof the endpoint is trustworthy.</li>
+<li>Preserve an out of band recovery path for critical controllers and gateways.</li>
+</ul>
+<p>See <a href="../ip-addressing-routing-and-ports/">IP addressing, routing, and ports</a>, <a href="../multicast-discovery-and-nat/">multicast, discovery, and NAT</a>, and <a href="../trust-boundaries-and-segmentation/">trust boundaries</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../multicast-discovery-and-nat/"><span>Previous in this section</span>Multicast, discovery, and NAT</a><a href="../observability-and-evidence/"><span>Next in this section</span>Observability and evidence</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/01-foundations/networking-fundamentals.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/01-foundations/networking-fundamentals.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-layered-path">Layered path</a></li><li class="toc-level-2"><a href="#s-tcp-and-udp">TCP and UDP</a></li><li class="toc-level-2"><a href="#s-mtu-and-fragmentation">MTU and fragmentation</a></li><li class="toc-level-2"><a href="#s-bandwidth-isnt-enough">Bandwidth isn&#x27;t enough</a></li><li class="toc-level-2"><a href="#s-address-family-and-naming">Address family and naming</a></li><li class="toc-level-2"><a href="#s-network-controls">Network controls</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

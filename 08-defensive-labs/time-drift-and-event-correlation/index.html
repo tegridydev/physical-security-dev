@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Time drift and event correlation · Security Technician Wiki</title>
+<meta name="description" content="Use synthetic timestamps to distinguish clock drift from delivery delay. Compare device time, receipt time and the expected event order.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/08-defensive-labs/time-drift-and-event-correlation/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Time drift and event correlation · Security Technician Wiki">
+<meta property="og:description" content="Use synthetic timestamps to distinguish clock drift from delivery delay. Compare device time, receipt time and the expected event order.">
+<meta property="og:url" content="https://securitytechnician.wiki/08-defensive-labs/time-drift-and-event-correlation/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">08</span>Defensive labs</a><ul class="nav-pages"><li><a href="../camera-and-controller-hardening-review/">Camera and controller hardening review</a></li><li><a href="../certificate-rotation-and-restore-tabletop/">Certificate rotation and restore tabletop</a></li><li><a href="../authorization-topology-and-safety/">Lab authorisation, topology, and safety</a></li><li><a href="../modbus-and-bacnet-interpretation/">Modbus and BACnet interpretation</a></li><li><a href="../mqtt-tls-and-acl-review/">MQTT TLS and ACL review</a></li><li><a href="../offline-packet-and-trace-reading/">Offline packet and trace reading</a></li><li><a href="../onvif-discovery-and-media-flow/">ONVIF discovery and media flow reasoning</a></li><li><a href="../osdp-and-wiegand-offline-decoding/">OSDP and Wiegand offline decoding</a></li><li><a href="../incident-response-tabletop/">Physical security incident response tabletop</a></li><li><a href="../rtsp-rtp-sdp-trace-analysis/">RTSP, RTP, RTCP, and SDP trace analysis</a></li><li><a href="../sia-dc09-validation-planning/">SIA DC09 validation planning</a></li><li><a href="../snmp-and-syslog-health-correlation/">SNMP and syslog health correlation</a></li><li><a href="./" aria-current="page">Time drift and event correlation</a></li><li><a href="../tls-certificate-chain-review/">TLS certificate chain review</a></li><li><a href="../video-bandwidth-and-storage-calculation/">Video bandwidth and storage calculation</a></li><li><a href="../websocket-event-flow-review/">WebSocket event flow review</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Defensive labs</a><span aria-hidden="true">/</span><span aria-current="page">Time drift and event correlation</span></nav><div class="page-kicker">Defensive labs <span>About 1 min read</span></div><div class="prose"><h1 id="s-time-drift-and-event-correlation">Time drift and event correlation</h1>
+<p>Use synthetic timestamps to distinguish clock drift from delivery delay. Compare device time, receipt time and the expected event order.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Offline research and planning only; product or deployment acceptance belongs to separately governed environment validation.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-fixture-design">Fixture design</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-expected-learning">Expected learning</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Lab class: <strong>Offline synthetic timeline fixture</strong></p>
+<h2 id="s-fixture-design">Fixture design<a class="heading-link" href="#s-fixture-design" aria-label="Link to Fixture design">#</a></h2>
+<p>Create synthetic door, camera, alarm, API, broker and recorder events containing occurrence time, ingestion time, offset/timezone, source clock status, sequence and correlation ID. Include one clock 45 seconds fast, a device reboot/sequence reset, a duplicated delayed event and an ingestion backlog.</p>
+<h2 id="s-procedure">Procedure<a class="heading-link" href="#s-procedure" aria-label="Link to Procedure">#</a></h2>
+<ol>
+<li>Preserve every original timestamp and offset; don't overwrite with UTC conversion.</li>
+<li>Normalise display to UTC while retaining source values.</li>
+<li>Calculate apparent offset between sources only where a common event/correlation makes comparison defensible.</li>
+<li>Use sequence and causation to order events when clocks disagree.</li>
+<li>Mark uncertainty caused by drift, reboot, capture delay, queueing and missing synchronisation status.</li>
+<li>Produce a timeline with separate occurred, observed/received and processed axes.</li>
+<li>Explain which conclusions remain unsupported.</li>
+</ol>
+<h2 id="s-expected-learning">Expected learning<a class="heading-link" href="#s-expected-learning" aria-label="Link to Expected learning">#</a></h2>
+<p>Authenticated NTP protects aspects of time exchange but doesn't guarantee the upstream time is correct. Wall clock order alone can't prove causation. Video overlay time, file/container time and VMS event time may come from different clocks.</p>
+<h2 id="s-evidence-checklist">Evidence checklist<a class="heading-link" href="#s-evidence-checklist" aria-label="Link to Evidence checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Fixture provenance, digest, source clocks, time zones/offsets, and sequence scopes recorded">Fixture provenance, digest, source clocks, time zones/offsets, and sequence scopes recorded</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Original timestamps preserved alongside normalised UTC display values">Original timestamps preserved alongside normalised UTC display values</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Occurrence, observation/receive, ingestion, and processing times kept separate">Occurrence, observation/receive, ingestion, and processing times kept separate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Drift, reboot/reset, duplication, delay, backlog, and missing synchronisation state represented">Drift, reboot/reset, duplication, delay, backlog, and missing synchronisation state represented</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Apparent offsets calculated only where a defensible common event exists">Apparent offsets calculated only where a defensible common event exists</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Sequence and causal evidence used without treating wall clock order as proof">Sequence and causal evidence used without treating wall clock order as proof</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Timeline conclusions state uncertainty and unsupported inferences explicitly">Timeline conclusions state uncertainty and unsupported inferences explicitly</li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><a href="https://www.rfc-editor.org/rfc/rfc5905" rel="noopener noreferrer">RFC 5905 NTPv4</a>, accessed 25 August 2026.</li>
+<li><a href="https://www.rfc-editor.org/rfc/rfc8915" rel="noopener noreferrer">RFC 8915 Network Time Security</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../../06-security-and-assurance/logging-time-and-evidence-integrity/">Logging, time, and evidence integrity</a></li>
+<li><a href="../../05-development-and-integration/examples/timestamp-normalization-csharp/">Timestamp normalisation example</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../snmp-and-syslog-health-correlation/"><span>Previous in this section</span>SNMP and syslog health correlation</a><a href="../tls-certificate-chain-review/"><span>Next in this section</span>TLS certificate chain review</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/08-defensive-labs/time-drift-and-event-correlation.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/08-defensive-labs/time-drift-and-event-correlation.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-fixture-design">Fixture design</a></li><li class="toc-level-2"><a href="#s-procedure">Procedure</a></li><li class="toc-level-2"><a href="#s-expected-learning">Expected learning</a></li><li class="toc-level-2"><a href="#s-evidence-checklist">Evidence checklist</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

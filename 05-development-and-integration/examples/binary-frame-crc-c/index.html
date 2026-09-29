@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Modbus RTU frame and CRC · Security Technician Wiki</title>
+<meta name="description" content="Check the size, fields and CRC of a captured Modbus RTU register response.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/05-development-and-integration/examples/binary-frame-crc-c/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Modbus RTU frame and CRC · Security Technician Wiki">
+<meta property="og:description" content="Check the size, fields and CRC of a captured Modbus RTU register response.">
+<meta property="og:url" content="https://securitytechnician.wiki/05-development-and-integration/examples/binary-frame-crc-c/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../../assets/favicon.svg">
+<script src="../../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../../assets/site.css">
+
+<script defer src="../../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../../"><span class="nav-number">05</span>Development</a><details class="nav-group" open><summary>Code examples</summary><ul class="nav-pages"><li><a href="../">Section overview</a></li><li><a href="../offline-trace-parsing-python/">Event trace normalisation</a></li><li><a href="../safe-https-json-python/">HTTPS JSON read</a></li><li><a href="../modbus-read-response/">Modbus register read</a></li><li><a href="./" aria-current="page">Modbus RTU frame and CRC</a></li><li><a href="../mqtt-event-contract/">MQTT event validation</a></li><li><a href="../mtls-client-go/">Mutual TLS health client</a></li><li><a href="../onvif-soap-request/">ONVIF device information</a></li><li><a href="../rtsp-sdp-inspection-python/">RTSP and SDP inspection</a></li><li><a href="../event-store-python/">SQLite event deduplication</a></li><li><a href="../timestamp-normalization-csharp/">Timestamp normalisation in C#</a></li><li><a href="../tls-expiry-python/">TLS certificate expiry check</a></li><li><a href="../video-storage-python/">Video storage calculator</a></li><li><a href="../webhook-hmac-python/">Webhook signature verification</a></li><li><a href="../websocket-events-typescript/">WebSocket event reader</a></li></ul></details><details class="nav-group"><summary>Language guides</summary><ul class="nav-pages"><li><a href="../../language-guides/">Section overview</a></li><li><a href="../../language-guides/c/">C protocol development</a></li><li><a href="../../language-guides/csharp/">C# protocol development</a></li><li><a href="../../language-guides/cpp/">C++ protocol development</a></li><li><a href="../../language-guides/go/">Go protocol development</a></li><li><a href="../../language-guides/python/">Python protocol development</a></li><li><a href="../../language-guides/typescript/">TypeScript protocol development</a></li></ul></details><details class="nav-group"><summary>Integration patterns</summary><ul class="nav-pages"><li><a href="../../patterns/">Section overview</a></li><li><a href="../../patterns/adapters-gateways-and-translation/">Adapters, gateways, and protocol translation</a></li><li><a href="../../patterns/event-normalization-and-schema-evolution/">Event API contracts, normalisation, and schema evolution</a></li><li><a href="../../patterns/observability-and-diagnostics/">Observability and diagnostics</a></li><li><a href="../../patterns/polling-subscriptions-and-state-reconciliation/">Polling, subscriptions, and state reconciliation</a></li><li><a href="../../patterns/reconnect-backpressure-and-queues/">Reconnect, backpressure, and queues</a></li><li><a href="../../patterns/retries-timeouts-and-idempotency/">Retries, timeouts, and idempotency</a></li><li><a href="../../patterns/secrets-certificates-and-configuration/">Secrets, certificates, and configuration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../">Code examples</a></div><div class="nav-extra"><a href="../../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../../">Wiki</a><span aria-hidden="true">/</span><a href="../../">Development</a><span aria-hidden="true">/</span><a href="../">Code examples</a><span aria-hidden="true">/</span><span aria-current="page">Modbus RTU frame and CRC</span></nav><div class="page-kicker">Development <span>About 3 min read</span></div><div class="prose"><h1 id="s-modbus-rtu-frame-and-crc">Modbus RTU frame and CRC</h1>
+<p>Check the size, fields and CRC of a captured Modbus RTU register response.</p><details class="evidence"><summary>Sources and scope<span>Read before use</span></summary><p>Synthetic fixtures and the stated local tests. No product conformance or equipment compatibility claim.</p><p>Selected local test cases passed. Read the example limits.</p><p><a href="../../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></div>
+<h2 id="s-run-the-demo">Run the demo<a class="heading-link" href="#s-run-the-demo" aria-label="Link to Run the demo">#</a></h2>
+<p>Run from the repository root. The demo uses synthetic data and does not contact equipment.</p>
+<div class="code-block"><div class="code-toolbar"><span>sh</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy sh example">Copy</button></div><pre tabindex="0" aria-label="sh example"><code id="code-1">cc -std=c17 -Wall -Wextra -Werror -pedantic examples/c/modbus_crc.c -o modbus_crc
+./modbus_crc --demo
+./modbus_crc --self-test
+</code></pre></div>
+<p>The demo prints unit <code>1</code>, function <code>3</code> and registers <code>[10,20]</code>. The test command checks a known CRC vector and rejected frames.</p>
+<h2 id="s-use-and-limits">Use and limits<a class="heading-link" href="#s-use-and-limits" aria-label="Link to Use and limits">#</a></h2>
+<p>Use <code>--hex &quot;01 03 ...&quot;</code> with a complete captured read response. The program accepts functions 3 and 4, checks the unit and byte count, and verifies the Modbus CRC. The CRC is transmitted with its low byte first.</p>
+<p>The input buffer is fixed and oversized hex input is rejected. The program performs no serial or network I/O. It is a response inspector, not a serial timing implementation or an OSDP parser. A valid CRC detects accidental corruption; it does not authenticate the sender. Correlate a captured response with its request before assigning register meaning.</p>
+<p>The compile command shown is for a POSIX shell and a C17 compiler. On Windows, use an equivalent compiler invocation or run it in WSL.</p>
+<h2 id="s-source">Source<a class="heading-link" href="#s-source" aria-label="Link to Source">#</a></h2>
+<p><a href="../../../examples/c/modbus_crc.c">Download the source</a></p>
+<div class="code-block"><div class="code-toolbar"><span>c</span><button type="button" class="copy-code" data-copy="code-2" hidden aria-label="Copy c example">Copy</button></div><pre tabindex="0" aria-label="c example"><code id="code-2">/* Inspect a captured Modbus RTU read response. No serial or network access. */
+#include &lt;stdbool.h&gt;
+#include &lt;stdint.h&gt;
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;ctype.h&gt;
+
+static uint16_t crc16(const uint8_t *data, size_t length) {
+    uint16_t crc = 0xFFFFu;
+    for (size_t i = 0; i &lt; length; ++i) {
+        crc ^= data[i];
+        for (unsigned bit = 0; bit &lt; 8; ++bit) {
+            crc = (uint16_t)((crc &gt;&gt; 1) ^ ((crc &amp; 1u) ? 0xA001u : 0u));
+        }
+    }
+    return crc;
+}
+
+static bool valid_frame(const uint8_t *frame, size_t length) {
+    if (length &lt; 7 || length &gt; 255 || frame[0] &lt; 1 || frame[0] &gt; 247) return false;
+    if ((frame[1] != 3 &amp;&amp; frame[1] != 4) || frame[2] &lt; 2 || frame[2] &gt; 250 || frame[2] % 2 != 0) return false;
+    if ((size_t)frame[2] + 5 != length) return false;
+    const uint16_t received = (uint16_t)((uint16_t)frame[length - 2] | ((uint16_t)frame[length - 1] &lt;&lt; 8));
+    return crc16(frame, length - 2) == received;
+}
+
+static int nibble(unsigned char ch) {
+    if (ch &gt;= &#x27;0&#x27; &amp;&amp; ch &lt;= &#x27;9&#x27;) return ch - &#x27;0&#x27;;
+    if (ch &gt;= &#x27;a&#x27; &amp;&amp; ch &lt;= &#x27;f&#x27;) return ch - &#x27;a&#x27; + 10;
+    if (ch &gt;= &#x27;A&#x27; &amp;&amp; ch &lt;= &#x27;F&#x27;) return ch - &#x27;A&#x27; + 10;
+    return -1;
+}
+
+static bool parse_hex(const char *text, uint8_t *output, size_t *length) {
+    if (strlen(text) &gt; 1024) return false;
+    size_t count = 0;
+    int high = -1;
+    for (const unsigned char *p = (const unsigned char *)text; *p != 0; ++p) {
+        if (isspace(*p)) { if (high &gt;= 0) return false; continue; }
+        int value = nibble(*p);
+        if (value &lt; 0) return false;
+        if (high &lt; 0) { high = value; continue; }
+        if (count &gt;= 256) return false;
+        output[count++] = (uint8_t)(high * 16 + value);
+        high = -1;
+    }
+    *length = count;
+    return high &lt; 0 &amp;&amp; count &gt; 0;
+}
+
+int main(int argc, char **argv) {
+    uint8_t frame[256] = {1, 3, 4, 0, 10, 0, 20, 0, 0};
+    size_t length = 9;
+    const uint16_t checksum = crc16(frame, 7);
+    frame[7] = (uint8_t)checksum;
+    frame[8] = (uint8_t)(checksum &gt;&gt; 8);
+    if (argc == 2 &amp;&amp; strcmp(argv[1], &quot;--self-test&quot;) == 0) {
+        const uint8_t vector[] = &quot;123456789&quot;;
+        if (crc16(vector, 9) != 0x4B37u || !valid_frame(frame, length) || valid_frame(frame, 3)) return 1;
+        frame[4] ^= 1u;
+        if (valid_frame(frame, length)) return 1;
+        puts(&quot;CRC and frame tests passed&quot;);
+        return 0;
+    }
+    if (argc == 3 &amp;&amp; strcmp(argv[1], &quot;--hex&quot;) == 0) {
+        if (!parse_hex(argv[2], frame, &amp;length)) { fputs(&quot;Error: invalid hex input\n&quot;, stderr); return 1; }
+    } else if (argc != 2 || strcmp(argv[1], &quot;--demo&quot;) != 0) {
+        fputs(&quot;Usage: modbus_crc --demo | --self-test | --hex \&quot;01 03 ...\&quot;\n&quot;, stderr);
+        return 2;
+    }
+    if (!valid_frame(frame, length)) { fputs(&quot;Error: invalid read response or CRC\n&quot;, stderr); return 1; }
+    printf(&quot;{\&quot;unit\&quot;:%u,\&quot;function\&quot;:%u,\&quot;registers\&quot;:[&quot;, (unsigned)frame[0], (unsigned)frame[1]);
+    for (size_t index = 0; index &lt; frame[2]; index += 2) {
+        unsigned value = (unsigned)frame[index + 3] * 256u + frame[index + 4];
+        printf(&quot;%s%u&quot;, index ? &quot;,&quot; : &quot;&quot;, value);
+    }
+    puts(&quot;]}&quot;);
+    return 0;
+}
+</code></pre></div>
+<h2 id="s-references">References<a class="heading-link" href="#s-references" aria-label="Link to References">#</a></h2>
+<p><a href="https://www.modbus.org/modbus-specifications" rel="noopener noreferrer">Modbus serial and application specifications</a></p>
+<p><a href="../">All code examples</a> · <a href="../../../09-reference/code-example-index/">Code index</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../modbus-read-response/"><span>Previous in this section</span>Modbus register read</a><a href="../mqtt-event-contract/"><span>Next in this section</span>MQTT event validation</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/05-development-and-integration/examples/binary-frame-crc-c.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/05-development-and-integration/examples/binary-frame-crc-c.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-run-the-demo">Run the demo</a></li><li class="toc-level-2"><a href="#s-use-and-limits">Use and limits</a></li><li class="toc-level-2"><a href="#s-source">Source</a></li><li class="toc-level-2"><a href="#s-references">References</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Vendor API selection and capability matrix · Security Technician Wiki</title>
+<meta name="description" content="Compare APIs against the required workflow. Record product versions, access conditions, identity handling, event support and the operations your application needs.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/04-vendor-apis/selection-and-capability-matrix/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Vendor API selection and capability matrix · Security Technician Wiki">
+<meta property="og:description" content="Compare APIs against the required workflow. Record product versions, access conditions, identity handling, event support and the operations your application needs.">
+<meta property="og:url" content="https://securitytechnician.wiki/04-vendor-apis/selection-and-capability-matrix/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">04</span>Vendor APIs</a><ul class="nav-pages"><li><a href="./" aria-current="page">Vendor API selection and capability matrix</a></li></ul><details class="nav-group"><summary>Access and identity APIs</summary><ul class="nav-pages"><li><a href="../access-and-identity/">Section overview</a></li><li><a href="../access-and-identity/brivo-api/">Brivo Access API</a></li><li><a href="../access-and-identity/gallagher-command-centre-integrations/">Gallagher Command Centre integrations</a></li><li><a href="../access-and-identity/hid-origo-and-mobile-access/">HID Origo and Mobile Access APIs</a></li><li><a href="../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE integrations</a></li><li><a href="../access-and-identity/kisi-api/">Kisi API and mobile SDKs</a></li><li><a href="../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2 OnGuard, OpenAccess, and Elements</a></li><li><a href="../access-and-identity/salto-apis/">SALTO APIs</a></li><li><a href="../access-and-identity/suprema-biostar-2-api/">Suprema BioStar 2 API</a></li></ul></details><details class="nav-group"><summary>Device and edge video APIs</summary><ul class="nav-pages"><li><a href="../device-and-edge-video/">Section overview</a></li><li><a href="../device-and-edge-video/2n-http-and-platform-apis/">2N HTTP and platform APIs</a></li><li><a href="../device-and-edge-video/axis-vapix-and-acap/">Axis VAPIX and ACAP</a></li><li><a href="../device-and-edge-video/bosch-video-and-device-integration/">Bosch video and device integration</a></li><li><a href="../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua CGI and NetSDK</a></li><li><a href="../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision SUNAPI and Open Platform</a></li><li><a href="../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision ISAPI and HEOP</a></li><li><a href="../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel APIs and SDKs</a></li></ul></details><details class="nav-group"><summary>VMS and cloud video APIs</summary><ul class="nav-pages"><li><a href="../vms-and-cloud-video/">Section overview</a></li><li><a href="../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Video API</a></li><li><a href="../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec Security Center SDK and Web API</a></li><li><a href="../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone MIP SDK and API Gateway</a></li><li><a href="../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions and Avigilon integration interfaces</a></li><li><a href="../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix Nx Meta APIs and SDKs</a></li><li><a href="../vms-and-cloud-video/verkada-command-apis/">Verkada Command APIs</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Vendor APIs</a><span aria-hidden="true">/</span><span aria-current="page">Vendor API selection and capability matrix</span></nav><div class="page-kicker">Vendor APIs <span>About 5 min read</span></div><div class="prose"><h1 id="s-vendor-api-selection-and-capability-matrix">Vendor API selection and capability matrix</h1>
+<p>Compare APIs against the required workflow. Record product versions, access conditions, identity handling, event support and the operations your application needs.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Capability level comparison from official material reviewed on 25 August 2026; cells do not assert endpoint parity, licence inclusion, product compatibility, or availability in every region.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-device-and-edge-video">Device and edge video</a></li><li class="toc-level-2"><a href="#s-vms-and-cloud-video">VMS and cloud video</a></li><li class="toc-level-2"><a href="#s-access-and-identity">Access and identity</a></li><li class="toc-level-2"><a href="#s-selection-tests">Selection tests</a></li><li class="toc-level-2"><a href="#s-what-cant-be-compared-safely-in-one-cell">What can&#x27;t be compared safely in one cell</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p><a href="../">Vendor APIs</a> / Selection and capability matrix</p>
+<p>Use this matrix to shortlist a surface, then read its vendor page and current official contract. “Documented” means the vendor publicly establishes the capability class; it doesn't mean every operation is available to every product, account, licence, or role.</p>
+<h2 id="s-device-and-edge-video">Device and edge video<a class="heading-link" href="#s-device-and-edge-video" aria-label="Link to Device and edge video">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Vendor family</th>
+  <th>Primary deployment</th>
+  <th>Documented native surfaces</th>
+  <th>Capability classes evidenced</th>
+  <th>Documentation/package access</th>
+  <th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="../device-and-edge-video/axis-vapix-and-acap/">Axis</a></td>
+  <td>Device and on device app</td>
+  <td>VAPIX; Device Configuration APIs; ACAP</td>
+  <td>Discovery, configuration, media/events/I/O by API family, application lifecycle, edge apps</td>
+  <td>Core docs public; SDK public; model/OS/API compatibility applies</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/hikvision-isapi-and-heop/">Hikvision</a></td>
+  <td>Device and on device app</td>
+  <td>ISAPI; HEOP</td>
+  <td>Cross product HTTP integration; embedded applications</td>
+  <td>TPP registration/login and restricted material for normative guides</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/dahua-cgi-and-netsdk/">Dahua</a></td>
+  <td>Device and native client SDK</td>
+  <td>CGI; NetSDK</td>
+  <td>Device integration, events/media/control by product/package</td>
+  <td>Public product/release evidence; current complete contracts are not consistently public</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/hanwha-sunapi-and-open-platform/">Hanwha Vision</a></td>
+  <td>Device and on camera app</td>
+  <td>SUNAPI; SUNAPI SDK; Open Platform SDK</td>
+  <td>Device integration and edge applications; exact functions model specific</td>
+  <td>Product pages public; SDK/guides commonly STEP account gated</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/bosch-video-and-device-integration/">Bosch / Keenfinity</a></td>
+  <td>Device, VMS component, native SDK</td>
+  <td>Video SDK and integration tools</td>
+  <td>Video/device integration and plugin tooling</td>
+  <td>Portals public at catalogue level; packages, licences, compatibility can be partner/download gated</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/2n-http-and-platform-apis/">2N</a></td>
+  <td>Intercom/access device and management server</td>
+  <td>2N IP HTTP API; Access Commander API; selected platform APIs</td>
+  <td>Status, events, configuration and device functions; access/intercom actuation where enabled</td>
+  <td>Manuals and API references public; feature/licence/model gates apply</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../device-and-edge-video/zenitel-apis-and-sdks/">Zenitel</a></td>
+  <td>Intercom server/client integration</td>
+  <td>VS SDK; .NET libraries; recorder interface</td>
+  <td>ICX/AlphaCom state and control; recording integration</td>
+  <td>Official wiki public; binaries/features/licences and lifecycle vary</td>
+  <td>V1</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-vms-and-cloud-video">VMS and cloud video<a class="heading-link" href="#s-vms-and-cloud-video" aria-label="Link to VMS and cloud video">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Vendor family</th>
+  <th>Primary deployment</th>
+  <th>Documented native surfaces</th>
+  <th>Capability classes evidenced</th>
+  <th>Documentation/package access</th>
+  <th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="../vms-and-cloud-video/milestone-mip-sdk-and-api-gateway/">Milestone</a></td>
+  <td>On premises VMS and gateway</td>
+  <td>MIP SDK; protocol APIs; API Gateway REST</td>
+  <td>Configuration, events/alarms, messaging, control, media/metadata, plugins</td>
+  <td>Documentation public; product/licence and installed environment required</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../vms-and-cloud-video/genetec-security-center-sdk-and-web-api/">Genetec</a></td>
+  <td>On premises Security Center</td>
+  <td>Security Center SDK; Web SDK; product specific web APIs</td>
+  <td>Video, access, intrusion, ALPR, events, media and platform extensions</td>
+  <td>Overview public; DAP membership, package and licences for development/deployment</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../vms-and-cloud-video/network-optix-nx-meta-apis-and-sdks/">Network Optix</a></td>
+  <td>Nx Meta/OEM VMS</td>
+  <td>Server REST API; C++ plugin SDK; Cloud API; open source client</td>
+  <td>Resource/user administration, media, events/rules, PTZ, server plugins</td>
+  <td>Core docs public; account/program, developer licences and build compatibility apply</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../vms-and-cloud-video/motorola-avigilon-integration-surfaces/">Motorola Solutions / Avigilon</a></td>
+  <td>Unity, Alta and product specific platforms</td>
+  <td>Developer program and product specific web/REST/SDK surfaces</td>
+  <td>Video, access, alarms, web endpoint and partner integration interfaces by product</td>
+  <td>Public catalogue is fragmented; detailed contracts and entitlements often partner/product gated</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../vms-and-cloud-video/eagle-eye-video-api/">Eagle Eye Networks</a></td>
+  <td>Cloud VMS</td>
+  <td>Video API v3</td>
+  <td>Cameras, live/recorded media, events, alerts, SSE/webhooks</td>
+  <td>Docs public; developer account, OAuth client and customer authorisation required</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../vms-and-cloud-video/verkada-command-apis/">Verkada</a></td>
+  <td>Multi region cloud platform</td>
+  <td>Command APIs and webhooks</td>
+  <td>Camera, access and other product APIs; token, pagination and limit contract</td>
+  <td>Reference public; organization, region, permissions and product subscription required</td>
+  <td>V2</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-access-and-identity">Access and identity<a class="heading-link" href="#s-access-and-identity" aria-label="Link to Access and identity">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Vendor family</th>
+  <th>Primary deployment</th>
+  <th>Documented native surfaces</th>
+  <th>Capability classes evidenced</th>
+  <th>Documentation/package access</th>
+  <th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><a href="../access-and-identity/hid-origo-and-mobile-access/">HID Origo</a></td>
+  <td>Cloud identity and mobile credentials</td>
+  <td>Mobile Identities; User/Credential Management; Events; mobile SDK ecosystem</td>
+  <td>User and digital credential lifecycle, callbacks, wallet/app provisioning</td>
+  <td>API docs public but intended for enrolled technology partners; credentials from HID</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/gallagher-command-centre-integrations/">Gallagher</a></td>
+  <td>On premises Command Centre, optional cloud gateway</td>
+  <td>REST API families; controller interfaces; Video Viewer and Mobile Connect SDKs</td>
+  <td>Cardholders, events/alarms, status, overrides, inbound events, mobile credentials</td>
+  <td>Product summaries public; guides, token, demo licence and endorsement workflow partner gated</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/lenels2-onguard-openaccess-and-elements/">LenelS2</a></td>
+  <td>OnGuard on prem/cloud; Elements SaaS</td>
+  <td>OpenAccess Web Services and partner interfaces</td>
+  <td>OnGuard data, event and command integrations; Elements connector evidenced separately</td>
+  <td>Detailed docs/packages through LenelS2 Connect; Elements developer API not publicly established here</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/johnson-controls-ccure-integrations/">Johnson Controls C•CURE</a></td>
+  <td>On premises C•CURE 9000/victor</td>
+  <td>Product SDK/web service and licensed integration interfaces</td>
+  <td>Personnel, devices, alarms, command and platform integrations by package</td>
+  <td>Public product/integration docs are partial; developer packages/licensing require vendor channel</td>
+  <td>V1</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/salto-apis/">SALTO</a></td>
+  <td>KS cloud, Nebula cloud, Space on premises</td>
+  <td>KS Connect/Core; Nebula; Space Hospitality; SHIP</td>
+  <td>Identity/access lifecycle, locks, events and credentials by platform</td>
+  <td>Cloud API references public; client credentials from SALTO; SHIP licensed and NDA gated</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/brivo-api/">Brivo</a></td>
+  <td>Cloud access platform</td>
+  <td>Brivo Access API</td>
+  <td>Sites, users, credentials, doors, events and high impact commands</td>
+  <td>Documentation public; developer portal and customer specific app credentials required</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/suprema-biostar-2-api/">Suprema</a></td>
+  <td>On premises BioStar 2</td>
+  <td>New Local API; separate Device SDK and TA API</td>
+  <td>Users, credentials, doors, devices, events, biometrics and administration</td>
+  <td>API collection/support docs public; exact server/API version and licence determine availability</td>
+  <td>V2</td>
+</tr>
+<tr>
+  <td><a href="../access-and-identity/kisi-api/">Kisi</a></td>
+  <td>Cloud access platform and mobile SDK</td>
+  <td>JSON API; webhooks; iOS/Android SDKs</td>
+  <td>Users, access rights, locks, unlocks, events and embedded mobile access</td>
+  <td>API reference public; sandbox/partner ID and SDK access require vendor onboarding</td>
+  <td>V2</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-selection-tests">Selection tests<a class="heading-link" href="#s-selection-tests" aria-label="Link to Selection tests">#</a></h2>
+<p>Before selecting a surface, answer all of these:</p>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Test</th>
+  <th>Required evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Authority</td>
+  <td>Which installed product or cloud tenant is authoritative for identities, configuration, events, media, and physical state?</td>
+</tr>
+<tr>
+  <td>Direction</td>
+  <td>Is the integration observing, provisioning, subscribing, embedding media, hosting a plugin, or commanding a device?</td>
+</tr>
+<tr>
+  <td>Entitlement</td>
+  <td>Which account, partner agreement, licence, subscription, role, scope, and site/tenant permission enables it?</td>
+</tr>
+<tr>
+  <td>Compatibility</td>
+  <td>Which exact product build, API/SDK version, firmware, model, architecture, runtime, and region are supported together?</td>
+</tr>
+<tr>
+  <td>Security</td>
+  <td>How are clients enrolled, secrets/certificates rotated, privileges bounded, callbacks authenticated, and audit records correlated?</td>
+</tr>
+<tr>
+  <td>Failure</td>
+  <td>What happens on timeout, token expiry, reconnect, duplicate event, lost callback, server failover, cloud outage, and uncertain command outcome?</td>
+</tr>
+<tr>
+  <td>Lifecycle</td>
+  <td>Where are release notes, deprecation notices, security advisories, and support windows published?</td>
+</tr>
+<tr>
+  <td>Safety</td>
+  <td>Can the surface unlock, override, activate output, issue/revoke a credential, alter alarm behaviour, expose audio/video, or process biometrics?</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-what-cant-be-compared-safely-in-one-cell">What can't be compared safely in one cell<a class="heading-link" href="#s-what-cant-be-compared-safely-in-one-cell" aria-label="Link to What can&#x27;t be compared safely in one cell">#</a></h2>
+<p>Endpoint counts, “RESTful” labels, nominal API versions, and SDK download availability are poor proxies for integration quality. Compare the exact workflow: authorisation depth, event durability, media transport, reconciliation, offline behaviour, audit quality, compatibility policy, and vendor support. See <a href="../../05-development-and-integration/patterns/retries-timeouts-and-idempotency/">retries and idempotency</a> and <a href="../../05-development-and-integration/patterns/polling-subscriptions-and-state-reconciliation/">polling, subscriptions, and reconciliation</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../"><span>Previous in this section</span>Vendor APIs and SDKs</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/04-vendor-apis/selection-and-capability-matrix.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/04-vendor-apis/selection-and-capability-matrix.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-device-and-edge-video">Device and edge video</a></li><li class="toc-level-2"><a href="#s-vms-and-cloud-video">VMS and cloud video</a></li><li class="toc-level-2"><a href="#s-access-and-identity">Access and identity</a></li><li class="toc-level-2"><a href="#s-selection-tests">Selection tests</a></li><li class="toc-level-2"><a href="#s-what-cant-be-compared-safely-in-one-cell">What can&#x27;t be compared safely in one cell</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

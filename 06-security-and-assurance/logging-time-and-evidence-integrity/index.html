@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Logging, time, and evidence integrity · Security Technician Wiki</title>
+<meta name="description" content="Keep source records, clock information and transformation history together. Record which device produced each event and how the application processed it.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/06-security-and-assurance/logging-time-and-evidence-integrity/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Logging, time, and evidence integrity · Security Technician Wiki">
+<meta property="og:description" content="Keep source records, clock information and transformation history together. Record which device produced each event and how the application processed it.">
+<meta property="og:url" content="https://securitytechnician.wiki/06-security-and-assurance/logging-time-and-evidence-integrity/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">06</span>Security</a><ul class="nav-pages"><li><a href="../api-and-event-security/">API and event security</a></li><li><a href="../firmware-updates-and-supply-chain/">Firmware updates and software supply chain</a></li><li><a href="../identity-authentication-and-authorization/">Identity, authentication, and authorisation controls</a></li><li><a href="./" aria-current="page">Logging, time, and evidence integrity</a></li><li><a href="../pki-certificates-keys-and-secrets/">PKI, certificates, keys, and secrets</a></li><li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li><li><a href="../remote-access/">Remote access</a></li><li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li><li><a href="../secure-commissioning-and-onboarding/">Secure commissioning and onboarding</a></li><li><a href="../secure-protocol-parsing/">Secure protocol parsing</a></li><li><a href="../secure-system-baselines/">Secure system baselines</a></li><li><a href="../segmentation-and-conduits/">Segmentation and conduits</a></li><li><a href="../threat-modeling-and-trust-boundaries/">Threat modelling and trust boundaries</a></li><li><a href="../vulnerability-management-and-disclosure/">Vulnerability management and disclosure</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Security</a><span aria-hidden="true">/</span><span aria-current="page">Logging, time, and evidence integrity</span></nav><div class="page-kicker">Security <span>About 2 min read</span></div><div class="prose"><h1 id="s-logging-time-and-evidence-integrity">Logging, time, and evidence integrity</h1>
+<p>Keep source records, clock information and transformation history together. Record which device produced each event and how the application processed it.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Research and static guidance only; product and deployment specific behaviour requires controlled environment validation and authoritative product evidence.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-event-record-minimum">Event record minimum</a></li><li class="toc-level-2"><a href="#s-time-model">Time model</a></li><li class="toc-level-2"><a href="#s-integrity-and-custody">Integrity and custody</a></li><li class="toc-level-2"><a href="#s-privacy-and-utility">Privacy and utility</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>An incident timeline may join door events, video, alarms, operator actions, API requests, broker delivery, controller logs, identity provider decisions and network telemetry. Their timestamps and identifiers aren't automatically comparable or trustworthy.</p>
+<h2 id="s-event-record-minimum">Event record minimum<a class="heading-link" href="#s-event-record-minimum" aria-label="Link to Event record minimum">#</a></h2>
+<ul>
+<li>stable event type and schema version;</li>
+<li>event/source identity and site/tenant scope;</li>
+<li>occurrence, device, ingestion and processing times kept distinct;</li>
+<li>clock quality, uncertainty or synchronisation state where available;</li>
+<li>actor/workload identity and authentication context;</li>
+<li>requested action, target, authorisation decision and outcome;</li>
+<li>correlation and causation identifiers;</li>
+<li>sequence/counter and duplicate/replay disposition where meaningful;</li>
+<li>configuration/firmware/policy version needed to interpret the event;</li>
+<li>redaction/data classification marker.</li>
+</ul>
+<h2 id="s-time-model">Time model<a class="heading-link" href="#s-time-model" aria-label="Link to Time model">#</a></h2>
+<p>Use UTC for interchange and store the original offset when operational context needs it. Don't infer event order solely from wall clock timestamps. Prefer protocol sequence, monotonic duration and ingestion evidence for causal analysis. Handle leap seconds, clock steps, daylight saving display, device reboot, oscillator drift, NTP source change and loss of synchronisation explicitly.</p>
+<p>NTPv4 is defined by RFC 5905, while Network Time Security adds cryptographic protection for NTP client/server time synchronisation in RFC 8915 <a href="https://www.rfc-editor.org/rfc/rfc5905" rel="noopener noreferrer">RFC 5905</a> <a href="https://www.rfc-editor.org/rfc/rfc8915" rel="noopener noreferrer">RFC 8915</a>. Product support and deployment configuration must be checked per model; authenticated time doesn't guarantee the upstream time source itself is correct.</p>
+<h2 id="s-integrity-and-custody">Integrity and custody<a class="heading-link" href="#s-integrity-and-custody" aria-label="Link to Integrity and custody">#</a></h2>
+<ul>
+<li>Send security relevant records off device promptly to a separately administered store.</li>
+<li>Restrict append, modification, deletion and export; log those operations too.</li>
+<li>Preserve original exports and hashes alongside derived/transcoded working copies.</li>
+<li>Record exporter, source system, exact time range, timezone, device/stream identifiers, software version and transformation steps.</li>
+<li>Use product supported signing/verification when available, but document what it covers and how trust is established.</li>
+<li>Protect encryption/signing keys independently from stored evidence.</li>
+<li>Validate in a representative environment that retention, rollover, storage pressure, and failover don't silently discard critical logs.</li>
+</ul>
+<h2 id="s-privacy-and-utility">Privacy and utility<a class="heading-link" href="#s-privacy-and-utility" aria-label="Link to Privacy and utility">#</a></h2>
+<p>Logging everything can create a second surveillance database. Don't log raw credentials, authentication tokens, biometric templates, passwords, full private URLs, unnecessary faces/audio, or unrestricted operator screen content. Preserve enough identifiers for investigation through controlled lookup and access.</p>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>RFC 5424</strong>, <a href="https://www.rfc-editor.org/rfc/rfc5424" rel="noopener noreferrer">RFC 5424: The Syslog Protocol</a>, accessed 25 August 2026.</li>
+<li><strong>RFC 5905</strong>, <a href="https://www.rfc-editor.org/rfc/rfc5905" rel="noopener noreferrer">RFC 5905: Network Time Protocol Version 4</a>, accessed 25 August 2026.</li>
+<li><strong>RFC 8915</strong>, <a href="https://www.rfc-editor.org/rfc/rfc8915" rel="noopener noreferrer">RFC 8915: Network Time Security for NTP</a>, accessed 25 August 2026.</li>
+<li><strong>NIST 800 92</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/92/final" rel="noopener noreferrer">NIST SP 800-92: Guide to Computer Security Log Management</a>, accessed 25 August 2026.</li>
+</ul>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../privacy-and-sensitive-data/">Privacy and sensitive data</a></li>
+<li><a href="../resilience-backup-and-recovery/">Resilience, backup, and recovery</a></li>
+<li><a href="../../02-protocols/infrastructure/time-synchronisation/">Time protocols</a></li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../identity-authentication-and-authorization/"><span>Previous in this section</span>Identity, authentication, and authorisation controls</a><a href="../pki-certificates-keys-and-secrets/"><span>Next in this section</span>PKI, certificates, keys, and secrets</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/06-security-and-assurance/logging-time-and-evidence-integrity.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/06-security-and-assurance/logging-time-and-evidence-integrity.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-event-record-minimum">Event record minimum</a></li><li class="toc-level-2"><a href="#s-time-model">Time model</a></li><li class="toc-level-2"><a href="#s-integrity-and-custody">Integrity and custody</a></li><li class="toc-level-2"><a href="#s-privacy-and-utility">Privacy and utility</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

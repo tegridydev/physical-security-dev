@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Verification and safety · Security Technician Wiki</title>
+<meta name="description" content="Software can affect doors, alarms, cameras, gates and emergency workflows. Check the physical outcome, permissions and failure behaviour before making changes to a live system.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/00-start-here/verification-and-safety/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Verification and safety · Security Technician Wiki">
+<meta property="og:description" content="Software can affect doors, alarms, cameras, gates and emergency workflows. Check the physical outcome, permissions and failure behaviour before making changes to a live system.">
+<meta property="og:url" content="https://securitytechnician.wiki/00-start-here/verification-and-safety/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">00</span>Start here</a><ul class="nav-pages"><li><a href="../glossary-and-conventions/">Glossary and conventions</a></li><li><a href="../how-to-use-this-knowledge-base/">How to use this knowledge base</a></li><li><a href="../learning-paths/">Learning paths</a></li><li><a href="../scope-and-boundaries/">Scope and boundaries</a></li><li><a href="./" aria-current="page">Verification and safety</a></li></ul><details class="nav-group"><summary>Paths</summary><ul class="nav-pages"><li><a href="../paths/video-integration/">Build a video integration</a></li><li><a href="../paths/event-integration/">Build an event integration</a></li><li><a href="../paths/troubleshooting/">Find the next diagnostic check</a></li><li><a href="../paths/new-to-physical-security/">New to physical security</a></li><li><a href="../paths/security-review/">Review security and readiness</a></li><li><a href="../paths/access-control/">Understand an access control integration</a></li></ul></details></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Start here</a><span aria-hidden="true">/</span><span aria-current="page">Verification and safety</span></nav><div class="page-kicker">Start here <span>About 2 min read</span></div><div class="prose"><h1 id="s-verification-and-safety">Verification and safety</h1>
+<p>Software can affect doors, alarms, cameras, gates and emergency workflows. Check the physical outcome, permissions and failure behaviour before making changes to a live system.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>General process only; site safety and regulatory approval remain local responsibilities.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-evidence-levels">Evidence levels</a></li><li class="toc-level-2"><a href="#s-verification-layers">Verification layers</a></li><li class="toc-level-2"><a href="#s-safety-gate-for-actuation">Safety gate for actuation</a></li><li class="toc-level-2"><a href="#s-recording-environment-validation">Recording environment validation</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<p>Physical security software can observe people, grant access, suppress or generate alarms, move equipment, and change emergency response. Verification must therefore cover both information behaviour and physical consequence.</p>
+<h2 id="s-evidence-levels">Evidence levels<a class="heading-link" href="#s-evidence-levels" aria-label="Link to Evidence levels">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Level</th>
+  <th>Evidence available</th>
+  <th>What may be claimed</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td><code>V0</code></td>
+  <td>Draft notes, secondary material, or unresolved contradictions</td>
+  <td>Nothing beyond clearly marked work in progress</td>
+</tr>
+<tr>
+  <td><code>V1</code></td>
+  <td>Applicable primary sources reviewed and scope stated</td>
+  <td>Source verified description within that scope</td>
+</tr>
+<tr>
+  <td><code>V2</code></td>
+  <td>V1 plus practical cross check and static consistency review</td>
+  <td>Reviewed guidance; still no runtime or interoperability claim</td>
+</tr>
+<tr>
+  <td><code>V3</code></td>
+  <td>Authorised test with exact environment, procedure, expected/actual results, and evidence</td>
+  <td>Only the behaviour actually observed in that environment</td>
+</tr>
+</tbody>
+</table></div>
+<p>Source review isn't execution. Execution isn't conformance. A successful test of one firmware build isn't proof for a product family, and conformance to a profile isn't proof that two optional feature sets meet a project's use case.</p>
+<h2 id="s-verification-layers">Verification layers<a class="heading-link" href="#s-verification-layers" aria-label="Link to Verification layers">#</a></h2>
+<p>Verify independently:</p>
+<ol>
+<li><strong>Syntax:</strong> encoding, frame, schema, and message parsing.</li>
+<li><strong>Protocol state:</strong> sequencing, correlation, timeout, retry, reconnect, and error handling.</li>
+<li><strong>Semantics:</strong> identities, units, state transitions, timestamps, priorities, and authority.</li>
+<li><strong>Security:</strong> peer identity, authorisation, certificate/path validation, replay resistance, secrets, and audit.</li>
+<li><strong>Interoperability:</strong> exact client/server/device versions and negotiated options.</li>
+<li><strong>Operations:</strong> upgrades, restart, clock loss, partial outage, certificate rotation, and recovery.</li>
+<li><strong>Physical outcome:</strong> independent observation of intended and unintended effects.</li>
+</ol>
+<h2 id="s-safety-gate-for-actuation">Safety gate for actuation<a class="heading-link" href="#s-safety-gate-for-actuation" aria-label="Link to Safety gate for actuation">#</a></h2>
+<p>Don't perform an actuation test merely because the protocol call is understood. Before any live test, the system owner and validation lead should establish:</p>
+<ul>
+<li>written authorisation and named site/safety owners;</li>
+<li>an exact target and excluded systems;</li>
+<li>a maintenance window and notification plan;</li>
+<li>an isolated test device or proven non actuating mode where possible;</li>
+<li>independent state observation, not only the requesting application's response;</li>
+<li>abort conditions, rollback, manual override, and recovery personnel;</li>
+<li>preservation of egress, fire, emergency communication, and other independent safeguards;</li>
+<li>data handling rules for images, audio, credentials, biometrics, and logs.</li>
+</ul>
+<p>NIST's <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">Guide to Operational Technology Security, SP 800-82 Rev. 3</a> explicitly includes physical access control and building automation within OT and emphasizes performance, reliability, and safety constraints. The knowledge base adopts that conservative framing wherever software can affect the physical environment.</p>
+<h2 id="s-recording-environment-validation">Recording environment validation<a class="heading-link" href="#s-recording-environment-validation" aria-label="Link to Recording environment validation">#</a></h2>
+<p>Only upgrade an exact page claim or example to <code>V3</code> when a reviewer accepts a <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">runtime validation record</a> containing:</p>
+<ul>
+<li>date, operator, authorisation reference, and environment isolation;</li>
+<li>exact hardware, firmware, software, library, configuration, and network path;</li>
+<li>sanitised inputs and expected results;</li>
+<li>actual results, timestamps, logs or trace identifiers, and deviations;</li>
+<li>negative/degraded cases attempted;</li>
+<li>cleanup/recovery confirmation;</li>
+<li>the narrow claim supported by the evidence.</li>
+</ul>
+<p>Never store live passwords, tokens, private keys, biometric templates, card secrets, access codes, resident data, or unredacted surveillance evidence in this library.</p>
+<p>See the detailed <a href="../../10-sources-and-maintenance/verification-policy/">verification policy</a> and <a href="https://github.com/tegridydev/physical-security-dev/blob/main/CONTRIBUTING.md" rel="noopener noreferrer">environment validation checklist</a>.</p>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../scope-and-boundaries/"><span>Previous in this section</span>Scope and boundaries</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/00-start-here/verification-and-safety.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/00-start-here/verification-and-safety.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-evidence-levels">Evidence levels</a></li><li class="toc-level-2"><a href="#s-verification-layers">Verification layers</a></li><li class="toc-level-2"><a href="#s-safety-gate-for-actuation">Safety gate for actuation</a></li><li class="toc-level-2"><a href="#s-recording-environment-validation">Recording environment validation</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

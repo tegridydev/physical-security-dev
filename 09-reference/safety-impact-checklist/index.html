@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Safety impact checklist · Security Technician Wiki</title>
+<meta name="description" content="Identify the equipment affected by a control change and the person authorised to approve it. Review the physical consequences through the site&#x27;s safety process.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/09-reference/safety-impact-checklist/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Safety impact checklist · Security Technician Wiki">
+<meta property="og:description" content="Identify the equipment affected by a control change and the person authorised to approve it. Review the physical consequences through the site&#x27;s safety process.">
+<meta property="og:url" content="https://securitytechnician.wiki/09-reference/safety-impact-checklist/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
+<script src="../../assets/theme.js"></script>
+<link rel="stylesheet" href="../../assets/site.css">
+
+<script defer src="../../assets/app.js"></script>
+</head>
+<body class="" data-root="../../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section is-active"><a class="nav-section-link" href="../"><span class="nav-number">09</span>Reference</a><ul class="nav-pages"><li><a href="../acronyms/">Acronyms and initialisms</a></li><li><a href="../cabling-power-and-distance-caveats/">Cabling, power, and distance caveats</a></li><li><a href="../code-example-index/">Code example index</a></li><li><a href="../credential-technology-comparison/">Credential technology comparison</a></li><li><a href="../diagram-index/">Diagram index</a></li><li><a href="../discovery-and-multicast/">Discovery and multicast</a></li><li><a href="../event-normalization-field-guide/">Event normalisation field guide</a></li><li><a href="../glossary/">Glossary</a></li><li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li><li><a href="../media-bandwidth-and-storage/">Media bandwidth and storage</a></li><li><a href="../ports-transports-and-protection/">Ports, transports, and protection</a></li><li><a href="../protocol-layer-and-role-matrix/">Protocol layer and role matrix</a></li><li><a href="../protocol-security-comparison/">Protocol security comparison</a></li><li><a href="./" aria-current="page">Safety impact checklist</a></li><li><a href="../standards-and-profile-status/">Standards and profile status</a></li><li><a href="../system-protocol-matrix/">System to protocol matrix</a></li><li><a href="../vendor-api-capability-matrix/">Vendor API capability matrix</a></li></ul></div><div class="nav-section"><a class="nav-section-link" href="../../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../../">Wiki</a><span aria-hidden="true">/</span><a href="../">Reference</a><span aria-hidden="true">/</span><span aria-current="page">Safety impact checklist</span></nav><div class="page-kicker">Reference <span>About 7 min read</span></div><div class="prose"><h1 id="s-safety-impact-checklist">Safety impact checklist</h1>
+<p>Identify the equipment affected by a control change and the person authorised to approve it. Review the physical consequences through the site's safety process.</p><details class="evidence"><summary>Sources and scope<span>Source record 25 August 2026</span></summary><p>Technical source record: 25 August 2026. Check the linked documentation for current product requirements.</p><p>Decision and escalation framework only; it supplies no life safety, egress, fire, electrical, functional safety, building code, dispatch, labor, privacy, accessibility, or legal approval.</p><p><a href="../../10-sources-and-maintenance/verification-policy/">Verification and testing</a></p></details><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-first-classify-the-capability">First classify the capability</a></li><li class="toc-level-3"><a href="#s-observation">Observation</a></li><li class="toc-level-3"><a href="#s-actuation">Actuation</a></li><li class="toc-level-2"><a href="#s-classification-matrix">Classification matrix</a></li><li class="toc-level-2"><a href="#s-observation-checklist">Observation checklist</a></li><li class="toc-level-2"><a href="#s-actuation-preconditions">Actuation preconditions</a></li><li class="toc-level-2"><a href="#s-command-lifecycle-to-preserve">Command lifecycle to preserve</a></li><li class="toc-level-2"><a href="#s-high-impact-domains-and-mandatory-deferral">High impact domains and mandatory deferral</a></li><li class="toc-level-2"><a href="#s-unsafe-automation-patterns">Unsafe automation patterns</a></li><li class="toc-level-2"><a href="#s-stop-conditions">Stop conditions</a></li><li class="toc-level-2"><a href="#s-review-record">Review record</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></div>
+<span class="heading-alias" id="s-the-working-context" aria-hidden="true"></span><h2 id="s-overview">Overview<a class="heading-link" href="#s-overview" aria-label="Link to Overview">#</a></h2>
+<blockquote>
+<p><strong>Mandatory boundary:</strong> observation and actuation are separate authorities. Observation can still affect availability, privacy, or load; actuation can create physical consequences even when an API calls it “test,” “momentary,” “acknowledge,” “reset,” “maintenance,” or “configuration.”</p>
+</blockquote>
+<p>This checklist doesn't authorise any action. Defer life safety, egress, fire, emergency communications, lifts, gates, locks, electrical work, dispatch, legal/privacy, accessibility, and regulatory decisions to the system owner, qualified designers/engineers, monitoring/emergency stakeholders, legal/privacy professionals, and applicable authority having jurisdiction (AHJ).</p>
+<h2 id="s-first-classify-the-capability">First classify the capability<a class="heading-link" href="#s-first-classify-the-capability" aria-label="Link to First classify the capability">#</a></h2>
+<h3 id="s-observation">Observation<a class="heading-link" href="#s-observation" aria-label="Link to Observation">#</a></h3>
+<p>Observation reads or receives data without an intended state change:</p>
+<ul>
+<li>health/status, configuration inventory, capabilities, counters, time, and logs;</li>
+<li>alarm/access/device events and current state;</li>
+<li>live or recorded video/audio/metadata;</li>
+<li>passive serial/network observation using an approved non intrusive method;</li>
+<li>read only directory, credential, door, sensor, BMS, or OT values.</li>
+</ul>
+<p>Observation is <strong>not impact free</strong>. A query can overload a controller; a subscription can exhaust queues; a media session can consume bandwidth; discovery can cause storms; live audio/video can violate privacy; a passive electrical tap can change bus loading; an acknowledgement looking read may consume server state. Apply authorisation, minimisation, query budgets, isolation, and stop conditions.</p>
+<h3 id="s-actuation">Actuation<a class="heading-link" href="#s-actuation" aria-label="Link to Actuation">#</a></h3>
+<p>Actuation requests, enables, suppresses, or changes state or behaviour, including:</p>
+<ul>
+<li>unlock, release, lock, lockdown, gate/barrier movement, lift floor access, door schedule or antipassback changes;</li>
+<li>relay/output/GPIO activation, supervised input bypass, zone inhibit/isolate, alarm arm/disarm, acknowledge/silence/reset;</li>
+<li>intercom call, listen/talk, DTMF function, paging, recorded announcement, emergency message;</li>
+<li>PTZ movement, preset/tour, privacy mask change, focus/IR/heater/output, recording/retention deletion or export release;</li>
+<li>controller/BMS/OT write, BACnet priority write, Modbus write, OPC UA method, KNX group write;</li>
+<li>credential issuance/revocation, access level change, biometric enrolment/deletion, key/trust change;</li>
+<li>firmware/configuration import, reboot/reset, PoE cycle, service stop, failover trigger, time set;</li>
+<li>callback/subscription/configuration change that enables a later physical command.</li>
+</ul>
+<p>An action is still actuation when its effect is indirect, delayed, scheduled, queued, retried, routed through a vendor cloud, or performed by changing policy rather than driving an output.</p>
+<h2 id="s-classification-matrix">Classification matrix<a class="heading-link" href="#s-classification-matrix" aria-label="Link to Classification matrix">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Class</th>
+  <th>Description</th>
+  <th>Examples</th>
+  <th>Minimum disposition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>O1, bounded observation</td>
+  <td>Read only and expected to have low load/privacy consequence</td>
+  <td>Bounded health read, synthetic offline trace parsing</td>
+  <td>Named owner, least privilege, limits, privacy review, evidence</td>
+</tr>
+<tr>
+  <td>O2, consequential observation</td>
+  <td>Sensitive, high volume, topology revealing, or potentially disruptive</td>
+  <td>Live audio/video, broad discovery, controller walk, evidence export</td>
+  <td>Explicit written authority, minimization, capacity plan, isolation/monitoring, stop rule</td>
+</tr>
+<tr>
+  <td>A1, controlled operational change</td>
+  <td>Intended state change with bounded, reversible operational effect in exact approved context</td>
+  <td>Noncritical lab configuration on isolated synthetic system</td>
+  <td>Change control, separate actuator identity, preconditions, witness/telemetry, rollback and unknown outcome plan</td>
+</tr>
+<tr>
+  <td>A2, high impact actuation</td>
+  <td>Can affect people, egress, security posture, alarm/dispatch, physical movement, evidence, electrical load, or safety system</td>
+  <td>Unlock/lockdown, gate/lift, relay, alarm silence/reset, credential revocation, PoE restart of security device</td>
+  <td>Qualified system/safety/legal/AHJ approval as applicable; production like isolation; independent stop authority; no autonomous repository execution</td>
+</tr>
+<tr>
+  <td>Prohibited/unsupported here</td>
+  <td>No safe authority/evidence path or inherently out of scope for this KB</td>
+  <td>Bypassing certified fire/egress controls, testing real dispatch, undocumented live writes</td>
+  <td>Do not proceed; escalate to responsible qualified authority</td>
+</tr>
+</tbody>
+</table></div>
+<p>Classification follows consequence, not HTTP method, SDK function name, UI label, protocol, or duration.</p>
+<h2 id="s-observation-checklist">Observation checklist<a class="heading-link" href="#s-observation-checklist" aria-label="Link to Observation checklist">#</a></h2>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Read only capability and credential are technically separate from write/admin/actuation">Read only capability and credential are technically separate from write/admin/actuation</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Query/stream/subscription scope is the minimum resource, fields, resolution, duration, and rate">Query/stream/subscription scope is the minimum resource, fields, resolution, duration, and rate</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Endpoint supports the requested load and bounded pagination/batch size">Endpoint supports the requested load and bounded pagination/batch size</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Discovery/multicast/serial attachment can&#x27;t create storms, transmit unexpectedly, or alter electrical behaviour">Discovery/multicast/serial attachment can't create storms, transmit unexpectedly, or alter electrical behaviour</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Live/recorded video, audio, access, location, biometric, credential, and topology data have purpose/access/retention approval">Live/recorded video, audio, access, location, biometric, credential, and topology data have purpose/access/retention approval</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Logs and evidence redact secrets and unnecessary personal/security sensitive fields">Logs and evidence redact secrets and unnecessary personal/security sensitive fields</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Absence, stale state, unknown quality, clock error, and data gaps remain explicit">Absence, stale state, unknown quality, clock error, and data gaps remain explicit</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Observation isn&#x27;t used as implicit authorisation for a later command">Observation isn't used as implicit authorisation for a later command</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Stop on load increase, control latency, device instability, privacy scope breach, or unexpected state change">Stop on load increase, control latency, device instability, privacy scope breach, or unexpected state change</li>
+</ul>
+<h2 id="s-actuation-preconditions">Actuation preconditions<a class="heading-link" href="#s-actuation-preconditions" aria-label="Link to Actuation preconditions">#</a></h2>
+<p>Don't expose or issue an actuation unless every applicable item has named evidence and approval:</p>
+<ul>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Exact target asset, physical location, controlled function/load, product/firmware, and current operating mode positively identified">Exact target asset, physical location, controlled function/load, product/firmware, and current operating mode positively identified</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Requester, operator, service, device, and approving authority authenticated and separately authorised for this specific action/target/time">Requester, operator, service, device, and approving authority authenticated and separately authorised for this specific action/target/time</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Current authoritative state, freshness/quality, dependencies, interlocks, occupancy/human presence, and environmental preconditions verified by approved system logic">Current authoritative state, freshness/quality, dependencies, interlocks, occupancy/human presence, and environmental preconditions verified by approved system logic</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Consequence analysis covers expected, duplicate, late, reordered, replayed, partial, failed, and unknown outcomes">Consequence analysis covers expected, duplicate, late, reordered, replayed, partial, failed, and unknown outcomes</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Retry policy is operation specific; no blind retry after an ambiguous mutating result">Retry policy is operation specific; no blind retry after an ambiguous mutating result</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Competing controllers, BACnet priorities, schedules, antipassback, emergency modes, local overrides, and manual controls understood">Competing controllers, BACnet priorities, schedules, antipassback, emergency modes, local overrides, and manual controls understood</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Fail safe/fail secure terminology is defined for the exact opening/system and code context, not assumed from a label">Fail safe/fail secure terminology is defined for the exact opening/system and code context, not assumed from a label</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Positive physical completion evidence comes from the authoritative sensor/controller/process, not transport success alone">Positive physical completion evidence comes from the authoritative sensor/controller/process, not transport success alone</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Rollback/recovery is physically possible, authorised, time bounded, and doesn&#x27;t create a worse hazard">Rollback/recovery is physically possible, authorised, time bounded, and doesn't create a worse hazard</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" type="checkbox" disabled aria-label="Independent monitoring, human stop authority, communications, incident response, and audit are active">Independent monitoring, human stop authority, communications, incident response, and audit are active</li>
+</ul>
+<p>For any A2 capability, use an isolated owner controlled setup with no live egress, dispatch, fire/life safety, public, production, or connected hazardous load unless the responsible qualified authorities explicitly own a controlled commissioning/acceptance procedure. Such a procedure is site, product, jurisdiction, and authority specific and falls outside this global reference.</p>
+<h2 id="s-command-lifecycle-to-preserve">Command lifecycle to preserve<a class="heading-link" href="#s-command-lifecycle-to-preserve" aria-label="Link to Command lifecycle to preserve">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Milestone</th>
+  <th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Authorised</td>
+  <td>Policy allowed the named principal to request the exact action</td>
+</tr>
+<tr>
+  <td>Submitted</td>
+  <td>Client sent or durably queued a request</td>
+</tr>
+<tr>
+  <td>Transport accepted</td>
+  <td>Peer/proxy acknowledged protocol receipt</td>
+</tr>
+<tr>
+  <td>Application accepted</td>
+  <td>Target service accepted syntax and current preconditions</td>
+</tr>
+<tr>
+  <td>Commanded</td>
+  <td>Controller attempted the output/state transition</td>
+</tr>
+<tr>
+  <td>Physically observed</td>
+  <td>Authoritative sensor/process reported a resulting state</td>
+</tr>
+<tr>
+  <td>Operator acknowledged</td>
+  <td>Human/workflow recognized the condition</td>
+</tr>
+<tr>
+  <td>Restored/reconciled</td>
+  <td>System returned to intended stable state and checked for divergence</td>
+</tr>
+</tbody>
+</table></div>
+<p>Never collapse these into one <code>success</code> flag. A timeout can leave outcome unknown; a <code>2xx</code>, SOAP response, MQTT acknowledgement, OSDP reply, BACnet SimpleACK, Modbus response, or gRPC <code>OK</code> doesn't by itself prove safe physical completion.</p>
+<h2 id="s-high-impact-domains-and-mandatory-deferral">High impact domains and mandatory deferral<a class="heading-link" href="#s-high-impact-domains-and-mandatory-deferral" aria-label="Link to High impact domains and mandatory deferral">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Domain</th>
+  <th>Defer to and require</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Doors, locks, egress, lockdown</td>
+  <td>Access control owner, life safety/egress designer, security operations, fire/code/AHJ authorities as applicable</td>
+</tr>
+<tr>
+  <td>Gates, barriers, turnstiles, lifts</td>
+  <td>Equipment manufacturer, qualified controls/safety engineer, site owner, accessibility/code/AHJ stakeholders</td>
+</tr>
+<tr>
+  <td>Fire, smoke control, emergency communications</td>
+  <td>Certified system owner/provider, fire engineer/service, emergency stakeholders, AHJ; never bridge around listed/certified behaviour</td>
+</tr>
+<tr>
+  <td>Intrusion, duress, hold up, medical, panic, dispatch</td>
+  <td>Monitoring center, response authority, subscriber/site owner, regulator/insurer as applicable; synthetic non dispatch routes only for development</td>
+</tr>
+<tr>
+  <td>Electrical, PoE, relays, GPIO, batteries, mains</td>
+  <td>Manufacturer, qualified electrical designer/installer, applicable electrical/fire code and AHJ</td>
+</tr>
+<tr>
+  <td>Video/audio/biometrics/access history</td>
+  <td>Privacy/legal, workforce/union where applicable, security owner, evidence custodian, accessibility stakeholders</td>
+</tr>
+<tr>
+  <td>BMS/OT writes</td>
+  <td>Process/building owner, controls engineer, safety/environmental owner, change authority; preserve certified/local controllers</td>
+</tr>
+</tbody>
+</table></div>
+<p>“Global” documentation can't decide these jurisdiction and system specific duties.</p>
+<h2 id="s-unsafe-automation-patterns">Unsafe automation patterns<a class="heading-link" href="#s-unsafe-automation-patterns" aria-label="Link to Unsafe automation patterns">#</a></h2>
+<ul>
+<li>Event normalisation directly emits an unlock, lockdown, dispatch, silence, reset, or relay command.</li>
+<li>A generic retry library repeats a mutation after timeout.</li>
+<li>Health failure automatically power cycles a device with no state/cooldown/consequence gate.</li>
+<li>A discovered address is trusted and immediately configured or controlled.</li>
+<li>A video analytic alone makes an irreversible/high impact access or response decision.</li>
+<li>An MQTT retained message or stale cache is interpreted as fresh physical state.</li>
+<li>A credential/radio UID, RSSI, or raw UWB range is treated as sufficient authentication.</li>
+<li>A gateway maps unknown vendor alarm codes to the nearest high priority standard meaning.</li>
+<li>A monitoring integration acknowledges/silences upstream merely because downstream storage succeeded.</li>
+<li>A “fail open” software fallback is used to solve an availability problem without certified system authority.</li>
+</ul>
+<h2 id="s-stop-conditions">Stop conditions<a class="heading-link" href="#s-stop-conditions" aria-label="Link to Stop conditions">#</a></h2>
+<p>Stop work and preserve evidence if:</p>
+<ul>
+<li>the target, connected load, physical effect, current state, or authority is ambiguous;</li>
+<li>production credentials, real subscriber/dispatch routes, real people, or live emergency systems appear in an intended lab path;</li>
+<li>a supposedly read only tool changes configuration/state or creates material load;</li>
+<li>an action returns timeout/unknown outcome and safe physical state can't be independently confirmed;</li>
+<li>interlocks, local controls, schedules, emergency override, or competing controller behaviour differs from the approved model;</li>
+<li>certificate/identity, firmware, topology, wiring, power, or code status differs from the approved record;</li>
+<li>monitoring, communication, stop authority, rollback, or audit becomes unavailable;</li>
+<li>any person reports unsafe, inaccessible, coercive, privacy invasive, or unexpected behaviour.</li>
+</ul>
+<h2 id="s-review-record">Review record<a class="heading-link" href="#s-review-record" aria-label="Link to Review record">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">capability and exact target:
+classification: O1 | O2 | A1 | A2 | prohibited/unsupported
+intended and worst credible physical effect:
+data/privacy effect:
+owner and approving authorities:
+standard/product/configuration evidence:
+isolation proof:
+preconditions and interlocks:
+authoritative completion evidence:
+unknown-outcome and retry rule:
+rollback/recovery and stop authority:
+legal/AHJ/electrical/life-safety decisions (external references only):
+environment-validation record and owner:
+residual risk acceptance and expiry:
+</code></pre></div>
+<h2 id="s-related-pages">Related pages<a class="heading-link" href="#s-related-pages" aria-label="Link to Related pages">#</a></h2>
+<ul>
+<li><a href="../integration-readiness-checklist/">Integration readiness checklist</a></li>
+<li><a href="../../01-foundations/events-state-commands-and-time/">Events, state, commands, and time</a></li>
+<li><a href="../../01-foundations/dry-contacts-and-supervised-circuits/">Dry contacts and supervised circuits</a></li>
+<li><a href="../../03-systems/video-surveillance/ptz-and-device-io/">PTZ and device I/O</a></li>
+<li><a href="../../03-systems/access-control/">Access control system</a></li>
+<li><a href="../../10-sources-and-maintenance/authorized-and-safe-use/">Authorised and safe use</a></li>
+</ul>
+<h2 id="s-sources">Sources<a class="heading-link" href="#s-sources" aria-label="Link to Sources">#</a></h2>
+<ul>
+<li><strong>NIST OT</strong>, <a href="https://csrc.nist.gov/pubs/sp/800/82/r3/final" rel="noopener noreferrer">NIST SP 800-82 Rev. 3: Guide to Operational Technology Security</a>, NIST, September 2023; used for OT safety/reliability/security boundary context, not as site approval.</li>
+<li><strong>IEC62443</strong>, <a href="https://webstore.iec.ch/en/publication/7033" rel="noopener noreferrer">IEC 62443-3-3:2013, System security requirements and security levels</a>, IEC; applicability and current amendments must be checked for the project.</li>
+<li><strong>SIA OSDP CHECK</strong>, <a href="https://www.securityindustry.org/2026/02/10/implementing-osdp-access-control-follow-this-simple-checklist/" rel="noopener noreferrer">Implementing OSDP Access Control? Follow This Simple Checklist</a>, Security Industry Association, 10 February 2026.</li>
+<li><strong>ONVIF</strong>, <a href="https://www.onvif.org/profiles-specifications-new/" rel="noopener noreferrer">ONVIF Network Interface Specifications</a>, ONVIF, accessed 25 August 2026; capability semantics require exact service/profile/product evidence.</li>
+</ul>
+<p><a href="../">Section overview</a> · <a href="../../">Wiki home</a></p>
+</div><nav class="neighbours" aria-label="More in this section"><a href="../protocol-security-comparison/"><span>Previous in this section</span>Protocol security comparison</a><a href="../standards-and-profile-status/"><span>Next in this section</span>Standards and profile status</a></nav><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/09-reference/safety-impact-checklist.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/09-reference/safety-impact-checklist.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-overview">Overview</a></li><li class="toc-level-2"><a href="#s-first-classify-the-capability">First classify the capability</a></li><li class="toc-level-3"><a href="#s-observation">Observation</a></li><li class="toc-level-3"><a href="#s-actuation">Actuation</a></li><li class="toc-level-2"><a href="#s-classification-matrix">Classification matrix</a></li><li class="toc-level-2"><a href="#s-observation-checklist">Observation checklist</a></li><li class="toc-level-2"><a href="#s-actuation-preconditions">Actuation preconditions</a></li><li class="toc-level-2"><a href="#s-command-lifecycle-to-preserve">Command lifecycle to preserve</a></li><li class="toc-level-2"><a href="#s-high-impact-domains-and-mandatory-deferral">High impact domains and mandatory deferral</a></li><li class="toc-level-2"><a href="#s-unsafe-automation-patterns">Unsafe automation patterns</a></li><li class="toc-level-2"><a href="#s-stop-conditions">Stop conditions</a></li><li class="toc-level-2"><a href="#s-review-record">Review record</a></li><li class="toc-level-2"><a href="#s-related-pages">Related pages</a></li><li class="toc-level-2"><a href="#s-sources">Sources</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>

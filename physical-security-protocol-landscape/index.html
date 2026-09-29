@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src &#x27;none&#x27;; script-src &#x27;self&#x27;; style-src &#x27;self&#x27;; img-src &#x27;self&#x27;; font-src &#x27;self&#x27;; connect-src &#x27;self&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;self&#x27;; object-src &#x27;none&#x27;">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>The physical security protocol map · Security Technician Wiki</title>
+<meta name="description" content="Find protocols by the task they perform, then follow the detailed references for each family.">
+<meta name="author" content="tegridydev">
+<meta name="color-scheme" content="light dark">
+<link rel="canonical" href="https://securitytechnician.wiki/physical-security-protocol-landscape/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="The physical security protocol map · Security Technician Wiki">
+<meta property="og:description" content="Find protocols by the task they perform, then follow the detailed references for each family.">
+<meta property="og:url" content="https://securitytechnician.wiki/physical-security-protocol-landscape/">
+<meta property="og:site_name" content="Security Technician Wiki">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+<script src="../assets/theme.js"></script>
+<link rel="stylesheet" href="../assets/site.css">
+
+<script defer src="../assets/app.js"></script>
+</head>
+<body class="" data-root="../">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="header-inner">
+<a class="brand" href="../" aria-label="Security Technician Wiki home"><span class="brand-mark" aria-hidden="true">st</span><span class="brand-wordmark">securitytechnician<span class="brand-domain">.wiki</span></span></a>
+<form class="header-search" action="../search/" method="get" role="search"><label class="sr-only" for="site-search">Search the wiki</label><input type="search" id="site-search" name="q" placeholder="Search the wiki…" maxlength="200" autocomplete="off"><button type="submit" aria-label="Search">↵</button></form>
+<button type="button" id="theme-toggle" class="theme-toggle" aria-label="Change colour theme" hidden>Theme</button>
+</div></header>
+<div class="site-layout">
+<aside class="sidebar"><details id="site-navigation" open><summary>Browse wiki <span aria-hidden="true">☰</span></summary><nav aria-label="Wiki navigation"><a class="nav-home" href="../">Overview</a><div class="nav-section"><a class="nav-section-link" href="../00-start-here/"><span class="nav-number">00</span>Start here</a></div><div class="nav-section"><a class="nav-section-link" href="../01-foundations/"><span class="nav-number">01</span>Foundations</a></div><div class="nav-section"><a class="nav-section-link" href="../02-protocols/"><span class="nav-number">02</span>Protocols</a></div><div class="nav-section"><a class="nav-section-link" href="../03-systems/"><span class="nav-number">03</span>Systems</a></div><div class="nav-section"><a class="nav-section-link" href="../04-vendor-apis/"><span class="nav-number">04</span>Vendor APIs</a></div><div class="nav-section"><a class="nav-section-link" href="../05-development-and-integration/"><span class="nav-number">05</span>Development</a></div><div class="nav-section"><a class="nav-section-link" href="../06-security-and-assurance/"><span class="nav-number">06</span>Security</a></div><div class="nav-section"><a class="nav-section-link" href="../07-operations-and-lifecycle/"><span class="nav-number">07</span>Operations</a></div><div class="nav-section"><a class="nav-section-link" href="../08-defensive-labs/"><span class="nav-number">08</span>Defensive labs</a></div><div class="nav-section"><a class="nav-section-link" href="../09-reference/"><span class="nav-number">09</span>Reference</a></div><div class="nav-section"><a class="nav-section-link" href="../10-sources-and-maintenance/"><span class="nav-number">10</span>Sources and scope</a></div><div class="nav-extra"><a href="../05-development-and-integration/examples/">Code examples</a></div><div class="nav-extra"><a href="../all-pages/">All pages <span aria-hidden="true">↗</span></a><a href="https://github.com/tegridydev/physical-security-dev" rel="noopener noreferrer">GitHub repository <span aria-hidden="true">↗</span></a></div></nav><p class="sidebar-note">Cameras, access control, alarms<br>and the systems around them.</p></details></aside>
+<main id="main-content" tabindex="-1"><nav class="breadcrumbs" aria-label="Breadcrumb"><a href="../">Wiki</a><span aria-hidden="true">/</span><span aria-current="page">The physical security protocol map</span></nav><div class="page-kicker">About this resource <span>About 2 min read</span></div><div class="prose"><h1 id="s-the-physical-security-protocol-map">The physical security protocol map</h1>
+<p>Find protocols by the task they perform, then follow the detailed references for each family.</p><div class="mobile-outline"><details class="toc"><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-the-layers-at-a-glance">The layers at a glance</a></li><li class="toc-level-2"><a href="#s-choose-the-job">Choose the job</a></li><li class="toc-level-2"><a href="#s-questions-worth-carrying-into-every-page">Questions worth carrying into every page</a></li><li class="toc-level-2"><a href="#s-status-and-source-limits">Status and source limits</a></li></ul></nav></details></div>
+<h2 id="s-the-layers-at-a-glance">The layers at a glance<a class="heading-link" href="#s-the-layers-at-a-glance" aria-label="Link to The layers at a glance">#</a></h2>
+<div class="code-block"><div class="code-toolbar"><span>text</span><button type="button" class="copy-code" data-copy="code-1" hidden aria-label="Copy text example">Copy</button></div><pre tabindex="0" aria-label="text example"><code id="code-1">people, policy and approved physical outcomes
+                    |
+        system or application behaviour
+      VMS · PACS · monitoring · integration
+                    |
+          protocols and data contracts
+ ONVIF · OSDP · SIA · MQTT · BACnet · vendor API
+                    |
+       transport, identity and protection
+     TCP/UDP · TLS · certificates · roles
+                    |
+            network and field links
+     Ethernet · radio · serial · contacts
+</code></pre></div>
+<p>This is a reading map, not a claim that every technology sits at exactly one layer. Use <a href="../01-foundations/architecture-and-layering/">architecture and layering</a> for the distinctions and <a href="../09-reference/protocol-layer-and-role-matrix/">protocol roles</a> for a more detailed matrix.</p>
+<h2 id="s-choose-the-job">Choose the job<a class="heading-link" href="#s-choose-the-job" aria-label="Link to Choose the job">#</a></h2>
+<div class="table-scroll" role="region" aria-label="Reference table" tabindex="0"><table>
+<thead>
+<tr>
+  <th>Job</th>
+  <th>Start with</th>
+  <th>Keep separate</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>Discover camera services and capabilities</td>
+  <td><a href="../02-protocols/video-and-media/onvif/">ONVIF</a></td>
+  <td>Discovery, device identity, profile registration and optional features</td>
+</tr>
+<tr>
+  <td>Set up and carry a media stream</td>
+  <td><a href="../02-protocols/video-and-media/rtsp-rtp-rtcp-sdp/">RTSP, RTP, RTCP and SDP</a></td>
+  <td>Session control, description, packets, codec and permissions</td>
+</tr>
+<tr>
+  <td>Deliver media to a browser</td>
+  <td><a href="../02-protocols/video-and-media/webrtc/">WebRTC</a></td>
+  <td>Signalling, authorisation and media connectivity</td>
+</tr>
+<tr>
+  <td>Integrate intercom calling</td>
+  <td><a href="../02-protocols/video-and-media/sip-and-srtp/">SIP and SRTP</a></td>
+  <td>Call signalling, protected media and door release</td>
+</tr>
+<tr>
+  <td>Connect a reader and controller</td>
+  <td><a href="../02-protocols/access-control/osdp/">OSDP</a> or <a href="../02-protocols/access-control/legacy-reader-interfaces/">legacy reader links</a></td>
+  <td>Electrical link, credential data and authentication</td>
+</tr>
+<tr>
+  <td>Understand card or mobile presentation</td>
+  <td><a href="../02-protocols/access-control/credential-formats-and-mobile-credentials/">Credential formats</a> and <a href="../02-protocols/access-control/nfc-ble-and-uwb/">NFC, BLE and UWB</a></td>
+  <td>Radio, credential proof, proximity and access policy</td>
+</tr>
+<tr>
+  <td>Report an alarm to a receiver</td>
+  <td><a href="../02-protocols/alarm-monitoring/">Alarm protocols</a></td>
+  <td>Premises reporting, receiver handoff, supervision and response</td>
+</tr>
+<tr>
+  <td>Consume application events</td>
+  <td><a href="../02-protocols/web-and-messaging/mqtt/">MQTT</a>, <a href="../02-protocols/web-and-messaging/amqp-1-0/">AMQP</a> or <a href="../02-protocols/web-and-messaging/websocket-sse-and-webhooks/">web event delivery</a></td>
+  <td>Delivery, persistence, freshness, state and physical outcome</td>
+</tr>
+<tr>
+  <td>Exchange building data</td>
+  <td><a href="../02-protocols/building-and-industrial/bacnet-family/">BACnet</a>, <a href="../02-protocols/building-and-industrial/modbus-family/">Modbus</a> or <a href="../02-protocols/building-and-industrial/opc-ua/">OPC UA</a></td>
+  <td>Object or register meaning, safe control and engineering authority</td>
+</tr>
+<tr>
+  <td>Integrate enterprise identity</td>
+  <td><a href="../02-protocols/infrastructure/enterprise-federation-saml-and-oidc/">SAML and OIDC</a>, <a href="../02-protocols/infrastructure/scim-identity-provisioning/">SCIM</a> or <a href="../02-protocols/infrastructure/webauthn-fido-and-passkeys/">WebAuthn</a></td>
+  <td>Authentication, provisioning, authorisation and enforcement</td>
+</tr>
+<tr>
+  <td>Work with a specific platform</td>
+  <td><a href="../04-vendor-apis/">Vendor APIs</a></td>
+  <td>Product family, version, licence and supported interface</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="s-questions-worth-carrying-into-every-page">Questions worth carrying into every page<a class="heading-link" href="#s-questions-worth-carrying-into-every-page" aria-label="Link to Questions worth carrying into every page">#</a></h2>
+<p>Ask which role each endpoint implements, what the data means, which version applies and how identity is checked. Then ask what happens when a message is delayed, repeated or lost.</p>
+<p>For physical control, also identify who is authorised to request the change and which component can confirm the actual result. A successful transport or API exchange does not answer both questions.</p>
+<h2 id="s-status-and-source-limits">Status and source limits<a class="heading-link" href="#s-status-and-source-limits" aria-label="Link to Status and source limits">#</a></h2>
+<p>Most imported technical pages retain their <strong>25 August 2026</strong> source baseline. Pages with a newer scoped check show that date separately. The <a href="../09-reference/standards-and-profile-status/">standards and profile status</a> register includes selected checks through <strong>13 September 2026</strong>.</p>
+<p>Use the <a href="../10-sources-and-maintenance/verification-policy/">verification policy</a> and the primary sources linked from each protocol page. Confirm current editions, lifecycle dates and product support before a deployment decision.</p>
+<p><a href="../02-protocols/">Protocol index</a> · <a href="../00-start-here/learning-paths/">Reading paths</a> · <a href="../">Wiki home</a></p>
+</div><div class="source-links"><a href="https://github.com/tegridydev/physical-security-dev/blob/main/physical-security-protocol-landscape.md">View Markdown</a><a href="https://github.com/tegridydev/physical-security-dev/edit/main/physical-security-protocol-landscape.md">Suggest an edit</a><a href="#main-content">Back to top ↑</a></div><footer class="page-footer"><span>Security Technician Wiki</span><a href="../license/">MIT licence</a><a href="https://tegridydev.com/" rel="noopener noreferrer">tegridydev.com ↗</a></footer></main>
+<aside class="page-outline"><details class="toc" open><summary>On this page</summary><nav aria-label="On this page"><ul><li class="toc-level-2"><a href="#s-the-layers-at-a-glance">The layers at a glance</a></li><li class="toc-level-2"><a href="#s-choose-the-job">Choose the job</a></li><li class="toc-level-2"><a href="#s-questions-worth-carrying-into-every-page">Questions worth carrying into every page</a></li><li class="toc-level-2"><a href="#s-status-and-source-limits">Status and source limits</a></li></ul></nav></details></aside>
+</div>
+<div id="copy-status" class="sr-only" role="status" aria-live="polite"></div>
+</body></html>
